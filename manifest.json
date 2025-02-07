@@ -1,0 +1,422 @@
+{
+  "bundleName": "@itentialopensource/prebuilt-promotion",
+  "version": "0.0.1",
+  "fingerprint": "67a6538e547e674ddd59e338",
+  "createdEpoch": "1738953614048",
+  "artifacts": [
+    {
+      "id": "Prebuilt Promotion",
+      "name": "Prebuilt Promotion",
+      "type": "automation",
+      "location": "/bundles/automations/Prebuilt Promotion.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion",
+      "name": "Prebuilt Promotion",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Re-Discover",
+      "name": "Prebuilt Promotion Re-Discover",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Re-Discover.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Gitlab Create Link",
+      "name": "Prebuilt Promotion Gitlab Create Link",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Gitlab Create Link.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Bitbucket Create Link",
+      "name": "Prebuilt Promotion Bitbucket Create Link",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Bitbucket Create Link.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Github Create Link",
+      "name": "Prebuilt Promotion Github Create Link",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Github Create Link.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Gitlab Add Files",
+      "name": "Prebuilt Promotion Gitlab Add Files",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Gitlab Add Files.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Github Add Files",
+      "name": "Prebuilt Promotion Github Add Files",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Github Add Files.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Push Bundles to GitHub Commit Data",
+      "name": "Push Bundles to GitHub Commit Data",
+      "type": "workflow",
+      "location": "/bundles/workflows/Push Bundles to GitHub Commit Data.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Github Create Branch",
+      "name": "Prebuilt Promotion Github Create Branch",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Github Create Branch.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Bitbucket Add Files",
+      "name": "Prebuilt Promotion Bitbucket Add Files",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Bitbucket Add Files.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Github Check OrgRepo",
+      "name": "Prebuilt Promotion Github Check OrgRepo",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Github Check OrgRepo.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Github New Commit",
+      "name": "Prebuilt Promotion Github New Commit",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Github New Commit.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Prebuilt Promotion Form",
+      "name": "Prebuilt Promotion Form",
+      "type": "json-forms",
+      "location": "/bundles/json_forms/Prebuilt Promotion Form.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "Re-Discovery Components Form",
+      "name": "Re-Discovery Components Form",
+      "type": "json-forms",
+      "location": "/bundles/json_forms/Re-Discovery Components Form.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "BitbucketFilesToAddAndDelete",
+      "name": "BitbucketFilesToAddAndDelete",
+      "type": "template",
+      "location": "/bundles/templates/BitbucketFilesToAddAndDelete.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "605a0b9299ae1b00eb7c74e9",
+      "name": "convertObjecttoString",
+      "type": "transformation",
+      "location": "/bundles/transformations/convertObjecttoString.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6287f3480f8090010e7a4b89",
+      "name": "filterArtifactArrayToOnlyCreateFiles",
+      "type": "transformation",
+      "location": "/bundles/transformations/filterArtifactArrayToOnlyCreateFiles.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "605d2b11d1976e009291a74d",
+      "name": "updatePackageGitHubJSON",
+      "type": "transformation",
+      "location": "/bundles/transformations/updatePackageGitHubJSON.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "605b86f821c795008dc26118",
+      "name": "mergeFormWithDiscovery",
+      "type": "transformation",
+      "location": "/bundles/transformations/mergeFormWithDiscovery.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075bcc58c016f0098c72846",
+      "name": "filterActionsGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/filterActionsGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "621d36785da44100e455a1d3",
+      "name": "createAndUpdateArraysPP",
+      "type": "transformation",
+      "location": "/bundles/transformations/createAndUpdateArraysPP.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "621d05685da44100e455a1d1",
+      "name": "getFileObjectsPP",
+      "type": "transformation",
+      "location": "/bundles/transformations/getFileObjectsPP.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "622f933c53c0030101260b09",
+      "name": "projectExistsGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/projectExistsGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "621fd789da0c6c470881bdab",
+      "name": "generateCommitActions",
+      "type": "transformation",
+      "location": "/bundles/transformations/generateCommitActions.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075bc6c8c016f0098c7283f",
+      "name": "updatePackageJSONGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/updatePackageJSONGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075d13d8c016f0098c7284f",
+      "name": "getUriForFilesGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/getUriForFilesGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075d1cf8c016f0098c72852",
+      "name": "actionCreateGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/actionCreateGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "623231be3230da01016b79de",
+      "name": "convertFormDataPP",
+      "type": "transformation",
+      "location": "/bundles/transformations/convertFormDataPP.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075d09d8c016f0098c7284e",
+      "name": "getPackageJsonGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/getPackageJsonGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "64356046770ce80183cec91d",
+      "name": "getRepoURLGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/getRepoURLGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075cfe68c016f0098c7284d",
+      "name": "getUriGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/getUriGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075cef28c016f0098c7284c",
+      "name": "getArtifactPathGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/getArtifactPathGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "621002baa161ae00ef6164b5",
+      "name": "translateSchemaPushBundles",
+      "type": "transformation",
+      "location": "/bundles/transformations/translateSchemaPushBundles.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075d19a8c016f0098c72851",
+      "name": "createDeleteCommitGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/createDeleteCommitGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "5f7caed7a6f94b2e4b558b71",
+      "name": "convertFormOutputToDiscoveryFormat",
+      "type": "transformation",
+      "location": "/bundles/transformations/convertFormOutputToDiscoveryFormat.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6210015da161ae00ef6164b4",
+      "name": "convertArtifactInfoToForm",
+      "type": "transformation",
+      "location": "/bundles/transformations/convertArtifactInfoToForm.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "60647088fa6304009929d8d6",
+      "name": "filterArrayOfObjectsGitLab",
+      "type": "transformation",
+      "location": "/bundles/transformations/filterArrayOfObjectsGitLab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075bda98c016f0098c72849",
+      "name": "getMetadataAndComponentsGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/getMetadataAndComponentsGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "620ea276e3638a010009b10e",
+      "name": "componentsObject",
+      "type": "transformation",
+      "location": "/bundles/transformations/componentsObject.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6227a41704a9540111aef712",
+      "name": "Prebuilt Promotion Version Control Instance Filter",
+      "type": "transformation",
+      "location": "/bundles/transformations/Prebuilt Promotion Version Control Instance Filter.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6234aa0b329ee901170bd820",
+      "name": "buildGETAdapterByNameURI",
+      "type": "transformation",
+      "location": "/bundles/transformations/buildGETAdapterByNameURI.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "62322beada0c6c470881bdaf",
+      "name": "setRepositoryInPackageJson",
+      "type": "transformation",
+      "location": "/bundles/transformations/setRepositoryInPackageJson.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "6075d17e8c016f0098c72850",
+      "name": "filterBodyGitlab",
+      "type": "transformation",
+      "location": "/bundles/transformations/filterBodyGitlab.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "63effc7c2680b700eb4eeefa",
+      "name": "createNewProjectRequest",
+      "type": "transformation",
+      "location": "/bundles/transformations/createNewProjectRequest.json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
+      "id": "605b870f21c795008dc26119",
+      "name": "createArtifactForPublish",
+      "type": "transformation",
+      "location": "/bundles/transformations/createArtifactForPublish.json",
+      "properties": {
+        "entryPoint": false
+      }
+    }
+  ]
+}

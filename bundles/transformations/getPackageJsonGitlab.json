@@ -1,0 +1,137 @@
+{
+  "_id": "6075d09d8c016f0098c7284e",
+  "name": "getPackageJsonGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "repoId",
+      "type": "string",
+      "examples": [
+        "fds"
+      ]
+    },
+    {
+      "$id": "targetBranch",
+      "type": "string",
+      "examples": [
+        "fdsf"
+      ]
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "getPackageJsonURL",
+      "type": "string",
+      "examples": [
+        "FDS"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "https://gitlab.com/api/v4/projects/"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "repoId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 2,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 2,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 2,
+      "type": "method",
+      "library": "String",
+      "method": "concat",
+      "args": [
+        null,
+        null,
+        "/repository/files/package.json/raw?ref=",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "getPackageJsonURL",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "targetBranch",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 2,
+        "ptr": "/args/3/value"
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.868Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.868Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

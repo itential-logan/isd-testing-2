@@ -1,0 +1,729 @@
+{
+  "_id": "5f7caed7a6f94b2e4b558b71",
+  "name": "convertFormOutputToDiscoveryFormat",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "formOutput",
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "properties": {
+            "catalogAutomations": {
+              "type": "array"
+            },
+            "operationsAutomations": {
+              "type": "array"
+            },
+            "workflows": {
+              "type": "array"
+            },
+            "jsonForms": {
+              "type": "array"
+            },
+            "forms": {
+              "type": "array"
+            },
+            "templates": {
+              "type": "array"
+            },
+            "commandTemplates": {
+              "type": "array"
+            },
+            "analyticTemplates": {
+              "type": "array"
+            },
+            "goldenConfigTrees": {
+              "type": "array"
+            },
+            "transformations": {
+              "type": "array"
+            },
+            "triggers": {
+              "type": "array"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "discoveryEntryPoint",
+      "type": "object",
+      "properties": {
+        "catalogAutomation": {
+          "type": [
+            "null",
+            "array"
+          ],
+          "items": {
+            "type": "string",
+            "examples": [
+              "zackAll"
+            ]
+          }
+        },
+        "workflow": {
+          "type": [
+            "null",
+            "array"
+          ]
+        },
+        "transformation": {
+          "type": [
+            "null",
+            "array"
+          ]
+        },
+        "operationsAutomation": {
+          "type": [
+            "null",
+            "array"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "declaration",
+      "library": "Object",
+      "method": "new Object",
+      "args": [
+        {
+          "catalogAutomation": [],
+          "workflow": [],
+          "transformation": [],
+          "operationsAutomation": []
+        }
+      ],
+      "view": {
+        "row": 1,
+        "col": 3
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/workflows"
+      },
+      "to": {
+        "location": "function",
+        "name": 3,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 2,
+      "type": "function",
+      "function": "userFunc_1",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 3,
+      "type": "function",
+      "function": "userFunc_1",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 2,
+        "ptr": "/return/arrayedNames"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 3,
+        "ptr": "/return/arrayedNames"
+      },
+      "to": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "catalogAutomation",
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 11,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "workflow",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      }
+    },
+    {
+      "id": 14,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 13,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 13,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "transformation",
+        []
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      }
+    },
+    {
+      "id": 21,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/catalogAutomations"
+      },
+      "to": {
+        "location": "function",
+        "name": 2,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 22,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "operationsAutomation",
+        null
+      ],
+      "view": {
+        "row": 5,
+        "col": 3
+      }
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 13,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 22,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 24,
+      "type": "function",
+      "function": "userFunc_1",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 2
+      }
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/operationsAutomations"
+      },
+      "to": {
+        "location": "function",
+        "name": 24,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 24,
+        "ptr": "/return/arrayedNames"
+      },
+      "to": {
+        "location": "method",
+        "name": 22,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 22,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "discoveryEntryPoint",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "$id": "componentArray",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "arrayedNames",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "zackAll"
+            ]
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "componentArray",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "map",
+          "args": [
+            null,
+            "ƒ_map_1"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "arrayedNames",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "process\\Array",
+      "view": {
+        "col": 2,
+        "row": 7
+      },
+      "id": "userFunc_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "transformationComponentArray",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "5f7c62b43451a606c2fb0305"
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "arrayedNames",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "zackAll"
+            ]
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "transformationComponentArray",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "map",
+          "args": [
+            null,
+            "ƒ_map_1 (1)"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "arrayedNames",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "processTransformations",
+      "view": {
+        "col": 1,
+        "row": 6
+      },
+      "id": "userFunc_2",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1",
+      "view": {
+        "col": 1,
+        "row": 7
+      },
+      "id": "ƒ_map_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "examples": [
+                "5f7c62b43451a606c2fb0305"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "5f7c62b43451a606c2fb0305"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1 (1)",
+      "view": {
+        "col": 1,
+        "row": 6
+      },
+      "id": "ƒ_map_1 (1)",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 4,
+    "row": 7
+  },
+  "created": "2025-02-06T18:32:40.932Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.932Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

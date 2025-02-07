@@ -1,0 +1,470 @@
+{
+  "_id": "621d05685da44100e455a1d1",
+  "name": "getFileObjectsPP",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "scriptsArr",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "examples": [
+              "generate%2Ejs"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "examples": [
+              "fileContentGoesHere"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "ymlFile",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "%2Egitlab-ci%2Eyml"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "examples": [
+            "fdsa"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "testFiles",
+      "type": "array"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "scriptsFolder",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "scripts"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "examples": [
+            "directory"
+          ]
+        },
+        "content": {
+          "type": "array"
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "YMLFile",
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    {
+      "$id": "testFolder",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "test"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "examples": [
+            "directory"
+          ]
+        },
+        "content": {
+          "type": "array"
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "addTypeField"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      }
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "scriptsArr",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "scriptsFolder",
+        "ptr": "/content"
+      }
+    },
+    {
+      "id": 4,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "scripts"
+      ],
+      "view": {
+        "row": 1,
+        "col": 3
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "scriptsFolder",
+        "ptr": "/name"
+      }
+    },
+    {
+      "id": 6,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "directory"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "scriptsFolder",
+        "ptr": "/type"
+      }
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "type",
+        "file"
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "ymlFile",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "YMLFile",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 11,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "addTypeField"
+      ],
+      "view": {
+        "row": 3,
+        "col": 3
+      }
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "testFiles",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 13,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "test"
+      ],
+      "view": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "id": 14,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 13,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "testFolder",
+        "ptr": "/name"
+      }
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "testFolder",
+        "ptr": "/type"
+      }
+    },
+    {
+      "id": 16,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "testFolder",
+        "ptr": "/content"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "generate%2Ejs"
+              ]
+            },
+            "content": {
+              "type": "string",
+              "examples": [
+                "fileContentGoesHere"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "generate%2Ejs"
+                ]
+              },
+              "content": {
+                "type": "string",
+                "examples": [
+                  "fileContentGoesHere"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "type",
+            "file"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "addTypeField",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.772Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.772Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

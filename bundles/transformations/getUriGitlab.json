@@ -1,0 +1,143 @@
+{
+  "_id": "6075cfe68c016f0098c7284d",
+  "name": "getUriGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "repoId",
+      "type": "integer",
+      "examples": [
+        123
+      ]
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "gitlabCommitURI",
+      "type": "string",
+      "examples": [
+        "fds"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "https://gitlab.com/api/v4/projects/"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "repoId",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 2,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 2,
+      "type": "method",
+      "library": "Number",
+      "method": "toString",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "String",
+      "method": "concat",
+      "args": [
+        null,
+        null,
+        "/repository/commits"
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "gitlabCommitURI",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.894Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.894Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

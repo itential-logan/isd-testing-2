@@ -1,0 +1,622 @@
+{
+  "_id": "6075d19a8c016f0098c72851",
+  "name": "createDeleteCommitGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "commit_message",
+      "type": "string"
+    },
+    {
+      "$id": "branch",
+      "type": "string"
+    },
+    {
+      "$id": "filteredBody",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathParam": {
+            "type": "string",
+            "examples": [
+              "bundles/transformations/filterArrayOfObjects%2Ejson"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "examples": [
+              "d1adbd909d19e4c16fa8489baa518c91aab2a074"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "examples": [
+              "filterArrayOfObjects%2Ejson"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "examples": [
+              "blob"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "examples": [
+              "100644"
+            ]
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "commitDeleteBody",
+      "type": "object",
+      "properties": {
+        "branch": {
+          "type": "string",
+          "examples": [
+            "major/2020-10-08T07-48-36"
+          ]
+        },
+        "commit_message": {
+          "type": "string",
+          "examples": [
+            "10/8 I added a child job to the workflow and am now running the push to gitlab with re-discovery"
+          ]
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "examples": [
+                  "update"
+                ]
+              },
+              "file_path": {
+                "type": "string",
+                "examples": [
+                  "scripts/generate.js"
+                ]
+              },
+              "content": {
+                "type": "string",
+                "examples": [
+                  "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package.json', 'manifest.json', 'README.md'];\nlet success = true;\n\nconst PID = process.argv[2];\nconst gitlabURL = process.argv[3];\nconst gitlabBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error('Please run this script with Gitlab Project ID (integer) as an argument');\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType.replace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash.substring(\n      0,\n      underscoreToDash.length - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map(entry => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README.md') {\n        const parsedRes = JSON.parse(result);\n        if (entry === 'manifest.json' && Object.prototype.hasOwnProperty.call(parsedRes, 'version')) {\n          delete parsedRes.version;\n        }\n      return parsedRes;\n    } else {\n      return result.replace(/\\.\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs.readdirSync(path.join(__dirname, './bundles'));\n  const bundles = [];\n  // result.forEach(entry => {\n  //   console.log(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs.readdirSync(path.join(__dirname, `./bundles/${entry}`));\n  //   fileNames.forEach(file => {\n  //     const data = fs.readFileSync(\n  //       path.join(__dirname, `./bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles.push({ type: fileTypetoType(entry), data: JSON.parse(data) });\n  //       console.log(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console.log(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest.artifacts;\n  components.forEach(file => {\n    try {\n      const data = fs.readFileSync(\n        path.join(filePath, `./${file.location}`),\n        { encoding: 'utf-8' }\n      );\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(`     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, './artifact.json'),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "filteredBody",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "branch",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "commitDeleteBody",
+        "ptr": "/branch"
+      }
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "ƒ_map_2"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "commitDeleteBody",
+        "ptr": "/actions"
+      }
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "commit_message",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "commitDeleteBody",
+        "ptr": "/commit_message"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "964adac3432107ae93c8eb09340e63d4e776a3e4"
+              ]
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "nick-1.json"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "blob"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "examples": [
+                "bundles/workflows/nick-1.json"
+              ]
+            },
+            "mode": {
+              "type": "string",
+              "examples": [
+                "100644"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "964adac3432107ae93c8eb09340e63d4e776a3e4"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "nick-1.json"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "blob"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "bundles/workflows/nick-1.json"
+                ]
+              },
+              "mode": {
+                "type": "string",
+                "examples": [
+                  "100644"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            "{}"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/path"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            "delete"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1",
+      "view": {
+        "col": 2,
+        "row": 6
+      },
+      "id": "ƒ_map_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "pathParam": {
+              "type": "string",
+              "examples": [
+                "bundles/transformations/filterArrayOfObjects%2Ejson"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "examples": [
+                "d1adbd909d19e4c16fa8489baa518c91aab2a074"
+              ]
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "filterArrayOfObjects%2Ejson"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "blob"
+              ]
+            },
+            "mode": {
+              "type": "string",
+              "examples": [
+                "100644"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pathParam": {
+                "type": "string",
+                "examples": [
+                  "bundles/transformations/filterArrayOfObjects%2Ejson"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "d1adbd909d19e4c16fa8489baa518c91aab2a074"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "filterArrayOfObjects%2Ejson"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "blob"
+                ]
+              },
+              "mode": {
+                "type": "string",
+                "examples": [
+                  "100644"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            "{}"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            "delete"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/pathParam"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_2",
+      "view": {
+        "col": 2,
+        "row": 5
+      },
+      "id": "ƒ_map_2",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 6
+  },
+  "created": "2025-02-06T18:32:40.923Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.923Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

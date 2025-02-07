@@ -1,0 +1,277 @@
+{
+  "_id": "621002baa161ae00ef6164b5",
+  "name": "translateSchemaPushBundles",
+  "description": "Takes in the output of the componentDiscovery task in appartifacts and outputs a format that can be used in a form where the components can be edited.",
+  "incoming": [
+    {
+      "$id": "componentDiscoveryOutput",
+      "type": "object",
+      "properties": {
+        "componentMap": {
+          "type": "object",
+          "properties": {
+            "workflow": {
+              "type": "array"
+            },
+            "ac-agenda-job": {
+              "type": "array"
+            },
+            "automation": {
+              "type": "array"
+            },
+            "trigger": {
+              "type": "array"
+            },
+            "json-forms": {
+              "type": "array"
+            },
+            "template": {
+              "type": "array"
+            },
+            "forms": {
+              "type": "array"
+            },
+            "mop-template": {
+              "type": "array"
+            },
+            "mop-analytic-template": {
+              "type": "array"
+            },
+            "golden-config": {
+              "type": "array"
+            },
+            "transformation": {
+              "type": "array"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "componentEditorFormInput",
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "properties": {
+            "workflows": {
+              "type": "array"
+            },
+            "catalogAutomations": {
+              "type": "array"
+            },
+            "operationsAutomations": {
+              "type": "array"
+            },
+            "triggers": {
+              "type": "array"
+            },
+            "jsonForms": {
+              "type": "array"
+            },
+            "templates": {
+              "type": "array"
+            },
+            "forms": {
+              "type": "array"
+            },
+            "commandTemplates": {
+              "type": "array"
+            },
+            "analyticTemplates": {
+              "type": "array"
+            },
+            "goldenConfigTrees": {
+              "type": "array"
+            },
+            "transformations": {
+              "type": "array"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/workflow"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/workflows"
+      }
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/ac-agenda-job"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/catalogAutomations"
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/automation"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/operationsAutomations"
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/trigger"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/triggers"
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/json-forms"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/jsonForms"
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/template"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/templates"
+      }
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/forms"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/forms"
+      }
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/mop-template"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/commandTemplates"
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/mop-analytic-template"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/analyticTemplates"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/golden-config"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/goldenConfigTrees"
+      }
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentDiscoveryOutput",
+        "ptr": "/componentMap/transformation"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentEditorFormInput",
+        "ptr": "/components/transformations"
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.905Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.905Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

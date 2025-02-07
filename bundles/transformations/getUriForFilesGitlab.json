@@ -1,0 +1,139 @@
+{
+  "_id": "6075d13d8c016f0098c7284f",
+  "name": "getUriForFilesGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "repoID",
+      "type": "integer"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "uriForGet",
+      "type": "string"
+    }
+  ],
+  "steps": [
+    {
+      "id": 3,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "https://gitlab.com/api/v4/projects/"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "repoID",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Number",
+      "method": "toString",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "String",
+      "method": "concat",
+      "args": [
+        null,
+        null,
+        "/repository/tree",
+        "?recursive=true",
+        "&per_page=5000"
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "uriForGet",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.830Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.830Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

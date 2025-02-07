@@ -1,0 +1,396 @@
+{
+  "_id": "6227a41704a9540111aef712",
+  "name": "Prebuilt Promotion Version Control Instance Filter",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "results",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {}
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "myresults",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "results",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "queryMatchingAdapters"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "standardizePropertyNames"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "myresults",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "id"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "standardizePropertyNames",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "standardizePropertyNames",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {},
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {}
+          },
+          "required": [],
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "declaration",
+          "library": "Array",
+          "method": "new Array",
+          "args": [
+            "@itentialopensource/adapter-gitlab",
+            "@itentialopensource/adapter-bitbucket",
+            "@itentialopensource/adapter-github"
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#",
+          "polymorphIndex": 0
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "package_id"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Logical",
+          "method": "nullish",
+          "args": [
+            null,
+            "none"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "method",
+          "library": "Array",
+          "method": "includes",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "queryMatchingAdapters",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "queryMatchingAdapters",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:41.117Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:41.117Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

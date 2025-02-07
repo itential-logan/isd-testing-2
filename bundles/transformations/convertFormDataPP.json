@@ -1,0 +1,1229 @@
+{
+  "_id": "623231be3230da01016b79de",
+  "name": "convertFormDataPP",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "formData",
+      "type": "object",
+      "properties": {
+        "checkInPrebuilt": {
+          "type": "object",
+          "properties": {
+            "reDiscoverPrebuilt": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "addRepositoryDependencyFiles": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "makeProjectPrivateGithubOnly": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "forExistingProjects": {
+              "type": "object",
+              "properties": {
+                "mrType": {
+                  "type": "string",
+                  "examples": [
+                    "patch"
+                  ]
+                },
+                "commitMessage": {
+                  "type": "string",
+                  "examples": [
+                    "init"
+                  ]
+                },
+                "targetBranch": {
+                  "type": "string",
+                  "examples": [
+                    "master"
+                  ]
+                }
+              },
+              "required": []
+            },
+            "versionControlService": {
+              "type": "string",
+              "examples": [
+                "gitlab"
+              ]
+            },
+            "projectName": {
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
+            "groupPath": {
+              "type": "string",
+              "examples": [
+                "ACME/engineering"
+              ]
+            },
+            "prebuilt": {
+              "type": "string",
+              "examples": [
+                "@dsup/testprebuilt"
+              ]
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "apps",
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "gitlab"
+                ]
+              },
+              "package_id": {
+                "type": "string",
+                "examples": [
+                  "@itentialopensource/adapter-gitlab"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "Application"
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "results"
+        },
+        "total": {
+          "type": "integer",
+          "examples": [
+            28
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "ArtifactName",
+      "type": "string",
+      "examples": [
+        "ArtifactName"
+      ]
+    },
+    {
+      "$id": "GroupPath",
+      "type": "string",
+      "examples": [
+        "Repo Link"
+      ]
+    },
+    {
+      "$id": "RepositoryName",
+      "type": "string",
+      "examples": [
+        "RepositoryName"
+      ]
+    },
+    {
+      "$id": "MRType",
+      "type": "string",
+      "examples": [
+        "MR Type"
+      ]
+    },
+    {
+      "$id": "CommitMessage",
+      "type": "string",
+      "examples": [
+        "Commit Message"
+      ]
+    },
+    {
+      "$id": "TargetBranch",
+      "type": "string",
+      "examples": [
+        "TargetBranch"
+      ]
+    },
+    {
+      "$id": "rediscover",
+      "type": "boolean",
+      "examples": [
+        true,
+        false
+      ]
+    },
+    {
+      "$id": "Adapter",
+      "type": "string",
+      "examples": [
+        "Adapter"
+      ]
+    },
+    {
+      "$id": "ServiceType",
+      "type": "string"
+    },
+    {
+      "$id": "ProjectPath",
+      "type": "string"
+    },
+    {
+      "$id": "privateRepo",
+      "type": "boolean"
+    },
+    {
+      "$id": "addRepositoryDependenyFiles",
+      "type": "string",
+      "examples": [
+        "yes"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/reDiscoverPrebuilt"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "rediscover",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 19,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/forExistingProjects/mrType"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "MRType",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 20,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/forExistingProjects/commitMessage"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "CommitMessage",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 21,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/forExistingProjects/targetBranch"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "TargetBranch",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/projectName"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "RepositoryName",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 24,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/groupPath"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "GroupPath",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/prebuilt"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "ArtifactName",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 28,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/versionControlService"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "Adapter",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 30,
+      "type": "method",
+      "library": "Object",
+      "method": "optional chaining",
+      "args": [
+        null,
+        "package_id"
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      }
+    },
+    {
+      "id": 33,
+      "type": "method",
+      "library": "String",
+      "method": "split",
+      "args": [
+        null,
+        "/",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      }
+    },
+    {
+      "id": 34,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 30,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 33,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 35,
+      "type": "method",
+      "library": "Array",
+      "method": "getIndex",
+      "args": [
+        null,
+        1
+      ],
+      "view": {
+        "row": 4,
+        "col": 4
+      }
+    },
+    {
+      "id": 36,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 33,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 38,
+      "type": "method",
+      "library": "String",
+      "method": "split",
+      "args": [
+        null,
+        "-",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 5
+      }
+    },
+    {
+      "id": 39,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 38,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 40,
+      "type": "method",
+      "library": "Array",
+      "method": "getIndex",
+      "args": [
+        null,
+        1
+      ],
+      "view": {
+        "row": 4,
+        "col": 6
+      }
+    },
+    {
+      "id": 41,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 38,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 40,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 42,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 40,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "ServiceType",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 44,
+      "type": "method",
+      "library": "Array",
+      "method": "find",
+      "args": [
+        null,
+        "ƒ_query_2",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 1
+      }
+    },
+    {
+      "id": 45,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "apps",
+        "ptr": "/results"
+      },
+      "to": {
+        "location": "method",
+        "name": 44,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 46,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/versionControlService"
+      },
+      "to": {
+        "location": "method",
+        "name": 44,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 47,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 44,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 30,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 48,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "projectPath"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 49,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt"
+      },
+      "to": {
+        "location": "method",
+        "name": 48,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 50,
+      "type": "method",
+      "library": "Conditional",
+      "method": "ternary",
+      "args": [
+        null,
+        null,
+        "none"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 51,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 48,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 50,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 52,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 48,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 50,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 53,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 50,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "ProjectPath",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 54,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/makeProjectPrivateGithubOnly"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "privateRepo",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 55,
+      "type": "method",
+      "library": "Conditional",
+      "method": "ternary",
+      "args": [
+        null,
+        "yes",
+        "no"
+      ],
+      "view": {
+        "row": 5,
+        "col": 4
+      },
+      "context": "#"
+    },
+    {
+      "id": 56,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/checkInPrebuilt/addRepositoryDependencyFiles"
+      },
+      "to": {
+        "location": "method",
+        "name": 55,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 57,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 55,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "addRepositoryDependenyFiles",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "AdminEssentials"
+              ]
+            },
+            "package_id": {
+              "type": "string",
+              "examples": [
+                "@itential/app-admin_essentials"
+              ]
+            },
+            "version": {
+              "type": "string",
+              "examples": [
+                "2%2E25%2E42-2021%2E1%2E73%2E0"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "Application"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "examples": [
+                "Itential Automation Platform's administration suite%2E"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "examples": [
+                "RUNNING"
+              ]
+            },
+            "connection": {
+              "type": [
+                "null",
+                "object"
+              ]
+            },
+            "uptime": {
+              "type": "number",
+              "examples": [
+                1739.9893128
+              ]
+            },
+            "memoryUsage": {
+              "type": "object",
+              "properties": {
+                "rss": {
+                  "type": "integer",
+                  "examples": [
+                    74420224
+                  ]
+                },
+                "heapTotal": {
+                  "type": "integer",
+                  "examples": [
+                    33263616
+                  ]
+                },
+                "heapUsed": {
+                  "type": "integer",
+                  "examples": [
+                    30971264
+                  ]
+                },
+                "external": {
+                  "type": "integer",
+                  "examples": [
+                    38405238
+                  ]
+                },
+                "arrayBuffers": {
+                  "type": "integer",
+                  "examples": [
+                    36810009
+                  ]
+                }
+              },
+              "required": []
+            },
+            "cpuUsage": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "integer",
+                  "examples": [
+                    2594559
+                  ]
+                },
+                "system": {
+                  "type": "integer",
+                  "examples": [
+                    1433366
+                  ]
+                }
+              },
+              "required": []
+            },
+            "pid": {
+              "type": [
+                "integer",
+                "number"
+              ],
+              "examples": [
+                160
+              ]
+            },
+            "logger": {
+              "type": "object",
+              "properties": {
+                "console": {
+                  "type": "string",
+                  "examples": [
+                    "info"
+                  ]
+                },
+                "file": {
+                  "type": "string",
+                  "examples": [
+                    "info"
+                  ]
+                },
+                "syslog": {
+                  "type": "string",
+                  "examples": [
+                    "warning"
+                  ]
+                }
+              },
+              "required": []
+            },
+            "routePrefix": {
+              "type": "string",
+              "examples": [
+                "admin"
+              ]
+            },
+            "prevUptime": {
+              "type": "number",
+              "examples": [
+                198.8608828
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "AdminEssentials"
+                ]
+              },
+              "package_id": {
+                "type": "string",
+                "examples": [
+                  "@itential/app-admin_essentials"
+                ]
+              },
+              "version": {
+                "type": "string",
+                "examples": [
+                  "2%2E25%2E42-2021%2E1%2E73%2E0"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "Application"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "examples": [
+                  "Itential Automation Platform's administration suite%2E"
+                ]
+              },
+              "state": {
+                "type": "string",
+                "examples": [
+                  "RUNNING"
+                ]
+              },
+              "connection": {
+                "type": [
+                  "null",
+                  "object"
+                ]
+              },
+              "uptime": {
+                "type": "number",
+                "examples": [
+                  1739.9893128
+                ]
+              },
+              "memoryUsage": {
+                "type": "object",
+                "properties": {
+                  "rss": {
+                    "type": "integer",
+                    "examples": [
+                      74420224
+                    ]
+                  },
+                  "heapTotal": {
+                    "type": "integer",
+                    "examples": [
+                      33263616
+                    ]
+                  },
+                  "heapUsed": {
+                    "type": "integer",
+                    "examples": [
+                      30971264
+                    ]
+                  },
+                  "external": {
+                    "type": "integer",
+                    "examples": [
+                      38405238
+                    ]
+                  },
+                  "arrayBuffers": {
+                    "type": "integer",
+                    "examples": [
+                      36810009
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "cpuUsage": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "integer",
+                    "examples": [
+                      2594559
+                    ]
+                  },
+                  "system": {
+                    "type": "integer",
+                    "examples": [
+                      1433366
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "pid": {
+                "type": [
+                  "integer",
+                  "number"
+                ],
+                "examples": [
+                  160
+                ]
+              },
+              "logger": {
+                "type": "object",
+                "properties": {
+                  "console": {
+                    "type": "string",
+                    "examples": [
+                      "info"
+                    ]
+                  },
+                  "file": {
+                    "type": "string",
+                    "examples": [
+                      "info"
+                    ]
+                  },
+                  "syslog": {
+                    "type": "string",
+                    "examples": [
+                      "warning"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "routePrefix": {
+                "type": "string",
+                "examples": [
+                  "admin"
+                ]
+              },
+              "prevUptime": {
+                "type": "number",
+                "examples": [
+                  198.8608828
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_1",
+      "view": {
+        "col": 7,
+        "row": 5
+      },
+      "id": "ƒ_query_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "gitlab"
+              ]
+            },
+            "package_id": {
+              "type": "string",
+              "examples": [
+                "@itentialopensource/adapter-gitlab"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "Application"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "gitlab"
+                ]
+              },
+              "package_id": {
+                "type": "string",
+                "examples": [
+                  "@itentialopensource/adapter-gitlab"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "Application"
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_2",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "ƒ_query_2",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 6,
+    "row": 6
+  },
+  "created": "2025-02-06T18:32:40.854Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.854Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

@@ -1,0 +1,119 @@
+{
+  "_id": "605a0b9299ae1b00eb7c74e9",
+  "name": "convertObjecttoString",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "inputObject",
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string",
+          "examples": [
+            "Create"
+          ]
+        },
+        "file_path": {
+          "type": "string",
+          "examples": [
+            "bundles/transformations/filterArrayOfObjects%2Ejson"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "examples": [
+            "{\n  \"_id\": \"5f08c8b5fd7aaf755869ff35\",\n  \"name\": \"filterArrayOfObjects\",\n  \"incoming\": [\n    {\n      \"$id\": \"filterableArray\",\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {},\n        \"required\": [],\n        \"additionalProperties\": true\n      }\n    },\n    {\n      \"$id\": \"keyToFilterOn\",\n      \"type\": \"string\",\n      \"default\": \"keyToFilterOn\",\n      \"examples\": [\n        \"keyToFilterOn\"\n      ]\n    },\n    {\n      \"$id\": \"valueToFind\",\n      \"type\": \"string\",\n      \"default\": \"valueToFind\",\n      \"examples\": [\n        \"valueToFind\"\n      ]\n    },\n    {\n      \"$id\": \"discardMatching\",\n      \"type\": \"boolean\",\n      \"examples\": [\n        true,\n        false\n      ]\n    }\n  ],\n  \"outgoing\": [\n    {\n      \"$id\": \"filteredArray\",\n      \"type\": \"array\"\n    },\n    {\n      \"$id\": \"firstFilteredElement\",\n      \"type\": \"object\",\n      \"properties\": {},\n      \"required\": []\n    }\n  ],\n  \"steps\": [\n    {\n      \"id\": 6,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"incoming\",\n        \"name\": \"filterableArray\",\n        \"ptr\": \"\"\n      },\n      \"to\": {\n        \"location\": \"method\",\n        \"name\": 1,\n        \"ptr\": \"/args/0/value\"\n      }\n    },\n    {\n      \"id\": 7,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"incoming\",\n        \"name\": \"keyToFilterOn\",\n        \"ptr\": \"\"\n      },\n      \"to\": {\n        \"location\": \"method\",\n        \"name\": 1,\n        \"ptr\": \"/args/2/value\"\n      }\n    },\n    {\n      \"id\": 8,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"incoming\",\n        \"name\": \"valueToFind\",\n        \"ptr\": \"\"\n      },\n      \"to\": {\n        \"location\": \"method\",\n        \"name\": 1,\n        \"ptr\": \"/args/3/value\"\n      }\n    },\n    {\n      \"id\": 9,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"incoming\",\n        \"name\": \"discardMatching\",\n        \"ptr\": \"\"\n      },\n      \"to\": {\n        \"location\": \"method\",\n        \"name\": 1,\n        \"ptr\": \"/args/4/value\"\n      }\n    },\n    {\n      \"id\": 1,\n      \"type\": \"method\",\n      \"library\": \"Array\",\n      \"method\": \"filter\",\n      \"args\": [\n        null,\n        \"ƒ_query_1\",\n        null,\n        null,\n        null\n      ],\n      \"view\": {\n        \"row\": 1,\n        \"col\": 1\n      }\n    },\n    {\n      \"id\": 3,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"method\",\n        \"name\": 1,\n        \"ptr\": \"/return\"\n      },\n      \"to\": {\n        \"location\": \"method\",\n        \"name\": 2,\n        \"ptr\": \"/args/0/value\"\n      }\n    },\n    {\n      \"id\": 5,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"method\",\n        \"name\": 1,\n        \"ptr\": \"/return\"\n      },\n      \"to\": {\n        \"location\": \"outgoing\",\n        \"name\": \"filteredArray\",\n        \"ptr\": \"\"\n      }\n    },\n    {\n      \"id\": 2,\n      \"type\": \"method\",\n      \"library\": \"Array\",\n      \"method\": \"getIndex\",\n      \"args\": [\n        null,\n        0\n      ],\n      \"view\": {\n        \"row\": 2,\n        \"col\": 2\n      }\n    },\n    {\n      \"id\": 4,\n      \"type\": \"assign\",\n      \"from\": {\n        \"location\": \"method\",\n        \"name\": 2,\n        \"ptr\": \"/return\"\n      },\n      \"to\": {\n        \"location\": \"outgoing\",\n        \"name\": \"firstFilteredElement\",\n        \"ptr\": \"\"\n      }\n    }\n  ],\n  \"functions\": [\n    {\n      \"incoming\": [\n        {\n          \"type\": \"object\",\n          \"properties\": {},\n          \"required\": [],\n          \"additionalProperties\": true,\n          \"$id\": \"element\"\n        },\n        {\n          \"title\": \"index\",\n          \"type\": \"number\",\n          \"$id\": \"index\"\n        },\n        {\n          \"$id\": \"array\",\n          \"type\": \"array\",\n          \"items\": {\n            \"type\": \"object\",\n            \"properties\": {},\n            \"required\": [],\n            \"additionalProperties\": true\n          }\n        },\n        {\n          \"$id\": \"thisArg\",\n          \"type\": \"object\",\n          \"properties\": {\n            \"keyToFilterOn\": {\n              \"$id\": \"keyToFilterOn\",\n              \"type\": \"string\",\n              \"default\": \"keyToFilterOn\",\n              \"examples\": [\n                \"keyToFilterOn\"\n              ]\n            },\n            \"valueToFind\": {\n              \"$id\": \"valueToFind\",\n              \"type\": \"string\",\n              \"default\": \"valueToFind\",\n              \"examples\": [\n                \"valueToFind\"\n              ]\n            },\n            \"discardMatching\": {\n              \"$id\": \"discardMatching\",\n              \"type\": \"boolean\",\n              \"examples\": [\n                true,\n                false\n              ]\n            }\n          },\n          \"isContext\": true\n        }\n      ],\n      \"outgoing\": [\n        {\n          \"title\": \"return\",\n          \"type\": \"boolean\",\n          \"$id\": \"return\"\n        }\n      ],\n      \"functions\": [],\n      \"name\": \"ƒ_query_1\",\n      \"steps\": [\n        {\n          \"id\": 2,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"incoming\",\n            \"name\": \"element\",\n            \"ptr\": \"\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 1,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 3,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"incoming\",\n            \"name\": \"thisArg\",\n            \"ptr\": \"/keyToFilterOn\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 1,\n            \"ptr\": \"/args/1/value\"\n          }\n        },\n        {\n          \"id\": 15,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"incoming\",\n            \"name\": \"thisArg\",\n            \"ptr\": \"/discardMatching\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 14,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 31,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"incoming\",\n            \"name\": \"thisArg\",\n            \"ptr\": \"/discardMatching\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 10,\n            \"ptr\": \"/args/1/value\"\n          }\n        },\n        {\n          \"id\": 34,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"incoming\",\n            \"name\": \"thisArg\",\n            \"ptr\": \"/valueToFind\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 32,\n            \"ptr\": \"/args/1/value\"\n          }\n        },\n        {\n          \"id\": 14,\n          \"type\": \"method\",\n          \"library\": \"Logical\",\n          \"method\": \"not\",\n          \"args\": [\n            null\n          ],\n          \"view\": {\n            \"row\": 2,\n            \"col\": 2\n          }\n        },\n        {\n          \"id\": 1,\n          \"type\": \"method\",\n          \"library\": \"Object\",\n          \"method\": \"getProperty\",\n          \"args\": [\n            null,\n            null\n          ],\n          \"view\": {\n            \"row\": 1,\n            \"col\": 1\n          }\n        },\n        {\n          \"id\": 30,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 14,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 7,\n            \"ptr\": \"/args/1/value\"\n          }\n        },\n        {\n          \"id\": 33,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 1,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 32,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 32,\n          \"type\": \"method\",\n          \"library\": \"Equality\",\n          \"method\": \"deepEquals\",\n          \"args\": [\n            null,\n            null\n          ],\n          \"view\": {\n            \"row\": 1,\n            \"col\": 2\n          }\n        },\n        {\n          \"id\": 35,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 32,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 7,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 36,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 32,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 22,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 22,\n          \"type\": \"method\",\n          \"library\": \"Logical\",\n          \"method\": \"not\",\n          \"args\": [\n            null\n          ],\n          \"view\": {\n            \"row\": 1,\n            \"col\": 3\n          }\n        },\n        {\n          \"id\": 24,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 22,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 10,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 7,\n          \"type\": \"method\",\n          \"library\": \"Logical\",\n          \"method\": \"and\",\n          \"args\": [\n            null,\n            null\n          ],\n          \"view\": {\n            \"row\": 2,\n            \"col\": 3\n          }\n        },\n        {\n          \"id\": 10,\n          \"type\": \"method\",\n          \"library\": \"Logical\",\n          \"method\": \"and\",\n          \"args\": [\n            null,\n            null\n          ],\n          \"view\": {\n            \"row\": 3,\n            \"col\": 3\n          }\n        },\n        {\n          \"id\": 27,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 7,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 26,\n            \"ptr\": \"/args/0/value\"\n          }\n        },\n        {\n          \"id\": 28,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 10,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"method\",\n            \"name\": 26,\n            \"ptr\": \"/args/1/value\"\n          }\n        },\n        {\n          \"id\": 26,\n          \"type\": \"method\",\n          \"library\": \"Logical\",\n          \"method\": \"or\",\n          \"args\": [\n            null,\n            null\n          ],\n          \"view\": {\n            \"row\": 2,\n            \"col\": 4\n          }\n        },\n        {\n          \"id\": 29,\n          \"type\": \"assign\",\n          \"from\": {\n            \"location\": \"method\",\n            \"name\": 26,\n            \"ptr\": \"/return\"\n          },\n          \"to\": {\n            \"location\": \"outgoing\",\n            \"name\": \"return\",\n            \"ptr\": \"\"\n          }\n        }\n      ],\n      \"view\": {\n        \"col\": 4,\n        \"row\": 5\n      },\n      \"id\": \"ƒ_query_1\",\n      \"comments\": []\n    }\n  ],\n  \"comments\": [],\n  \"view\": {\n    \"col\": 3,\n    \"row\": 6\n  },\n  \"created\": \"2021-03-10T20:41:21.443Z\",\n  \"createdBy\": {\n    \"_id\": \"601424815f970e44a97f394a\",\n    \"provenance\": \"local_aaa\",\n    \"username\": \"admin@pronghorn\"\n  },\n  \"lastUpdated\": \"2021-03-10T20:41:21.443Z\",\n  \"lastUpdatedBy\": {\n    \"_id\": \"601424815f970e44a97f394a\",\n    \"provenance\": \"local_aaa\",\n    \"username\": \"admin@pronghorn\"\n  }\n}"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "action",
+      "type": "string",
+      "examples": [
+        "Action"
+      ]
+    },
+    {
+      "$id": "filePath",
+      "type": "string",
+      "examples": [
+        "filePath"
+      ]
+    },
+    {
+      "$id": "content",
+      "type": "string",
+      "examples": [
+        "content"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "inputObject",
+        "ptr": "/action"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "action",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "inputObject",
+        "ptr": "/file_path"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "filePath",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "inputObject",
+        "ptr": "/content"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "content",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 0,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.638Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.638Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

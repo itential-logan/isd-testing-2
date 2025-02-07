@@ -1,0 +1,810 @@
+{
+  "_id": "6075d17e8c016f0098c72850",
+  "name": "filterBodyGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "bodyFromGetCall",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pathParam": {
+            "type": "string",
+            "examples": [
+              "bundles"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "examples": [
+              "fbc1fb7a78692930919164dc83bae2da0aee6a8d"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "examples": [
+              "bundles"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "examples": [
+              "tree"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "examples": [
+              "040000"
+            ]
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "filteredBody",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "examples": [
+              "791bb17eb88379d50a494b08692c3ffd1d3b1731"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "examples": [
+              "bundles"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "examples": [
+              "tree"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "examples": [
+              "bundles"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "examples": [
+              "040000"
+            ]
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "bodyFromGetCall",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "ƒ_query_2"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "filteredBody",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "791bb17eb88379d50a494b08692c3ffd1d3b1731"
+              ]
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "tree"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "mode": {
+              "type": "string",
+              "examples": [
+                "040000"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "791bb17eb88379d50a494b08692c3ffd1d3b1731"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "tree"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "mode": {
+                "type": "string",
+                "examples": [
+                  "040000"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/path"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/path"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/type"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "bundles/",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "manifest.json",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "blob",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Logical",
+          "method": "or",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "method",
+          "library": "Logical",
+          "method": "and",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_1",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "ƒ_query_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "pathParam": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "examples": [
+                "fbc1fb7a78692930919164dc83bae2da0aee6a8d"
+              ]
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "tree"
+              ]
+            },
+            "mode": {
+              "type": "string",
+              "examples": [
+                "040000"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pathParam": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "fbc1fb7a78692930919164dc83bae2da0aee6a8d"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "tree"
+                ]
+              },
+              "mode": {
+                "type": "string",
+                "examples": [
+                  "040000"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "bundles/",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "manifest.json",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "String",
+          "method": "includes",
+          "args": [
+            null,
+            "blob",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Logical",
+          "method": "and",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Logical",
+          "method": "or",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/pathParam"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/pathParam"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/type"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 14,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            "README.md"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/pathParam"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "method",
+          "library": "Logical",
+          "method": "or",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 19,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_2",
+      "view": {
+        "col": 3,
+        "row": 5
+      },
+      "id": "ƒ_query_2",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 1,
+    "row": 6
+  },
+  "created": "2025-02-06T18:32:41.075Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:41.075Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

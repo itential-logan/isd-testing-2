@@ -1,0 +1,438 @@
+{
+  "id": "6227766b2944f000ecb4ac8f",
+  "bindingSchema": {
+    "properties": {
+      "checkInPrebuilt": {
+        "properties": {
+          "versionControlService": {
+            "binding:method": "GET",
+            "binding:link": {
+              "$ref": "/links",
+              "rel": "collection"
+            },
+            "binding:target": {
+              "propertyPointer": "/enum"
+            },
+            "binding:hyperSchema": {
+              "type": "object",
+              "base": "/health",
+              "links": [
+                {
+                  "rel": "collection",
+                  "href": "/adapters?limit=1000",
+                  "targetMediaType": "application/json",
+                  "targetSchema": {
+                    "$ref": "#"
+                  },
+                  "variables": []
+                }
+              ]
+            },
+            "binding:source": {
+              "transformation": "6227a41704a9540111aef712"
+            }
+          },
+          "prebuilt": {
+            "binding:method": "GET",
+            "binding:link": {
+              "$ref": "/links",
+              "rel": "collection"
+            },
+            "binding:target": {
+              "propertyPointer": "/enum"
+            },
+            "binding:hyperSchema": {
+              "type": "object",
+              "base": "/prebuilts",
+              "links": [
+                {
+                  "rel": "collection",
+                  "href": "/?skip=0&limit=2000",
+                  "targetMediaType": "application/json",
+                  "targetSchema": {
+                    "$ref": "#"
+                  },
+                  "variables": []
+                }
+              ]
+            },
+            "binding:source": {
+              "propertyPointer": "/results",
+              "keyPointer": "/name"
+            }
+          },
+          "forExistingProjects": {
+            "properties": {}
+          }
+        }
+      }
+    }
+  },
+  "created": "2022-03-08T15:29:47.024Z",
+  "createdBy": "admin@pronghorn",
+  "description": "",
+  "lastUpdated": "2025-02-06T18:32:45.762Z",
+  "lastUpdatedBy": "admin@pronghorn",
+  "name": "Prebuilt Promotion Form",
+  "schema": {
+    "title": "Prebuilt Promotion Form",
+    "description": "",
+    "type": "object",
+    "required": [],
+    "properties": {
+      "checkInPrebuilt": {
+        "type": "object",
+        "title": "Check In Pre-Built",
+        "description": "",
+        "required": [
+          "versionControlService",
+          "projectName",
+          "groupPath",
+          "prebuilt"
+        ],
+        "properties": {
+          "versionControlService": {
+            "type": "string",
+            "title": "Version Control Service ",
+            "_id": "/properties/checkInPrebuilt/properties/versionControlService",
+            "description": "Select adapter to use to commit pre-built to version control service",
+            "enum": []
+          },
+          "projectName": {
+            "type": "string",
+            "title": "Project Name",
+            "_id": "/properties/checkInPrebuilt/properties/projectName",
+            "description": ""
+          },
+          "makeProjectPrivateGithubOnly": {
+            "type": "boolean",
+            "title": "Make Project Private (Github Only)",
+            "_id": "/properties/checkInPrebuilt/properties/makeProjectPrivateGithubOnly",
+            "description": "Check the box if the repository is to be made private",
+            "default": false,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "groupPath": {
+            "type": "string",
+            "title": "Group Path",
+            "_id": "/properties/checkInPrebuilt/properties/groupPath",
+            "description": "Link to the group or workspace to create the project under. Use Organization Name if this is a GitHub project."
+          },
+          "addRepositoryDependencyFiles": {
+            "type": "boolean",
+            "title": "Add Repository Dependency Files",
+            "_id": "/properties/checkInPrebuilt/properties/addRepositoryDependencyFiles",
+            "description": "If checked, will add repository dependency files in addition to IAP component files such as the package.json file, GitHub action files, and scripts used in GitHub action files.",
+            "default": false,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "reDiscoverPrebuilt": {
+            "type": "boolean",
+            "title": "Re-Discover Prebuilt",
+            "_id": "/properties/checkInPrebuilt/properties/reDiscoverPrebuilt",
+            "description": "Check this box in case any IAP components such as workflows, transformations, command templates, etc. have been added or removed",
+            "default": false,
+            "enum": [
+              true,
+              false
+            ]
+          },
+          "prebuilt": {
+            "type": "string",
+            "title": "Pre-Built",
+            "_id": "/properties/checkInPrebuilt/properties/prebuilt",
+            "description": "Pre-Built to commit to project in version control service",
+            "enum": []
+          },
+          "projectPath": {
+            "type": "string",
+            "title": "Project Path",
+            "_id": "/properties/checkInPrebuilt/properties/projectPath",
+            "description": "Project to create repository under (only for Bitbucket Cloud). Use uppercase key, ex. AT for Atlassian"
+          },
+          "forExistingProjects": {
+            "type": "object",
+            "title": "Commit Details",
+            "description": "",
+            "required": [
+              "mrType",
+              "commitMessage",
+              "targetBranch"
+            ],
+            "properties": {
+              "mrType": {
+                "type": "string",
+                "title": "Merge Request Type",
+                "_id": "/properties/checkInPrebuilt/properties/forExistingProjects/properties/mrType",
+                "description": "Type of merge request (patch/minor/major). Typical use is patch for bug fix, minor for new feature, and major for breaking change to pre-built",
+                "enum": [
+                  "patch",
+                  "minor",
+                  "major"
+                ]
+              },
+              "commitMessage": {
+                "type": "string",
+                "title": "Commit Message",
+                "_id": "/properties/checkInPrebuilt/properties/forExistingProjects/properties/commitMessage",
+                "description": "A message to associate with the commit that describes change made"
+              },
+              "targetBranch": {
+                "type": "string",
+                "title": "Target Branch",
+                "_id": "/properties/checkInPrebuilt/properties/forExistingProjects/properties/targetBranch",
+                "description": "Enter target branch for Merge Request. If commit is for new branch, the new branch name is what is provided here."
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "struct": {
+    "nodeId": "9251ce6e-db72-4080-b3f1-86b340ba1add",
+    "type": "array",
+    "items": [
+      {
+        "nodeId": "505987cd-d6fc-4302-a2d0-0b6d68eec044",
+        "type": "object",
+        "description": "",
+        "items": [
+          {
+            "nodeId": "637b1837-b609-4698-a0bf-fbfe1eaeaa07",
+            "type": "string",
+            "title": "Version Control Service ",
+            "description": "Select adapter to use to commit pre-built to version control service",
+            "placeholder": "Select an item",
+            "required": true,
+            "enum": [],
+            "binding": true,
+            "rel": "collection",
+            "targetPointer": "/enum",
+            "base": "/health",
+            "href": "/adapters?limit=1000",
+            "method": "GET",
+            "sourcePointer": "",
+            "sourceKeyPointer": "",
+            "transformation": "6227a41704a9540111aef712",
+            "originalHref": "/:name",
+            "helper": "Select adapter to commit pre-built to version control service"
+          },
+          {
+            "nodeId": "caf191bb-2851-44b0-92f1-9aa83413566c",
+            "type": "string",
+            "title": "Project Name",
+            "description": "",
+            "placeholder": "Enter project name for repository",
+            "required": true,
+            "helper": "Enter project name of the repository as would be found in version control service."
+          },
+          {
+            "nodeId": "d0897495-4f02-4371-8f7d-a0094845b004",
+            "type": "boolean",
+            "title": "Make Project Private (Github Only)",
+            "description": "Check the box if the repository is to be made private",
+            "default": false,
+            "enum": [
+              {
+                "id": "b8011a3a-f00d-4162-ab48-42ab8b1aef6b",
+                "value": true
+              },
+              {
+                "id": "094620dd-5857-425a-834f-0ba934282f9c",
+                "value": false
+              }
+            ],
+            "helper": "Check the box if the repository is to be made private, note this is only available for GitHub."
+          },
+          {
+            "nodeId": "58e8670f-5fa1-47a8-8c26-e0155f9d9c3a",
+            "type": "string",
+            "title": "Group Path",
+            "description": "Link to the group or workspace to create the project under. Use Organization Name if this is a GitHub project.",
+            "placeholder": "ACME/engineering/iap",
+            "required": true,
+            "helper": "Link to the group or workspace to create the project under. Use Organization Name if this is a GitHub project."
+          },
+          {
+            "nodeId": "dfe099f1-1f8a-4413-856e-69e5efe35bc6",
+            "type": "boolean",
+            "title": "Add Repository Dependency Files",
+            "description": "If checked, will add repository dependency files in addition to IAP component files such as the package.json file, GitHub action files, and scripts used in GitHub action files.",
+            "default": false,
+            "enum": [
+              {
+                "id": "52ebbc6d-fe9e-46b8-bc4b-9cc18872d99d",
+                "value": true
+              },
+              {
+                "id": "b848ea0e-ec67-45c0-a072-6c8651d6c7a6",
+                "value": false
+              }
+            ],
+            "customKey": false,
+            "helper": "If checked, will add repository dependency files in addition to IAP component files such as the package.json file, GitHub action files, and scripts used in GitHub action files."
+          },
+          {
+            "nodeId": "fd106739-664a-4d51-a48b-74598d17c545",
+            "type": "boolean",
+            "title": "Re-Discover Prebuilt",
+            "description": "Check this box in case any IAP components such as workflows, transformations, command templates, etc. have been added or removed",
+            "default": false,
+            "enum": [
+              {
+                "id": "bec790e9-1ce4-497a-a3c9-9bcbb6d44e75",
+                "value": true
+              },
+              {
+                "id": "5e3ec6ca-675e-4393-a5a7-d2d65bf355ab",
+                "value": false
+              }
+            ],
+            "helper": "Check this box in case any IAP components such as workflows, transformations, command templates, etc. have been added or removed"
+          },
+          {
+            "nodeId": "ca5a34e8-8989-403a-800d-b17f713a49b5",
+            "type": "string",
+            "title": "Pre-Built",
+            "description": "Pre-Built to commit to project in version control service",
+            "placeholder": "Select a Pre-Built",
+            "required": true,
+            "enum": [],
+            "binding": true,
+            "rel": "collection",
+            "targetPointer": "/enum",
+            "base": "/prebuilts",
+            "href": "/?skip=0&limit=2000",
+            "method": "GET",
+            "sourcePointer": "/results",
+            "sourceKeyPointer": "/name",
+            "helper": "Pre-Built to commit to project in version control service",
+            "customKey": "prebuilt"
+          },
+          {
+            "nodeId": "cd3225cb-6c1e-411c-ac14-e2ea7bb28d2c",
+            "type": "string",
+            "title": "Project Path",
+            "description": "Project to create repository under (only for Bitbucket Cloud). Use uppercase key, ex. AT for Atlassian",
+            "placeholder": "Only for Bitbucket Cloud",
+            "required": false,
+            "readOnly": false,
+            "binding": false,
+            "rel": "item",
+            "targetPointer": "/default",
+            "helper": "Project to create repository under (only for Bitbucket Cloud). Use uppercase key, ex. AT for Atlassian"
+          },
+          {
+            "nodeId": "76f14d91-05ba-41a2-aa14-c6bfbb07e7a3",
+            "type": "object",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "293a11d4-b9fd-4bb1-82e3-021bec9c9743",
+                "type": "string",
+                "title": "Merge Request Type",
+                "description": "Type of merge request (patch/minor/major). Typical use is patch for bug fix, minor for new feature, and major for breaking change to pre-built",
+                "placeholder": "Enter Merge Request type",
+                "required": true,
+                "enum": [
+                  {
+                    "id": "3f87d31f-6465-4701-b0d3-7aa3b2e32f30",
+                    "value": "patch"
+                  },
+                  {
+                    "id": "74ea8535-8cdd-44fe-bfae-8b28717e86f1",
+                    "value": "minor"
+                  },
+                  {
+                    "id": "572e2ebe-8b19-43c3-9c55-8cf1fc723347",
+                    "value": "major"
+                  }
+                ],
+                "binding": false,
+                "rel": "collection",
+                "targetPointer": "/enum",
+                "helper": "Type of merge request (patch/minor/major). Typical use is patch for bug fix, minor for new feature, and major for breaking change to pre-built",
+                "customKey": "mrType"
+              },
+              {
+                "nodeId": "36d63b0b-bb1a-4f31-87ee-5e23bac03ae1",
+                "type": "string",
+                "title": "Commit Message",
+                "description": "A message to associate with the commit that describes change made",
+                "placeholder": "Enter commit message",
+                "required": true,
+                "helper": "A message to associate with the commit that describes change made"
+              },
+              {
+                "nodeId": "cb55002f-3061-4bf0-a8f2-eaac5ebf8adb",
+                "type": "string",
+                "title": "Target Branch",
+                "description": "Enter target branch for Merge Request. If commit is for new branch, the new branch name is what is provided here.",
+                "placeholder": "Enter target branch of Merge Request",
+                "required": true,
+                "helper": "Enter target branch for Merge Request. If commit is for new branch, the new branch name is what is provided here."
+              }
+            ],
+            "title": "Commit Details",
+            "customKey": "forExistingProjects"
+          }
+        ],
+        "title": "Check In Pre-Built",
+        "customKey": "checkInPrebuilt"
+      }
+    ]
+  },
+  "uiSchema": {
+    "checkInPrebuilt": {
+      "ui:collapseByDefault": false,
+      "versionControlService": {
+        "ui:placeholder": "Select an item",
+        "ui:help": "Select adapter to commit pre-built to version control service"
+      },
+      "projectName": {
+        "ui:placeholder": "Enter project name for repository",
+        "ui:help": "Enter project name of the repository as would be found in version control service."
+      },
+      "groupPath": {
+        "ui:placeholder": "ACME/engineering/iap",
+        "ui:help": "Link to the group or workspace to create the project under. Use Organization Name if this is a GitHub project."
+      },
+      "prebuilt": {
+        "ui:placeholder": "Select a Pre-Built",
+        "ui:help": "Pre-Built to commit to project in version control service"
+      },
+      "projectPath": {
+        "ui:placeholder": "Only for Bitbucket Cloud",
+        "ui:help": "Project to create repository under (only for Bitbucket Cloud). Use uppercase key, ex. AT for Atlassian"
+      },
+      "forExistingProjects": {
+        "ui:collapseByDefault": false,
+        "mrType": {
+          "ui:placeholder": "Enter Merge Request type",
+          "ui:help": "Type of merge request (patch/minor/major). Typical use is patch for bug fix, minor for new feature, and major for breaking change to pre-built"
+        },
+        "commitMessage": {
+          "ui:placeholder": "Enter commit message",
+          "ui:help": "A message to associate with the commit that describes change made"
+        },
+        "targetBranch": {
+          "ui:placeholder": "Enter target branch of Merge Request",
+          "ui:help": "Enter target branch for Merge Request. If commit is for new branch, the new branch name is what is provided here."
+        }
+      }
+    }
+  },
+  "validationSchema": {
+    "checkInPrebuilt": {
+      "forExistingProjects": {}
+    }
+  },
+  "version": "2020.1"
+}

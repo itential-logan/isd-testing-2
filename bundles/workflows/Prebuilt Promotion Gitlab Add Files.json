@@ -1,0 +1,1048 @@
+{
+  "created": "2022-02-24T19:17:05.462Z",
+  "createdVersion": "5.40.5-2021.1.52.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "description": "",
+  "font_size": 12,
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.414Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "name": "Prebuilt Promotion Gitlab Add Files",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "scriptFiles": {
+        "title": "pushedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "Device1",
+            "Device2",
+            "Device3"
+          ]
+        ]
+      },
+      "testFiles": {
+        "title": "pushedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "Device1",
+            "Device2",
+            "Device3"
+          ]
+        ]
+      }
+    }
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
+  "tasks": {
+    "866": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set commit.sh file content",
+      "description": "Set commit.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "commit.sh"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "if ! sh ./scripts/git_setup.sh; then\n  exit 1\nfi\necho \"GITLAB PROJECT ID IS - $CI_PROJECT_ID\"\ncd scripts\nGENERATE=`node generate $CI_PROJECT_ID $CI_PROJECT_URL $CI_COMMIT_REF_NAME`\nif [ $? -ne 0 ]\nthen \n  echo $GENERATE\n  exit 1\nfi\ncd ..\ngit add artifact.json\ngit diff --cached --name-only | if grep artifact.json\nthen\n    git commit -m \"AUTO-GENERATED FILE [skip ci]\"\n    if ! git push origin \"$CI_COMMIT_REF_NAME\"; then\n      echo -e \"\\033[0;31mERROR: ***********************************************************************************\"\n      echo \"ERROR: There was an issue pushing artifact.json.\"\n      echo -e \"ERROR: ***********************************************************************************\\033[0m\"\n      exit 1\n    else\n      echo \"A new generated artifact.json file has been checked in to current branch\"\n    fi   \nelse\n    echo \"artifact.json file hasn't changed\"\nfi\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 400
+      }
+    },
+    "1649": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append generate.js",
+      "description": "Append generate.js",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": [],
+          "elementN": "$var.e474.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 800
+      }
+    },
+    "2331": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append deploy_artifact.sh",
+      "description": "Append deploy_artifact.sh",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.3d5d.pushedArray",
+          "elementN": "$var.6194.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4500,
+        "y": 800
+      }
+    },
+    "3853": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set create_release_script.sh file content",
+      "description": "Set create_release_script.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "create_release_script.sh"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "#!/bin/bash\n#---------------------#\n# Create release note #\n#---------------------#\n\nNEW_VERSION=$1\n\ncreate_release_note() {\n    # Create a changelog file if there isn't one\n    if [ ! -e CHANGELOG.md ]; then\n        touch CHANGELOG.md\n    fi\n    echo \"Creating release note...\"\n\n    #----------------#\n    # Changelog Body #\n    #----------------#\n    # Get the merge request info\n    CHANGELOG_BODY=\"$(git log --merges -1 --format=%b)\"\n    if [ -z \"$CHANGELOG_BODY\" ]; then\n        CHANGELOG_BODY=\"$(git log -1 --format='Bug fixes and performance improvements'%n%n'See commit '%h)\"\n    fi\n    #--------------------#\n    # Write Release Note #\n    #--------------------#\n\n    # get the current date\n    DATE=$(date +%m-%d-%Y)\n    # create the release note\n    RELEASE_NOTE=\"\\\\n## $NEW_VERSION [$DATE]\\\\n\\\\n* $CHANGELOG_BODY\\\\n\\\\n---\\\\n\"\n    # append Release Note to Top of CHANGELOG\n    if ! echo -e \"$RELEASE_NOTE$(cat CHANGELOG.md)\" > CHANGELOG.md; then\n        echo -e \"\\033[0;31mERROR: ***********************************************************************************\"\n        echo \"ERROR: Unable to append release note information to changelog.\"\n        echo -e \"ERROR: ***********************************************************************************\\033[0m\"\n    else\n        echo \"Created release note:\"\n        echo \"$RELEASE_NOTE\"\n    fi\n}\n\ncreate_release_note \"$NEW_VERSION\""
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3300,
+        "y": 400
+      }
+    },
+    "5820": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append manifest-schema.json",
+      "description": "Append manifest-schema.json",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": [],
+          "elementN": "$var.7019.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 800
+      }
+    },
+    "6194": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set deploy_artifact.sh file content",
+      "description": "Set deploy_artifact.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "deploy_artifact.sh"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "#!/bin/bash\n\n# import the artifact\nARTIFACT=$(cat artifact.json)\n# echo $ARTIFACT\n\n# generate IAP token\nTOKEN=$(curl --silent --location --request POST 'http://localhost:3000/login' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"user\":{\n        \"username\" : \"admin@pronghorn\",\n        \"password\" : \"admin\"\n    }\n}')\n\nnode createPayload\n\nCREATE_RESP=$(curl --silent --location --request POST 'http://localhost:3000/prebuilts/import' \\\n--header 'Content-Type: application/json' \\\n--header \"Cookie: token=${TOKEN}\" \\\n--data-binary \"@payload.json\")\necho $CREATE_RESP\n\n# if prebuild already exists, update existing\nif [[ $CREATE_RESP == *\"already exists\"* ]]; then\n  PREBUILT=$(curl --silent --location --request GET 'http://localhost:3000/prebuilts?equals=@dsup/jennprebuilt&equalsField=name' \\\n  --header \"Cookie: token=${TOKEN}\" \\\n  --data-raw '')\n  # echo $PREBUILT\n  echo $(grep '(?<=\"name\": \")(.+)(?=\",)' artifact.json)\n  echo $(grep '/(\"name\": \".+\"){1}/' artifact.json)\n  # node extractName $PREBUILT\nfi\nrm payload.json\n# # # get prebuilts\n# # PREBUILTS=$(curl --silent --location --request GET 'http://localhost:3000/prebuilts?&equals=@dsup/jennprebuilt&equalsField=name' \\\n# # --header \"Cookie: token=${TOKEN}\")\n# # # echo $PREBUILTS\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 400
+      }
+    },
+    "6323": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set manifestTester.js file content",
+      "description": "Set manifestTester.js file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "manifestTester.js"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "const AJV = require('ajv'),\n  path = require('path'),\n  fs = require('fs-extra'),\n  r2 = require('r2'),\n  betterAjvErrors = require('better-ajv-errors').default;\n\nconst ajv = new AJV({\n  jsonPointers: true,\n  allErrors: true\n});\n\nconst args = process.argv.filter((element, index) => {\n  return index >= 2;\n});\nif (args.length != 2) {\n  const usage = `\n  ==============================================================\n    Simplified manifest schema validator, using ajv,\n    that can be used for very quick schema validations.\n    This will validate a json file against the schema\n    found in manifest-schema.json\n\n    Examples:\n    Usage: node manifestTester.js someManifestFile.json PATH/TO/SCHEMA/FILE.json\n    Usage: node manifestTester.js someManifestFile.json http://www.PATH.TO/SCHEMA/FILE.json\n\n    NOTE: for a graphical JSON schema validator go to\n    https://www.jsonschemavalidator.net/\n\n  ==============================================================`;\n  console.log(usage);\n  process.exit(1);\n}\n\nasync function runValidation() {\n  let schema;\n  if (args[1].includes(\"http\")) {\n    schema = await r2(args[1]).json;\n  }\n  else {\n    schema = require(path.join(__dirname, args[1]));\n  }\n  // console.log(`the schema is : ${JSON.stringify(schema)}`)\n  const filePath = path.normalize(args[0]);\n  console.log(`Retrieving ${filePath}`);\n  try {\n    const manifest = await fs.readFile(filePath, 'utf8');\n    console.log('Converting to JSON object');\n    const data = JSON.parse(manifest);\n\n    console.log('Initializing AJV with schema');\n    ajv.addSchema(schema, 'manifestSchema');\n    console.log(`Validating ${filePath} against the schema`);\n    var valid = ajv.validate('manifestSchema', data);\n    if (!valid) {\n      console.error('❌  Validation Failed');\n      const output = betterAjvErrors(schema, data, ajv.errors, { format: 'js' });\n      console.log(output);\n      process.exit(1);\n\n    }\n    else {\n      console.log('✅  Validation passed');\n    }\n  }\n  catch (error) {\n    console.error(error);\n    process.exit(1);\n  }\n}\ntry {\n  runValidation();\n}\ncatch (error) {\n  console.error(`❌  Error occurred running the validator ${error}`);\n  process.exit(1);\n}\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11400,
+        "y": 400
+      }
+    },
+    "7019": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set manifest-schema.json content",
+      "description": "Set manifest-schema.json content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "manifest-schema.json"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "$var.6f7b.stringified"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 400
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": 600,
+        "y": 400
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 12600,
+        "y": 300
+      }
+    },
+    "e474": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set generate.js file content",
+      "description": "Set generate.js file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "generate.js"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package.json', 'manifest.json', 'README.md'];\nlet success = true;\n\n// Read in GitLab project ID, project URL, and branch name\nconst PID = process.argv[2];\nconst gitlabURL = process.argv[3];\nconst gitlabBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error('Please run this script with Gitlab Project ID (integer) as an argument');\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitLab Project ID`);\n\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map(entry => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README.md') {\n        const parsedRes = JSON.parse(result);\n        if (entry === 'manifest.json' && Object.prototype.hasOwnProperty.call(parsedRes, 'version')) {\n          delete parsedRes.version;\n        }\n      return parsedRes;\n    } else {\n      // Update links to relative path of GitLab project in README\n      return result.replace(/\\.\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  const bundles = [];\n\n  // Read IAP component locations from manifest and combine IAP component\n  // data into bundles field for artifact.json file\n  const components = manifest.artifacts;\n  components.forEach(file => {\n    try {\n      const data = fs.readFileSync(\n        path.join(filePath, `./${file.location}`),\n        { encoding: 'utf-8' }\n      );\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(`     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`);\n    }\n  });\n\n  // Create metadata of artifact.json from package.json of project\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n\n  // Combine metadata, manifest, bundles, and README into artifact.json file\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, './artifact.json'),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1200,
+        "y": 400
+      }
+    },
+    "d42b": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set git_setup.sh file content",
+      "description": "Set git_setup.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "git_setup.sh"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "#!/bin/bash\n\n#-----------#\n# Git Setup #\n#-----------#\necho \"Setting up git credentials\"\nmkdir -p ~/.ssh\n\ngit config --global user.email \"$CI_GIT_EMAIL\"\ngit config --global user.name \"$CI_GIT_USERNAME\"\necho -e \"$ID_RSA\" > ~/.ssh/id_rsa\nchmod 0400 ~/.ssh/id_rsa\n\nif [ -n \"$CI_ORIGIN_SSH_PORT\" ]; then\n    echo -e \"Host $CI_SERVER_HOST\\\\n\\\\tHostName $CI_SERVER_HOST\\\\n\\\\tPort $CI_ORIGIN_SSH_PORT\\\\n\\\\tStrictHostKeyChecking no\\\\n\\\\tLogLevel ERROR\\\\n\" >> ~/.ssh/config\n    git remote set-url origin \"ssh://$CI_ORIGIN_HOSTNAME:$CI_ORIGIN_SSH_PORT/$CI_PROJECT_PATH\"\nelif [ -n \"$CI_ORIGIN_HOSTNAME\" ]; then\n    echo -e \"Host $CI_SERVER_HOST\\\\n\\\\tHostName $CI_SERVER_HOST\\\\n\\\\tStrictHostKeyChecking no\\\\n\\\\tLogLevel ERROR\\\\n\" >> ~/.ssh/config\n    git remote set-url origin \"$CI_ORIGIN_HOSTNAME\":\"$CI_PROJECT_PATH\"\nelse\n    # if host is not overridden use the original hostname\n    echo -e \"Host gitlab.com\\\\n\\\\tStrictHostKeyChecking no\\\\n\\\\tLogLevel ERROR\\\\n\" >> ~/.ssh/config\n    git remote set-url origin git@gitlab.com:\"$CI_PROJECT_PATH\"\nfi\ngit remote -v\necho \"Git credentials configured.\"\ngit stash\ngit checkout ${CI_COMMIT_REF_NAME}\nif ! git pull --rebase --tags; then \n    echo -e \"\\033[0;31mERROR: ***********************************************************************************\"\n    echo \"ERROR: There was an issue connecting to remote. Check your credentials.\"\n    echo -e \"ERROR: ***********************************************************************************\\033[0m\"\n    exit 1\nfi \ngit reset --hard origin/\"$CI_COMMIT_REF_NAME\"\n\necho \"$CI_COMMIT_REF_NAME checked out.\"\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5100,
+        "y": 400
+      }
+    },
+    "8bdb": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set node_setup.sh file content",
+      "description": "Set node_setup.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "node_setup.sh"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "#!/bin/bash\n\n# check node version:\necho \"node version: $(node --version)\"\necho \"npm version: $(npm --version)\"\n\necho \"Installing dependencies...\"\nif [ ! -f package-lock.json ]; then\n    PRESENT='false'\n    echo 'package-lock does not exist - generating one now.'\n    npm i --package-lock-only\nelse \n    if ! npm ci -q --unsafe-perm; then\n        exit 1\n    fi\nfi\n\nif [ -n \"$PRESENT\" ]; then\n    git add package-lock.json\n    git commit -m 'initialized package-lock.json [ci skip]'\nfi\n\necho \"Dependencies installed.\"\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6000,
+        "y": 400
+      }
+    },
+    "80ce": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set promote.py file content",
+      "description": "Set promote.py file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "promote.py"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "import requests\nimport json\nimport sys\nimport os\n\nhostname = os.environ.get(\"IAP_HOSTNAME\")\niap_ssl_cert = os.environ.get(\"IAP_SSL_CERT\")\n\n# If SSL certificat provided, write value to local file system\nif iap_ssl_cert: \n  with open('./itential.cert', 'w') as f:\n    f.write(iap_ssl_cert)\n\n# Get path to artifact.json\nartifact_path = sys.argv[1]\npath = './itential.cert'\n\n# checking if IAP_PUSH_TO_LOCAL env var is set -> if not, default to True\nif not (os.environ.get(\"IAP_PUSH_TO_LOCAL\")):\n  push_to_local = True\nelse:\n  push_to_local = True if os.environ.get(\"IAP_PUSH_TO_LOCAL\").lower() == \"true\" else False\n\n# checking if IAP_TOKEN is set -> if not, use basic auth login\ntoken = os.environ.get(\"IAP_TOKEN\")\nbasic_auth = False\nif not token:\n  basic_auth = True\n  username = os.environ.get(\"IAP_USERNAME\")\n  pw = os.environ.get(\"IAP_PW\")\n\nif not (artifact_path and hostname and (token or (username and pw))):\n  print(\"Missing environmental variables.\\nMake sure your environmental variables are set properly.\\nExiting...\")\n  sys.exit(1)\n\nartifact = json.load(open(f\"{artifact_path}\"))\n# Function Definitions\n# Handles getting token to authenticate into IAP\ndef get_token():\n  print(\"Getting auth token\")\n  url = f\"{hostname}/login\"\n  payload = json.dumps({\n    \"user\": {\n      \"username\": username,\n      \"password\": pw\n    }\n  })\n\n  response = requests.request(\n    \"POST\", \n    url, \n    headers={'Content-Type': 'application/json'},\n    data=payload,\n    verify=path)\n  if not response.status_code // 100 == 2:\n    raise Exception(\"Error: Unexpected response {}: Failed to get auth token\".format(response.text))\n  else: \n    return response.text\n\n# Checks if prebuilt already exists\ndef get_prebuilt(name):\n  print(f\"Retrieving prebuilt: {name}\")\n  url = f\"{hostname}/prebuilts?equals={name}&equalsField=name\"\n  response = requests.request(\n    \"GET\", \n    url,\n    headers={'Cookie': f'token={token}'},\n    verify=path)\n  if not response.status_code // 100 == 2:\n    raise Exception(\"Error: Unexpected response {}: Failed to get prebuilt\".format(response.text))\n  else: \n    return response.text\n\ndef add_prebuilt(payload): \n  print(\"Prebuilt does not exist yet - adding to IAP\")\n  url = f\"{hostname}/prebuilts/import\"\n  headers = {\n    'Content-Type': 'application/json',\n    'Cookie': f'token={token}'\n  }\n  response = requests.request(\n    \"POST\",\n    url,\n    headers=headers,\n    data=payload,\n    verify=path)\n  if \"Invalid repository configuration\" in response.text:\n    print(\"Failed to promote to original repository, pushing to local scope.\")\n    updated_payload = json.loads(payload)\n    updated_payload[\"prebuilt\"][\"metadata\"][\"repository\"] = {\n      \"type\": \"local\",\n      \"hostname\": \"localhost\",\n      \"path\": \"/\"\n    }\n    response = requests.request(\n      \"POST\",\n      url,\n      headers=headers,\n      data=json.dumps(updated_payload),\n      verify=path)\n  if not response.status_code // 100 == 2:\n    raise Exception(\"Error: Unexpected response {}: Failed to add prebuilt\".format(response.text))\n  else: \n    print(\"Successfully added prebuilt\")\n    return response.text\n\ndef update_prebuilt(id, payload):\n  print(\"Updating existing prebuilt\")\n  url = f\"{hostname}/prebuilts/{id}\"\n  headers = {\n    'Content-Type': 'application/json',\n    'Cookie': f'token={token}'\n  }\n  response = requests.request(\n    \"PUT\",\n    url,\n    headers=headers,\n    data=payload,\n    verify=path)\n  if \"Invalid repository configuration\" in response.text:\n    print(\"Failed to promote to original repository, pushing to local scope.\")\n    updated_payload = json.loads(payload)\n    updated_payload[\"prebuilt\"][\"metadata\"][\"repository\"] = {\n      \"type\": \"local\",\n      \"hostname\": \"localhost\",\n      \"path\": \"/\"\n    }\n    response = requests.request(\n      \"PUT\",\n      url,\n      headers=headers,\n      data=json.dumps(updated_payload),\n      verify=path)\n  if not response.status_code // 100 == 2:\n      raise Exception(\"Error: Unexpected response {}: Failed to update prebuilt\".format(response.text))\n  else: \n    print(\"Successfully updated prebuilt\")\n    return response.text\n\ndef logout():\n  print(\"Logging out of IAP\")\n  url = f\"{hostname}/login?logout=true\"\n  headers = {\n    'Content-Type': 'application/json',\n    'Cookie': f'token={token}'\n  }\n  response = requests.request(\n    \"GET\",\n    url,\n    headers=headers,\n    verify=path)\n # response = requests.request(\"GET\", url, headers=headers)\n\n# Script starts here\ntry: \n  if (basic_auth):\n    token = get_token()\n\n  # Set name of prebuilt\n  name = artifact[\"metadata\"][\"name\"]\n\n  results = get_prebuilt(name)\n  if push_to_local:\n    print(\"Setting artifact.json repository configuration to local\")\n    artifact[\"metadata\"][\"repository\"] = {\n      \"type\": \"local\",\n      \"hostname\": \"localhost\",\n      \"path\": \"/\"\n    }\n    print('Promoting to local scope in IAP')\n  payload = json.dumps({\n    \"prebuilt\": artifact,\n    \"options\": {\n      \"overwrite\": True \n    }\n  })\n  # if prebuilt doesn't exist, add it\n  if json.loads(results)[\"total\"] == 0:\n    response = add_prebuilt(payload)\n  else: # if prebuilt exists, update it\n      id = json.loads(results)[\"results\"][0][\"_id\"]\n      update_prebuilt(id, payload)\n\n  # logging out\n  logout()\nexcept requests.exceptions.RequestException as e: \n  # A serious problem happened, like an SSLError or InvalidURL\n  print(\"Error: {}\".format(e))\n  sys.exit(1)  \nexcept: # error handling to catch any errors that throw a non 200 code\n  e = sys.exc_info()[1]    \n  print(e)\n  sys.exit(1)\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 400
+      }
+    },
+    "ef03": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set ver_bump.sh file content",
+      "description": "Set ver_bump.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "ver_bump.sh"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "#!/bin/bash\n\n#-------------------#\n# Get Semver Prefix #\n#-------------------#\nVERSION=\"$(git log --format=%s --merges -1|awk -F\"'\" '{print $2}'|awk -F \"/\" '{print $1}')\"\ncase \"$VERSION\" in\n    # if PATCH transform to patch\n    patch|minor|major) SEMVER=\"$(echo \"$VERSION\" | awk '{print tolower($0)}')\";;\n    *) SEMVER=\"patch\";;\nesac\nif [ -z \"$VERSION\" ]; then\n    echo \"No branch prefix detected. Defaulting to patch.\"\nfi\n\necho \"Semver bump: $SEMVER\"\n\n#---------------------#\n# Get Current Version #\n#---------------------#\nCURRENT_VERSION=$(node -p \"require('./package.json').version\")\necho \"Last version: $CURRENT_VERSION\"\nCURRENT_MAJOR=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $1}')\nCURRENT_MINOR=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $2}')\nCURRENT_PATCH=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $3}'|awk -F'-' '{print $1}')\nCURRENT_PRERELEASE=$(echo \"$CURRENT_VERSION\"|awk -F'-' '{print $2}')\n\n# if [[ $CURRENT_VERSION != *\"+\"* ]]; then\n#     CURRENT_PATCH=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $3}'|awk -F'-' '{print $1}')\n#     CURRENT_PRERELEASE=$(echo \"$CURRENT_VERSION\"|awk -F'-' '{print $2}')\n# else\n#     CURRENT_PATCH=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $3}'|awk -F'+' '{print $1}')\n#     CURRENT_PRERELEASE=$(echo \"$CURRENT_VERSION\"|awk -F'+' '{print $2}')\n# fi \n\n\n#---------------------------#\n# Version & Release Package #\n#---------------------------#\n\n# create release note before versioning the project\nsh ./scripts/create_release_script.sh \"$NEW_VERSION\"\n\n# explicitly add the change log to the version bump commit\ngit add CHANGELOG.md\necho \"Bumping version...\"\n\n# bump version, git tag, commit & then push changes\n# using -f to ignore the added release note\nnpm version -f \"$SEMVER\" -m \"Updating $SEMVER version to %s. [skip ci]\" --loglevel=error\necho \"Version bump successful\"\n\n# push to gitlab\n# no-verify is used to ignore any pre-push commits that may be used by the project\nif git push -f --tags origin \"$CI_COMMIT_REF_NAME\" --follow-tags --no-verify; then\n    echo \"Version bump pushed successfully.\"\nelse\n    echo -e \"\\033[0;31mERROR: ***********************************************************************************\"\n    echo \"ERROR: Failed to push.\"\n    echo -e \"ERROR: ***********************************************************************************\\033[0m\"\n    exit 1\nfi\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 400
+      }
+    },
+    "7c35": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append commit.sh file content",
+      "description": "Append commit.sh file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.1649.pushedArray",
+          "elementN": "$var.866.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 800
+      }
+    },
+    "3d5d": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append create_release_script.sh",
+      "description": "Append create_release_script.sh",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.7c35.pushedArray",
+          "elementN": "$var.3853.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 800
+      }
+    },
+    "4f62": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append git_setup.sh",
+      "description": "Append git_setup.sh",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.2331.pushedArray",
+          "elementN": "$var.d42b.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 800
+      }
+    },
+    "40fd": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append node_setup.sh",
+      "description": "Append node_setup.sh",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.4f62.pushedArray",
+          "elementN": "$var.8bdb.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6300,
+        "y": 800
+      }
+    },
+    "d3e6": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append promote.py",
+      "description": "Append promote.py",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.40fd.pushedArray",
+          "elementN": "$var.80ce.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 800
+      }
+    },
+    "62a1": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append ver_bump.sh",
+      "description": "Append ver_bump.sh",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.d3e6.pushedArray",
+          "elementN": "$var.ef03.object"
+        },
+        "outgoing": {
+          "pushedArray": "$var.job.scriptFiles"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7800,
+        "y": 800
+      }
+    },
+    "9bcf": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set manifestLinkTester.js file content",
+      "description": "Set manifestLinkTester.js file content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "name": "manifestLinkTester.js"
+          },
+          "path": [
+            "content"
+          ],
+          "value": "const path = require('path'),\n      fs = require('fs-extra');\n\nconst args = process.argv.filter((element, index) => {\n  return index >=2;\n});\nif (args.length <= 0) {\n  const usage = `\n  ==============================================================\n    Simplified manifest schema validator, using ajv,\n    that can be used for very quick schema validations.\n    This will validate a json file against the schema\n    found in manifest-schema.json\n\n    Usage: node manifestTester.js someManifestFile.json\n\n    NOTE: for a graphical JSON schema validator go to\n    https://www.jsonschemavalidator.net/\n\n  ==============================================================`;\n  console.log(usage);\n  process.exit(1);\n}\n\nasync function runLinkValidation() {\n  const filePath = path.normalize(args[0]);\n\n  console.log(`Retrieving ${filePath}`);\n  // Read in manifest.json file for IAP components in this Pre-Built\n  const manifest = await fs.readFile(filePath, 'utf8');\n  console.log('Converting to JSON object');\n  const manifestData = JSON.parse(manifest);\n\n  console.log('Iterating through artifacts...');\n  // Initialize valid flag to true\n  let valid=true;\n  for (let i=0; i< manifestData.artifacts.length; i++){\n    const current = manifestData.artifacts[i].location;\n    if (current){\n      if (fs.existsSync(`./${current}`)){\n        // Read in IAP component as found in bundles folder or repository\n        const bundle = await fs.readFile(`./${current}`, 'utf8');\n        const bundleData = JSON.parse(bundle);\n        if (manifestData.artifacts[i].type == 'transformation') {\n          if (manifestData.artifacts[i].id == bundleData._id) {\n            console.log(`\\t✅  Validating ${current}`);\n          } else {\n            console.log(`\\t❌  Validating ${current}`);\n            console.log(`\\t\\t- Bundle ID (${bundleData._id}) is not equal to manifest artifact ID (${manifestData.artifacts[i].id}).`);\n            valid = false;\n          }\n        } else if (manifestData.artifacts[i].type == 'golden-config') {\n          if (manifestData.artifacts[i].name == bundleData.data[0].name) {\n            console.log(`\\t✅  Validating ${current}`);\n          } else {\n            console.log(`\\t❌  Validating ${current}`);\n            console.log(`\\t\\t- Bundle Name (${bundleData.data[0].name}) is not equal to manifest artifact ID (${manifestData.artifacts[i].id}).`);\n            valid = false;\n          }\n        } else if (manifestData.artifacts[i].id == bundleData.name) {\n          console.log(`\\t✅  Validating ${current}`);\n        } else {\n          console.log(`\\t❌  Validating ${current}`);\n          console.log(`\\t\\t- Bundle Name (${bundleData.name}) is not equal to manifest artifact ID (${manifestData.artifacts[i].id}).`);\n          valid = false;\n        }\n      }\n      else{\n        console.log(`\\t❌  Validating ${current}`);\n        console.log(`\\t\\t- File at path '${current}' does not exist.`);\n        valid = false;\n      }\n    }\n  }\n  if (!valid) {\n    // If not valid, force pipeline to error\n    console.error('Validation Failed  👎');\n    process.exit(1);\n  }\n  else {\n    console.log('Validation passed  👍');\n  }\n}\ntry {\n  runLinkValidation();\n}\ncatch(error) {\n  console.error(`Error occurred running the validator ${error}`);\n}\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10200,
+        "y": 400
+      }
+    },
+    "84c3": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append manifestLinkTester.js",
+      "description": "Append manifestLinkTester.js",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.5820.pushedArray",
+          "elementN": "$var.9bcf.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10800,
+        "y": 800
+      }
+    },
+    "103d": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "Append manifestTester.js",
+      "description": "Append manifestTester.js",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.84c3.pushedArray",
+          "elementN": "$var.6323.object"
+        },
+        "outgoing": {
+          "pushedArray": "$var.job.testFiles"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12000,
+        "y": 800
+      }
+    },
+    "f42b": {
+      "name": "parse",
+      "canvasName": "parse",
+      "summary": "Parse manifest-schema.json to object",
+      "description": "Parse manifest-schema.json to object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "text": "{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"$id\":\"iap-artifact-bundle\",\"type\":\"object\",\"title\":\"Artifact Bundle Schema\",\"default\":null,\"additionalProperties\":false,\"definitions\":{\"tagged\":{\"$id\":\"#/properties/properties/properties/tagged\",\"type\":\"array\",\"title\":\"The Tagged Item\",\"description\":\"These are the items that need to be tagged\",\"uniqueItems\":true,\"items\":{\"$id\":\"#/properties/properties/properties/tagged/items\",\"type\":\"string\",\"title\":\"The Tagged Items\",\"default\":\"\",\"examples\":[\"mop-example-1\",\"mop-analytic-example-1\",\"workflow-example-1\"],\"pattern\":\"^(.*)$\"}}},\"required\":[\"bundleName\",\"version\",\"createdEpoch\",\"artifacts\"],\"properties\":{\"bundleName\":{\"$id\":\"#/properties/bundleName\",\"type\":\"string\",\"title\":\"The Bundle Name\",\"description\":\"Unique identifier for this bundle of artifacts.\",\"default\":\"\",\"examples\":[\"ExampleBundle\"],\"pattern\":\"^(.*)$\"},\"version\":{\"$id\":\"#/properties/version\",\"type\":\"string\",\"title\":\"The Version\",\"description\":\"The version of this bundle\",\"default\":\"\",\"examples\":[\"1.2.3\"],\"pattern\":\"^(.*)$\"},\"fingerprint\":{\"$id\":\"#/properties/fingerprint\",\"type\":\"string\",\"title\":\"The Fingerprint\",\"description\":\"For use in future implementations of  installable modules where additional security measures need to be implemented. \",\"default\":\"\",\"examples\":[\"Some verifiable token\"],\"pattern\":\"^(.*)$\"},\"createdEpoch\":{\"$id\":\"#/properties/createdEpoch\",\"type\":\"string\",\"title\":\"The Created Time\",\"description\":\"The date, in milliseconds since the unix epoch, for when this bundle was created/updated. Usually this is value of Date.now() or calling getTime() on a js Date object\",\"default\":\"\",\"examples\":[\"1554836984020\",\"result from Date.now()\"],\"pattern\":\"^(.*)$\"},\"artifacts\":{\"$id\":\"#/properties/artifacts\",\"type\":\"array\",\"title\":\"The Artifacts \",\"description\":\"List of artifacts in this bundle. Note that each item must be unique and duplicates will fail validation\",\"default\":null,\"uniqueItems\":true,\"items\":{\"$id\":\"#/properties/artifacts/items\",\"type\":\"object\",\"title\":\"Artifact items\",\"default\":null,\"additionalProperties\":false,\"properties\":{\"id\":{\"$id\":\"#/properties/artifacts/items/properties/id\",\"type\":\"string\",\"title\":\"The Artifact Id\",\"description\":\"Unique Id identifying this artifact. \",\"default\":\"\",\"examples\":[\"workflow-example-1\",\"mop-template-1\"],\"pattern\":\"^(.*)$\"},\"name\":{\"$id\":\"#/properties/artifacts/items/properties/name\",\"type\":\"string\",\"title\":\"The Artifact Name\",\"description\":\"The Name identifying this artifact\",\"default\":\"\",\"examples\":[\"My Worflow1\"],\"pattern\":\"^(.*)$\"},\"type\":{\"$id\":\"#/properties/artifacts/items/properties/type\",\"type\":\"string\",\"enum\":[\"mop-analytic-template\",\"mop-template\",\"workflow\",\"json-forms\",\"tag\",\"template\",\"forms\",\"golden-config\",\"service-catalog\",\"ac-agenda-job\",\"adapter\",\"app\",\"transformation\",\"automation\"],\"title\":\"The Artifact Type \",\"description\":\"The type of artifact(s) this entry encompasses. Must be one of the supported types listed in the enum\",\"default\":\"\",\"examples\":[\"mop-analytic-template\",\"mop-template\",\"workflow\",\"tag\",\"forms\",\"golden-config\"],\"pattern\":\"^(.*)$\"},\"location\":{\"$id\":\"#/properties/artifacts/items/properties/location\",\"type\":\"string\",\"title\":\"The Artifact Location\",\"description\":\"Path, relative to the root of this bundle, to either a specific artifact file or a directory of artifacts of a specific type. Future implementations may allow for URLs to external assets\",\"default\":\"\",\"examples\":[\"/bundles/ExampleBundle/workflow/myWorkflow1.json\",\"/bundles/workflows/\"],\"pattern\":\"^(.*)$\"},\"description\":{\"$id\":\"#/properties/artifacts/items/properties/description\",\"type\":\"string\",\"title\":\"The Description \",\"description\":\"The description of what this artifact is \",\"default\":\"\",\"examples\":[\"This artifact does things and stuff\"],\"pattern\":\"^(.*)$\"},\"properties\":{\"$id\":\"#/properties/artifacts/items/properties/properties\",\"type\":\"object\",\"title\":\"The Properties Schema\",\"description\":\"Additional properties that may be needed for a type during it's installations\",\"properties\":{\"tagged\":{\"$ref\":\"#/definitions/tagged\"}}}},\"if\":{\"properties\":{\"type\":{\"enum\":[\"tag\"]}}},\"then\":{\"required\":[\"id\",\"name\",\"type\",\"properties\"]},\"else\":{\"required\":[\"id\",\"name\",\"type\",\"location\"]}}}}}"
+        },
+        "outgoing": {
+          "textObject": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 800
+      }
+    },
+    "6f7b": {
+      "name": "objectToString",
+      "canvasName": "toString",
+      "summary": "Convert manifest-schema.json to string",
+      "description": "Convert manifest-schema.json to string",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "value": "$var.f42b.textObject",
+          "replacer": "",
+          "space": 2
+        },
+        "outgoing": {
+          "stringified": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 400
+      }
+    }
+  },
+  "transitions": {
+    "866": {
+      "7c35": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1649": {
+      "866": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2331": {
+      "d42b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3853": {
+      "3d5d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5820": {
+      "9bcf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6194": {
+      "2331": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6323": {
+      "103d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7019": {
+      "5820": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "e474": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "e474": {
+      "1649": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d42b": {
+      "4f62": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8bdb": {
+      "40fd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "80ce": {
+      "d3e6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ef03": {
+      "62a1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4bac": {},
+    "89f8": {},
+    "ce98": {},
+    "7c35": {
+      "3853": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e93e": {},
+    "3d5d": {
+      "6194": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4f62": {
+      "8bdb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "40fd": {
+      "80ce": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d3e6": {
+      "ef03": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "62a1": {
+      "f42b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3e6c": {},
+    "1f0b": {},
+    "ed6d": {},
+    "9bcf": {
+      "84c3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c42a": {},
+    "84c3": {
+      "6323": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "103d": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f42b": {
+      "6f7b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6f7b": {
+      "7019": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "type": "automation",
+  "canvasVersion": 3,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 4
+}

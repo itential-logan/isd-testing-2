@@ -1,0 +1,1237 @@
+{
+  "created": "2021-03-21T17:59:03.698Z",
+  "createdVersion": "5.29.14-2020.2.13",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "description": null,
+  "font_size": 12,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "artifact": {
+        "title": "data_array",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ]
+      },
+      "action": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "artifact",
+      "action"
+    ]
+  },
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.496Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "name": "Push Bundles to GitHub Commit Data",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "artifact": {
+        "title": "updated_object",
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "integer",
+          "number",
+          "object"
+        ],
+        "examples": [
+          "updated item"
+        ]
+      },
+      "action": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "commitActions": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "name_first_nested": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "name_second_nested": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    }
+  },
+  "tasks": {
+    "1601": {
+      "name": "push",
+      "summary": "Push Item to Array",
+      "description": "Push item to a job variable array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "job_variable": "commitActions",
+          "item_to_push": "$var.6cdf.merged_object"
+        },
+        "outgoing": {
+          "job_variable_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 6900,
+        "y": 2900
+      }
+    },
+    "2450": {
+      "name": "query",
+      "summary": "Query name (first nested)",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "name",
+          "obj": "$var.798a.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 2000
+      }
+    },
+    "3697": {
+      "name": "evaluation",
+      "summary": "Evaluation: Directory?",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "db0b"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "file",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 4500,
+        "y": 2100
+      }
+    },
+    "4001": {
+      "name": "evaluation",
+      "summary": "Evaluation: File?",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "6433"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "file",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1500
+      }
+    },
+    "6433": {
+      "name": "query",
+      "summary": "Query type",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "type",
+          "obj": "$var.e24a.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1500,
+        "y": 1300
+      }
+    },
+    "7554": {
+      "name": "stringConcat",
+      "summary": "Concatenate / file",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "String",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "str": "$var.f401.combinedStrings",
+          "stringN": [
+            "/"
+          ]
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "canvasName": "concat",
+      "nodeLocation": {
+        "x": 5700,
+        "y": 2900
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "summary": "workflow_start",
+      "description": "workflow_start",
+      "nodeLocation": {
+        "x": 600,
+        "y": 900
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "summary": "workflow_end",
+      "description": "workflow_end",
+      "nodeLocation": {
+        "x": 2700,
+        "y": 900
+      }
+    },
+    "e24a": {
+      "name": "forEach",
+      "summary": "For Each Loop",
+      "description": "Iterate over each item in an array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "data_array": "$var.job.artifact"
+        },
+        "outgoing": {
+          "current_item": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1500,
+        "y": 1000
+      }
+    },
+    "fcfb": {
+      "name": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "name": "commitActions",
+          "value": []
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 900,
+        "y": 1000
+      }
+    },
+    "ec3b": {
+      "name": "query",
+      "summary": "Query name",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "name",
+          "obj": "$var.e24a.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1300
+      }
+    },
+    "7bf5": {
+      "name": "query",
+      "summary": "Query content",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "content",
+          "obj": "$var.e24a.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1500,
+        "y": 1500
+      }
+    },
+    "d8c5": {
+      "name": "push",
+      "summary": "Push Item to Array",
+      "description": "Push item to a job variable array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "job_variable": "commitActions",
+          "item_to_push": "$var.babe.merged_object"
+        },
+        "outgoing": {
+          "job_variable_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1300
+      }
+    },
+    "798a": {
+      "name": "forEach",
+      "summary": "Iterate first level",
+      "description": "Iterate over each item in an array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "data_array": "$var.7bf5.return_data"
+        },
+        "outgoing": {
+          "current_item": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1800
+      }
+    },
+    "db0b": {
+      "name": "query",
+      "summary": "Query type (first nested)",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "type",
+          "obj": "$var.798a.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 2100
+      }
+    },
+    "b93a": {
+      "name": "query",
+      "summary": "Query content (first nested)",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "content",
+          "obj": "$var.798a.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 2200
+      }
+    },
+    "80bf": {
+      "name": "stringConcat",
+      "summary": "Concatenate / nested",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "String",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "str": "$var.ec3b.return_data",
+          "stringN": [
+            "/"
+          ]
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "canvasName": "concat",
+      "nodeLocation": {
+        "x": 3300,
+        "y": 2100
+      }
+    },
+    "f401": {
+      "name": "stringConcat",
+      "summary": "Concatenate nested name",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "String",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "str": "$var.80bf.combinedStrings",
+          "stringN": "$var.job.name_first_nested"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "canvasName": "concat",
+      "nodeLocation": {
+        "x": 3900,
+        "y": 2100
+      }
+    },
+    "f131": {
+      "name": "forEach",
+      "summary": "Iterate second level",
+      "description": "Iterate over each item in an array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "data_array": "$var.b93a.return_data"
+        },
+        "outgoing": {
+          "current_item": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 2400
+      }
+    },
+    "a433": {
+      "name": "query",
+      "summary": "Query name (second nested)",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "name",
+          "obj": "$var.f131.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5100,
+        "y": 2700
+      }
+    },
+    "d522": {
+      "name": "query",
+      "summary": "Query content (second nested)",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "content",
+          "obj": "$var.f131.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5100,
+        "y": 2900
+      }
+    },
+    "57b9": {
+      "name": "stringConcat",
+      "summary": "Concatenate file name",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "String",
+      "type": "automatic",
+      "variables": {
+        "incoming": {
+          "str": "$var.7554.combinedStrings",
+          "stringN": "$var.job.name_second_nested"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "canvasName": "concat",
+      "nodeLocation": {
+        "x": 6000,
+        "y": 2900
+      }
+    },
+    "6cdf": {
+      "name": "merge",
+      "summary": "Merge action data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "action",
+              "value": {
+                "task": "job",
+                "variable": "action",
+                "editable": true
+              }
+            },
+            {
+              "key": "file_path",
+              "value": {
+                "task": "57b9",
+                "variable": "combinedStrings"
+              }
+            },
+            {
+              "key": "content",
+              "value": {
+                "task": "d522",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 6600,
+        "y": 2900
+      }
+    },
+    "f815": {
+      "name": "merge",
+      "summary": "Merge action data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "action",
+              "value": {
+                "task": "job",
+                "variable": "action",
+                "editable": true
+              }
+            },
+            {
+              "key": "file_path",
+              "value": {
+                "task": "f401",
+                "variable": "combinedStrings"
+              }
+            },
+            {
+              "key": "content",
+              "value": {
+                "task": "b93a",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 4800,
+        "y": 2000
+      }
+    },
+    "33e4": {
+      "name": "push",
+      "summary": "Push Item to Array",
+      "description": "Push item to a job variable array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "job_variable": "commitActions",
+          "item_to_push": "$var.f815.merged_object"
+        },
+        "outgoing": {
+          "job_variable_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 5100,
+        "y": 2000
+      }
+    },
+    "9ed7": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "name": "name_first_nested",
+          "value": []
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 3300,
+        "y": 1700
+      }
+    },
+    "89c4": {
+      "name": "push",
+      "canvasName": "push",
+      "summary": "Push Item to Array",
+      "description": "Push item to a job variable array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "job_variable": "name_first_nested",
+          "item_to_push": "$var.2450.return_data"
+        },
+        "outgoing": {
+          "job_variable_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 3900,
+        "y": 1700
+      }
+    },
+    "329c": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "name": "name_second_nested",
+          "value": []
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 5700,
+        "y": 3200
+      }
+    },
+    "63ff": {
+      "name": "push",
+      "canvasName": "push",
+      "summary": "Push Item to Array",
+      "description": "Push item to a job variable array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "displayName": "WorkFlowEngine",
+      "type": "operation",
+      "variables": {
+        "incoming": {
+          "job_variable": "name_second_nested",
+          "item_to_push": "$var.a433.return_data"
+        },
+        "outgoing": {
+          "job_variable_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 6000,
+        "y": 3200
+      }
+    },
+    "babe": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge action data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "action",
+              "value": {
+                "task": "job",
+                "variable": "action",
+                "editable": true
+              }
+            },
+            {
+              "key": "file_path",
+              "value": {
+                "task": "ec3b",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "content",
+              "value": {
+                "task": "7bf5",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1400
+      }
+    },
+    "f54c": {
+      "name": "modify",
+      "canvasName": "modify",
+      "summary": "Modify Data",
+      "description": "Empty the old artifact array to save space.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "object_to_update": "$var.job.artifact",
+          "query": "",
+          "new_value": []
+        },
+        "outgoing": {
+          "updated_object": "$var.job.artifact"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1000
+      }
+    }
+  },
+  "transitions": {
+    "1601": {},
+    "2450": {
+      "9ed7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3697": {
+      "f815": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f131": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "4001": {
+      "798a": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "babe": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6433": {
+      "4001": {
+        "type": "standard",
+        "state": "success"
+      },
+      "ec3b": {
+        "type": "standard",
+        "state": "success"
+      },
+      "7bf5": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7554": {
+      "329c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "fcfb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "e24a": {
+      "6433": {
+        "type": "standard",
+        "state": "loop"
+      },
+      "f54c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fcfb": {
+      "e24a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "30ff": {},
+    "ec3b": {
+      "4001": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7bf5": {
+      "4001": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d8c5": {},
+    "42ee": {},
+    "798a": {
+      "db0b": {
+        "type": "standard",
+        "state": "loop"
+      }
+    },
+    "db0b": {
+      "2450": {
+        "type": "standard",
+        "state": "success"
+      },
+      "b93a": {
+        "type": "standard",
+        "state": "success"
+      },
+      "80bf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9e73": {},
+    "b93a": {
+      "80bf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "80bf": {
+      "f401": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f401": {
+      "3697": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f131": {
+      "a433": {
+        "type": "standard",
+        "state": "loop"
+      }
+    },
+    "a433": {
+      "d522": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d522": {
+      "7554": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "57b9": {
+      "6cdf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6cdf": {
+      "1601": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6a5b": {},
+    "f815": {
+      "33e4": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "33e4": {},
+    "974a": {},
+    "30a4": {},
+    "9ed7": {
+      "89c4": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "89c4": {
+      "f401": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "329c": {
+      "63ff": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "63ff": {
+      "57b9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "babe": {
+      "d8c5": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f54c": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "type": "automation",
+  "canvasVersion": 3,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 4
+}

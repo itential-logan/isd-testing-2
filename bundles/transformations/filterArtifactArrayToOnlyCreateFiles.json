@@ -1,0 +1,335 @@
+{
+  "_id": "6287f3480f8090010e7a4b89",
+  "name": "filterArtifactArrayToOnlyCreateFiles",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "artifactArray",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "examples": [
+              "update"
+            ]
+          },
+          "file_path": {
+            "type": "string",
+            "examples": [
+              "README%2Emd"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "examples": [
+              "<!-- This is a comment in md (Markdown) format, it will not be visible to the end user -->\n\n<!-- Update the below line with your Pre-Built name -->\n# Pre-Built Name\n\n<!-- Leave TOC intact unless you've added or removed headers -->\n## Table of Contents\n\n* [Overview](#overview)\n* [Installation Prerequisites](#installation-prerequisites)\n* [Requirements](#requirements)\n* [Features](#features)\n* [Future Enhancements](#future-enhancements)\n* [How to Install](#how-to-install)\n* [How to Run](#how-to-run)\n* [Additional Information](#additional-information)\n\n## Overview\n\n<!-- Write a few sentences about the Pre-Built and explain the use case(s) -->\n<!-- Avoid using the word Artifact%2E Please use Pre-Built, Pre-Built Transformation or Pre-Built Automation -->\n<!-- Ex%2E: The Migration Wizard enables IAP users to conveniently move their automation use cases between different IAP environments -->\n<!-- (e%2Eg%2E from Dev to Pre-Production or from Lab to Production)%2E -->\n\n<!-- Workflow(s) Image Placeholder - TO BE ADDED DIRECTLY TO GitLab -->\n<!-- REPLACE COMMENT BELOW WITH IMAGE OF YOUR MAIN WORKFLOW -->\n<!--\n<table><tr><td>\n  <img src=\"./images/workflow.png\" alt=\"workflow\" width=\"800px\">\n</td></tr></table>\n-->\n<!-- REPLACE COMMENT ABOVE WITH IMAGE OF YOUR MAIN WORKFLOW -->\n\n<!-- ADD ESTIMATED RUN TIME HERE -->\n<!-- e%2Eg%2E Estimated Run Time: 34 min%2E -->\n_Estimated Run Time_:\n\n## Installation Prerequisites\n\nUsers must satisfy the following pre-requisites:\n\n<!-- Include any other required apps or adapters in this list -->\n<!-- Ex%2E: EC2 Adapter -->\n* Itential Automation Platform\n  * `^2021%2E1`\n\n## Requirements\n\nThis Pre-Built requires the following:\n\n<!-- Unordered list highlighting the requirements of the Pre-Built -->\n<!-- EXAMPLE -->\n<!-- * cisco ios device -->\n<!-- * Ansible or NSO (with F5 NED) * -->\n\n## Features\n\nThe main benefits and features of the Pre-Built are outlined below%2E\n\n<!-- Unordered list highlighting the most exciting features of the Pre-Built -->\n<!-- EXAMPLE -->\n<!-- * Automatically checks for device type -->\n<!-- * Displays dry-run to user (asking for confirmation) prior to pushing config to the device -->\n<!-- * Verifies downloaded file integrity (using md5), will try to download again if failed -->\n\n\n## Future Enhancements\n\n<!-- OPTIONAL - Mention if the Pre-Built will be enhanced with additional features on the road map -->\n<!-- Ex%2E: This Pre-Built would support Cisco XR and F5 devices -->\n\n## How to Install\n\nTo install the Pre-Built:\n\n* Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Requirements](#requirements) section in order to install the Pre-Built%2E \n* The Pre-Built can be installed from within App-Admin_Essential%2E Simply search for the name of your desired Pre-Built and click the install button (as shown below)%2E\n\n<!-- REPLACE BELOW WITH IMAGE OF YOUR PUBLISHED PRE-BUILT -->\n<!--\n<table><tr><td>\n  <img src=\"./images/install.png\" alt=\"install\" width=\"600px\">\n</td></tr></table>\n-->\n<!-- REPLACE ABOVE WITH IMAGE OF YOUR PUBLISHED PRE-BUILT -->\n\n<!-- OPTIONAL - Explain if external components are required outside of IAP -->\n<!-- Ex%2E: The Ansible roles required for this Pre-Built can be found in the repository located at https://gitlab%2Ecom/itentialopensource/pre-built-automations/hello-world -->\n\n## How to Run\n\nUse the following to run the Pre-Built:\n\n<!-- Explain the main entrypoint(s) for this Pre-Built: Automation Catalog item, Workflow, Postman, etc%2E -->\n\n## Additional Information\n\nPlease use your Itential Customer Success account if you need support when using this Pre-Built%2E"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "addRepositoryDependencyFiles",
+      "type": "string",
+      "examples": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "createFiles",
+      "type": "array"
+    }
+  ],
+  "steps": [
+    {
+      "id": 3,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "ƒ_map_1"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "artifactArray",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 6,
+      "type": "method",
+      "library": "Conditional",
+      "method": "ternary",
+      "args": [
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 3,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "artifactArray",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "createFiles",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "method",
+      "library": "Equality",
+      "method": "equality",
+      "args": [
+        null,
+        "yes"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "addRepositoryDependencyFiles",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "examples": [
+                "update"
+              ]
+            },
+            "file_path": {
+              "type": "string",
+              "examples": [
+                "README%2Emd"
+              ]
+            },
+            "content": {
+              "type": "string",
+              "examples": [
+                "<!-- This is a comment in md (Markdown) format, it will not be visible to the end user -->\n\n<!-- Update the below line with your Pre-Built name -->\n# Pre-Built Name\n\n<!-- Leave TOC intact unless you've added or removed headers -->\n## Table of Contents\n\n* [Overview](#overview)\n* [Installation Prerequisites](#installation-prerequisites)\n* [Requirements](#requirements)\n* [Features](#features)\n* [Future Enhancements](#future-enhancements)\n* [How to Install](#how-to-install)\n* [How to Run](#how-to-run)\n* [Additional Information](#additional-information)\n\n## Overview\n\n<!-- Write a few sentences about the Pre-Built and explain the use case(s) -->\n<!-- Avoid using the word Artifact%2E Please use Pre-Built, Pre-Built Transformation or Pre-Built Automation -->\n<!-- Ex%2E: The Migration Wizard enables IAP users to conveniently move their automation use cases between different IAP environments -->\n<!-- (e%2Eg%2E from Dev to Pre-Production or from Lab to Production)%2E -->\n\n<!-- Workflow(s) Image Placeholder - TO BE ADDED DIRECTLY TO GitLab -->\n<!-- REPLACE COMMENT BELOW WITH IMAGE OF YOUR MAIN WORKFLOW -->\n<!--\n<table><tr><td>\n  <img src=\"./images/workflow.png\" alt=\"workflow\" width=\"800px\">\n</td></tr></table>\n-->\n<!-- REPLACE COMMENT ABOVE WITH IMAGE OF YOUR MAIN WORKFLOW -->\n\n<!-- ADD ESTIMATED RUN TIME HERE -->\n<!-- e%2Eg%2E Estimated Run Time: 34 min%2E -->\n_Estimated Run Time_:\n\n## Installation Prerequisites\n\nUsers must satisfy the following pre-requisites:\n\n<!-- Include any other required apps or adapters in this list -->\n<!-- Ex%2E: EC2 Adapter -->\n* Itential Automation Platform\n  * `^2021%2E1`\n\n## Requirements\n\nThis Pre-Built requires the following:\n\n<!-- Unordered list highlighting the requirements of the Pre-Built -->\n<!-- EXAMPLE -->\n<!-- * cisco ios device -->\n<!-- * Ansible or NSO (with F5 NED) * -->\n\n## Features\n\nThe main benefits and features of the Pre-Built are outlined below%2E\n\n<!-- Unordered list highlighting the most exciting features of the Pre-Built -->\n<!-- EXAMPLE -->\n<!-- * Automatically checks for device type -->\n<!-- * Displays dry-run to user (asking for confirmation) prior to pushing config to the device -->\n<!-- * Verifies downloaded file integrity (using md5), will try to download again if failed -->\n\n\n## Future Enhancements\n\n<!-- OPTIONAL - Mention if the Pre-Built will be enhanced with additional features on the road map -->\n<!-- Ex%2E: This Pre-Built would support Cisco XR and F5 devices -->\n\n## How to Install\n\nTo install the Pre-Built:\n\n* Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Requirements](#requirements) section in order to install the Pre-Built%2E \n* The Pre-Built can be installed from within App-Admin_Essential%2E Simply search for the name of your desired Pre-Built and click the install button (as shown below)%2E\n\n<!-- REPLACE BELOW WITH IMAGE OF YOUR PUBLISHED PRE-BUILT -->\n<!--\n<table><tr><td>\n  <img src=\"./images/install.png\" alt=\"install\" width=\"600px\">\n</td></tr></table>\n-->\n<!-- REPLACE ABOVE WITH IMAGE OF YOUR PUBLISHED PRE-BUILT -->\n\n<!-- OPTIONAL - Explain if external components are required outside of IAP -->\n<!-- Ex%2E: The Ansible roles required for this Pre-Built can be found in the repository located at https://gitlab%2Ecom/itentialopensource/pre-built-automations/hello-world -->\n\n## How to Run\n\nUse the following to run the Pre-Built:\n\n<!-- Explain the main entrypoint(s) for this Pre-Built: Automation Catalog item, Workflow, Postman, etc%2E -->\n\n## Additional Information\n\nPlease use your Itential Customer Success account if you need support when using this Pre-Built%2E"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "examples": [
+                  "update"
+                ]
+              },
+              "file_path": {
+                "type": "string",
+                "examples": [
+                  "README%2Emd"
+                ]
+              },
+              "content": {
+                "type": "string",
+                "examples": [
+                  "<!-- This is a comment in md (Markdown) format, it will not be visible to the end user -->\n\n<!-- Update the below line with your Pre-Built name -->\n# Pre-Built Name\n\n<!-- Leave TOC intact unless you've added or removed headers -->\n## Table of Contents\n\n* [Overview](#overview)\n* [Installation Prerequisites](#installation-prerequisites)\n* [Requirements](#requirements)\n* [Features](#features)\n* [Future Enhancements](#future-enhancements)\n* [How to Install](#how-to-install)\n* [How to Run](#how-to-run)\n* [Additional Information](#additional-information)\n\n## Overview\n\n<!-- Write a few sentences about the Pre-Built and explain the use case(s) -->\n<!-- Avoid using the word Artifact%2E Please use Pre-Built, Pre-Built Transformation or Pre-Built Automation -->\n<!-- Ex%2E: The Migration Wizard enables IAP users to conveniently move their automation use cases between different IAP environments -->\n<!-- (e%2Eg%2E from Dev to Pre-Production or from Lab to Production)%2E -->\n\n<!-- Workflow(s) Image Placeholder - TO BE ADDED DIRECTLY TO GitLab -->\n<!-- REPLACE COMMENT BELOW WITH IMAGE OF YOUR MAIN WORKFLOW -->\n<!--\n<table><tr><td>\n  <img src=\"./images/workflow.png\" alt=\"workflow\" width=\"800px\">\n</td></tr></table>\n-->\n<!-- REPLACE COMMENT ABOVE WITH IMAGE OF YOUR MAIN WORKFLOW -->\n\n<!-- ADD ESTIMATED RUN TIME HERE -->\n<!-- e%2Eg%2E Estimated Run Time: 34 min%2E -->\n_Estimated Run Time_:\n\n## Installation Prerequisites\n\nUsers must satisfy the following pre-requisites:\n\n<!-- Include any other required apps or adapters in this list -->\n<!-- Ex%2E: EC2 Adapter -->\n* Itential Automation Platform\n  * `^2021%2E1`\n\n## Requirements\n\nThis Pre-Built requires the following:\n\n<!-- Unordered list highlighting the requirements of the Pre-Built -->\n<!-- EXAMPLE -->\n<!-- * cisco ios device -->\n<!-- * Ansible or NSO (with F5 NED) * -->\n\n## Features\n\nThe main benefits and features of the Pre-Built are outlined below%2E\n\n<!-- Unordered list highlighting the most exciting features of the Pre-Built -->\n<!-- EXAMPLE -->\n<!-- * Automatically checks for device type -->\n<!-- * Displays dry-run to user (asking for confirmation) prior to pushing config to the device -->\n<!-- * Verifies downloaded file integrity (using md5), will try to download again if failed -->\n\n\n## Future Enhancements\n\n<!-- OPTIONAL - Mention if the Pre-Built will be enhanced with additional features on the road map -->\n<!-- Ex%2E: This Pre-Built would support Cisco XR and F5 devices -->\n\n## How to Install\n\nTo install the Pre-Built:\n\n* Verify you are running a supported version of the Itential Automation Platform (IAP) as listed above in the [Requirements](#requirements) section in order to install the Pre-Built%2E \n* The Pre-Built can be installed from within App-Admin_Essential%2E Simply search for the name of your desired Pre-Built and click the install button (as shown below)%2E\n\n<!-- REPLACE BELOW WITH IMAGE OF YOUR PUBLISHED PRE-BUILT -->\n<!--\n<table><tr><td>\n  <img src=\"./images/install.png\" alt=\"install\" width=\"600px\">\n</td></tr></table>\n-->\n<!-- REPLACE ABOVE WITH IMAGE OF YOUR PUBLISHED PRE-BUILT -->\n\n<!-- OPTIONAL - Explain if external components are required outside of IAP -->\n<!-- Ex%2E: The Ansible roles required for this Pre-Built can be found in the repository located at https://gitlab%2Ecom/itentialopensource/pre-built-automations/hello-world -->\n\n## How to Run\n\nUse the following to run the Pre-Built:\n\n<!-- Explain the main entrypoint(s) for this Pre-Built: Automation Catalog item, Workflow, Postman, etc%2E -->\n\n## Additional Information\n\nPlease use your Itential Customer Success account if you need support when using this Pre-Built%2E"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            "create"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/action"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "ƒ_map_1",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.783Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.783Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

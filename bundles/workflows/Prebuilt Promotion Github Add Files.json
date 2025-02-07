@@ -1,0 +1,1396 @@
+{
+  "created": "2022-05-10T13:50:59.783Z",
+  "createdVersion": "5.40.5-2021.1.72.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "font_size": 12,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "packageJsonName": {
+        "type": "string",
+        "examples": [
+          "sdfsa"
+        ]
+      },
+      "artifact": {
+        "title": "obj",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "name": "value"
+          }
+        ]
+      }
+    },
+    "required": [
+      "packageJsonName",
+      "artifact"
+    ]
+  },
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.445Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "name": "Prebuilt Promotion Github Add Files",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "packageJsonName": {
+        "type": "string",
+        "examples": [
+          "sdfsa"
+        ]
+      },
+      "artifact": {
+        "title": "obj",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "name": "value"
+          }
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "pushedArray": {
+        "title": "pushedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "Device1",
+            "Device2",
+            "Device3"
+          ]
+        ]
+      }
+    }
+  },
+  "tasks": {
+    "3056": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "promote.py file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "scripts/promote.py",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "import requests\nimport json\nimport sys\nimport os\n\nhostname = os.environ.get(\"IAP_HOSTNAME\")\nartifact_path = sys.argv[1]\n\n# checking if IAP_PUSH_TO_LOCAL env var is set -> if not, default to True\nif not (os.environ.get(\"IAP_PUSH_TO_LOCAL\")):\n  push_to_local = True\nelse:\n  push_to_local = True if os.environ.get(\"IAP_PUSH_TO_LOCAL\").lower() == \"true\" else False\n\n# checking if IAP_TOKEN is set -> if not, use basic auth login\ntoken = os.environ.get(\"IAP_TOKEN\")\nbasic_auth = False\nif not token:\n  basic_auth = True\n  username = os.environ.get(\"IAP_USERNAME\")\n  pw = os.environ.get(\"IAP_PW\")\n\nif not (artifact_path and hostname and (token or (username and pw))):\n  print(\"Missing environmental variables.\\nMake sure your environmental variables are set properly.\\nExiting...\")\n  sys.exit(1)\n\nartifact = json.load(open(f\"{artifact_path}\"))\n# Function Definitions\n# Handles getting token to authenticate into IAP\ndef get_token():\n  print(\"Getting auth token\")\n  url = f\"{hostname}/login\"\n  payload = json.dumps({\n    \"user\": {\n      \"username\": username,\n      \"password\": pw\n    }\n  })\n\n  response = requests.request(\n    \"POST\", \n    url, \n    headers={'Content-Type': 'application/json'},\n    data=payload)\n  if not response.status_code // 100 == 2:\n    raise Exception(\"Error: Unexpected response {}: Failed to get auth token\".format(response.text))\n  else: \n    return response.text\n\n# Checks if prebuilt already exists\ndef get_prebuilt(name):\n  print(f\"Retrieving prebuilt: {name}\")\n  url = f\"{hostname}/prebuilts?equals={name}&equalsField=name\"\n  response = requests.request(\n    \"GET\", \n    url,\n    headers={'Cookie': f'token={token}'})\n  if not response.status_code // 100 == 2:\n    raise Exception(\"Error: Unexpected response {}: Failed to get prebuilt\".format(response.text))\n  else: \n    return response.text\n\ndef add_prebuilt(payload): \n  print(\"Prebuilt does not exist yet - adding to IAP\")\n  url = f\"{hostname}/prebuilts/import\"\n  headers = {\n    'Content-Type': 'application/json',\n    'Cookie': f'token={token}'\n  }\n  response = requests.request(\n    \"POST\",\n    url,\n    headers=headers,\n    data=payload)\n  if \"Invalid repository configuration\" in response.text:\n    print(\"Failed to promote to original repository, pushing to local scope.\")\n    updated_payload = json.loads(payload)\n    updated_payload[\"prebuilt\"][\"metadata\"][\"repository\"] = {\n      \"type\": \"local\",\n      \"hostname\": \"localhost\",\n      \"path\": \"/\"\n    }\n    response = requests.request(\n      \"POST\",\n      url,\n      headers=headers,\n      data=json.dumps(updated_payload))\n  if not response.status_code // 100 == 2:\n    raise Exception(\"Error: Unexpected response {}: Failed to add prebuilt\".format(response.text))\n  else: \n    print(\"Successfully added prebuilt\")\n    return response.text\n\ndef update_prebuilt(id, payload):\n  print(\"Updating existing prebuilt\")\n  url = f\"{hostname}/prebuilts/{id}\"\n  headers = {\n    'Content-Type': 'application/json',\n    'Cookie': f'token={token}'\n  }\n  response = requests.request(\n    \"PUT\",\n    url,\n    headers=headers,\n    data=payload)\n  if \"Invalid repository configuration\" in response.text:\n    print(\"Failed to promote to original repository, pushing to local scope.\")\n    updated_payload = json.loads(payload)\n    updated_payload[\"prebuilt\"][\"metadata\"][\"repository\"] = {\n      \"type\": \"local\",\n      \"hostname\": \"localhost\",\n      \"path\": \"/\"\n    }\n    response = requests.request(\n      \"PUT\",\n      url,\n      headers=headers,\n      data=json.dumps(updated_payload))\n  if not response.status_code // 100 == 2:\n      raise Exception(\"Error: Unexpected response {}: Failed to update prebuilt\".format(response.text))\n  else: \n    print(\"Successfully updated prebuilt\")\n    return response.text\n\ndef logout():\n  print(\"Logging out of IAP\")\n  url = f\"{hostname}/login?logout=true\"\n  headers = {\n    'Content-Type': 'application/json',\n    'Cookie': f'token={token}'\n  }\n  response = requests.request(\n    \"GET\",\n    url,\n    headers=headers)\n  response = requests.request(\"GET\", url, headers=headers)\n\n# Script starts here\ntry: \n  if (basic_auth):\n    token = get_token()\n\n  # Set name of prebuilt\n  name = artifact[\"metadata\"][\"name\"]\n\n  results = get_prebuilt(name)\n  if push_to_local:\n    print(\"Setting artifact.json repository configuration to local\")\n    artifact[\"metadata\"][\"repository\"] = {\n      \"type\": \"local\",\n      \"hostname\": \"localhost\",\n      \"path\": \"/\"\n    }\n    print('Promoting to local scope in IAP')\n  payload = json.dumps({\n    \"prebuilt\": artifact,\n    \"options\": {\n      \"overwrite\": True \n    }\n  })\n  # if prebuilt doesn't exist, add it\n  if json.loads(results)[\"total\"] == 0:\n    response = add_prebuilt(payload)\n  else: # if prebuilt exists, update it\n      id = json.loads(results)[\"results\"][0][\"_id\"]\n      update_prebuilt(id, payload)\n\n  # logging out\n  logout()\nexcept requests.exceptions.RequestException as e: \n  # A serious problem happened, like an SSLError or InvalidURL\n  print(\"Error: {}\".format(e))\n  sys.exit(1)  \nexcept: # error handling to catch any errors that throw a non 200 code\n  e = sys.exc_info()[1]    \n  print(e)\n  sys.exit(1)"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8400,
+        "y": 1200
+      }
+    },
+    "8841": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "action.yml file content",
+      "description": "Creates input to update action.yml file",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": ".github/workflows/action.yml",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "name: prebuilts-CI\n\npermissions:\n  contents: write\n\n# Controls when the action will run. \non:\n  # Triggers the workflow on push events for every branch except dev and prod\n  push:\n    branches-ignore:\n      - dev\n      - prod\n  # Allows you to run this workflow manually from the Actions tab\n  workflow_dispatch:\n\n# A workflow run is made up of one or more jobs that can run sequentially or in parallel\njobs:\n\n  # Lint code, test code quality, and ensure that there are no insecure dependencies\n  security: \n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Verifying security\n        continue-on-error: true\n        run: |\n          npm i \n          echo \"node version: $(node --version)\"\n          echo \"npm version: $(npm --version)\"\n          npm audit --registry=https://registry.npmjs.org\n  \n  # Validates schema of manifest.json\n  schema_validation: \n    needs: security\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Validating schema of manifest.json\n        run: |\n          npm i\n          npm run validateSchema\n\n  # Validates links in manifest.json        \n  schemaLinks_validation: \n    needs: security\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Validating schema links in manifest.json\n        run: |\n          npm i\n          npm run validateSchemaLinks\n  \n  # Version bump\n  version_bump: \n    needs: [schema_validation, schemaLinks_validation]\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Version Bump\n        run: chmod +x ./scripts/ver_bump.sh && ./scripts/ver_bump.sh\n\n  # Generates artifact.json \n  generate:\n    needs: version_bump\n    # The type of runner that the job will run on\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    # Steps represent a sequence of tasks that will be executed as part of the job\n    steps:\n      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it\n      - uses: actions/checkout@v4\n      - name: Generate Artifact.json file\n        run: chmod +x ./scripts/commit.sh && ./scripts/commit.sh\n      - name: Upload Artifact\n        uses: actions/upload-artifact@v4\n        with: \n          name: artifact\n          path: artifact.json\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13200,
+        "y": 1300
+      }
+    },
+    "9943": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push create_release_script.sh",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.6e7b.pushedArray",
+          "elementN": "$var.361f.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 900
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": 1000
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 16800,
+        "y": 1200
+      }
+    },
+    "f3ce": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Child Job for Update",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Push Bundles to GitHub Commit Data",
+          "variables": {
+            "artifact": {
+              "editable": true,
+              "task": "7bef",
+              "value": "fixedArray"
+            },
+            "action": {
+              "editable": true,
+              "task": "static",
+              "value": "update"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": 1800,
+        "y": 700
+      }
+    },
+    "7bef": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "updatePackageGitHubJSON",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "605d2b11d1976e009291a74d",
+          "variableMap": {
+            "filesArray": "$var.d35d.return_data",
+            "packageJsonName": "$var.job.packageJsonName",
+            "packageJsonVersion": "0.0.1"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "fixedArray": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "task_name": "updatePackageGitHubJSON",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 900,
+        "y": 700
+      }
+    },
+    "d35d": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get Update Files",
+      "description": "Query artifact for update files",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "update",
+          "obj": "$var.job.artifact"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 300,
+        "y": 800
+      }
+    },
+    "77b4": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get Create Files",
+      "description": "Query artifact for create files",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "create",
+          "obj": "$var.job.artifact"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 300,
+        "y": 1100
+      }
+    },
+    "c586": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Child Job for Create",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Push Bundles to GitHub Commit Data",
+          "variables": {
+            "artifact": {
+              "editable": true,
+              "task": "77b4",
+              "value": "return_data"
+            },
+            "action": {
+              "editable": true,
+              "task": "static",
+              "value": "create"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": 1200,
+        "y": 1200
+      }
+    },
+    "a523": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "update array",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "commitActions",
+          "obj": "$var.f3ce.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 700
+      }
+    },
+    "2d37": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "create array",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "commitActions",
+          "obj": "$var.c586.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 1200
+      }
+    },
+    "ef4d": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "commit.sh file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "scripts/commit.sh",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "git checkout \"${GITHUB_REF:11}\"\necho \"Pulling changes\"\ngit stash\ngit pull --rebase --tags\ngit reset --hard origin/\"${GITHUB_REF:11}\"\ncd scripts\nGENERATE=`node generate $GITHUB_RUN_ID $GITHUB_REPOSITORY $GITHUB_REF`\ncd ..\ngit add artifact.json\ngit diff --cached --name-only | if grep artifact.json\nthen\n    echo \"A new generated artifact.json file has been checked in to current branch\"\n    git config --global user.name '$GITHUB_ACTOR'\n    git config --global user.email 'github-action@users.noreply.github.com'\n    git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\n    git add artifact.json\n    git commit -am \"Automated artifact json generation report [Skip CI]\"\n    git push\nelse\n    echo \"artifact.json file hasn't changed\"\nfi"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 1100
+      }
+    },
+    "6e7b": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push commit.sh",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.f40b.combinedArray",
+          "elementN": "$var.ef4d.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 900
+      }
+    },
+    "361f": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "create_release_script.sh file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "scripts/create_release_script.sh",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "git checkout \"${GITHUB_REF:11}\"\necho \"Pulling changes\"\ngit stash\ngit pull --rebase --tags\ngit reset --hard origin/\"${GITHUB_REF:11}\"\ncd scripts\nGENERATE=`node generate $GITHUB_RUN_ID $GITHUB_REPOSITORY $GITHUB_REF`\ncd ..\ngit add artifact.json\ngit diff --cached --name-only | if grep artifact.json\nthen\n    echo \"A new generated artifact.json file has been checked in to current branch\"\n    git config --global user.name '$GITHUB_ACTOR'\n    git config --global user.email 'github-action@users.noreply.github.com'\n    git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\n    git add artifact.json\n    git commit -am \"Automated artifact json generation report [Skip CI]\"\n    git push\nelse\n    echo \"artifact.json file hasn't changed\"\nfi"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1200
+      }
+    },
+    "bea1": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "generate.js file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "scripts/generate.js",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "const path = require(\"path\");\nconst fs = require(\"fs\");\n\nconst files = [\"package.json\", \"manifest.json\", \"README.md\"];\nlet success = true;\n\nconst PID = process.argv[2];\nconst gitHubURL = process.argv[3];\nconst gitHubBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error(\n    \"Please run this script with GitHub Project ID (integer) as an argument\"\n  );\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitHub Project ID`);\n\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map((entry) => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: \"utf-8\",\n    });\n\n    if (entry !== \"README.md\") {\n      const parsedRes = JSON.parse(result);\n      if (\n        entry === \"manifest.json\" &&\n        Object.prototype.hasOwnProperty.call(parsedRes, \"version\")\n      ) {\n        delete parsedRes.version;\n      }\n      return parsedRes;\n    } else {\n      return result.replace(/\\.\\//gm, `${gitHubURL}/-/raw/${gitHubBranch}/`);\n    }\n  });\n    const bundles = [];\n  const components = manifest.artifacts;\n  components.forEach((file) => {\n    try {\n      const data = fs.readFileSync(path.join(filePath, `${file.location}`), {\n        encoding: \"utf-8\",\n      });\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(\n        `     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`\n      );\n    }\n  });\n\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, \"./artifact.json\"),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6300,
+        "y": 1200
+      }
+    },
+    "7ac1": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push generate.js",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.9943.pushedArray",
+          "elementN": "$var.bea1.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6600,
+        "y": 900
+      }
+    },
+    "eb55": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "ver_bump.sh file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "scripts/ver_bump.sh",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "#!/bin/bash\n\n#-------------------#\n# Get Semver Prefix #\n#-------------------#\nVERSION=\"$(git log --format=%s --merges -1|awk -F\"'\" '{print $2}'|awk -F \"/\" '{print $1}')\"\ncase \"$VERSION\" in\n    # if PATCH transform to patch\n    patch|minor|major) SEMVER=\"$(echo \"$VERSION\" | awk '{print tolower($0)}')\";;\n    *) SEMVER=\"patch\";;\nesac\nif [ -z \"$VERSION\" ]; then\n    echo \"No branch prefix detected. Defaulting to patch.\"\nfi\n\necho \"Semver bump: $SEMVER\"\n\n#---------------------#\n# Get Current Version #\n#---------------------#\nCURRENT_VERSION=$(node -p \"require('./package.json').version\")\necho \"Last version: $CURRENT_VERSION\"\nCURRENT_MAJOR=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $1}')\nCURRENT_MINOR=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $2}')\nCURRENT_PATCH=$(echo \"$CURRENT_VERSION\"|awk -F'.' '{print $3}'|awk -F'-' '{print $1}')\nCURRENT_PRERELEASE=$(echo \"$CURRENT_VERSION\"|awk -F'-' '{print $2}')\n\n#---------------------------#\n# Version & Release Package #\n#---------------------------#\n\n# create release note before versioning the project\nsh ./scripts/create_release_script.sh \"$NEW_VERSION\"\n\n# explicitly add the change log to the version bump commit\ngit add CHANGELOG.md\n\necho \"Configuring Github credentials\"\ngit config --global user.name '$GITHUB_ACTOR'\ngit config --global user.email 'github-action@users.noreply.github.com'\ngit remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY\n\necho \"Bumping version...\"\n\n# bump version, git tag, commit & then push changes\n# using -f to ignore the added release note\nnpm version -f \"$SEMVER\" -m \"Updating $SEMVER version to %s. [skip ci]\" --loglevel=error\necho \"Version bump successful\"\n\n# push to gitlab\n# no-verify is used to ignore any pre-push commits that may be used by the project\nif git push -f --tags origin \"$GITHUB_REF\" --follow-tags --no-verify; then\n    echo \"Version bump pushed successfully.\"\nelse\n    echo -e \"\\033[0;31mERROR: ***********************************************************************************\"\n    echo \"ERROR: Failed to push.\"\n    echo -e \"ERROR: ***********************************************************************************\\033[0m\"\n    exit 1\nfi"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 1200
+      }
+    },
+    "a663": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push ver_bump.sh",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.7ac1.pushedArray",
+          "elementN": "$var.eb55.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7800,
+        "y": 900
+      }
+    },
+    "3c7a": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push promote.py",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.a663.pushedArray",
+          "elementN": "$var.3056.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9000,
+        "y": 900
+      }
+    },
+    "433d": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push action.yml",
+      "description": "Adds request to update action.yml",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.a2e1.pushedArray",
+          "elementN": "$var.8841.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13800,
+        "y": 1000
+      }
+    },
+    "66a5": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "dev_action.yml file content",
+      "description": "Creates input to update dev_action.yml file",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": ".github/workflows/dev_action.yml",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "name: dev-prebuilts-CI\n\n# Controls when the action will run. \non:\n  # Triggers the workflow on push events for every branch except dev and prod\n  push:\n    branches: \n      - dev\n  # Allows you to run this workflow manually from the Actions tab\n  workflow_dispatch:\n\njobs:\n  # Lint code, test code quality, and ensure that there are no insecure dependencies\n  security: \n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Verifying security\n        continue-on-error: true\n        run: |\n          npm i \n          echo \"node version: $(node --version)\"\n          echo \"npm version: $(npm --version)\"\n          npm audit --registry=https://registry.npmjs.org\n  \n  # Validates schema of manifest.json\n  schema_validation: \n    needs: security\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Validating schema of manifest.json\n        run: |\n          npm i\n          npm run validateSchema\n\n  # Validates links in manifest.json        \n  schemaLinks_validation: \n    needs: security\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Validating schema links in manifest.json\n        run: |\n          npm i\n          npm run validateSchemaLinks\n    \n  test: \n    needs: [schema_validation, schemaLinks_validation]\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Test automation\n        run: echo \"This is where you should run your scripts to test your workflows\""
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 14400,
+        "y": 1300
+      }
+    },
+    "c482": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push dev_action.yml",
+      "description": "Adds request to update dev_action.yml",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.433d.pushedArray",
+          "elementN": "$var.66a5.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 15000,
+        "y": 1000
+      }
+    },
+    "dcd": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push manifest-schema.json",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.3c7a.pushedArray",
+          "elementN": "$var.f182.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11100,
+        "y": 900
+      }
+    },
+    "6fe8": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "manifestLinkTester.js file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "test/manifestLinkTester.js",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "const path = require('path'),\n      fs = require('fs-extra');\n\nconst args = process.argv.filter((element, index) => {\n  return index >=2;\n});\nif (args.length <= 0) {\n  const usage = `\n  ==============================================================\n    Simplified manifest schema validator, using ajv,\n    that can be used for very quick schema validations.\n    This will validate a json file against the schema\n    found in manifest-schema.json\n\n    Usage: node manifestTester.js someManifestFile.json\n\n    NOTE: for a graphical JSON schema validator go to\n    https://www.jsonschemavalidator.net/\n\n  ==============================================================`;\n  console.log(usage);\n  process.exit(1);\n}\n\nasync function runLinkValidation() {\n  const filePath = path.normalize(args[0]);\n\n  console.log(`Retrieving ${filePath}`);\n  const manifest = await fs.readFile(filePath, 'utf8');\n  console.log('Converting to JSON object');\n  const data = JSON.parse(manifest);\n\n  console.log('Iterating through artifacts...');\n  let valid=true;\n  for (let i=0; i<data.artifacts.length; i++){\n    const current = data.artifacts[i].location;\n    if (current){\n      if (fs.existsSync(`./${current}`)){\n        console.log(`\\t✅  Validating ${current}`);\n      }\n      else{\n        console.log(`\\t❌  Validating ${current}`);\n        valid = false;\n      }\n    }\n  }\n  if (!valid) {\n    console.error('Validation Failed  👎');\n    process.exit(1);\n  }\n  else {\n    console.log('Validation passed  👍');\n  }\n}\ntry {\n  runLinkValidation();\n}\ncatch(error) {\n  console.error(`Error occurred running the validator ${error}`);\n}"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11700,
+        "y": 1300
+      }
+    },
+    "480f": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push manifestLinkTester.js",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.dcd.pushedArray",
+          "elementN": "$var.6fe8.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12000,
+        "y": 900
+      }
+    },
+    "65f": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "manifestTester.js file content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "test/manifestTester.js",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "const AJV = require('ajv'),\n  path = require('path'),\n  fs = require('fs-extra'),\n  r2 = require('r2'),\n  betterAjvErrors = require('better-ajv-errors');\n\nconst ajv = new AJV({\n  jsonPointers: true,\n  allErrors: true\n});\n\nconst args = process.argv.filter((element, index) => {\n  return index >= 2;\n});\nif (args.length != 2) {\n  const usage = `\n  ==============================================================\n    Simplified manifest schema validator, using ajv,\n    that can be used for very quick schema validations.\n    This will validate a json file against the schema\n    found in manifest-schema.json\n\n    Examples:\n    Usage: node manifestTester.js someManifestFile.json PATH/TO/SCHEMA/FILE.json\n    Usage: node manifestTester.js someManifestFile.json http://www.PATH.TO/SCHEMA/FILE.json\n\n    NOTE: for a graphical JSON schema validator go to\n    https://www.jsonschemavalidator.net/\n\n  ==============================================================`;\n  console.log(usage);\n  process.exit(1);\n}\n\nasync function runValidation() {\n  let schema;\n  if (args[1].includes(\"http\")) {\n    schema = await r2(args[1]).json;\n  }\n  else {\n    schema = require(path.join(__dirname, args[1]));\n  }\n  // console.log(`the schema is : ${JSON.stringify(schema)}`)\n  const filePath = path.normalize(args[0]);\n  console.log(`Retrieving ${filePath}`);\n  try {\n    const manifest = await fs.readFile(filePath, 'utf8');\n    console.log('Converting to JSON object');\n    const data = JSON.parse(manifest);\n\n    console.log('Initializing AJV with schema');\n    ajv.addSchema(schema, 'manifestSchema');\n    console.log(`Validating ${filePath} against the schema`);\n    var valid = ajv.validate('manifestSchema', data);\n    if (!valid) {\n      console.error('❌  Validation Failed');\n      const output = betterAjvErrors(schema, data, ajv.errors, { format: 'js' });\n      console.log(output);\n      process.exit(1);\n\n    }\n    else {\n      console.log('✅  Validation passed');\n    }\n  }\n  catch (error) {\n    console.error(error);\n    process.exit(1);\n  }\n}\ntry {\n  runValidation();\n}\ncatch (error) {\n  console.error(`❌  Error occurred running the validator ${error}`);\n  process.exit(1);\n}"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12600,
+        "y": 1300
+      }
+    },
+    "a2e1": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push manifestTester.js",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.480f.pushedArray",
+          "elementN": "$var.65f.object"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12900,
+        "y": 1000
+      }
+    },
+    "f40b": {
+      "name": "arrayConcat",
+      "canvasName": "concat",
+      "summary": "Concatenates arrays together.",
+      "description": "Used to merge two arrays",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.a523.return_data",
+          "arrayN": "$var.2d37.return_data"
+        },
+        "outgoing": {
+          "combinedArray": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 900
+      }
+    },
+    "f6cd": {
+      "name": "objectToString",
+      "canvasName": "toString",
+      "summary": "Converts a valid JSON value to a string.",
+      "description": "Converts a valid JSON value to a JSON string, optionally replacing values if a replacer function is specified or optionally including only the specified properties if a replacer array is specified.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "value": "$var.229a.textObject",
+          "replacer": "",
+          "space": 2
+        },
+        "outgoing": {
+          "stringified": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10200,
+        "y": 900
+      }
+    },
+    "f182": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "manifest-schema.json content",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": "test/manifest-schema.json",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "$var.f6cd.stringified"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10500,
+        "y": 1300
+      }
+    },
+    "229a": {
+      "name": "parse",
+      "canvasName": "parse",
+      "summary": "manifest-schema.json String Content",
+      "description": "manifest-schema.json String Content",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "text": "{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"$id\":\"iap-artifact-bundle\",\"type\":\"object\",\"title\":\"Artifact Bundle Schema\",\"default\":null,\"additionalProperties\":false,\"definitions\":{\"tagged\":{\"$id\":\"#/properties/properties/properties/tagged\",\"type\":\"array\",\"title\":\"The Tagged Item\",\"description\":\"These are the items that need to be tagged\",\"uniqueItems\":true,\"items\":{\"$id\":\"#/properties/properties/properties/tagged/items\",\"type\":\"string\",\"title\":\"The Tagged Items\",\"default\":\"\",\"examples\":[\"mop-example-1\",\"mop-analytic-example-1\",\"workflow-example-1\"],\"pattern\":\"^(.*)$\"}}},\"required\":[\"bundleName\",\"version\",\"createdEpoch\",\"artifacts\"],\"properties\":{\"bundleName\":{\"$id\":\"#/properties/bundleName\",\"type\":\"string\",\"title\":\"The Bundle Name\",\"description\":\"Unique identifier for this bundle of artifacts.\",\"default\":\"\",\"examples\":[\"ExampleBundle\"],\"pattern\":\"^(.*)$\"},\"version\":{\"$id\":\"#/properties/version\",\"type\":\"string\",\"title\":\"The Version\",\"description\":\"The version of this bundle\",\"default\":\"\",\"examples\":[\"1.2.3\"],\"pattern\":\"^(.*)$\"},\"fingerprint\":{\"$id\":\"#/properties/fingerprint\",\"type\":\"string\",\"title\":\"The Fingerprint\",\"description\":\"For use in future implementations of  installable modules where additional security measures need to be implemented. \",\"default\":\"\",\"examples\":[\"Some verifiable token\"],\"pattern\":\"^(.*)$\"},\"createdEpoch\":{\"$id\":\"#/properties/createdEpoch\",\"type\":\"string\",\"title\":\"The Created Time\",\"description\":\"The date, in milliseconds since the unix epoch, for when this bundle was created/updated. Usually this is value of Date.now() or calling getTime() on a js Date object\",\"default\":\"\",\"examples\":[\"1554836984020\",\"result from Date.now()\"],\"pattern\":\"^(.*)$\"},\"artifacts\":{\"$id\":\"#/properties/artifacts\",\"type\":\"array\",\"title\":\"The Artifacts \",\"description\":\"List of artifacts in this bundle. Note that each item must be unique and duplicates will fail validation\",\"default\":null,\"uniqueItems\":true,\"items\":{\"$id\":\"#/properties/artifacts/items\",\"type\":\"object\",\"title\":\"Artifact items\",\"default\":null,\"additionalProperties\":false,\"properties\":{\"id\":{\"$id\":\"#/properties/artifacts/items/properties/id\",\"type\":\"string\",\"title\":\"The Artifact Id\",\"description\":\"Unique Id identifying this artifact. \",\"default\":\"\",\"examples\":[\"workflow-example-1\",\"mop-template-1\"],\"pattern\":\"^(.*)$\"},\"name\":{\"$id\":\"#/properties/artifacts/items/properties/name\",\"type\":\"string\",\"title\":\"The Artifact Name\",\"description\":\"The Name identifying this artifact\",\"default\":\"\",\"examples\":[\"My Worflow1\"],\"pattern\":\"^(.*)$\"},\"type\":{\"$id\":\"#/properties/artifacts/items/properties/type\",\"type\":\"string\",\"enum\":[\"mop-analytic-template\",\"mop-template\",\"workflow\",\"json-forms\",\"tag\",\"template\",\"forms\",\"golden-config\",\"service-catalog\",\"ac-agenda-job\",\"adapter\",\"app\",\"transformation\",\"automation\"],\"title\":\"The Artifact Type \",\"description\":\"The type of artifact(s) this entry encompasses. Must be one of the supported types listed in the enum\",\"default\":\"\",\"examples\":[\"mop-analytic-template\",\"mop-template\",\"workflow\",\"tag\",\"forms\",\"golden-config\"],\"pattern\":\"^(.*)$\"},\"location\":{\"$id\":\"#/properties/artifacts/items/properties/location\",\"type\":\"string\",\"title\":\"The Artifact Location\",\"description\":\"Path, relative to the root of this bundle, to either a specific artifact file or a directory of artifacts of a specific type. Future implementations may allow for URLs to external assets\",\"default\":\"\",\"examples\":[\"/bundles/ExampleBundle/workflow/myWorkflow1.json\",\"/bundles/workflows/\"],\"pattern\":\"^(.*)$\"},\"description\":{\"$id\":\"#/properties/artifacts/items/properties/description\",\"type\":\"string\",\"title\":\"The Description \",\"description\":\"The description of what this artifact is \",\"default\":\"\",\"examples\":[\"This artifact does things and stuff\"],\"pattern\":\"^(.*)$\"},\"properties\":{\"$id\":\"#/properties/artifacts/items/properties/properties\",\"type\":\"object\",\"title\":\"The Properties Schema\",\"description\":\"Additional properties that may be needed for a type during it's installations\",\"properties\":{\"tagged\":{\"$ref\":\"#/definitions/tagged\"}}}},\"if\":{\"properties\":{\"type\":{\"enum\":[\"tag\"]}}},\"then\":{\"required\":[\"id\",\"name\",\"type\",\"properties\"]},\"else\":{\"required\":[\"id\",\"name\",\"type\",\"location\"]}}}}}"
+        },
+        "outgoing": {
+          "textObject": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 1300
+      }
+    },
+    "2deb": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "prod_action.yml file content",
+      "description": "Creates input to update prod_action.yml file",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "action": "update",
+            "file_path": ".github/workflows/prod_action.yml",
+            "content": ""
+          },
+          "path": [
+            "content"
+          ],
+          "value": "name: prod-prebuilts-CI\n\npermissions:\n  contents: write\n\n# Controls when the action will run. \non:\n  # Triggers the workflow on push events but only for the dev branch\n  push:\n    branches: \n      - prod\n  # Allows you to run this workflow manually from the Actions tab\n  workflow_dispatch:\n\n# A workflow run is made up of one or more jobs that can run sequentially or in parallel\njobs:\n\n  # Lint code, test code quality, and ensure that there are no insecure dependencies\n  security: \n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Verifying security\n        continue-on-error: true\n        run: |\n          npm i \n          echo \"node version: $(node --version)\"\n          echo \"npm version: $(npm --version)\"\n          npm audit --registry=https://registry.npmjs.org\n  \n  # Validates schema of manifest.json\n  schema_validation: \n    needs: security\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Validating schema of manifest.json\n        run: |\n          npm i\n          npm run validateSchema\n\n  # Validates links in manifest.json        \n  schemaLinks_validation: \n    needs: security\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Validating schema links in manifest.json\n        run: |\n          npm i\n          npm run validateSchemaLinks\n  \n  # Generates artifact.json \n  generate:\n    needs: [schema_validation, schemaLinks_validation]\n    # The type of runner that the job will run on\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    # Steps represent a sequence of tasks that will be executed as part of the job\n    steps:\n      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it\n      - uses: actions/checkout@v4\n      - name: Generate Artifact.json file\n        run: chmod +x ./scripts/commit.sh && ./scripts/commit.sh\n      - name: Upload Artifact\n        uses: actions/upload-artifact@v4\n        with: \n          name: artifact\n          path: artifact.json\n\n  # Promotes artifact.json to IAP prod environment\n  promote: \n    needs: [generate]\n    runs-on: ubuntu-latest\n    if: \"!contains(github.event.head_commit.message, 'Skip CI')\"\n    steps:\n      - uses: actions/checkout@v4\n      - name: Download artifact.json from previous job \n        uses: actions/download-artifact@v4\n        with:\n          name: artifact\n      - name: Promote to IAP\n        env: \n          IAP_HOSTNAME: ${{ vars.IAP_HOSTNAME }}\n          IAP_USERNAME: ${{ vars.IAP_USERNAME}}\n          IAP_PW: ${{ secrets.IAP_PW }}\n          IAP_TOKEN: ${{ secrets.IAP_TOKEN }}\n          PROMOTE: ${{ vars.PROMOTE }}\n        run: |\n          if [[ $PROMOTE != \"False\" ]]; then\n            if ! python3 ./scripts/promote.py ./artifact.json; then\n              echo -e \"\\033[0;31mERROR: ***********************************************************************************\"\n              echo \"ERROR: There was an issue promoting artifact.json to IAP.\"\n              echo -e \"ERROR: ***********************************************************************************\\033[0m\"\n              exit 1\n            fi\n          else\n            echo \"PROMOTE set to False, skipping promoting to IAP.\"\n          fi\n"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 15900,
+        "y": 1300
+      }
+    },
+    "40d1": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push prod_action.yml",
+      "description": "Adds request to update prod_action.yml",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.c482.pushedArray",
+          "elementN": "$var.2deb.object"
+        },
+        "outgoing": {
+          "pushedArray": "$var.job.pushedArray"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 16500,
+        "y": 1000
+      }
+    }
+  },
+  "transitions": {
+    "3056": {
+      "3c7a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8841": {
+      "433d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9943": {
+      "bea1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "d35d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "77b4": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "f3ce": {
+      "a523": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7bef": {
+      "f3ce": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d35d": {
+      "7bef": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "77b4": {
+      "c586": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c586": {
+      "2d37": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a523": {
+      "f40b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2d37": {
+      "f40b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ef4d": {
+      "6e7b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6e7b": {
+      "361f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "361f": {
+      "9943": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bea1": {
+      "7ac1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7e61": {},
+    "7ac1": {
+      "eb55": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "eb55": {
+      "a663": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a663": {
+      "3056": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3c7a": {
+      "229a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "433d": {
+      "66a5": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "66a5": {
+      "c482": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c482": {
+      "2deb": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "dcd": {
+      "6fe8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6fe8": {
+      "480f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "480f": {
+      "65f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "65f": {
+      "a2e1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a2e1": {
+      "8841": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f40b": {
+      "ef4d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f6cd": {
+      "f182": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f182": {
+      "dcd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "229a": {
+      "f6cd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2deb": {
+      "40d1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "40d1": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "type": "automation",
+  "canvasVersion": 3,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 4
+}

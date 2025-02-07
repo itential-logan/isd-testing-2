@@ -1,0 +1,400 @@
+{
+  "_id": "63effc7c2680b700eb4eeefa",
+  "name": "createNewProjectRequest",
+  "description": "Creates request object for new project call",
+  "incoming": [
+    {
+      "$id": "foundGroups",
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "ARCHIVE"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "archive"
+                ]
+              },
+              "full_name": {
+                "type": "string",
+                "examples": [
+                  "Itential Open Source / pre-built automations"
+                ]
+              },
+              "full_path": {
+                "type": "string",
+                "examples": [
+                  "itentialopensource/pre-built-automations"
+                ]
+              },
+              "parent_id": {
+                "type": "integer",
+                "examples": [
+                  6535607
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "path",
+      "type": "string",
+      "examples": [
+        "test"
+      ]
+    },
+    {
+      "$id": "projectName",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "createProjectRequest",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace_id": {
+          "type": [
+            "integer",
+            "number"
+          ]
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "find",
+      "args": [
+        null,
+        "findGroupByPath",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "foundGroups",
+        "ptr": "/response"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "path",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "WorkFlowEngine",
+      "method": "query",
+      "args": [
+        true,
+        "id",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "createProjectRequest",
+        "ptr": "/namespace_id"
+      },
+      "context": "#"
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "projectName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "createProjectRequest",
+        "ptr": "/name"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "examples": [
+                1
+              ]
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "ARCHIVE"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "examples": [
+                "archive"
+              ]
+            },
+            "full_name": {
+              "type": "string",
+              "examples": [
+                "Itential Open Source / pre-built automations"
+              ]
+            },
+            "full_path": {
+              "type": "string",
+              "examples": [
+                "itentialopensource/pre-built-automations"
+              ]
+            },
+            "parent_id": {
+              "type": "integer",
+              "examples": [
+                6535607
+              ]
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "ARCHIVE"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "archive"
+                ]
+              },
+              "full_name": {
+                "type": "string",
+                "examples": [
+                  "Itential Open Source / pre-built automations"
+                ]
+              },
+              "full_path": {
+                "type": "string",
+                "examples": [
+                  "itentialopensource/pre-built-automations"
+                ]
+              },
+              "parent_id": {
+                "type": "integer",
+                "examples": [
+                  6535607
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/full_path"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "findGroupByPath",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "findGroupByPath",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 6
+  },
+  "created": "2025-02-06T18:32:41.081Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:41.081Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

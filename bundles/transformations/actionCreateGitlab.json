@@ -1,0 +1,317 @@
+{
+  "_id": "6075d1cf8c016f0098c72852",
+  "name": "actionCreateGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "commitUpdate",
+      "type": "object",
+      "properties": {
+        "branch": {
+          "type": "string",
+          "examples": [
+            "major/2020-10-08T07-48-36"
+          ]
+        },
+        "commit_message": {
+          "type": "string",
+          "examples": [
+            "10/8 I added a child job to the workflow and am now running the push to gitlab with re-discovery"
+          ]
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "examples": [
+                  "update"
+                ]
+              },
+              "file_path": {
+                "type": "string",
+                "examples": [
+                  "scripts/generate.js"
+                ]
+              },
+              "content": {
+                "type": "string",
+                "examples": [
+                  "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package.json', 'manifest.json', 'README.md'];\nlet success = true;\n\nconst PID = process.argv[2];\nconst gitlabURL = process.argv[3];\nconst gitlabBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error('Please run this script with Gitlab Project ID (integer) as an argument');\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType.replace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash.substring(\n      0,\n      underscoreToDash.length - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map(entry => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README.md') {\n        const parsedRes = JSON.parse(result);\n        if (entry === 'manifest.json' && Object.prototype.hasOwnProperty.call(parsedRes, 'version')) {\n          delete parsedRes.version;\n        }\n      return parsedRes;\n    } else {\n      return result.replace(/\\.\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs.readdirSync(path.join(__dirname, './bundles'));\n  const bundles = [];\n  // result.forEach(entry => {\n  //   console.log(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs.readdirSync(path.join(__dirname, `./bundles/${entry}`));\n  //   fileNames.forEach(file => {\n  //     const data = fs.readFileSync(\n  //       path.join(__dirname, `./bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles.push({ type: fileTypetoType(entry), data: JSON.parse(data) });\n  //       console.log(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console.log(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest.artifacts;\n  components.forEach(file => {\n    try {\n      const data = fs.readFileSync(\n        path.join(filePath, `./${file.location}`),\n        { encoding: 'utf-8' }\n      );\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(`     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, './artifact.json'),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "branch",
+      "type": "string"
+    },
+    {
+      "$id": "commit_message",
+      "type": "string"
+    },
+    {
+      "$id": "actions",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "examples": [
+              "update"
+            ]
+          },
+          "file_path": {
+            "type": "string",
+            "examples": [
+              "scripts/generate.js"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "examples": [
+              "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package.json', 'manifest.json', 'README.md'];\nlet success = true;\n\nconst PID = process.argv[2];\nconst gitlabURL = process.argv[3];\nconst gitlabBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error('Please run this script with Gitlab Project ID (integer) as an argument');\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType.replace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash.substring(\n      0,\n      underscoreToDash.length - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map(entry => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README.md') {\n        const parsedRes = JSON.parse(result);\n        if (entry === 'manifest.json' && Object.prototype.hasOwnProperty.call(parsedRes, 'version')) {\n          delete parsedRes.version;\n        }\n      return parsedRes;\n    } else {\n      return result.replace(/\\.\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs.readdirSync(path.join(__dirname, './bundles'));\n  const bundles = [];\n  // result.forEach(entry => {\n  //   console.log(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs.readdirSync(path.join(__dirname, `./bundles/${entry}`));\n  //   fileNames.forEach(file => {\n  //     const data = fs.readFileSync(\n  //       path.join(__dirname, `./bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles.push({ type: fileTypetoType(entry), data: JSON.parse(data) });\n  //       console.log(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console.log(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest.artifacts;\n  components.forEach(file => {\n    try {\n      const data = fs.readFileSync(\n        path.join(filePath, `./${file.location}`),\n        { encoding: 'utf-8' }\n      );\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(`     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, './artifact.json'),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+            ]
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "commitUpdate",
+        "ptr": "/actions"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "commitUpdate",
+        "ptr": "/commit_message"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "commit_message",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "commitUpdate",
+        "ptr": "/branch"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "branch",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "ƒ_map_1"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "actions",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "action": {
+              "type": "string",
+              "examples": [
+                "update"
+              ]
+            },
+            "file_path": {
+              "type": "string",
+              "examples": [
+                "scripts/generate.js"
+              ]
+            },
+            "content": {
+              "type": "string",
+              "examples": [
+                "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package.json', 'manifest.json', 'README.md'];\nlet success = true;\n\nconst PID = process.argv[2];\nconst gitlabURL = process.argv[3];\nconst gitlabBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error('Please run this script with Gitlab Project ID (integer) as an argument');\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType.replace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash.substring(\n      0,\n      underscoreToDash.length - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map(entry => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README.md') {\n        const parsedRes = JSON.parse(result);\n        if (entry === 'manifest.json' && Object.prototype.hasOwnProperty.call(parsedRes, 'version')) {\n          delete parsedRes.version;\n        }\n      return parsedRes;\n    } else {\n      return result.replace(/\\.\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs.readdirSync(path.join(__dirname, './bundles'));\n  const bundles = [];\n  // result.forEach(entry => {\n  //   console.log(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs.readdirSync(path.join(__dirname, `./bundles/${entry}`));\n  //   fileNames.forEach(file => {\n  //     const data = fs.readFileSync(\n  //       path.join(__dirname, `./bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles.push({ type: fileTypetoType(entry), data: JSON.parse(data) });\n  //       console.log(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console.log(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest.artifacts;\n  components.forEach(file => {\n    try {\n      const data = fs.readFileSync(\n        path.join(filePath, `./${file.location}`),\n        { encoding: 'utf-8' }\n      );\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(`     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, './artifact.json'),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "examples": [
+                  "update"
+                ]
+              },
+              "file_path": {
+                "type": "string",
+                "examples": [
+                  "scripts/generate.js"
+                ]
+              },
+              "content": {
+                "type": "string",
+                "examples": [
+                  "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package.json', 'manifest.json', 'README.md'];\nlet success = true;\n\nconst PID = process.argv[2];\nconst gitlabURL = process.argv[3];\nconst gitlabBranch = process.argv[4];\nif (PID === null || PID == undefined || Number.isNaN(parseInt(PID, 10))) {\n  console.error('Please run this script with Gitlab Project ID (integer) as an argument');\n  process.exit(2);\n}\nconsole.log(`Generating artifact.json file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType.replace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash.substring(\n      0,\n      underscoreToDash.length - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname.replace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files.map(entry => {\n    const result = fs.readFileSync(path.join(filePath, `./${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README.md') {\n        const parsedRes = JSON.parse(result);\n        if (entry === 'manifest.json' && Object.prototype.hasOwnProperty.call(parsedRes, 'version')) {\n          delete parsedRes.version;\n        }\n      return parsedRes;\n    } else {\n      return result.replace(/\\.\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs.readdirSync(path.join(__dirname, './bundles'));\n  const bundles = [];\n  // result.forEach(entry => {\n  //   console.log(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs.readdirSync(path.join(__dirname, `./bundles/${entry}`));\n  //   fileNames.forEach(file => {\n  //     const data = fs.readFileSync(\n  //       path.join(__dirname, `./bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles.push({ type: fileTypetoType(entry), data: JSON.parse(data) });\n  //       console.log(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console.log(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest.artifacts;\n  components.forEach(file => {\n    try {\n      const data = fs.readFileSync(\n        path.join(filePath, `./${file.location}`),\n        { encoding: 'utf-8' }\n      );\n      bundles.push({ type: file.type, data: JSON.parse(data) });\n      console.log(`     ⚪ (${file.type})   -   ${file.location}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console.log(`     ⚪  (${file.type})   -   ${file.location}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON.name,\n    version: packageJSON.version,\n    description: packageJSON.description,\n    license: packageJSON.license,\n    repository: packageJSON.repository,\n    keywords: packageJSON.keywords,\n    author: packageJSON.author,\n    IAPDependencies: packageJSON.IAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console.log(`\\n\\nFinished successfully`);\n  } else {\n    console.log(`\\n\\nFinished with error(s)`);\n    process.exit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs.writeFileSync(\n    path.join(filePath, './artifact.json'),\n    JSON.stringify(artifact, null, 2)\n  );\n} catch (err) {\n  console.error(`Failed to generate artifact.json file: ${err}`);\n  process.exit(1);\n}"
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            "create"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "ƒ_map_1",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 6
+  },
+  "created": "2025-02-06T18:32:40.839Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.839Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

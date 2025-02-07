@@ -1,0 +1,1925 @@
+{
+  "_id": "64356046770ce80183cec91d",
+  "name": "getRepoURLGitlab",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "repoSearchName",
+      "type": "string",
+      "examples": [
+        "fdsafdsa"
+      ]
+    },
+    {
+      "$id": "incomingRepo",
+      "type": "object",
+      "properties": {
+        "icode": {
+          "type": "string",
+          "examples": [
+            "AD%2E200"
+          ]
+        },
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  12213851
+                ]
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "Device Pre-Post Check Execution"
+                ]
+              },
+              "name_with_namespace": {
+                "type": "string",
+                "examples": [
+                  "Itential Open Source / pre-built automations / Device Pre-Post Check Execution"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "device-pre-post-check-execution"
+                ]
+              },
+              "path_with_namespace": {
+                "type": "string",
+                "examples": [
+                  "itentialopensource/pre-built-automations/device-pre-post-check-execution"
+                ]
+              },
+              "default_branch": {
+                "type": "string",
+                "examples": [
+                  "master"
+                ]
+              },
+              "ssh_url_to_repo": {
+                "type": "string",
+                "examples": [
+                  "git@gitlab%2Ecom:itentialopensource/pre-built-automations/device-pre-post-check-execution%2Egit"
+                ]
+              },
+              "http_url_to_repo": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab%2Ecom/itentialopensource/pre-built-automations/device-pre-post-check-execution%2Egit"
+                ]
+              }
+            },
+            "required": []
+          }
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "repoURL",
+      "type": "string",
+      "examples": [
+        "fdsa"
+      ]
+    },
+    {
+      "$id": "repoId",
+      "type": "integer",
+      "examples": [
+        123545
+      ]
+    },
+    {
+      "$id": "httpURL",
+      "type": "string",
+      "examples": [
+        "htthpURL"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "repoSearchName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "find",
+      "args": [
+        null,
+        "ƒ_query_1",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "id"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "repoId",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 9,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "String",
+      "method": "concat",
+      "args": [
+        "https://gitlab.com/api/v4/projects/",
+        null,
+        "/repository/branches"
+      ],
+      "view": {
+        "row": 1,
+        "col": 3
+      }
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "repoURL",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 15,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "http_url_to_repo"
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      }
+    },
+    {
+      "id": 16,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 15,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 17,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 15,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "httpURL",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "incomingRepo",
+        "ptr": "/response"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "examples": [
+                21320079
+              ]
+            },
+            "description": {
+              "type": "null"
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "deleteThisRepository"
+              ]
+            },
+            "name_with_namespace": {
+              "type": "string",
+              "examples": [
+                "Itential Open Source / pre-built automations / staging / deleteThisRepository"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "examples": [
+                "deletethisrepository"
+              ]
+            },
+            "path_with_namespace": {
+              "type": "string",
+              "examples": [
+                "itentialopensource/pre-built-automations/staging/deletethisrepository"
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "examples": [
+                "2020-09-23T17:11:16.313Z"
+              ],
+              "format": "date-time"
+            },
+            "default_branch": {
+              "type": "string",
+              "examples": [
+                "master"
+              ]
+            },
+            "tag_list": {
+              "type": "array"
+            },
+            "ssh_url_to_repo": {
+              "type": "string",
+              "examples": [
+                "git@gitlab.com:itentialopensource/pre-built-automations/staging/deletethisrepository.git"
+              ]
+            },
+            "http_url_to_repo": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itentialopensource/pre-built-automations/staging/deletethisrepository.git"
+              ]
+            },
+            "web_url": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itentialopensource/pre-built-automations/staging/deletethisrepository"
+              ]
+            },
+            "readme_url": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itentialopensource/pre-built-automations/staging/deletethisrepository/-/blob/master/README.md"
+              ]
+            },
+            "avatar_url": {
+              "type": "null"
+            },
+            "forks_count": {
+              "type": "integer",
+              "examples": [
+                0
+              ]
+            },
+            "star_count": {
+              "type": "integer",
+              "examples": [
+                0
+              ]
+            },
+            "last_activity_at": {
+              "type": "string",
+              "examples": [
+                "2020-09-23T17:11:16.313Z"
+              ],
+              "format": "date-time"
+            },
+            "namespace": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "examples": [
+                    6535607
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "examples": [
+                    "staging"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "examples": [
+                    "staging"
+                  ]
+                },
+                "kind": {
+                  "type": "string",
+                  "examples": [
+                    "group"
+                  ]
+                },
+                "full_path": {
+                  "type": "string",
+                  "examples": [
+                    "itentialopensource/pre-built-automations/staging"
+                  ]
+                },
+                "parent_id": {
+                  "type": "integer",
+                  "examples": [
+                    4836995
+                  ]
+                },
+                "avatar_url": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/uploads/-/system/group/avatar/6535607/lab.png"
+                  ]
+                },
+                "web_url": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/groups/itentialopensource/pre-built-automations/staging"
+                  ]
+                }
+              },
+              "required": []
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  21320079
+                ]
+              },
+              "description": {
+                "type": "null"
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "deleteThisRepository"
+                ]
+              },
+              "name_with_namespace": {
+                "type": "string",
+                "examples": [
+                  "Itential Open Source / pre-built automations / staging / deleteThisRepository"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "deletethisrepository"
+                ]
+              },
+              "path_with_namespace": {
+                "type": "string",
+                "examples": [
+                  "itentialopensource/pre-built-automations/staging/deletethisrepository"
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "examples": [
+                  "2020-09-23T17:11:16.313Z"
+                ],
+                "format": "date-time"
+              },
+              "default_branch": {
+                "type": "string",
+                "examples": [
+                  "master"
+                ]
+              },
+              "tag_list": {
+                "type": "array"
+              },
+              "ssh_url_to_repo": {
+                "type": "string",
+                "examples": [
+                  "git@gitlab.com:itentialopensource/pre-built-automations/staging/deletethisrepository.git"
+                ]
+              },
+              "http_url_to_repo": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab.com/itentialopensource/pre-built-automations/staging/deletethisrepository.git"
+                ]
+              },
+              "web_url": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab.com/itentialopensource/pre-built-automations/staging/deletethisrepository"
+                ]
+              },
+              "readme_url": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab.com/itentialopensource/pre-built-automations/staging/deletethisrepository/-/blob/master/README.md"
+                ]
+              },
+              "avatar_url": {
+                "type": "null"
+              },
+              "forks_count": {
+                "type": "integer",
+                "examples": [
+                  0
+                ]
+              },
+              "star_count": {
+                "type": "integer",
+                "examples": [
+                  0
+                ]
+              },
+              "last_activity_at": {
+                "type": "string",
+                "examples": [
+                  "2020-09-23T17:11:16.313Z"
+                ],
+                "format": "date-time"
+              },
+              "namespace": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "examples": [
+                      6535607
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "staging"
+                    ]
+                  },
+                  "path": {
+                    "type": "string",
+                    "examples": [
+                      "staging"
+                    ]
+                  },
+                  "kind": {
+                    "type": "string",
+                    "examples": [
+                      "group"
+                    ]
+                  },
+                  "full_path": {
+                    "type": "string",
+                    "examples": [
+                      "itentialopensource/pre-built-automations/staging"
+                    ]
+                  },
+                  "parent_id": {
+                    "type": "integer",
+                    "examples": [
+                      4836995
+                    ]
+                  },
+                  "avatar_url": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/uploads/-/system/group/avatar/6535607/lab.png"
+                    ]
+                  },
+                  "web_url": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/groups/itentialopensource/pre-built-automations/staging"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_1",
+      "view": {
+        "col": 3,
+        "row": 5
+      },
+      "id": "ƒ_query_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "examples": [
+                21223957
+              ]
+            },
+            "description": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
+            "name_with_namespace": {
+              "type": "string",
+              "examples": [
+                "itential / Delivery / DSUP / test"
+              ]
+            },
+            "path": {
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            },
+            "path_with_namespace": {
+              "type": "string",
+              "examples": [
+                "itential/delivery/dsup/test"
+              ]
+            },
+            "created_at": {
+              "type": "string",
+              "examples": [
+                "2020-09-18T19:27:23.454Z"
+              ],
+              "format": "date-time"
+            },
+            "default_branch": {
+              "type": "string",
+              "examples": [
+                "master"
+              ]
+            },
+            "tag_list": {
+              "type": "array"
+            },
+            "ssh_url_to_repo": {
+              "type": "string",
+              "examples": [
+                "git@gitlab.com:itential/delivery/dsup/test.git"
+              ]
+            },
+            "http_url_to_repo": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itential/delivery/dsup/test.git"
+              ]
+            },
+            "web_url": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itential/delivery/dsup/test"
+              ]
+            },
+            "readme_url": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itential/delivery/dsup/test/-/blob/master/README.md"
+              ]
+            },
+            "avatar_url": {
+              "type": "null"
+            },
+            "forks_count": {
+              "type": "integer",
+              "examples": [
+                0
+              ]
+            },
+            "star_count": {
+              "type": "integer",
+              "examples": [
+                0
+              ]
+            },
+            "last_activity_at": {
+              "type": "string",
+              "examples": [
+                "2020-09-18T19:27:23.454Z"
+              ],
+              "format": "date-time"
+            },
+            "namespace": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "examples": [
+                    9416856
+                  ]
+                },
+                "name": {
+                  "type": "string",
+                  "examples": [
+                    "DSUP"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "examples": [
+                    "dsup"
+                  ]
+                },
+                "kind": {
+                  "type": "string",
+                  "examples": [
+                    "group"
+                  ]
+                },
+                "full_path": {
+                  "type": "string",
+                  "examples": [
+                    "itential/delivery/dsup"
+                  ]
+                },
+                "parent_id": {
+                  "type": "integer",
+                  "examples": [
+                    4261797
+                  ]
+                },
+                "avatar_url": {
+                  "type": "null"
+                },
+                "web_url": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/groups/itential/delivery/dsup"
+                  ]
+                }
+              },
+              "required": []
+            },
+            "_links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957"
+                  ]
+                },
+                "issues": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957/issues"
+                  ]
+                },
+                "merge_requests": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957/merge_requests"
+                  ]
+                },
+                "repo_branches": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957/repository/branches"
+                  ]
+                },
+                "labels": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957/labels"
+                  ]
+                },
+                "events": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957/events"
+                  ]
+                },
+                "members": {
+                  "type": "string",
+                  "examples": [
+                    "https://gitlab.com/api/v4/projects/21223957/members"
+                  ]
+                }
+              },
+              "required": []
+            },
+            "packages_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "empty_repo": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "archived": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "visibility": {
+              "type": "string",
+              "examples": [
+                "private"
+              ]
+            },
+            "resolve_outdated_diff_discussions": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "container_registry_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "container_expiration_policy": {
+              "type": "object",
+              "properties": {
+                "cadence": {
+                  "type": "string",
+                  "examples": [
+                    "1d"
+                  ]
+                },
+                "enabled": {
+                  "type": "boolean",
+                  "examples": [
+                    true,
+                    false
+                  ]
+                },
+                "keep_n": {
+                  "type": "integer",
+                  "examples": [
+                    10
+                  ]
+                },
+                "older_than": {
+                  "type": "string",
+                  "examples": [
+                    "90d"
+                  ]
+                },
+                "name_regex": {
+                  "type": "null"
+                },
+                "name_regex_keep": {
+                  "type": "null"
+                },
+                "next_run_at": {
+                  "type": "string",
+                  "examples": [
+                    "2020-09-21T20:40:10.356Z"
+                  ],
+                  "format": "date-time"
+                }
+              },
+              "required": []
+            },
+            "issues_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "merge_requests_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "wiki_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "jobs_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "snippets_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "service_desk_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "service_desk_address": {
+              "type": "string",
+              "examples": [
+                "incoming+itential-delivery-dsup-test-21223957-issue-@incoming.gitlab.com"
+              ],
+              "format": "email"
+            },
+            "can_create_merge_request_in": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "issues_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "repository_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "merge_requests_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "forking_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "wiki_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "builds_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "snippets_access_level": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "pages_access_level": {
+              "type": "string",
+              "examples": [
+                "private"
+              ]
+            },
+            "emails_disabled": {
+              "type": "null"
+            },
+            "shared_runners_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "lfs_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "creator_id": {
+              "type": "integer",
+              "examples": [
+                5908256
+              ]
+            },
+            "import_status": {
+              "type": "string",
+              "examples": [
+                "none"
+              ]
+            },
+            "open_issues_count": {
+              "type": "integer",
+              "examples": [
+                0
+              ]
+            },
+            "ci_default_git_depth": {
+              "type": "integer",
+              "examples": [
+                50
+              ]
+            },
+            "public_jobs": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "build_timeout": {
+              "type": "integer",
+              "examples": [
+                3600
+              ]
+            },
+            "auto_cancel_pending_pipelines": {
+              "type": "string",
+              "examples": [
+                "enabled"
+              ]
+            },
+            "build_coverage_regex": {
+              "type": "null"
+            },
+            "ci_config_path": {
+              "type": "string"
+            },
+            "shared_with_groups": {
+              "type": "array"
+            },
+            "only_allow_merge_if_pipeline_succeeds": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "allow_merge_on_skipped_pipeline": {
+              "type": "null"
+            },
+            "request_access_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "only_allow_merge_if_all_discussions_are_resolved": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "remove_source_branch_after_merge": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "printing_merge_request_link_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "merge_method": {
+              "type": "string",
+              "examples": [
+                "merge"
+              ]
+            },
+            "suggestion_commit_message": {
+              "type": "null"
+            },
+            "auto_devops_enabled": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "auto_devops_deploy_strategy": {
+              "type": "string",
+              "examples": [
+                "continuous"
+              ]
+            },
+            "autoclose_referenced_issues": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "approvals_before_merge": {
+              "type": "integer",
+              "examples": [
+                0
+              ]
+            },
+            "mirror": {
+              "type": "boolean",
+              "examples": [
+                true,
+                false
+              ]
+            },
+            "external_authorization_classification_label": {
+              "type": "string"
+            },
+            "marked_for_deletion_at": {
+              "type": "null"
+            },
+            "marked_for_deletion_on": {
+              "type": "null"
+            },
+            "compliance_frameworks": {
+              "type": "array"
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  21223957
+                ]
+              },
+              "description": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "examples": [
+                  "test"
+                ]
+              },
+              "name_with_namespace": {
+                "type": "string",
+                "examples": [
+                  "itential / Delivery / DSUP / test"
+                ]
+              },
+              "path": {
+                "type": "string",
+                "examples": [
+                  "test"
+                ]
+              },
+              "path_with_namespace": {
+                "type": "string",
+                "examples": [
+                  "itential/delivery/dsup/test"
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "examples": [
+                  "2020-09-18T19:27:23.454Z"
+                ],
+                "format": "date-time"
+              },
+              "default_branch": {
+                "type": "string",
+                "examples": [
+                  "master"
+                ]
+              },
+              "tag_list": {
+                "type": "array"
+              },
+              "ssh_url_to_repo": {
+                "type": "string",
+                "examples": [
+                  "git@gitlab.com:itential/delivery/dsup/test.git"
+                ]
+              },
+              "http_url_to_repo": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab.com/itential/delivery/dsup/test.git"
+                ]
+              },
+              "web_url": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab.com/itential/delivery/dsup/test"
+                ]
+              },
+              "readme_url": {
+                "type": "string",
+                "examples": [
+                  "https://gitlab.com/itential/delivery/dsup/test/-/blob/master/README.md"
+                ]
+              },
+              "avatar_url": {
+                "type": "null"
+              },
+              "forks_count": {
+                "type": "integer",
+                "examples": [
+                  0
+                ]
+              },
+              "star_count": {
+                "type": "integer",
+                "examples": [
+                  0
+                ]
+              },
+              "last_activity_at": {
+                "type": "string",
+                "examples": [
+                  "2020-09-18T19:27:23.454Z"
+                ],
+                "format": "date-time"
+              },
+              "namespace": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "examples": [
+                      9416856
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "DSUP"
+                    ]
+                  },
+                  "path": {
+                    "type": "string",
+                    "examples": [
+                      "dsup"
+                    ]
+                  },
+                  "kind": {
+                    "type": "string",
+                    "examples": [
+                      "group"
+                    ]
+                  },
+                  "full_path": {
+                    "type": "string",
+                    "examples": [
+                      "itential/delivery/dsup"
+                    ]
+                  },
+                  "parent_id": {
+                    "type": "integer",
+                    "examples": [
+                      4261797
+                    ]
+                  },
+                  "avatar_url": {
+                    "type": "null"
+                  },
+                  "web_url": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/groups/itential/delivery/dsup"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "_links": {
+                "type": "object",
+                "properties": {
+                  "self": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957"
+                    ]
+                  },
+                  "issues": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957/issues"
+                    ]
+                  },
+                  "merge_requests": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957/merge_requests"
+                    ]
+                  },
+                  "repo_branches": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957/repository/branches"
+                    ]
+                  },
+                  "labels": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957/labels"
+                    ]
+                  },
+                  "events": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957/events"
+                    ]
+                  },
+                  "members": {
+                    "type": "string",
+                    "examples": [
+                      "https://gitlab.com/api/v4/projects/21223957/members"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "packages_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "empty_repo": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "archived": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "visibility": {
+                "type": "string",
+                "examples": [
+                  "private"
+                ]
+              },
+              "resolve_outdated_diff_discussions": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "container_registry_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "container_expiration_policy": {
+                "type": "object",
+                "properties": {
+                  "cadence": {
+                    "type": "string",
+                    "examples": [
+                      "1d"
+                    ]
+                  },
+                  "enabled": {
+                    "type": "boolean",
+                    "examples": [
+                      true,
+                      false
+                    ]
+                  },
+                  "keep_n": {
+                    "type": "integer",
+                    "examples": [
+                      10
+                    ]
+                  },
+                  "older_than": {
+                    "type": "string",
+                    "examples": [
+                      "90d"
+                    ]
+                  },
+                  "name_regex": {
+                    "type": "null"
+                  },
+                  "name_regex_keep": {
+                    "type": "null"
+                  },
+                  "next_run_at": {
+                    "type": "string",
+                    "examples": [
+                      "2020-09-21T20:40:10.356Z"
+                    ],
+                    "format": "date-time"
+                  }
+                },
+                "required": []
+              },
+              "issues_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "merge_requests_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "wiki_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "jobs_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "snippets_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "service_desk_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "service_desk_address": {
+                "type": "string",
+                "examples": [
+                  "incoming+itential-delivery-dsup-test-21223957-issue-@incoming.gitlab.com"
+                ],
+                "format": "email"
+              },
+              "can_create_merge_request_in": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "issues_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "repository_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "merge_requests_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "forking_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "wiki_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "builds_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "snippets_access_level": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "pages_access_level": {
+                "type": "string",
+                "examples": [
+                  "private"
+                ]
+              },
+              "emails_disabled": {
+                "type": "null"
+              },
+              "shared_runners_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "lfs_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "creator_id": {
+                "type": "integer",
+                "examples": [
+                  5908256
+                ]
+              },
+              "import_status": {
+                "type": "string",
+                "examples": [
+                  "none"
+                ]
+              },
+              "open_issues_count": {
+                "type": "integer",
+                "examples": [
+                  0
+                ]
+              },
+              "ci_default_git_depth": {
+                "type": "integer",
+                "examples": [
+                  50
+                ]
+              },
+              "public_jobs": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "build_timeout": {
+                "type": "integer",
+                "examples": [
+                  3600
+                ]
+              },
+              "auto_cancel_pending_pipelines": {
+                "type": "string",
+                "examples": [
+                  "enabled"
+                ]
+              },
+              "build_coverage_regex": {
+                "type": "null"
+              },
+              "ci_config_path": {
+                "type": "string"
+              },
+              "shared_with_groups": {
+                "type": "array"
+              },
+              "only_allow_merge_if_pipeline_succeeds": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "allow_merge_on_skipped_pipeline": {
+                "type": "null"
+              },
+              "request_access_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "only_allow_merge_if_all_discussions_are_resolved": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "remove_source_branch_after_merge": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "printing_merge_request_link_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "merge_method": {
+                "type": "string",
+                "examples": [
+                  "merge"
+                ]
+              },
+              "suggestion_commit_message": {
+                "type": "null"
+              },
+              "auto_devops_enabled": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "auto_devops_deploy_strategy": {
+                "type": "string",
+                "examples": [
+                  "continuous"
+                ]
+              },
+              "autoclose_referenced_issues": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "approvals_before_merge": {
+                "type": "integer",
+                "examples": [
+                  0
+                ]
+              },
+              "mirror": {
+                "type": "boolean",
+                "examples": [
+                  true,
+                  false
+                ]
+              },
+              "external_authorization_classification_label": {
+                "type": "string"
+              },
+              "marked_for_deletion_at": {
+                "type": "null"
+              },
+              "marked_for_deletion_on": {
+                "type": "null"
+              },
+              "compliance_frameworks": {
+                "type": "array"
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_2",
+      "view": {
+        "col": 3,
+        "row": 5
+      },
+      "id": "ƒ_query_2",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.875Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.875Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

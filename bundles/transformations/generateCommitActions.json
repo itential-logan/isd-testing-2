@@ -1,0 +1,4242 @@
+{
+  "_id": "621fd789da0c6c470881bdab",
+  "name": "generateCommitActions",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "fixedArray",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "examples": [
+              "scripts"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "examples": [
+              "directory"
+            ]
+          },
+          "content": {
+            "type": [
+              "array",
+              "string"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "examples": [
+                    "generate%2Ejs"
+                  ]
+                },
+                "content": {
+                  "type": [
+                    "string",
+                    "array"
+                  ],
+                  "examples": [
+                    "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                  ]
+                },
+                "type": {
+                  "type": "string",
+                  "examples": [
+                    "file"
+                  ]
+                }
+              },
+              "required": []
+            }
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "action",
+      "type": "string"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "output",
+      "type": "object",
+      "properties": {
+        "commitActions": {
+          "type": "object"
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 4,
+      "type": "function",
+      "function": "userFunc_2",
+      "args": [
+        null,
+        ""
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 7,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "commitActions"
+      ],
+      "view": {
+        "row": 1,
+        "col": 3
+      }
+    },
+    {
+      "id": 8,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 4,
+        "ptr": "/return/commitActions"
+      },
+      "to": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "output",
+        "ptr": "/commitActions"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "action",
+        "ptr": ""
+      },
+      "to": {
+        "location": "function",
+        "name": 4,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "fixedArray",
+        "ptr": ""
+      },
+      "to": {
+        "location": "function",
+        "name": 4,
+        "ptr": "/args/0/value"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "$id": "processArray",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "scripts"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "array",
+                  "string"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "generate%2Ejs"
+                      ]
+                    },
+                    "content": {
+                      "type": [
+                        "string",
+                        "array"
+                      ],
+                      "examples": [
+                        "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "file"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          }
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "arr",
+          "type": "array"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "ƒ_reduce_2",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "declaration",
+          "library": "Array",
+          "method": "new Array",
+          "args": [],
+          "view": {
+            "row": 4,
+            "col": 1
+          },
+          "polymorphIndex": 0
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "processArray",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "arr",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "userFunc_1",
+      "view": {
+        "col": 3,
+        "row": 5
+      },
+      "id": "userFunc_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "fixedArray",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "scripts"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "array",
+                  "string"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "generate%2Ejs"
+                      ]
+                    },
+                    "content": {
+                      "type": "string",
+                      "examples": [
+                        "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "file"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "$id": "action",
+          "type": "string"
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "commitActions",
+          "type": "object"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "ƒ_reduce_1 (1)",
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "fixedArray",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            []
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            []
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "directories"
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 14,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "ƒ_reduce_2 (1)",
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 4
+          }
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 18,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 19,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 20,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 23,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 24,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "ƒ_reduce_2 (1)",
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 5
+          }
+        },
+        {
+          "id": 26,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "directories"
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          }
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 26,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 28,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 26,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 29,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 3,
+            "col": 4
+          }
+        },
+        {
+          "id": 30,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 31,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 5
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "commitActions",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "action",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/3/value"
+          }
+        },
+        {
+          "id": 37,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "action",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 24,
+            "ptr": "/args/3/value"
+          }
+        },
+        {
+          "id": 38,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "action",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/3/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "userFunc_2",
+      "view": {
+        "col": 5,
+        "row": 4
+      },
+      "id": "userFunc_2",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "scripts"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": [
+                "array",
+                "string"
+              ],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "generate%2Ejs"
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "examples": [
+                      "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "file"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "scripts"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "array",
+                  "string"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "generate%2Ejs"
+                      ]
+                    },
+                    "content": {
+                      "type": "string",
+                      "examples": [
+                        "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "file"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "isArray",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 9,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 15,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 17,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 19,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            ""
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 20,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            "create"
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 3
+          }
+        },
+        {
+          "id": 23,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 25,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 5,
+            "col": 2
+          }
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 28,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 29,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 30,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 31,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/0/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_3",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "ƒ_reduce_3",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "scripts"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": [
+                "array",
+                "string"
+              ],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "generate%2Ejs"
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "examples": [
+                      "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "file"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "scripts"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "array",
+                  "string"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "generate%2Ejs"
+                      ]
+                    },
+                    "content": {
+                      "type": "string",
+                      "examples": [
+                        "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "file"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "isArray",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 9,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 15,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 17,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 19,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            {}
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 20,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            "create"
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 3
+          }
+        },
+        {
+          "id": 23,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 25,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 5,
+            "col": 2
+          }
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 28,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 29,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 30,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 31,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "directories"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_1",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "ƒ_reduce_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "scripts"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": [
+                "array",
+                "string"
+              ],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "generate%2Ejs"
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "examples": [
+                      "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "file"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "scripts"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "array",
+                  "string"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "generate%2Ejs"
+                      ]
+                    },
+                    "content": {
+                      "type": "string",
+                      "examples": [
+                        "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "file"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Array",
+          "method": "isArray",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 9,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 15,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 17,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 15,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 19,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            {}
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 20,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            "create"
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 3
+          }
+        },
+        {
+          "id": 23,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 25,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 5,
+            "col": 2
+          }
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 22,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 28,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 29,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 30,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 17,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 31,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "directories"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_2",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "ƒ_reduce_2",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "scripts"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": [
+                "array",
+                "string"
+              ],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "generate%2Ejs"
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "examples": [
+                      "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "file"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "scripts"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "array",
+                  "string"
+                ],
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "generate%2Ejs"
+                      ]
+                    },
+                    "content": {
+                      "type": "string",
+                      "examples": [
+                        "const path = require('path');\nconst fs = require('fs');\n\nconst files = ['package%2Ejson', 'manifest%2Ejson', 'README%2Emd'];\nlet success = true;\n\nconst PID = process%2Eargv[2];\nconst gitlabURL = process%2Eargv[3];\nconst gitlabBranch = process%2Eargv[4];\nif (PID === null || PID == undefined || Number%2EisNaN(parseInt(PID, 10))) {\n  console%2Eerror('Please run this script with Gitlab Project ID (integer) as an argument');\n  process%2Eexit(2);\n}\nconsole%2Elog(`Generating artifact%2Ejson file w/ ${PID} as GitLab Project ID`);\n\n/*function fileTypetoType(fileType) {\n  const underscoreToDash = fileType%2Ereplace(/_/g, '-');\n  if (\n    fileType === 'ac_agenda_jobs' ||\n    fileType === 'mop_templates' ||\n    fileType === 'mop_analytic_templates' ||\n    fileType === 'templates' ||\n    fileType === 'workflows'\n  ) {\n    const singularize = underscoreToDash%2Esubstring(\n      0,\n      underscoreToDash%2Elength - 1\n    );\n    return singularize;\n  }\n  if (fileType === 'catalog_store') {\n    return 'service-catalog';\n  }\n  return underscoreToDash;\n}*/\nconst filePath = __dirname%2Ereplace(\"/scripts\", \"\");\ntry {\n  const [packageJSON, manifest, readme] = files%2Emap(entry => {\n    const result = fs%2EreadFileSync(path%2Ejoin(filePath, `%2E/${entry}`), {\n      encoding: 'utf-8'\n    });\n\n    if (entry !== 'README%2Emd') {\n        const parsedRes = JSON%2Eparse(result);\n        if (entry === 'manifest%2Ejson' && Object%2Eprototype%2EhasOwnProperty%2Ecall(parsedRes, 'version')) {\n          delete parsedRes%2Eversion;\n        }\n      return parsedRes;\n    } else {\n      return result%2Ereplace(/\\%2E\\//gm, `${gitlabURL}/-/raw/${gitlabBranch}/`);\n    }\n  });\n\n  // const result = fs%2EreaddirSync(path%2Ejoin(__dirname, '%2E/bundles'));\n  const bundles = [];\n  // result%2EforEach(entry => {\n  //   console%2Elog(`   ➡ generating ${entry}(s)`);\n  //   const fileNames = fs%2EreaddirSync(path%2Ejoin(__dirname, `%2E/bundles/${entry}`));\n  //   fileNames%2EforEach(file => {\n  //     const data = fs%2EreadFileSync(\n  //       path%2Ejoin(__dirname, `%2E/bundles/${entry}/${file}`),\n  //       { encoding: 'utf-8' }\n  //     );\n  //     try {\n  //       bundles%2Epush({ type: fileTypetoType(entry), data: JSON%2Eparse(data) });\n  //       console%2Elog(`     ⚪ ${file}   -   ✅`);\n  //     } catch(err) {\n  //       success = false;\n  //       console%2Elog(`     ⚪ ${file}   -   ❌  - ${err}`);\n  //     }\n  //   });\n  // });\n\n  const components = manifest%2Eartifacts;\n  components%2EforEach(file => {\n    try {\n      const data = fs%2EreadFileSync(\n        path%2Ejoin(filePath, `%2E/${file%2Elocation}`),\n        { encoding: 'utf-8' }\n      );\n      bundles%2Epush({ type: file%2Etype, data: JSON%2Eparse(data) });\n      console%2Elog(`     ⚪ (${file%2Etype})   -   ${file%2Elocation}   -   ✅`);\n    } catch (err) {\n      success = false;\n      console%2Elog(`     ⚪  (${file%2Etype})   -   ${file%2Elocation}   -   ❌  - ${err}`);\n    }\n  });\n\n  const metadata = {\n    name: packageJSON%2Ename,\n    version: packageJSON%2Eversion,\n    description: packageJSON%2Edescription,\n    license: packageJSON%2Elicense,\n    repository: packageJSON%2Erepository,\n    keywords: packageJSON%2Ekeywords,\n    author: packageJSON%2Eauthor,\n    IAPDependencies: packageJSON%2EIAPDependencies,\n    gitlabId: parseInt(PID, 10),\n  };\n\n  if (success) {\n    console%2Elog(`\\n\\nFinished successfully`);\n  } else {\n    console%2Elog(`\\n\\nFinished with error(s)`);\n    process%2Eexit(1);\n  }\n  const artifact = { metadata, manifest, bundles, readme };\n  fs%2EwriteFileSync(\n    path%2Ejoin(filePath, '%2E/artifact%2Ejson'),\n    JSON%2Estringify(artifact, null, 2)\n  );\n} catch (err) {\n  console%2Eerror(`Failed to generate artifact%2Ejson file: ${err}`);\n  process%2Eexit(1);\n}\n"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "file"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "directories"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Array",
+          "method": "isArray",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 11,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 14,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 17,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 18,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 19,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 17,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 20,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 23,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 4
+          }
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 20,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 25,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/content"
+          },
+          "to": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 28,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 29,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 28,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 30,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 31,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 28,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 3
+          }
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 30,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 33,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 37,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/args/2/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_1 (1)",
+      "view": {
+        "col": 4,
+        "row": 5
+      },
+      "id": "ƒ_reduce_1 (1)",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "content"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "ƒ_reduce_3 (1)",
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 7,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "name"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/3/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/4/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_2 (1)",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "ƒ_reduce_2 (1)",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "isConstValue": true
+        },
+        {
+          "$id": "constantValue2",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Array",
+          "method": "isArray",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 5,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 3
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "action",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "file_path",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 3
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 4
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 12,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 14,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "content"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 12,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 18,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 4
+          }
+        },
+        {
+          "id": 19,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "commitActions"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 20,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 19,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 12,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 23,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "commitActions",
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          }
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 18,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 25,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 27,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 29,
+          "type": "method",
+          "library": "String",
+          "method": "concat",
+          "args": [
+            null,
+            "/",
+            null
+          ],
+          "view": {
+            "row": 5,
+            "col": 2
+          }
+        },
+        {
+          "id": 30,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 31,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "name"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 31,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 34,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 10,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "name",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 35,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 37,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 35,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 38,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 39,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 35,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 38,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 40,
+          "type": "method",
+          "library": "Object",
+          "method": "optional chaining",
+          "args": [
+            null,
+            "directories"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 41,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 40,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 42,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 40,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 38,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 43,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "directories",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 44,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 38,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 43,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 45,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 43,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 46,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 43,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 5,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 47,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue2",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_3 (1)",
+      "view": {
+        "col": 4,
+        "row": 6
+      },
+      "id": "ƒ_reduce_3 (1)",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:41.041Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:41.041Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

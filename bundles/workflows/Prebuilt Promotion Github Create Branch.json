@@ -1,0 +1,735 @@
+{
+  "name": "Prebuilt Promotion Github Create Branch",
+  "tasks": {
+    "788": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set Object Key",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": "$var.job.MRPayload",
+          "path": [
+            "title"
+          ],
+          "value": "$var.e222.combinedStrings"
+        },
+        "outgoing": {
+          "object": "$var.job.MRPayload"
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4500,
+        "y": 1300
+      }
+    },
+    "2759": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set Object ref",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": "$var.job.branchPayload",
+          "path": [
+            "ref"
+          ],
+          "value": "$var.bcde.combinedStrings"
+        },
+        "outgoing": {
+          "object": "$var.job.branchPayload"
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 1300
+      }
+    },
+    "7687": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set Object sha",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": "$var.job.branchPayload",
+          "path": [
+            "sha"
+          ],
+          "value": "$var.bfe3.return_data"
+        },
+        "outgoing": {
+          "object": "$var.job.branchPayload"
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 1000
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": 0,
+        "y": 1000
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 6000,
+        "y": 900
+      }
+    },
+    "7a0e": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "branchPayload",
+          "value": {
+            "ref": "refs/heads/release",
+            "sha": "14e47145895828a38eb8d37dba75004c02652a69"
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": 600,
+        "y": 852
+      }
+    },
+    "aec2": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "MRPayload",
+          "value": {
+            "title": "PullRequest",
+            "head": "Dummy",
+            "base": "Dummy"
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": 600,
+        "y": 1200
+      }
+    },
+    "a545": {
+      "name": "getReposOwnerRepoBranchesBranch",
+      "canvasName": "getReposOwnerRepoBranchesBranch",
+      "summary": "Get Branch",
+      "description": "Get Branch",
+      "location": "Adapter",
+      "locationType": "GitHub",
+      "app": "GitHub",
+      "type": "automatic",
+      "displayName": "GitHub",
+      "variables": {
+        "incoming": {
+          "owner": "$var.job.owner",
+          "repo": "$var.job.repo",
+          "branch": "$var.job.Targetbranch",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1200,
+        "y": 1000
+      }
+    },
+    "bfe3": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "get Branch sha",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response. commit.sha",
+          "obj": "$var.a545.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1000
+      }
+    },
+    "c5d2": {
+      "name": "getTime",
+      "canvasName": "getTime",
+      "summary": "Get time",
+      "description": "Gets the current time with an optional offset, timezone shift, and format string",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Time",
+      "variables": {
+        "incoming": {
+          "timezone": "-05:00",
+          "offsetDuration": "",
+          "format": "YYYY-MM-DDTHH-mm-ss"
+        },
+        "outgoing": {
+          "time": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1000
+      }
+    },
+    "f40e": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Branch Part1",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "_",
+          "stringN": "$var.e747.return_data"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1300
+      }
+    },
+    "e747": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "get Time value",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "time",
+          "obj": "$var.c5d2.time"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1000
+      }
+    },
+    "bcde": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Branch Part3",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "refs/heads/",
+          "stringN": "$var.e610.combinedStrings"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 1500
+      }
+    },
+    "e610": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Branch Part2",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.job.MRType",
+          "stringN": "$var.f40e.combinedStrings"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1500
+      }
+    },
+    "107d": {
+      "name": "postReposOwnerRepoGitRefs",
+      "canvasName": "postReposOwnerRepoGitRefs",
+      "summary": "Create a Reference",
+      "description": "Create a Reference",
+      "location": "Adapter",
+      "locationType": "GitHub",
+      "app": "GitHub",
+      "type": "automatic",
+      "displayName": "GitHub",
+      "variables": {
+        "incoming": {
+          "owner": "$var.job.owner",
+          "repo": "$var.job.repo",
+          "body": "$var.job.branchPayload",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3900,
+        "y": 1000
+      }
+    },
+    "5bd7": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set Object Key",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": "$var.job.MRPayload",
+          "path": [
+            "head"
+          ],
+          "value": "$var.e610.combinedStrings"
+        },
+        "outgoing": {
+          "object": "$var.job.MRPayload"
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3900,
+        "y": 1300
+      }
+    },
+    "c3cd": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Set Object Key",
+      "description": "Set an object key",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": "$var.job.MRPayload",
+          "path": [
+            "base"
+          ],
+          "value": "$var.job.Targetbranch"
+        },
+        "outgoing": {
+          "object": "$var.job.MRPayload"
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 1500
+      }
+    },
+    "e222": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Pull Request title",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "pullRequest",
+          "stringN": "$var.e747.return_data"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4500,
+        "y": 1500
+      }
+    }
+  },
+  "transitions": {
+    "788": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2759": {
+      "7687": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7687": {
+      "107d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "7a0e": {
+        "type": "standard",
+        "state": "success"
+      },
+      "aec2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "7a0e": {
+      "a545": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "aec2": {
+      "a545": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a545": {
+      "bfe3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bfe3": {
+      "c5d2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c5d2": {
+      "e747": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f40e": {
+      "e610": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e747": {
+      "f40e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bcde": {
+      "2759": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e610": {
+      "bcde": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "107d": {
+      "5bd7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5bd7": {
+      "c3cd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c3cd": {
+      "e222": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e222": {
+      "788": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "owner": {
+        "title": "owner",
+        "type": "string"
+      },
+      "repo": {
+        "title": "repo",
+        "type": "string"
+      },
+      "Targetbranch": {
+        "title": "branch",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "MRType": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello"
+        ]
+      }
+    },
+    "required": [
+      "owner",
+      "repo",
+      "Targetbranch",
+      "adapter_id",
+      "MRType"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "owner": {
+        "title": "owner",
+        "type": "string"
+      },
+      "repo": {
+        "title": "repo",
+        "type": "string"
+      },
+      "Targetbranch": {
+        "title": "branch",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "MRType": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "MRPayload": {
+        "title": "object",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "first": {
+              "second": {
+                "third": "last"
+              }
+            }
+          }
+        ]
+      },
+      "branchPayload": {
+        "title": "object",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "first": {
+              "second": {
+                "third": "last"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "created": "2022-05-20T13:29:35.081Z",
+  "createdVersion": "5.40.5-2021.1.72.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "font_size": 12,
+  "lastUpdatedVersion": "5.55.2-2023.2.14",
+  "last_updated": "2025-02-07T18:10:17.203Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
+  "type": "automation",
+  "canvasVersion": 3,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 4
+}

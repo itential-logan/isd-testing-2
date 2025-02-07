@@ -1,0 +1,548 @@
+{
+  "id": "620ec34b8cb5a700f23019ad",
+  "created": "2022-02-17T21:51:07.149Z",
+  "createdBy": "admin@pronghorn",
+  "lastUpdated": "2025-02-06T18:32:45.826Z",
+  "lastUpdatedBy": "admin@pronghorn",
+  "name": "Re-Discovery Components Form",
+  "description": "This form allows a user to verify that the 'discovered components' contain everything that is required for their particular prebuilt. If there are extra/missing components, the user can edit the list accordingly.",
+  "struct": {
+    "nodeId": "c8e815ab-cb7d-4869-908d-f578ba61bf63",
+    "type": "array",
+    "items": [
+      {
+        "nodeId": "ce1da193-5148-4ee8-988b-efc78b75f279",
+        "type": "object",
+        "description": "",
+        "items": [
+          {
+            "nodeId": "61748fab-3597-403e-987d-a9ff85462054",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "23b16e1f-2fe0-442d-ac68-7b1d8dba933a",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "Enter text",
+                "required": true,
+                "readOnly": false,
+                "binding": false,
+                "rel": "item",
+                "targetPointer": "/default"
+              }
+            ],
+            "title": "Operations Automations"
+          },
+          {
+            "nodeId": "c5608cde-447e-4f7d-b257-e3377f9ba1d4",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "07df38bf-33cb-43d7-91a4-98581b42da8c",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Catalog Automations"
+          },
+          {
+            "nodeId": "b2cfbfa0-a0c4-46f5-9c46-7e2c315e22b0",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "f3ef6d1d-4ba1-48d4-8224-b624a0f7a7d0",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Workflows"
+          },
+          {
+            "nodeId": "1920615b-2822-40f5-b905-eae57689f7a9",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "e5193f31-8763-499a-9113-33a5956ebda4",
+                "type": "string",
+                "widget": "textarea",
+                "title": "Id",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              },
+              {
+                "nodeId": "c96bde0a-7d74-4914-9958-af132fb945c7",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "Enter text",
+                "required": false,
+                "readOnly": false,
+                "binding": false,
+                "rel": "item",
+                "targetPointer": "/default"
+              }
+            ],
+            "title": "Transformations"
+          },
+          {
+            "nodeId": "f221055a-6a68-4a4a-a472-65cda13d0845",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "a4c14093-0170-4a75-9303-6154e34cb607",
+                "type": "string",
+                "widget": "textarea",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "JSON Forms"
+          },
+          {
+            "nodeId": "130de3e1-1188-42d8-bf35-39b5a53bf5d5",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "7bb94765-e6ea-4369-b856-45c4a58734cf",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Forms"
+          },
+          {
+            "nodeId": "7f2e64a4-5498-40c8-82d0-c48eaa9b481a",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "a3d138aa-4a83-4c59-b23a-29331e30339b",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Templates"
+          },
+          {
+            "nodeId": "ccb287ba-b566-4cbd-b56e-a171b3334027",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "fdc26a05-e9eb-489b-973a-828f06cbf663",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Command Templates"
+          },
+          {
+            "nodeId": "b7d81941-8b4f-47ac-aafd-27e37d41ddb7",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "2c341f42-5f69-4f95-ae8c-1c87e37e6ea4",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Analytic Templates"
+          },
+          {
+            "nodeId": "b9150dd0-d13c-4df6-9844-082260a5a821",
+            "type": "array",
+            "description": "",
+            "items": [
+              {
+                "nodeId": "eb4401d0-da0a-4973-a44b-8efce075581a",
+                "type": "string",
+                "title": "Name",
+                "description": "",
+                "placeholder": "Enter text",
+                "required": false,
+                "readOnly": false,
+                "binding": false,
+                "rel": "item",
+                "targetPointer": "/default"
+              },
+              {
+                "nodeId": "f212e72e-ea5a-45da-928c-bf368044169c",
+                "type": "string",
+                "title": "treeId",
+                "description": "",
+                "placeholder": "",
+                "required": true
+              }
+            ],
+            "title": "Golden Config Trees"
+          }
+        ],
+        "title": "Components"
+      }
+    ]
+  },
+  "schema": {
+    "title": "Re-Discovery Components Form",
+    "description": "This form allows a user to verify that the 'discovered components' contain everything that is required for their particular prebuilt. If there are extra/missing components, the user can edit the list accordingly.",
+    "type": "object",
+    "required": [],
+    "properties": {
+      "components": {
+        "type": "object",
+        "title": "Components",
+        "description": "",
+        "required": [],
+        "properties": {
+          "operationsAutomations": {
+            "type": "array",
+            "title": "Operations Automations",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "catalogAutomations": {
+            "type": "array",
+            "title": "Catalog Automations",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "workflows": {
+            "type": "array",
+            "title": "Workflows",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "transformations": {
+            "type": "array",
+            "title": "Transformations",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "title": "Id",
+                  "description": ""
+                },
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "jsonForms": {
+            "type": "array",
+            "title": "JSON Forms",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "forms": {
+            "type": "array",
+            "title": "Forms",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "templates": {
+            "type": "array",
+            "title": "Templates",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "commandTemplates": {
+            "type": "array",
+            "title": "Command Templates",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "analyticTemplates": {
+            "type": "array",
+            "title": "Analytic Templates",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                }
+              }
+            }
+          },
+          "goldenConfigTrees": {
+            "type": "array",
+            "title": "Golden Config Trees",
+            "description": "",
+            "items": {
+              "type": "object",
+              "required": [
+                "treeId"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Name",
+                  "description": ""
+                },
+                "treeId": {
+                  "type": "string",
+                  "title": "treeId",
+                  "description": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "components": {
+      "ui:collapseByDefault": false,
+      "items": {
+        "operationsAutomations": {
+          "items": {
+            "name": {
+              "ui:placeholder": "Enter text"
+            }
+          }
+        },
+        "catalogAutomations": {
+          "items": {}
+        },
+        "workflows": {
+          "items": {}
+        },
+        "transformations": {
+          "items": {
+            "id": {
+              "ui:widget": "textarea"
+            },
+            "name": {
+              "ui:placeholder": "Enter text"
+            }
+          }
+        },
+        "jsonForms": {
+          "items": {
+            "name": {
+              "ui:widget": "textarea"
+            }
+          }
+        },
+        "forms": {
+          "items": {}
+        },
+        "templates": {
+          "items": {}
+        },
+        "commandTemplates": {
+          "items": {}
+        },
+        "analyticTemplates": {
+          "items": {}
+        },
+        "goldenConfigTrees": {
+          "items": {
+            "name": {
+              "ui:placeholder": "Enter text"
+            }
+          }
+        }
+      }
+    }
+  },
+  "bindingSchema": {
+    "properties": {
+      "components": {
+        "properties": {
+          "operationsAutomations": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "catalogAutomations": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "workflows": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "transformations": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "jsonForms": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "forms": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "templates": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "commandTemplates": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "analyticTemplates": {
+            "items": {
+              "properties": {}
+            }
+          },
+          "goldenConfigTrees": {
+            "items": {
+              "properties": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "validationSchema": {
+    "components": {
+      "operationsAutomations": {},
+      "catalogAutomations": {},
+      "workflows": {},
+      "transformations": {},
+      "jsonForms": {},
+      "forms": {},
+      "templates": {},
+      "commandTemplates": {},
+      "analyticTemplates": {},
+      "goldenConfigTrees": {}
+    }
+  },
+  "version": "2020.1"
+}

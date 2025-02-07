@@ -1,0 +1,3356 @@
+{
+  "created": "2022-04-20T04:49:56.579Z",
+  "createdVersion": "5.40.5-2021.1.72.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "description": null,
+  "font_size": 12,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "title": "job_id",
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
+      "mrBranchName": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "commitMessage": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "url": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "targetBranch": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "repoName": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello World"
+        ]
+      },
+      "username": {
+        "title": "stringN",
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "number"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "examples": [
+          [
+            " World"
+          ]
+        ]
+      },
+      "artifact": {
+        "title": "obj",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "name": "value"
+          }
+        ]
+      },
+      "packageJsonName": {
+        "type": "string",
+        "examples": [
+          "sdfsa"
+        ]
+      },
+      "projectPath": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "_id",
+      "mrBranchName",
+      "commitMessage",
+      "url",
+      "targetBranch",
+      "adapter_id",
+      "repoName",
+      "username",
+      "artifact",
+      "packageJsonName",
+      "projectPath"
+    ]
+  },
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.370Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "name": "Prebuilt Promotion Bitbucket Create Link",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "mrBranchName": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "commitMessage": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "url": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "targetBranch": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "repoName": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello World"
+        ]
+      },
+      "username": {
+        "title": "stringN",
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "number"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "examples": [
+          [
+            " World"
+          ]
+        ]
+      },
+      "artifact": {
+        "title": "combinedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        ]
+      },
+      "packageJsonName": {
+        "type": "string",
+        "examples": [
+          "sdfsa"
+        ]
+      },
+      "projectPath": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "deleteArray": {
+        "title": "combinedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "a",
+            "b",
+            "c",
+            "d"
+          ]
+        ]
+      },
+      "repoSlug": {
+        "title": "lowercaseString",
+        "type": "string",
+        "examples": [
+          "hello world"
+        ]
+      }
+    }
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
+  "tasks": {
+    "1364": {
+      "name": "forEach",
+      "canvasName": "forEach",
+      "summary": "For Each Loop",
+      "description": "Iterate over each item in an array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_array": "$var.ca48.return_data"
+        },
+        "outgoing": {
+          "current_item": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7200,
+        "y": 1500
+      }
+    },
+    "1801": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "time",
+          "obj": "$var.da92.time"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9900,
+        "y": 900
+      }
+    },
+    "5168": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query repo id",
+      "description": "Query repo id",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.uuid",
+          "obj": "$var.b247.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 1200
+      }
+    },
+    "6114": {
+      "name": "reattempt",
+      "canvasName": "reattempt",
+      "summary": "Re-attempt",
+      "description": "Re-attempt after n minutes",
+      "location": "Application",
+      "locationType": null,
+      "app": "MOP",
+      "type": "automatic",
+      "displayName": "MOP",
+      "variables": {
+        "incoming": {
+          "job_id": "$var.job._id",
+          "attemptID": "$var.1801.return_data",
+          "minutes": 0,
+          "attempts": 3
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10800,
+        "y": 500
+      }
+    },
+    "7885": {
+      "name": "renderJinjaTemplate",
+      "canvasName": "renderJinjaTemplate",
+      "summary": "Render Jinja Template",
+      "description": "Renders jinja template output.",
+      "location": "Application",
+      "locationType": null,
+      "app": "TemplateBuilder",
+      "type": "automatic",
+      "displayName": "TemplateBuilder",
+      "variables": {
+        "incoming": {
+          "name": "BitbucketFilesToAddAndDelete",
+          "context": "$var.5bbc.merged_object"
+        },
+        "outgoing": {
+          "renderedTemplate": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7200,
+        "y": 900
+      }
+    },
+    "8128": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "New branch body",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": {
+            "name": "<!newBranch!>",
+            "target": {
+              "hash": "<!hash!>"
+            }
+          },
+          "outputType": "json",
+          "variables": "$var.64cf.merged_object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1500
+      }
+    },
+    "8804": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Jinja Input",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "artifact",
+              "value": {
+                "task": "5fbd",
+                "variable": "fixedArray"
+              }
+            },
+            {
+              "key": "branch",
+              "value": {
+                "task": "job",
+                "variable": "mrBranchName",
+                "editable": true
+              }
+            },
+            {
+              "key": "commitMessage",
+              "value": {
+                "task": "job",
+                "variable": "commitMessage",
+                "editable": true
+              }
+            },
+            {
+              "key": "deleteFiles",
+              "value": {
+                "task": "job",
+                "variable": "deleteArray"
+              }
+            },
+            {
+              "key": "scripts",
+              "value": {
+                "task": "static",
+                "variable": {}
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 5100,
+        "y": 1500
+      }
+    },
+    "8941": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Failed to update MR branch",
+      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed",
+          "message": "Failed to update MR branch",
+          "body": "Try again?",
+          "variables": {},
+          "btn_success": "Try again",
+          "btn_failure": "Cancel job"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8400,
+        "y": 2000
+      }
+    },
+    "9952": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge All Data Branch ID",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "hash",
+              "value": {
+                "task": "d648",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "newBranch",
+              "value": {
+                "task": "job",
+                "variable": "mrBranchName",
+                "editable": true
+              }
+            },
+            {
+              "key": "url",
+              "value": {
+                "task": "job",
+                "variable": "url"
+              }
+            },
+            {
+              "key": "branch",
+              "value": {
+                "task": "job",
+                "variable": "targetBranch"
+              }
+            },
+            {
+              "key": "repoName",
+              "value": {
+                "task": "job",
+                "variable": "repoSlug"
+              }
+            },
+            {
+              "key": "newBranchHash",
+              "value": {
+                "task": "e48f",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 3000,
+        "y": 1800
+      }
+    },
+    "9956": {
+      "name": "postRepositoriesUsernameRepoSlugSrc",
+      "canvasName": "postRepositoriesUsernameRepoSlugSrc",
+      "summary": "Updates repository",
+      "description": "Creates a new repository.\nNote: In order to set the project for the newly created repository,\npass in either the project key or the project UUID as part of the\nrequest body as shown in the examples below:\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": {\n        \"key\": \"MARS\"\n    }\n}' https://api.bitbucket.org/2.0/repositories/teamsinspace/hablanding\n```\nor\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": ...(description truncated)",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "body": "$var.e7b7.return_data",
+          "filename": "",
+          "attribute": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10800,
+        "y": 900
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "nodeLocation": {
+        "x": -4200,
+        "y": 1200
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "nodeLocation": {
+        "x": 11700,
+        "y": 900
+      }
+    },
+    "190d": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query homepage",
+      "description": "Query homepage",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.links.html.href",
+          "obj": "$var.b247.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 900
+      }
+    },
+    "cfa6": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query ssh url",
+      "description": "Query ssh url",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.links.clone[name=ssh].href",
+          "obj": "$var.b247.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 700
+      }
+    },
+    "5a9c": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "git",
+              "value": {
+                "task": "cfa6",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "homepage",
+              "value": {
+                "task": "190d",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 4200,
+        "y": 1000
+      }
+    },
+    "3b3e": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "View Data",
+      "description": "View data in a pretty format",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Error",
+          "message": "Error making commit to repository on GitLab. ",
+          "body": "Try again?",
+          "variables": {},
+          "btn_success": "Try Again",
+          "btn_failure": "Cancel Job"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11400,
+        "y": 500
+      }
+    },
+    "38fc": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Failed to create project",
+      "description": "View data in a pretty format",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed",
+          "message": "Failed to create project repository.  Check that workspace and project path exist and try again.Try again?",
+          "body": "",
+          "variables": {},
+          "btn_success": "Try again",
+          "btn_failure": "Cancel job"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1500,
+        "y": 600
+      }
+    },
+    "a33f": {
+      "name": "delay",
+      "canvasName": "delay",
+      "summary": "Delay a Job",
+      "description": "Delay a Job for a duration by Job ID and number of seconds.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "time": 10
+        },
+        "outgoing": {
+          "time_in_milliseconds": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9900,
+        "y": 500
+      }
+    },
+    "da5e": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Target Branch Not Found",
+      "description": "View data in a pretty format",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Target Branch Not Found",
+          "message": "Failed to get Target Branch. Check that the inputted Target Branch exists.",
+          "body": "",
+          "variables": {},
+          "btn_success": "Cancel Job",
+          "btn_failure": ""
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 900,
+        "y": 1900
+      }
+    },
+    "1f81": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Run Healthcheck Evaluation Task",
+      "description": "Evaluates if adapter healthcheck succeeded or not",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "result",
+                    "task": "b645"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": -2700,
+        "y": 1200
+      }
+    },
+    "3fa0": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "View Data",
+      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Adapter Healthcheck Failed",
+          "message": "Failed to connect to Bitbucket adapter. Make sure your adapter is online. ",
+          "body": "Try again?",
+          "variables": {},
+          "btn_success": "Try Again",
+          "btn_failure": "Cancel Job"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2700,
+        "y": 1500
+      }
+    },
+    "a7fe": {
+      "name": "getRepositoriesUsernameRepoSlug",
+      "canvasName": "getRepositoriesUsernameRepoSlug",
+      "summary": "Returns the object describing this repository.",
+      "description": "Returns the object describing this repository.",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 0,
+        "y": 1200
+      }
+    },
+    "cf1d": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "renderedTemplate",
+          "obj": "$var.7885.renderedTemplate"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 900
+      }
+    },
+    "b0e": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "Convert input into a different data type",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "$var.cf1d.return_data",
+          "outputType": "json",
+          "variables": ""
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8100,
+        "y": 900
+      }
+    },
+    "b247": {
+      "name": "postRepositoriesUsernameRepoSlug",
+      "canvasName": "postRepositoriesUsernameRepoSlug",
+      "summary": "Creates a new repository",
+      "description": "Creates a new repository.\nNote: In order to set the project for the newly created repository,\npass in either the project key or the project UUID as part of the\nrequest body as shown in the examples below:\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": {\n        \"key\": \"MARS\"\n    }\n}' https://api.bitbucket.org/2.0/repositories/teamsinspace/hablanding\n```\nor\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": ...(description truncated)",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "body": "$var.ca57.merged_object",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1500,
+        "y": 1000
+      }
+    },
+    "5bbc": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Jinja Input",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "artifact",
+              "value": {
+                "task": "7ccf",
+                "variable": "fixedArray"
+              }
+            },
+            {
+              "key": "branch",
+              "value": {
+                "task": "job",
+                "variable": "targetBranch"
+              }
+            },
+            {
+              "key": "commitMessage",
+              "value": {
+                "task": "job",
+                "variable": "commitMessage",
+                "editable": true
+              }
+            },
+            {
+              "key": "scripts",
+              "value": {
+                "task": "4fff",
+                "variable": "job_details"
+              }
+            },
+            {
+              "key": "deleteFiles",
+              "value": {
+                "task": "static",
+                "variable": []
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 6600,
+        "y": 1000
+      }
+    },
+    "da92": {
+      "name": "getTime",
+      "canvasName": "getTime",
+      "summary": "Get time",
+      "description": "Gets the current time with an optional offset, timezone shift, and format string",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Time",
+      "variables": {
+        "incoming": {
+          "timezone": "-05:00",
+          "offsetDuration": "",
+          "format": ""
+        },
+        "outgoing": {
+          "time": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9300,
+        "y": 900
+      }
+    },
+    "a332": {
+      "name": "updateRepositoryPipelineConfig",
+      "canvasName": "updateRepositoryPipelineConfig",
+      "summary": "Update the pipelines configuration for a repository.",
+      "description": "Update the pipelines configuration for a repository.",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "body": {
+            "enabled": "true"
+          },
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1000
+      }
+    },
+    "f6ae": {
+      "name": "getRepositoriesUsernameRepoSlugRefsBranchesName",
+      "canvasName": "getRepositoriesUsernameRepoSlugRefsBranchesName",
+      "summary": "Get target branch",
+      "description": "",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "name": "$var.job.targetBranch",
+          "repoSlug": "$var.job.repoSlug",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 900,
+        "y": 1500
+      }
+    },
+    "4abc": {
+      "name": "genericAdapterRequest",
+      "canvasName": "genericAdapterRequest",
+      "summary": "Get package.json",
+      "description": "Makes the requested generic call",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "uriPath": "$var.966d.output",
+          "restMethod": "GET",
+          "queryData": "",
+          "requestBody": "",
+          "addlHeaders": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 2100
+      }
+    },
+    "966d": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "create package.json URL",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "repositories/<!url!>/<!repoName!>/src/<!newBranchHash!>/package.json",
+          "outputType": "string",
+          "variables": "$var.9952.merged_object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1800
+      }
+    },
+    "fa3f": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query version",
+      "description": "Query version",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.version",
+          "obj": "$var.4abc.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 2100
+      }
+    },
+    "34e0": {
+      "name": "renderJinjaTemplate",
+      "canvasName": "renderJinjaTemplate",
+      "summary": "Render Jinja Template",
+      "description": "Renders jinja template output.",
+      "location": "Application",
+      "locationType": null,
+      "app": "TemplateBuilder",
+      "type": "automatic",
+      "displayName": "TemplateBuilder",
+      "variables": {
+        "incoming": {
+          "name": "BitbucketFilesToAddAndDelete",
+          "context": "$var.8804.merged_object"
+        },
+        "outgoing": {
+          "renderedTemplate": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 1400
+      }
+    },
+    "849f": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "renderedTemplate",
+          "obj": "$var.34e0.renderedTemplate"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6000,
+        "y": 1500
+      }
+    },
+    "d648": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get target branch hash",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.target.hash",
+          "obj": "$var.f6ae.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1500,
+        "y": 1500
+      }
+    },
+    "64cf": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge All Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "hash",
+              "value": {
+                "task": "d648",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "url",
+              "value": {
+                "task": "job",
+                "variable": "url"
+              }
+            },
+            {
+              "key": "branch",
+              "value": {
+                "task": "job",
+                "variable": "targetBranch"
+              }
+            },
+            {
+              "key": "repoName",
+              "value": {
+                "task": "job",
+                "variable": "repoSlug"
+              }
+            },
+            {
+              "key": "newBranch",
+              "value": {
+                "task": "job",
+                "variable": "mrBranchName",
+                "editable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1500
+      }
+    },
+    "c447": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "create refs/branches URL",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "repositories/<!url!>/<!repoName!>/refs/branches",
+          "outputType": "string",
+          "variables": "$var.64cf.merged_object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1500
+      }
+    },
+    "ad01": {
+      "name": "genericAdapterRequest",
+      "canvasName": "genericAdapterRequest",
+      "summary": "Create New Branch",
+      "description": "Makes the requested generic call",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "uriPath": "$var.c447.output",
+          "restMethod": "POST",
+          "queryData": "",
+          "requestBody": "$var.8128.output",
+          "addlHeaders": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3300,
+        "y": 1500
+      }
+    },
+    "21c9": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "deleteArray",
+          "value": [
+            "manifest.json"
+          ]
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 3300,
+        "y": 2100
+      }
+    },
+    "bac1": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "create branch/bundles URL",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "repositories/<!url!>/<!repoName!>/src/<!newBranchHash!>/bundles",
+          "outputType": "string",
+          "variables": "$var.9952.merged_object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1700
+      }
+    },
+    "dbdf": {
+      "name": "genericAdapterRequest",
+      "canvasName": "genericAdapterRequest",
+      "summary": "Get bundles file",
+      "description": "Makes the requested generic call",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "uriPath": "$var.bac1.output",
+          "restMethod": "GET",
+          "queryData": "",
+          "requestBody": "",
+          "addlHeaders": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3900,
+        "y": 1500
+      }
+    },
+    "df4d": {
+      "name": "forEach",
+      "canvasName": "forEach",
+      "summary": "For Each Loop",
+      "description": "Iterate over each item in an array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_array": "$var.ad.return_data"
+        },
+        "outgoing": {
+          "current_item": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1400
+      }
+    },
+    "ad": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get bundles paths",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.values",
+          "obj": "$var.dbdf.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4500,
+        "y": 1400
+      }
+    },
+    "9b26": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "path",
+          "obj": "$var.df4d.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1700
+      }
+    },
+    "5e8c": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge All Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "newBranchHash",
+              "value": {
+                "task": "e48f",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "url",
+              "value": {
+                "task": "job",
+                "variable": "url"
+              }
+            },
+            {
+              "key": "repoName",
+              "value": {
+                "task": "job",
+                "variable": "repoSlug"
+              }
+            },
+            {
+              "key": "path",
+              "value": {
+                "task": "9b26",
+                "variable": "return_data"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1900
+      }
+    },
+    "8e52": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "create branch/path URL",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "repositories/<!url!>/<!repoName!>/src/<!newBranchHash!>/<!path!>",
+          "outputType": "string",
+          "variables": "$var.5e8c.merged_object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 2200
+      }
+    },
+    "1b2c": {
+      "name": "genericAdapterRequest",
+      "canvasName": "genericAdapterRequest",
+      "summary": "Get sub file paths",
+      "description": "Makes the requested generic call",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "uriPath": "$var.8e52.output",
+          "restMethod": "GET",
+          "queryData": "",
+          "requestBody": "",
+          "addlHeaders": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 2600
+      }
+    },
+    "162e": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.values[*].path",
+          "obj": "$var.1b2c.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 2800
+      }
+    },
+    "e48f": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "MR Branch ID",
+      "description": "MR Branch ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response.target.hash",
+          "obj": "$var.ad01.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3300,
+        "y": 1700
+      }
+    },
+    "740d": {
+      "name": "arrayConcat",
+      "canvasName": "concat",
+      "summary": "Concatenates arrays together.",
+      "description": "Used to merge two arrays",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.job.deleteArray",
+          "arrayN": "$var.162e.return_data"
+        },
+        "outgoing": {
+          "combinedArray": "$var.job.deleteArray"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 3100
+      }
+    },
+    "4fff": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run Child Job",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Prebuilt Promotion Bitbucket Add Files",
+          "variables": {},
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": 5100,
+        "y": 1000
+      }
+    },
+    "e7b7": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get files to add",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "add",
+          "obj": "$var.b0e.output"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 1000
+      }
+    },
+    "2f26": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "Convert input into a different data type",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "$var.849f.return_data",
+          "outputType": "json",
+          "variables": ""
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6300,
+        "y": 1500
+      }
+    },
+    "ca48": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Files to Delete",
+      "description": "Files to Delete",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "delete",
+          "obj": "$var.2f26.output"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 1500
+      }
+    },
+    "f5a9": {
+      "name": "postRepositoriesUsernameRepoSlugSrc",
+      "canvasName": "postRepositoriesUsernameRepoSlugSrc",
+      "summary": "Updates repository",
+      "description": "Creates a new repository.\nNote: In order to set the project for the newly created repository,\npass in either the project key or the project UUID as part of the\nrequest body as shown in the examples below:\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": {\n        \"key\": \"MARS\"\n    }\n}' https://api.bitbucket.org/2.0/repositories/teamsinspace/hablanding\n```\nor\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": ...(description truncated)",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "body": "$var.ca7.merged_object",
+          "filename": "",
+          "attribute": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7200,
+        "y": 2100
+      }
+    },
+    "ca7": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "files",
+              "value": {
+                "task": "1364",
+                "variable": "current_item"
+              }
+            },
+            {
+              "key": "branch",
+              "value": {
+                "task": "job",
+                "variable": "mrBranchName",
+                "editable": true
+              }
+            },
+            {
+              "key": "message",
+              "value": {
+                "task": "static",
+                "variable": "[skip ci]",
+                "editable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 7200,
+        "y": 1800
+      }
+    },
+    "d0d9": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "add",
+          "obj": "$var.2f26.output"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 1500
+      }
+    },
+    "3a0e": {
+      "name": "postRepositoriesUsernameRepoSlugSrc",
+      "canvasName": "postRepositoriesUsernameRepoSlugSrc",
+      "summary": "Updates repository",
+      "description": "Creates a new repository.\nNote: In order to set the project for the newly created repository,\npass in either the project key or the project UUID as part of the\nrequest body as shown in the examples below:\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": {\n        \"key\": \"MARS\"\n    }\n}' https://api.bitbucket.org/2.0/repositories/teamsinspace/hablanding\n```\nor\n```\n$ curl -X POST -H \"Content-Type: application/json\" -d '{\n    \"scm\": \"git\",\n    \"project\": ...(description truncated)",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "body": "$var.d0d9.return_data",
+          "filename": "",
+          "attribute": "",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8400,
+        "y": 1500
+      }
+    },
+    "958b": {
+      "name": "toLowerCase",
+      "canvasName": "toLowerCase",
+      "summary": "Converts a string to lower case.",
+      "description": "Returns the calling string value converted to lower case.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.job.repoName"
+        },
+        "outgoing": {
+          "lowercaseString": "$var.job.repoSlug"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2100,
+        "y": 1200
+      }
+    },
+    "ca57": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "project",
+              "value": {
+                "task": "92e1",
+                "variable": "merged_object"
+              }
+            },
+            {
+              "key": "is_private",
+              "value": {
+                "task": "static",
+                "variable": true
+              }
+            },
+            {
+              "key": "name",
+              "value": {
+                "task": "job",
+                "variable": "repoName"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 900,
+        "y": 1100
+      }
+    },
+    "78f": {
+      "name": "postRepositoriesUsernameRepoSlugPullrequests",
+      "canvasName": "postRepositoriesUsernameRepoSlugPullrequests",
+      "summary": "Creates a new pull request.",
+      "description": "Creates a new pull request.",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "username": "$var.job.url",
+          "repoSlug": "$var.job.repoSlug",
+          "body": "$var.99d2.output",
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11700,
+        "y": 1500
+      }
+    },
+    "efef": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Merge request description",
+      "description": "Merge request description",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "Merge request created by:",
+          "stringN": "$var.job.username"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9300,
+        "y": 1500
+      }
+    },
+    "d335": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "description",
+              "value": {
+                "task": "efef",
+                "variable": "combinedStrings"
+              }
+            },
+            {
+              "key": "targetBranch",
+              "value": {
+                "task": "job",
+                "variable": "targetBranch"
+              }
+            },
+            {
+              "key": "branchName",
+              "value": {
+                "task": "job",
+                "variable": "mrBranchName",
+                "editable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 9600,
+        "y": 1500
+      }
+    },
+    "d1f9": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "Convert input into a different data type",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": {
+            "title": "<!branchName!>",
+            "description": "<!description!>",
+            "source": {
+              "branch": {
+                "name": "<!branchName!>"
+              }
+            },
+            "destination": {
+              "branch": {
+                "name": "<!targetBranch!>"
+              }
+            }
+          },
+          "outputType": "string",
+          "variables": "$var.d335.merged_object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10200,
+        "y": 1600
+      }
+    },
+    "5fbd": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "updatePackageJSONGitlab",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6075bc6c8c016f0098c7283f",
+          "variableMap": {
+            "filesArray": "$var.job.artifact",
+            "packageJsonName": "$var.job.packageJsonName",
+            "packageJsonVersion": "$var.fa3f.return_data"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "fixedArray": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "task_name": "updatePackageJSONGitlab",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 2100
+      }
+    },
+    "7f3a": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get Update",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "update",
+          "obj": "$var.job.artifact"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -1500,
+        "y": 1200
+      }
+    },
+    "b3c1": {
+      "name": "arrayConcat",
+      "canvasName": "concat",
+      "summary": "Concatenates arrays together.",
+      "description": "Used to merge two arrays",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.7f3a.return_data",
+          "arrayN": "$var.b561.return_data"
+        },
+        "outgoing": {
+          "combinedArray": "$var.job.artifact"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -900,
+        "y": 1200
+      }
+    },
+    "b561": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get Create",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "create",
+          "obj": "$var.job.artifact"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -1500,
+        "y": 1200
+      }
+    },
+    "7ccf": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "updatePackageJSONGitlab",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6075bc6c8c016f0098c7283f",
+          "variableMap": {
+            "filesArray": "$var.job.artifact",
+            "packageJsonName": "$var.job.packageJsonName",
+            "packageJsonVersion": "0.0.1"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "fixedArray": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "task_name": "updatePackageJSONGitlab",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 6000,
+        "y": 1000
+      }
+    },
+    "99d2": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "Convert MR body to JSON",
+      "description": "This task takes an input and converts it to a different data type. For example, converting a number into a string.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "$var.d1f9.output",
+          "outputType": "json",
+          "variables": ""
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10800,
+        "y": 1600
+      }
+    },
+    "99b7": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Run Evaluation Task",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "projectPath",
+                    "task": "job",
+                    "editable": true
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": "none",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 600,
+        "y": 900
+      }
+    },
+    "92e1": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Merge Data",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "key",
+              "value": {
+                "task": "job",
+                "variable": "projectPath",
+                "editable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "groups": [],
+      "nodeLocation": {
+        "x": 900,
+        "y": 800
+      }
+    },
+    "3bbf": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Failed to create merge request",
+      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Failed",
+          "message": "Failed to create merge request",
+          "body": "Try again?",
+          "variables": {},
+          "btn_success": "Try again",
+          "btn_failure": "Cancel job"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12000,
+        "y": 2000
+      }
+    },
+    "b645": {
+      "name": "iapRunAdapterHealthcheck",
+      "canvasName": "iapRunAdapterHealthcheck",
+      "summary": "Runs healthcheck script for adapter",
+      "description": "Runs healthcheck script for adapter",
+      "location": "Adapter",
+      "locationType": "Bitbucket",
+      "app": "Bitbucket",
+      "type": "automatic",
+      "displayName": "Bitbucket",
+      "variables": {
+        "incoming": {
+          "adapter_id": "$var.job.adapter_id"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3300,
+        "y": 1200
+      }
+    }
+  },
+  "transitions": {
+    "592": {},
+    "985": {},
+    "1364": {
+      "ca7": {
+        "type": "standard",
+        "state": "loop"
+      },
+      "d0d9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1801": {
+      "9956": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2890": {},
+    "5168": {
+      "5a9c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6114": {
+      "3b3e": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "a33f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7385": {},
+    "7885": {
+      "cf1d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8128": {
+      "c447": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8804": {
+      "34e0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8941": {
+      "3a0e": {
+        "type": "revert",
+        "state": "success"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "9556": {},
+    "9952": {
+      "bac1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9956": {
+      "6114": {
+        "type": "standard",
+        "state": "error"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "b645": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "fa4d": {},
+    "190d": {
+      "5a9c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cfa6": {
+      "5a9c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5a9c": {
+      "4fff": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3b3e": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "e7b7": {
+        "type": "revert",
+        "state": "success"
+      }
+    },
+    "583c": {},
+    "ba52": {},
+    "38fc": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "b247": {
+        "type": "revert",
+        "state": "success"
+      }
+    },
+    "c60": {},
+    "af69": {},
+    "683e": {},
+    "2c42": {},
+    "33ba": {},
+    "1fc1": {},
+    "40bf": {},
+    "80b1": {},
+    "ae5b": {},
+    "5a0d": {},
+    "a613": {},
+    "a161": {},
+    "a33f": {
+      "1801": {
+        "type": "revert",
+        "state": "success"
+      }
+    },
+    "36fe": {},
+    "da5e": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1f81": {
+      "3fa0": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "958b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3fa0": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "b645": {
+        "type": "revert",
+        "state": "success"
+      }
+    },
+    "a7fe": {
+      "f6ae": {
+        "type": "standard",
+        "state": "success"
+      },
+      "99b7": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "cf1d": {
+      "b0e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b0e": {
+      "e7b7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b247": {
+      "38fc": {
+        "type": "standard",
+        "state": "error"
+      },
+      "a332": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5bbc": {
+      "7885": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "da92": {
+      "1801": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a332": {
+      "5168": {
+        "type": "standard",
+        "state": "success"
+      },
+      "190d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "cfa6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f6ae": {
+      "da5e": {
+        "type": "standard",
+        "state": "error"
+      },
+      "d648": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "503c": {},
+    "974d": {},
+    "c3a": {},
+    "4abc": {
+      "fa3f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "966d": {
+      "4abc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fa3f": {
+      "5fbd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "34e0": {
+      "849f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "849f": {
+      "2f26": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "22ec": {},
+    "d648": {
+      "64cf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "64cf": {
+      "8128": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c447": {
+      "ad01": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ad01": {
+      "e48f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "21c9": {
+      "dbdf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bac1": {
+      "966d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "dbdf": {
+      "ad": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "df4d": {
+      "8804": {
+        "type": "standard",
+        "state": "success"
+      },
+      "9b26": {
+        "type": "standard",
+        "state": "loop"
+      }
+    },
+    "ad": {
+      "df4d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9b26": {
+      "5e8c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5e8c": {
+      "8e52": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8e52": {
+      "1b2c": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1b2c": {
+      "162e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "162e": {
+      "740d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e48f": {
+      "9952": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "740d": {},
+    "4fff": {
+      "7ccf": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e7b7": {
+      "da92": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2f26": {
+      "ca48": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ca48": {
+      "1364": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f5a9": {},
+    "ca7": {
+      "f5a9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d0d9": {
+      "3a0e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3a0e": {
+      "8941": {
+        "type": "standard",
+        "state": "error"
+      },
+      "efef": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "958b": {
+      "7f3a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ca57": {
+      "b247": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "78f": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      },
+      "3bbf": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "efef": {
+      "d335": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d335": {
+      "d1f9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d1f9": {
+      "99d2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5fbd": {
+      "21c9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7f3a": {
+      "b561": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b3c1": {
+      "a7fe": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b561": {
+      "b3c1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7ccf": {
+      "5bbc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "99d2": {
+      "78f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "99b7": {
+      "ca57": {
+        "type": "standard",
+        "state": "success"
+      },
+      "92e1": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "990c": {},
+    "8d21": {},
+    "92e1": {
+      "ca57": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3bbf": {
+      "78f": {
+        "type": "revert",
+        "state": "success"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "b645": {
+      "1f81": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "type": "automation",
+  "canvasVersion": 3,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 4
+}

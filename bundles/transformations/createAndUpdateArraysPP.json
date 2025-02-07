@@ -1,0 +1,267 @@
+{
+  "_id": "621d36785da44100e455a1d3",
+  "name": "createAndUpdateArraysPP",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "artifact",
+      "type": "object",
+      "properties": {
+        "update": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": []
+          },
+          "$id": "update"
+        },
+        "create": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": []
+          },
+          "$id": "create"
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "scriptsObject",
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    {
+      "$id": "ymlFile",
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    {
+      "$id": "testsObject",
+      "type": "object"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "createArray",
+      "type": "object",
+      "properties": {
+        "create": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": []
+          }
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "updateArray",
+      "type": "object",
+      "properties": {
+        "update": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": []
+          }
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 4,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "polymorphIndex": 0
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "scriptsObject",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "artifact",
+        "ptr": "/create"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 11,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "artifact",
+        "ptr": "/update"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 14,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "ymlFile",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/3/value"
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 5,
+      "type": "method",
+      "library": "Array",
+      "method": "push",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 5,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Array",
+      "method": "concat",
+      "args": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      }
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "createArray",
+        "ptr": "/create"
+      }
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "updateArray",
+        "ptr": "/update"
+      }
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "testsObject",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/4/value"
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-02-06T18:32:40.754Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.754Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}

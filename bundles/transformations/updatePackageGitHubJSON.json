@@ -1,0 +1,1255 @@
+{
+  "_id": "605d2b11d1976e009291a74d",
+  "name": "updatePackageGitHubJSON",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "filesArray",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "examples": [
+              "bundles"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "examples": [
+              "directory"
+            ]
+          },
+          "content": {
+            "type": [
+              "string",
+              "array"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "packageJsonName",
+      "type": "string",
+      "examples": [
+        "sdfsa"
+      ]
+    },
+    {
+      "$id": "packageJsonVersion",
+      "type": "string",
+      "examples": [
+        "dsfds"
+      ]
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "fixedArray",
+      "type": "array"
+    }
+  ],
+  "steps": [
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "filesArray",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 8,
+      "type": "declaration",
+      "library": "Object",
+      "method": "new Object",
+      "args": [
+        "{         \"type\": \"gitlab\",         \"hostname\": \"gitlab.com\",         \"path\": \"itentialopensource/pre-built-automations\"     }"
+      ],
+      "view": {
+        "row": 4,
+        "col": 3
+      }
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "filesArray",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 22,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "packageJsonName",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 26,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 42,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "packageJsonVersion",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 39,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "find",
+      "args": [
+        null,
+        "ƒ_query_1",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 4,
+      "type": "method",
+      "library": "Object",
+      "method": "getProperty",
+      "args": [
+        null,
+        "content"
+      ],
+      "view": {
+        "row": 2,
+        "col": 2
+      }
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 4,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 6,
+      "type": "method",
+      "library": "JSON",
+      "method": "parse",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 2,
+        "col": 3
+      }
+    },
+    {
+      "id": 40,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 39,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 39,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "version",
+        null
+      ],
+      "view": {
+        "row": 5,
+        "col": 4
+      }
+    },
+    {
+      "id": 41,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 39,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 17,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 17,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "repository",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 4
+      }
+    },
+    {
+      "id": 28,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 17,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 26,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 26,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "name",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 4
+      }
+    },
+    {
+      "id": 29,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 26,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 16,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 16,
+      "type": "method",
+      "library": "JSON",
+      "method": "stringify",
+      "args": [
+        null,
+        null,
+        "  "
+      ],
+      "view": {
+        "row": 2,
+        "col": 4
+      }
+    },
+    {
+      "id": 24,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 16,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 22,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 22,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "ƒ_map_2",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 5
+      }
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 22,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "fixedArray",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 43,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 17,
+        "ptr": "/args/2/value"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "ac_agenda_jobs"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "directory"
+                    ]
+                  },
+                  "content": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "IAP Artifacts ASA Firewall Object Group Update.json"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "file"
+                          ]
+                        },
+                        "content": {
+                          "type": "string",
+                          "examples": [
+                            "{\n  \"_id\": \"5f3c38e78236fd5385c31bbd\",\n  \"name\": \"IAP Artifacts ASA Firewall Object Group Update\",\n  \"data\": {\n    \"lastUpdated\": \"2020-03-23T19:45:50.899Z\",\n    \"formData\": {\n      \"zeroTouch\": true,\n      \"asaFirewallDevice\": \"asa-aws-ansible\",\n      \"hostList\": [],\n      \"checkbox1\": true\n    },\n    \"formId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"workflowId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"description\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"gbac\": {\n      \"write\": [],\n      \"read\": []\n    },\n    \"modifiedById\": \"5f3bda043e82cb0740b460d6\",\n    \"modifiedByUsername\": \"justin.cotton\"\n  },\n  \"lastModifiedBy\": \"DSUP-IAP20201:11193\",\n  \"lastRunAt\": null,\n  \"nextRunAt\": null,\n  \"priority\": 0,\n  \"repeatInterval\": null,\n  \"repeatTimezone\": null,\n  \"type\": \"normal\"\n}"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "ac_agenda_jobs"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "directory"
+                      ]
+                    },
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "examples": [
+                              "IAP Artifacts ASA Firewall Object Group Update.json"
+                            ]
+                          },
+                          "type": {
+                            "type": "string",
+                            "examples": [
+                              "file"
+                            ]
+                          },
+                          "content": {
+                            "type": "string",
+                            "examples": [
+                              "{\n  \"_id\": \"5f3c38e78236fd5385c31bbd\",\n  \"name\": \"IAP Artifacts ASA Firewall Object Group Update\",\n  \"data\": {\n    \"lastUpdated\": \"2020-03-23T19:45:50.899Z\",\n    \"formData\": {\n      \"zeroTouch\": true,\n      \"asaFirewallDevice\": \"asa-aws-ansible\",\n      \"hostList\": [],\n      \"checkbox1\": true\n    },\n    \"formId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"workflowId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"description\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"gbac\": {\n      \"write\": [],\n      \"read\": []\n    },\n    \"modifiedById\": \"5f3bda043e82cb0740b460d6\",\n    \"modifiedByUsername\": \"justin.cotton\"\n  },\n  \"lastModifiedBy\": \"DSUP-IAP20201:11193\",\n  \"lastRunAt\": null,\n  \"nextRunAt\": null,\n  \"priority\": 0,\n  \"repeatInterval\": null,\n  \"repeatTimezone\": null,\n  \"type\": \"normal\"\n}"
+                            ]
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            "package.json"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_query_1",
+      "view": {
+        "col": 3,
+        "row": 5
+      },
+      "id": "ƒ_query_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "ac_agenda_jobs"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "directory"
+                    ]
+                  },
+                  "content": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "IAP Artifacts ASA Firewall Object Group Update.json"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "file"
+                          ]
+                        },
+                        "content": {
+                          "type": "string",
+                          "examples": [
+                            "{\n  \"_id\": \"5f3c38e78236fd5385c31bbd\",\n  \"name\": \"IAP Artifacts ASA Firewall Object Group Update\",\n  \"data\": {\n    \"lastUpdated\": \"2020-03-23T19:45:50.899Z\",\n    \"formData\": {\n      \"zeroTouch\": true,\n      \"asaFirewallDevice\": \"asa-aws-ansible\",\n      \"hostList\": [],\n      \"checkbox1\": true\n    },\n    \"formId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"workflowId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"description\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"gbac\": {\n      \"write\": [],\n      \"read\": []\n    },\n    \"modifiedById\": \"5f3bda043e82cb0740b460d6\",\n    \"modifiedByUsername\": \"justin.cotton\"\n  },\n  \"lastModifiedBy\": \"DSUP-IAP20201:11193\",\n  \"lastRunAt\": null,\n  \"nextRunAt\": null,\n  \"priority\": 0,\n  \"repeatInterval\": null,\n  \"repeatTimezone\": null,\n  \"type\": \"normal\"\n}"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "ac_agenda_jobs"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "directory"
+                      ]
+                    },
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "examples": [
+                              "IAP Artifacts ASA Firewall Object Group Update.json"
+                            ]
+                          },
+                          "type": {
+                            "type": "string",
+                            "examples": [
+                              "file"
+                            ]
+                          },
+                          "content": {
+                            "type": "string",
+                            "examples": [
+                              "{\n  \"_id\": \"5f3c38e78236fd5385c31bbd\",\n  \"name\": \"IAP Artifacts ASA Firewall Object Group Update\",\n  \"data\": {\n    \"lastUpdated\": \"2020-03-23T19:45:50.899Z\",\n    \"formData\": {\n      \"zeroTouch\": true,\n      \"asaFirewallDevice\": \"asa-aws-ansible\",\n      \"hostList\": [],\n      \"checkbox1\": true\n    },\n    \"formId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"workflowId\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"description\": \"IAP Artifacts ASA Firewall Object Group Update\",\n    \"gbac\": {\n      \"write\": [],\n      \"read\": []\n    },\n    \"modifiedById\": \"5f3bda043e82cb0740b460d6\",\n    \"modifiedByUsername\": \"justin.cotton\"\n  },\n  \"lastModifiedBy\": \"DSUP-IAP20201:11193\",\n  \"lastRunAt\": null,\n  \"nextRunAt\": null,\n  \"priority\": 0,\n  \"repeatInterval\": null,\n  \"repeatTimezone\": null,\n  \"type\": \"normal\"\n}"
+                            ]
+                          }
+                        },
+                        "required": []
+                      }
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [],
+      "functions": [],
+      "name": "ƒ_reduce_1",
+      "view": {
+        "col": 2,
+        "row": 5
+      },
+      "id": "ƒ_reduce_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": "string"
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            "package.json"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_1",
+      "view": {
+        "col": 3,
+        "row": 5
+      },
+      "id": "ƒ_map_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "bundles"
+              ]
+            },
+            "type": {
+              "type": "string",
+              "examples": [
+                "directory"
+              ]
+            },
+            "content": {
+              "type": [
+                "string",
+                "array"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "bundles"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "examples": [
+                  "directory"
+                ]
+              },
+              "content": {
+                "type": [
+                  "string",
+                  "array"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "content",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            "package.json"
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/2/value"
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_map_2",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "ƒ_map_2",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 6,
+    "row": 6
+  },
+  "created": "2025-02-06T18:32:40.798Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-06T18:32:40.798Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.5",
+  "tags": []
+}
