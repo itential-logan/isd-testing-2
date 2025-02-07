@@ -5,8 +5,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": true
   },
   "description": null,
   "font_size": 12,
@@ -41,24 +40,12 @@
         ]
       },
       "url": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
+        "title": "username",
+        "type": "string"
       },
       "targetBranch": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
+        "title": "name",
+        "type": "string"
       },
       "adapter_id": {
         "type": [
@@ -95,9 +82,7 @@
         ]
       },
       "artifact": {
-        "title": "obj",
         "type": "object",
-        "properties": {},
         "examples": [
           {
             "name": "value"
@@ -105,6 +90,7 @@
         ]
       },
       "packageJsonName": {
+        "$id": "packageJsonName",
         "type": "string",
         "examples": [
           "sdfsa"
@@ -135,14 +121,13 @@
       "projectPath"
     ]
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.370Z",
+  "lastUpdatedVersion": "4.15.0-2023.1.290",
+  "last_updated": "2025-02-07T16:18:59.925Z",
   "last_updated_by": {
-    "provenance": "local_aaa",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": false
   },
   "name": "Prebuilt Promotion Bitbucket Create Link",
   "outputSchema": {
@@ -173,24 +158,12 @@
         ]
       },
       "url": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
+        "title": "username",
+        "type": "string"
       },
       "targetBranch": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
+        "title": "name",
+        "type": "string"
       },
       "adapter_id": {
         "type": [
@@ -229,18 +202,6 @@
       "artifact": {
         "title": "combinedArray",
         "type": "array",
-        "items": [
-          {
-            "type": [
-              "string",
-              "number",
-              "integer",
-              "object",
-              "array",
-              "boolean"
-            ]
-          }
-        ],
         "examples": [
           [
             "a",
@@ -251,6 +212,7 @@
         ]
       },
       "packageJsonName": {
+        "$id": "packageJsonName",
         "type": "string",
         "examples": [
           "sdfsa"
@@ -272,18 +234,6 @@
       "deleteArray": {
         "title": "combinedArray",
         "type": "array",
-        "items": [
-          {
-            "type": [
-              "string",
-              "number",
-              "integer",
-              "object",
-              "array",
-              "boolean"
-            ]
-          }
-        ],
         "examples": [
           [
             "a",
@@ -327,11 +277,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7200,
-        "y": 1500
-      }
+      "x": 1.6031372549019607,
+      "y": 0.752258064516129,
+      "scheduled": false
     },
     "1801": {
       "name": "query",
@@ -357,11 +305,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 9900,
-        "y": 900
-      }
+      "x": 2.203921568627451,
+      "y": 0.46838709677419355,
+      "scheduled": false
     },
     "5168": {
       "name": "query",
@@ -387,11 +333,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3600,
-        "y": 1200
-      }
+      "x": 0.7968627450980392,
+      "y": 0.5922580645161291,
+      "scheduled": false
     },
     "6114": {
       "name": "reattempt",
@@ -419,11 +363,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 10800,
-        "y": 500
-      }
+      "x": 2.374901960784314,
+      "y": 0.24516129032258063,
+      "scheduled": false
     },
     "7885": {
       "name": "renderJinjaTemplate",
@@ -449,11 +391,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7200,
-        "y": 900
-      }
+      "x": 1.5890196078431373,
+      "y": 0.4567741935483871,
+      "scheduled": false
     },
     "8128": {
       "name": "makeData",
@@ -485,11 +425,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2100,
-        "y": 1500
-      }
+      "x": 0.4964705882352941,
+      "y": 0.7283653846153846,
+      "scheduled": false
     },
     "8804": {
       "name": "merge",
@@ -549,10 +487,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 5100,
-        "y": 1500
-      }
+      "x": 1.12,
+      "y": 0.7367741935483871
     },
     "8941": {
       "name": "ViewData",
@@ -579,11 +515,9 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 8400,
-        "y": 2000
-      }
+      "x": 1.8635294117647059,
+      "y": 0.9961290322580645,
+      "scheduled": false
     },
     "9952": {
       "name": "merge",
@@ -649,10 +583,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 3000,
-        "y": 1800
-      }
+      "x": 0.68,
+      "y": 0.8812903225806452
     },
     "9956": {
       "name": "postRepositoriesUsernameRepoSlugSrc",
@@ -682,27 +614,21 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 10800,
-        "y": 900
-      }
+      "x": 2.3835294117647057,
+      "y": 0.45548387096774196,
+      "scheduled": false
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "nodeLocation": {
-        "x": -4200,
-        "y": 1200
-      }
+      "x": -0.930905695611578,
+      "y": 0.5934861278648975
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "nodeLocation": {
-        "x": 11700,
-        "y": 900
-      }
+      "x": 2.625098039215686,
+      "y": 0.42838709677419357
     },
     "190d": {
       "name": "query",
@@ -728,11 +654,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3600,
-        "y": 900
-      }
+      "x": 0.7866666666666666,
+      "y": 0.4632258064516129,
+      "scheduled": false
     },
     "cfa6": {
       "name": "query",
@@ -758,11 +682,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3600,
-        "y": 700
-      }
+      "x": 0.796078431372549,
+      "y": 0.3419354838709677,
+      "scheduled": false
     },
     "5a9c": {
       "name": "merge",
@@ -799,10 +721,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 4200,
-        "y": 1000
-      }
+      "x": 0.9215686274509803,
+      "y": 0.48258064516129034
     },
     "3b3e": {
       "name": "ViewData",
@@ -829,11 +749,9 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 11400,
-        "y": 500
-      }
+      "x": 2.5152941176470587,
+      "y": 0.24387096774193548,
+      "scheduled": false
     },
     "38fc": {
       "name": "ViewData",
@@ -860,11 +778,9 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1500,
-        "y": 600
-      }
+      "x": 0.32313725490196077,
+      "y": 0.29927884615384615,
+      "scheduled": false
     },
     "a33f": {
       "name": "delay",
@@ -887,11 +803,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 9900,
-        "y": 500
-      }
+      "x": 2.216470588235294,
+      "y": 0.23096774193548386,
+      "scheduled": false
     },
     "da5e": {
       "name": "ViewData",
@@ -918,11 +832,9 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 900,
-        "y": 1900
-      }
+      "x": 0.20862745098039215,
+      "y": 0.9399038461538461,
+      "scheduled": false
     },
     "1f81": {
       "name": "evaluation",
@@ -963,10 +875,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": -2700,
-        "y": 1200
-      }
+      "x": -0.6050420168067226,
+      "y": 0.586248492159228
     },
     "3fa0": {
       "name": "ViewData",
@@ -993,11 +903,9 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -2700,
-        "y": 1500
-      }
+      "x": -0.6134453781512605,
+      "y": 0.7683956574185766,
+      "scheduled": false
     },
     "a7fe": {
       "name": "getRepositoriesUsernameRepoSlug",
@@ -1024,11 +932,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 0,
-        "y": 1200
-      }
+      "x": -0.007058823529411765,
+      "y": 0.578125,
+      "scheduled": false
     },
     "cf1d": {
       "name": "query",
@@ -1054,11 +960,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7500,
-        "y": 900
-      }
+      "x": 1.6925490196078432,
+      "y": 0.4645161290322581,
+      "scheduled": false
     },
     "b0e": {
       "name": "makeData",
@@ -1085,11 +989,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 8100,
-        "y": 900
-      }
+      "x": 1.812549019607843,
+      "y": 0.47096774193548385,
+      "scheduled": false
     },
     "b247": {
       "name": "postRepositoriesUsernameRepoSlug",
@@ -1117,11 +1019,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1500,
-        "y": 1000
-      }
+      "x": 0.32,
+      "y": 0.5,
+      "scheduled": false
     },
     "5bbc": {
       "name": "merge",
@@ -1180,10 +1080,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 6600,
-        "y": 1000
-      }
+      "x": 1.4603921568627451,
+      "y": 0.4838709677419355
     },
     "da92": {
       "name": "getTime",
@@ -1210,11 +1108,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 9300,
-        "y": 900
-      }
+      "x": 2.084705882352941,
+      "y": 0.4696774193548387,
+      "scheduled": false
     },
     "a332": {
       "name": "updateRepositoryPipelineConfig",
@@ -1244,11 +1140,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 1000
-      }
+      "x": 0.5968627450980392,
+      "y": 0.5109677419354839,
+      "scheduled": false
     },
     "f6ae": {
       "name": "getRepositoriesUsernameRepoSlugRefsBranchesName",
@@ -1276,11 +1170,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 900,
-        "y": 1500
-      }
+      "x": 0.20862745098039215,
+      "y": 0.7295673076923077,
+      "scheduled": false
     },
     "4abc": {
       "name": "genericAdapterRequest",
@@ -1310,11 +1202,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1800,
-        "y": 2100
-      }
+      "x": 0.4266666666666667,
+      "y": 1.0451612903225806,
+      "scheduled": false
     },
     "966d": {
       "name": "makeData",
@@ -1341,11 +1231,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1800,
-        "y": 1800
-      }
+      "x": 0.43137254901960786,
+      "y": 0.8825806451612903,
+      "scheduled": false
     },
     "fa3f": {
       "name": "query",
@@ -1371,11 +1259,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2400,
-        "y": 2100
-      }
+      "x": 0.5207843137254902,
+      "y": 1.0425806451612902,
+      "scheduled": false
     },
     "34e0": {
       "name": "renderJinjaTemplate",
@@ -1401,11 +1287,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 5400,
-        "y": 1400
-      }
+      "x": 1.2156862745098038,
+      "y": 0.7225806451612903,
+      "scheduled": false
     },
     "849f": {
       "name": "query",
@@ -1431,11 +1315,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6000,
-        "y": 1500
-      }
+      "x": 1.304313725490196,
+      "y": 0.7393548387096774,
+      "scheduled": false
     },
     "d648": {
       "name": "query",
@@ -1461,11 +1343,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1500,
-        "y": 1500
-      }
+      "x": 0.35843137254901963,
+      "y": 0.7391826923076923,
+      "scheduled": false
     },
     "64cf": {
       "name": "merge",
@@ -1524,10 +1404,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 1800,
-        "y": 1500
-      }
+      "x": 0.403921568627451,
+      "y": 0.7403846153846154
     },
     "c447": {
       "name": "makeData",
@@ -1554,11 +1432,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 1500
-      }
+      "x": 0.6298039215686274,
+      "y": 0.7259615384615384,
+      "scheduled": false
     },
     "ad01": {
       "name": "genericAdapterRequest",
@@ -1588,11 +1464,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3300,
-        "y": 1500
-      }
+      "x": 0.7513725490196078,
+      "y": 0.7271634615384616,
+      "scheduled": false
     },
     "21c9": {
       "name": "newVariable",
@@ -1617,10 +1491,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 3300,
-        "y": 2100
-      }
+      "x": 0.7537254901960785,
+      "y": 1.0412903225806451
     },
     "bac1": {
       "name": "makeData",
@@ -1647,11 +1519,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 1700
-      }
+      "x": 0.5811764705882353,
+      "y": 0.8735483870967742,
+      "scheduled": false
     },
     "dbdf": {
       "name": "genericAdapterRequest",
@@ -1681,11 +1551,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3900,
-        "y": 1500
-      }
+      "x": 0.8901960784313725,
+      "y": 0.727741935483871,
+      "scheduled": false
     },
     "df4d": {
       "name": "forEach",
@@ -1709,11 +1577,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 1400
-      }
+      "x": 1.043921568627451,
+      "y": 0.7225806451612903,
+      "scheduled": false
     },
     "ad": {
       "name": "query",
@@ -1739,11 +1605,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4500,
-        "y": 1400
-      }
+      "x": 0.9756862745098039,
+      "y": 0.72,
+      "scheduled": false
     },
     "9b26": {
       "name": "query",
@@ -1769,11 +1633,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 1700
-      }
+      "x": 1.0415686274509803,
+      "y": 0.8554838709677419,
+      "scheduled": false
     },
     "5e8c": {
       "name": "merge",
@@ -1824,10 +1686,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 4800,
-        "y": 1900
-      }
+      "x": 1.0415686274509803,
+      "y": 0.9483870967741935
     },
     "8e52": {
       "name": "makeData",
@@ -1854,11 +1714,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 2200
-      }
+      "x": 1.047843137254902,
+      "y": 1.1006451612903225,
+      "scheduled": false
     },
     "1b2c": {
       "name": "genericAdapterRequest",
@@ -1888,11 +1746,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 2600
-      }
+      "x": 1.0447058823529412,
+      "y": 1.2761290322580645,
+      "scheduled": false
     },
     "162e": {
       "name": "query",
@@ -1918,11 +1774,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 2800
-      }
+      "x": 1.0392156862745099,
+      "y": 1.4103225806451614,
+      "scheduled": false
     },
     "e48f": {
       "name": "query",
@@ -1948,11 +1802,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3300,
-        "y": 1700
-      }
+      "x": 0.7545098039215686,
+      "y": 0.8683870967741936,
+      "scheduled": false
     },
     "740d": {
       "name": "arrayConcat",
@@ -1978,11 +1830,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 3100
-      }
+      "x": 1.0619607843137255,
+      "y": 1.550967741935484,
+      "scheduled": false
     },
     "4fff": {
       "name": "childJob",
@@ -2010,10 +1860,8 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "nodeLocation": {
-        "x": 5100,
-        "y": 1000
-      }
+      "x": 1.116078431372549,
+      "y": 0.48129032258064514
     },
     "e7b7": {
       "name": "query",
@@ -2039,11 +1887,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 8700,
-        "y": 1000
-      }
+      "x": 1.9490196078431372,
+      "y": 0.48258064516129034,
+      "scheduled": false
     },
     "2f26": {
       "name": "makeData",
@@ -2070,11 +1916,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6300,
-        "y": 1500
-      }
+      "x": 1.4188235294117648,
+      "y": 0.7458064516129033,
+      "scheduled": false
     },
     "ca48": {
       "name": "query",
@@ -2100,11 +1944,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6900,
-        "y": 1500
-      }
+      "x": 1.527843137254902,
+      "y": 0.7496774193548387,
+      "scheduled": false
     },
     "f5a9": {
       "name": "postRepositoriesUsernameRepoSlugSrc",
@@ -2134,11 +1976,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7200,
-        "y": 2100
-      }
+      "x": 1.6062745098039215,
+      "y": 1.0361290322580645,
+      "scheduled": false
     },
     "ca7": {
       "name": "merge",
@@ -2184,10 +2024,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 7200,
-        "y": 1800
-      }
+      "x": 1.5960784313725491,
+      "y": 0.895483870967742
     },
     "d0d9": {
       "name": "query",
@@ -2213,11 +2051,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7500,
-        "y": 1500
-      }
+      "x": 1.6980392156862745,
+      "y": 0.7574193548387097,
+      "scheduled": false
     },
     "3a0e": {
       "name": "postRepositoriesUsernameRepoSlugSrc",
@@ -2247,11 +2083,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 8400,
-        "y": 1500
-      }
+      "x": 1.856470588235294,
+      "y": 0.7612903225806451,
+      "scheduled": false
     },
     "958b": {
       "name": "toLowerCase",
@@ -2276,11 +2110,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -2100,
-        "y": 1200
-      }
+      "x": -0.47294117647058825,
+      "y": 0.5858064516129032,
+      "scheduled": false
     },
     "ca57": {
       "name": "merge",
@@ -2324,10 +2156,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 900,
-        "y": 1100
-      }
+      "x": 0.1811764705882353,
+      "y": 0.5458064516129032
     },
     "78f": {
       "name": "postRepositoriesUsernameRepoSlugPullrequests",
@@ -2355,11 +2185,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 11700,
-        "y": 1500
-      }
+      "x": 2.611764705882353,
+      "y": 0.7651612903225806,
+      "scheduled": false
     },
     "efef": {
       "name": "stringConcat",
@@ -2385,11 +2213,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 9300,
-        "y": 1500
-      }
+      "x": 2.0462745098039217,
+      "y": 0.7716129032258064,
+      "scheduled": false
     },
     "d335": {
       "name": "merge",
@@ -2434,10 +2260,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 9600,
-        "y": 1500
-      }
+      "x": 2.156078431372549,
+      "y": 0.7703225806451612
     },
     "d1f9": {
       "name": "makeData",
@@ -2477,11 +2301,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 10200,
-        "y": 1600
-      }
+      "x": 2.267450980392157,
+      "y": 0.7767741935483871,
+      "scheduled": false
     },
     "5fbd": {
       "name": "transformation",
@@ -2513,12 +2335,10 @@
       },
       "deprecated": false,
       "groups": [],
+      "x": 0.6211764705882353,
+      "y": 1.038709677419355,
       "task_name": "updatePackageJSONGitlab",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 2100
-      }
+      "retrySettings": null
     },
     "7f3a": {
       "name": "query",
@@ -2544,11 +2364,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -1500,
-        "y": 1200
-      }
+      "x": -0.3631372549019608,
+      "y": 0.5922580645161291,
+      "scheduled": false
     },
     "b3c1": {
       "name": "arrayConcat",
@@ -2574,11 +2392,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -900,
-        "y": 1200
-      }
+      "x": -0.20941176470588235,
+      "y": 0.5935483870967742,
+      "scheduled": false
     },
     "b561": {
       "name": "query",
@@ -2604,11 +2420,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -1500,
-        "y": 1200
-      }
+      "x": -0.32,
+      "y": 0.5948387096774194,
+      "scheduled": false
     },
     "7ccf": {
       "name": "transformation",
@@ -2640,12 +2454,10 @@
       },
       "deprecated": false,
       "groups": [],
+      "x": 1.3254901960784313,
+      "y": 0.4774193548387097,
       "task_name": "updatePackageJSONGitlab",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": 6000,
-        "y": 1000
-      }
+      "retrySettings": null
     },
     "99d2": {
       "name": "makeData",
@@ -2672,11 +2484,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 10800,
-        "y": 1600
-      }
+      "x": 2.4219607843137254,
+      "y": 0.7780645161290323,
+      "scheduled": false
     },
     "99b7": {
       "name": "evaluation",
@@ -2718,10 +2528,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 600,
-        "y": 900
-      }
+      "x": 0.10352941176470588,
+      "y": 0.4696774193548387
     },
     "92e1": {
       "name": "merge",
@@ -2752,10 +2560,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 900,
-        "y": 800
-      }
+      "x": 0.1772549019607843,
+      "y": 0.4206451612903226
     },
     "3bbf": {
       "name": "ViewData",
@@ -2782,11 +2588,9 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 12000,
-        "y": 2000
-      }
+      "x": 2.636862745098039,
+      "y": 1.0103225806451612,
+      "scheduled": false
     },
     "b645": {
       "name": "iapRunAdapterHealthcheck",
@@ -2811,11 +2615,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -3300,
-        "y": 1200
-      }
+      "x": -0.7488328664799253,
+      "y": 0.5898673100120627,
+      "scheduled": false
     }
   },
   "transitions": {
@@ -3349,8 +3151,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 3,
+  "canvasVersion": 1,
   "tags": [],
   "groups": [],
-  "migrationVersion": 4
+  "migrationVersion": 2
 }

@@ -10,19 +10,19 @@
   "group": "BitBucket",
   "description": "",
   "created": "2023-07-10T20:01:07.234Z",
-  "lastUpdated": "2025-02-06T18:32:44.137Z",
+  "lastUpdated": "2025-02-07T16:19:00.102Z",
   "createdBy": {
-    "_id": "67a4e4222312192336f612c5",
+    "_id": "67a6327386b78f5f21738e8e",
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false
+    "inactive": true
   },
   "lastUpdatedBy": {
-    "_id": "67a4e4222312192336f612c5",
+    "_id": "67a6327386b78f5f21738e8e",
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false
+    "inactive": true
   }
 }
