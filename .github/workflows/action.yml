@@ -1,4 +1,4 @@
-name: prebuilts-CI
+name: prebuilts-CI-1
 
 permissions:
   contents: write
