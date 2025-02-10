@@ -1,244 +1,5 @@
 {
-  "created": "2022-03-08T14:50:49.785Z",
-  "createdVersion": "5.40.5-2021.1.52.0",
-  "created_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": true
-  },
-  "description": null,
-  "font_size": 12,
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "repoName": {
-        "$id": "artifactFullName",
-        "type": "string",
-        "examples": [
-          "New Artifact"
-        ]
-      },
-      "url": {
-        "$id": "path",
-        "type": "string",
-        "examples": [
-          "test"
-        ]
-      },
-      "targetBranch": {
-        "title": "branch",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "commitMessage": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "mrBranchName": {
-        "$id": "branch",
-        "type": "string"
-      },
-      "username": {
-        "title": "stringN",
-        "type": [
-          "array",
-          "string",
-          "boolean",
-          "number"
-        ],
-        "items": {
-          "type": "string"
-        },
-        "examples": [
-          [
-            " World"
-          ]
-        ]
-      },
-      "packageJsonName": {
-        "$id": "packageJsonName",
-        "type": "string",
-        "examples": [
-          "sdfsa"
-        ]
-      },
-      "artifact": {
-        "$id": "artifact",
-        "type": "object",
-        "properties": {
-          "update": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": []
-            },
-            "$id": "update"
-          },
-          "create": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": []
-            },
-            "$id": "create"
-          }
-        },
-        "required": []
-      }
-    },
-    "required": [
-      "repoName",
-      "url",
-      "targetBranch",
-      "adapter_id",
-      "commitMessage",
-      "mrBranchName",
-      "username",
-      "packageJsonName",
-      "artifact"
-    ]
-  },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.923Z",
-  "last_updated_by": {
-    "provenance": "Local AAA",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false
-  },
   "name": "Prebuilt Promotion Gitlab Create Link",
-  "outputSchema": {
-    "type": "object",
-    "properties": {
-      "repoName": {
-        "$id": "artifactFullName",
-        "type": "string",
-        "examples": [
-          "New Artifact"
-        ]
-      },
-      "url": {
-        "$id": "path",
-        "type": "string",
-        "examples": [
-          "test"
-        ]
-      },
-      "targetBranch": {
-        "title": "branch",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "commitMessage": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "mrBranchName": {
-        "$id": "branch",
-        "type": "string"
-      },
-      "username": {
-        "title": "stringN",
-        "type": [
-          "array",
-          "string",
-          "boolean",
-          "number"
-        ],
-        "items": {
-          "type": "string"
-        },
-        "examples": [
-          [
-            " World"
-          ]
-        ]
-      },
-      "packageJsonName": {
-        "$id": "packageJsonName",
-        "type": "string",
-        "examples": [
-          "sdfsa"
-        ]
-      },
-      "artifact": {
-        "$id": "artifact",
-        "type": "object",
-        "properties": {
-          "update": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": []
-            },
-            "$id": "update"
-          },
-          "create": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": []
-            },
-            "$id": "create"
-          }
-        },
-        "required": []
-      },
-      "_id": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{24}$"
-      },
-      "initiator": {
-        "type": "string"
-      },
-      "postRepoURI": {
-        "type": "string"
-      },
-      "error": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      }
-    }
-  },
-  "preAutomationTime": 0,
-  "sla": 0,
   "tasks": {
     "592": {
       "name": "query",
@@ -262,11 +23,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.9493941553813257,
-      "y": 1.2288306451612903,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 2500
+      }
     },
     "1751": {
       "name": "transformation",
@@ -294,11 +56,12 @@
           "artifactName": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.16955538809344387,
-      "y": 0.5401002506265664,
-      "task_name": "getArtifactPathGitlab"
+      "task_name": "getArtifactPathGitlab",
+      "nodeLocation": {
+        "x": 900,
+        "y": 1100
+      }
     },
     "2890": {
       "name": "query",
@@ -321,11 +84,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.6642908054169636,
-      "y": 1.3860887096774193,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 2800
+      }
     },
     "2995": {
       "name": "query",
@@ -348,11 +112,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.293896006028636,
-      "y": 0.46867167919799496,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10200,
+        "y": 900
+      }
     },
     "3495": {
       "name": "transformation",
@@ -383,12 +148,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.9434815373021854,
-      "y": 0.4649122807017544,
       "task_name": "createNewProjectRequest",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 900
+      }
     },
     "5168": {
       "name": "query",
@@ -411,11 +177,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.20078431372549,
-      "y": 0.5629139072847682,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 1100
+      }
     },
     "6825": {
       "name": "setObjectKey",
@@ -443,12 +210,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -0.4860587792012057,
-      "y": 0.5288220551378446,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2100,
+        "y": 1100
+      }
     },
     "6891": {
       "name": "getV4ProjectsIdRepositoryBranchesBranch",
@@ -472,12 +240,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.2651461154668568,
-      "y": 0.8256048387096774,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5700,
+        "y": 1700
+      }
     },
     "7100": {
       "name": "ViewData",
@@ -502,11 +271,12 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 3.0535041446872646,
-      "y": 0.9837092731829574,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13800,
+        "y": 2000
+      }
     },
     "9900": {
       "name": "getV4GroupsIdProjectsWithOptions",
@@ -530,24 +300,29 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.45139412207987945,
-      "y": 0.5451127819548872,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1100
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": -0.653353428786737,
-      "y": 0.5363408521303258
+      "nodeLocation": {
+        "x": -3000,
+        "y": 1100
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 3.239638281838734,
-      "y": 0.46867167919799496
+      "nodeLocation": {
+        "x": 14700,
+        "y": 900
+      }
     },
     "29b": {
       "name": "newVariable",
@@ -568,10 +343,11 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.2863602110022607,
-      "y": 0.5476190476190477
+      "nodeLocation": {
+        "x": 1200,
+        "y": 1100
+      }
     },
     "190d": {
       "name": "query",
@@ -594,11 +370,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.2059871703492515,
-      "y": 0.46673387096774194,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 900
+      }
     },
     "cfa6": {
       "name": "query",
@@ -621,11 +398,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.203921568627451,
-      "y": 0.3852097130242826,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 800
+      }
     },
     "5a9c": {
       "name": "merge",
@@ -660,10 +438,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.29035166816952,
-      "y": 0.487712665406427
+      "nodeLocation": {
+        "x": 5700,
+        "y": 1000
+      }
     },
     "5a7e": {
       "name": "query",
@@ -687,11 +466,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.39765554553652,
-      "y": 0.484877126654064,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6300,
+        "y": 1000
+      }
     },
     "871d": {
       "name": "query",
@@ -715,11 +495,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.8595866001425516,
-      "y": 0.4739583333333333,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8400,
+        "y": 900
+      }
     },
     "14f0": {
       "name": "merge",
@@ -763,10 +544,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.9679258731290092,
-      "y": 0.47708333333333336
+      "nodeLocation": {
+        "x": 9000,
+        "y": 1000
+      }
     },
     "3b3e": {
       "name": "ViewData",
@@ -791,11 +573,12 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 2.4762622456669177,
-      "y": 0.22305764411027568,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11100,
+        "y": 400
+      }
     },
     "542c": {
       "name": "transformation",
@@ -823,11 +606,12 @@
           "gitlabCommitURI": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.0648610121168924,
-      "y": 0.46673387096774194,
-      "task_name": "getUriGitlab"
+      "task_name": "getUriGitlab",
+      "nodeLocation": {
+        "x": 9300,
+        "y": 900
+      }
     },
     "38fc": {
       "name": "ViewData",
@@ -852,11 +636,12 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 1.0833927298645758,
-      "y": 0.22782258064516128,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 500
+      }
     },
     "c46b": {
       "name": "merge",
@@ -893,10 +678,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.0876692801140413,
-      "y": 0.8145161290322581
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1600
+      }
     },
     "af69": {
       "name": "query",
@@ -920,11 +706,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.4853884533143265,
-      "y": 1.0554435483870968,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6600,
+        "y": 2100
+      }
     },
     "25d8": {
       "name": "merge",
@@ -968,10 +755,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.805416963649323,
-      "y": 1.2258064516129032
+      "nodeLocation": {
+        "x": 8100,
+        "y": 2500
+      }
     },
     "b529": {
       "name": "ViewData",
@@ -996,11 +784,12 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 2.5730577334283677,
-      "y": 1.0131048387096775,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11700,
+        "y": 2000
+      }
     },
     "dd20": {
       "name": "merge",
@@ -1053,10 +842,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.8975409836065573,
-      "y": 1.2605932203389831
+      "nodeLocation": {
+        "x": 12900,
+        "y": 2500
+      }
     },
     "92e3": {
       "name": "transformation",
@@ -1084,11 +874,12 @@
           "gitlabCommitURI": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.6500356379187455,
-      "y": 1.2116935483870968,
-      "task_name": "getUriGitlab"
+      "task_name": "getUriGitlab",
+      "nodeLocation": {
+        "x": 7500,
+        "y": 2400
+      }
     },
     "3c4a": {
       "name": "transformation",
@@ -1120,12 +911,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.0889223813112283,
-      "y": 0.6641604010025063,
       "task_name": "getRepoURLGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1300
+      }
     },
     "f382": {
       "name": "transformation",
@@ -1154,11 +946,12 @@
           "getPackageJsonURL": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.6143977191732002,
-      "y": 1.0463709677419355,
-      "task_name": "getPackageJsonGitlab"
+      "task_name": "getPackageJsonGitlab",
+      "nodeLocation": {
+        "x": 7200,
+        "y": 2100
+      }
     },
     "40bf": {
       "name": "query",
@@ -1182,11 +975,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.9315751960085532,
-      "y": 1.0443548387096775,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 2100
+      }
     },
     "ddb4": {
       "name": "stringConcat",
@@ -1208,12 +1002,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.754918032786885,
-      "y": 1.263771186440678,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12300,
+        "y": 2500
+      }
     },
     "d1bf": {
       "name": "transformation",
@@ -1244,12 +1039,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.36208125445474,
-      "y": 1.2711693548387097,
       "task_name": "filterActionsGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 10500,
+        "y": 2500
+      }
     },
     "ae5b": {
       "name": "transformation",
@@ -1280,12 +1076,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.3549536707056307,
-      "y": 1.3931451612903225,
       "task_name": "actionCreateGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 10500,
+        "y": 2800
+      }
     },
     "2dcc": {
       "name": "transformation",
@@ -1313,11 +1110,12 @@
           "uriForGet": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.495367070563079,
-      "y": 1.2066532258064515,
-      "task_name": "getUriForFilesGitlab"
+      "task_name": "getUriForFilesGitlab",
+      "nodeLocation": {
+        "x": 6600,
+        "y": 2400
+      }
     },
     "6c1": {
       "name": "postV4Projects",
@@ -1340,12 +1138,13 @@
         "error": "$var.job.error",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.0890947968638631,
-      "y": 0.4475806451612903,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 900
+      }
     },
     "2b32": {
       "name": "postV4ProjectsIdRepositoryBranches",
@@ -1369,12 +1168,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.2658588738417675,
-      "y": 1.03125,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5700,
+        "y": 2100
+      }
     },
     "c16e": {
       "name": "getV4ProjectsRepositoryFilesRaw",
@@ -1398,12 +1198,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.8104062722736993,
-      "y": 1.0524193548387097,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8100,
+        "y": 2100
+      }
     },
     "57f8": {
       "name": "postV4ProjectsIdRepositoryCommits",
@@ -1426,12 +1227,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.1454027084818246,
-      "y": 1.3840725806451613,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 2800
+      }
     },
     "3ed9": {
       "name": "postV4ProjectsIdRepositoryCommits",
@@ -1454,12 +1256,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.5645046329294368,
-      "y": 1.2701612903225807,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11400,
+        "y": 2500
+      }
     },
     "9c59": {
       "name": "postV4ProjectsIdMergeRequests",
@@ -1482,12 +1285,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.0508196721311474,
-      "y": 1.2669491525423728,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13800,
+        "y": 2500
+      }
     },
     "5c14": {
       "name": "postV4ProjectsIdRepositoryCommits",
@@ -1511,11 +1315,8 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.4762622456669177,
-      "y": 0.4573934837092732,
       "scheduled": false,
       "retrySettings": {
         "state": [
@@ -1524,6 +1325,10 @@
         "autoRetry": true,
         "limit": 3,
         "delay": 10000
+      },
+      "nodeLocation": {
+        "x": 11100,
+        "y": 900
       }
     },
     "f3e4": {
@@ -1553,12 +1358,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.8075552387740557,
-      "y": 1.3850806451612903,
       "task_name": "filterBodyGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 8100,
+        "y": 2800
+      }
     },
     "a161": {
       "name": "transformation",
@@ -1589,12 +1395,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.9522451888809693,
-      "y": 1.3911290322580645,
       "task_name": "createDeleteCommitGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 2800
+      }
     },
     "c6d7": {
       "name": "getV4ProjectsIdRepositoryTree",
@@ -1620,12 +1427,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.4982181040627227,
-      "y": 1.376008064516129,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6600,
+        "y": 2800
+      }
     },
     "b99e": {
       "name": "getTime",
@@ -1648,12 +1456,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.1715686274509802,
-      "y": 0.4639830508474576,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9900,
+        "y": 900
+      }
     },
     "b51": {
       "name": "ViewData",
@@ -1678,11 +1487,12 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 0.6299924642049737,
-      "y": 0.0012531328320802004,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 0
+      }
     },
     "ea3c": {
       "name": "transformation",
@@ -1712,12 +1522,13 @@
           "fixedArray": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.5096222380612971,
-      "y": 0.484375,
       "task_name": "updatePackageJSONGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 1000
+      }
     },
     "7f02": {
       "name": "transformation",
@@ -1735,7 +1546,7 @@
           "variableMap": {
             "filesArray": "$var.af69.return_data",
             "packageJsonName": "$var.job.packageJsonName",
-            "packageJsonVersion": "$var.40bf.return_data"
+            "packageJsonVersion": "1"
           },
           "options": {
             "extractOutput": true,
@@ -1747,12 +1558,13 @@
           "fixedArray": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.090520313613685,
-      "y": 1.0524193548387097,
       "task_name": "updatePackageJSONGitlab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 9300,
+        "y": 2100
+      }
     },
     "1a1d": {
       "name": "transformation",
@@ -1782,12 +1594,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.7020669992872417,
-      "y": 0.48020833333333335,
       "task_name": "generateCommitActions",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 7800,
+        "y": 1000
+      }
     },
     "46fe": {
       "name": "transformation",
@@ -1816,12 +1629,13 @@
           "output": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 2.0876692801140413,
-      "y": 1.217741935483871,
       "task_name": "generateCommitActions",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 9300,
+        "y": 2400
+      }
     },
     "a7e2": {
       "name": "evaluation",
@@ -1861,10 +1675,11 @@
           "return_value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.5727204220045214,
-      "y": 0.5363408521303258
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1100
+      }
     },
     "da5e": {
       "name": "ViewData",
@@ -1889,11 +1704,12 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 1.5146115466856735,
-      "y": 0.8205645161290323,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 1600
+      }
     },
     "defc": {
       "name": "childJob",
@@ -1918,11 +1734,12 @@
           "job_details": null
         }
       },
-      "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": -0.3436322532027129,
-      "y": 0.5263157894736842
+      "nodeLocation": {
+        "x": -1500,
+        "y": 1100
+      }
     },
     "716f": {
       "name": "query",
@@ -1946,11 +1763,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": -0.23059532780708364,
-      "y": 0.5288220551378446,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -900,
+        "y": 1100
+      }
     },
     "3fff": {
       "name": "query",
@@ -1974,11 +1792,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": -0.17181612660135645,
-      "y": 0.5325814536340853,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -900,
+        "y": 1100
+      }
     },
     "c290": {
       "name": "transformation",
@@ -2010,12 +1829,13 @@
           "testFolder": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": -0.08816880180859081,
-      "y": 0.531328320802005,
       "task_name": "getFileObjectsPP",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -300,
+        "y": 1100
+      }
     },
     "99e6": {
       "name": "transformation",
@@ -2048,12 +1868,13 @@
         },
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.028636021100226075,
-      "y": 0.5401002506265664,
       "task_name": "createAndUpdateArraysPP",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 0,
+        "y": 1100
+      }
     },
     "c0e1": {
       "name": "merge",
@@ -2082,10 +1903,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": -0.5621703089675961,
-      "y": 0.5350877192982456
+      "nodeLocation": {
+        "x": -2400,
+        "y": 1100
+      }
     },
     "c944": {
       "name": "stub",
@@ -2109,12 +1931,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.0821401657874905,
-      "y": -0.008771929824561403,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 0
+      }
     },
     "91a2": {
       "name": "stub",
@@ -2138,12 +1961,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.229841748304446,
-      "y": 0.02882205513784461,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 14400,
+        "y": 100
+      }
     },
     "fb": {
       "name": "getV4Groups",
@@ -2174,12 +1998,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.6865109269027883,
-      "y": 0.4573934837092732,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 900
+      }
     },
     "cbd6": {
       "name": "evaluation",
@@ -2219,10 +2044,11 @@
           "return_value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.8176337603617182,
-      "y": 0.45864661654135336
+      "nodeLocation": {
+        "x": 3600,
+        "y": 900
+      }
     }
   },
   "transitions": {
@@ -2359,8 +2185,6 @@
         "state": "failure"
       }
     },
-    "583c": {},
-    "ba52": {},
     "542c": {
       "b99e": {
         "type": "standard",
@@ -2377,7 +2201,6 @@
         "state": "failure"
       }
     },
-    "c60": {},
     "c46b": {
       "6891": {
         "type": "standard",
@@ -2412,16 +2235,12 @@
         "state": "success"
       }
     },
-    "683e": {},
-    "2c42": {},
-    "33ba": {},
     "92e3": {
       "2dcc": {
         "type": "standard",
         "state": "success"
       }
     },
-    "1fc1": {},
     "3c4a": {
       "c46b": {
         "type": "standard",
@@ -2446,7 +2265,6 @@
         "state": "success"
       }
     },
-    "80b1": {},
     "d1bf": {
       "3ed9": {
         "type": "standard",
@@ -2465,8 +2283,6 @@
         "state": "success"
       }
     },
-    "5a0d": {},
-    "a613": {},
     "6c1": {
       "5168": {
         "type": "standard",
@@ -2601,7 +2417,6 @@
         "state": "failure"
       }
     },
-    "36fe": {},
     "da5e": {
       "workflow_end": {
         "type": "standard",
@@ -2638,8 +2453,6 @@
         "state": "success"
       }
     },
-    "43dd": {},
-    "5d88": {},
     "c0e1": {
       "6825": {
         "type": "standard",
@@ -2674,11 +2487,250 @@
         "state": "failure"
       }
     },
+    "583c": {},
+    "ba52": {},
+    "c60": {},
+    "683e": {},
+    "2c42": {},
+    "33ba": {},
+    "1fc1": {},
+    "80b1": {},
+    "5a0d": {},
+    "a613": {},
+    "36fe": {},
+    "43dd": {},
+    "5d88": {},
     "7c4f": {}
   },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "repoName": {
+        "type": "string",
+        "examples": [
+          "New Artifact"
+        ]
+      },
+      "url": {
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
+      "targetBranch": {
+        "title": "branch",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "commitMessage": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "mrBranchName": {
+        "type": "string"
+      },
+      "username": {
+        "title": "stringN",
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "number"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "examples": [
+          [
+            " World"
+          ]
+        ]
+      },
+      "packageJsonName": {
+        "type": "string",
+        "examples": [
+          "sdfsa"
+        ]
+      },
+      "artifact": {
+        "type": "object",
+        "properties": {
+          "update": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": []
+            }
+          },
+          "create": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": []
+            }
+          }
+        },
+        "required": []
+      }
+    },
+    "required": [
+      "repoName",
+      "url",
+      "targetBranch",
+      "adapter_id",
+      "commitMessage",
+      "mrBranchName",
+      "username",
+      "packageJsonName",
+      "artifact"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "repoName": {
+        "type": "string",
+        "examples": [
+          "New Artifact"
+        ]
+      },
+      "url": {
+        "type": "string",
+        "examples": [
+          "test"
+        ]
+      },
+      "targetBranch": {
+        "title": "branch",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "commitMessage": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "mrBranchName": {
+        "type": "string"
+      },
+      "username": {
+        "title": "stringN",
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "number"
+        ],
+        "items": {
+          "type": "string"
+        },
+        "examples": [
+          [
+            " World"
+          ]
+        ]
+      },
+      "packageJsonName": {
+        "type": "string",
+        "examples": [
+          "sdfsa"
+        ]
+      },
+      "artifact": {
+        "type": "object",
+        "properties": {
+          "update": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": []
+            }
+          },
+          "create": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": []
+            }
+          }
+        },
+        "required": []
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "postRepoURI": {
+        "type": "string"
+      },
+      "error": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    }
+  },
+  "created": "2022-03-08T14:50:49.785Z",
+  "createdVersion": "5.40.5-2021.1.52.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "font_size": 12,
+  "lastUpdatedVersion": "5.55.2-2023.2.14",
+  "last_updated": "2025-02-06T20:09:18.584Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }

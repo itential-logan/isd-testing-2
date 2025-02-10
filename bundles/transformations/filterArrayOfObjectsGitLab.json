@@ -206,36 +206,19 @@
           }
         },
         {
-          "$id": "thisArg",
-          "type": "object",
-          "properties": {
-            "0_keyToFilterOn": {
-              "$id": "0_keyToFilterOn",
-              "type": "string",
-              "default": "keyToFilterOn",
-              "examples": [
-                "keyToFilterOn"
-              ]
-            },
-            "1_valueToFind": {
-              "$id": "1_valueToFind",
-              "type": "string",
-              "default": "valueToFind",
-              "examples": [
-                "valueToFind"
-              ]
-            },
-            "2_discardMatching": {
-              "$id": "2_discardMatching",
-              "type": "boolean",
-              "examples": [
-                true,
-                false
-              ]
-            }
-          },
-          "isContext": true,
-          "isIndexed": true
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        },
+        {
+          "$id": "constantValue2",
+          "type": "string",
+          "isConstValue": true
+        },
+        {
+          "$id": "constantValue3",
+          "type": "boolean",
+          "isConstValue": true
         }
       ],
       "outgoing": [
@@ -265,8 +248,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "thisArg",
-            "ptr": "/0_keyToFilterOn"
+            "name": "constantValue1",
+            "ptr": ""
           },
           "to": {
             "location": "method",
@@ -279,8 +262,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "thisArg",
-            "ptr": "/2_discardMatching"
+            "name": "constantValue3",
+            "ptr": ""
           },
           "to": {
             "location": "method",
@@ -293,8 +276,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "thisArg",
-            "ptr": "/2_discardMatching"
+            "name": "constantValue3",
+            "ptr": ""
           },
           "to": {
             "location": "method",
@@ -307,8 +290,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "thisArg",
-            "ptr": "/1_valueToFind"
+            "name": "constantValue2",
+            "ptr": ""
           },
           "to": {
             "location": "method",
@@ -540,18 +523,18 @@
     "col": 3,
     "row": 6
   },
-  "created": "2025-02-07T16:18:59.774Z",
+  "created": "2025-02-06T18:32:40.978Z",
   "createdBy": {
-    "_id": "6758b72cfadd72c52287b17f",
-    "provenance": "Local AAA",
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2025-02-07T16:18:59.774Z",
+  "lastUpdated": "2025-02-06T18:32:40.978Z",
   "lastUpdatedBy": {
-    "_id": "6758b72cfadd72c52287b17f",
-    "provenance": "Local AAA",
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "version": "4.1.2-2023.1.27",
+  "version": "4.3.6-2023.2.5",
   "tags": []
 }

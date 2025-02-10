@@ -1,156 +1,5 @@
 {
-  "created": "2022-05-12T17:42:37.891Z",
-  "createdVersion": "5.40.5-2021.1.72.0",
-  "created_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": true
-  },
-  "description": "",
-  "font_size": 12,
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "artifact_array": {
-        "type": "array"
-      },
-      "owner": {
-        "title": "owner",
-        "type": "string"
-      },
-      "repo": {
-        "title": "repo",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "commitMessage": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "branch": {
-        "title": "branch",
-        "type": "string"
-      }
-    },
-    "required": [
-      "artifact_array",
-      "owner",
-      "repo",
-      "adapter_id",
-      "commitMessage",
-      "branch"
-    ]
-  },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.944Z",
-  "last_updated_by": {
-    "provenance": "Local AAA",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false
-  },
   "name": "Prebuilt Promotion Github New Commit",
-  "outputSchema": {
-    "type": "object",
-    "properties": {
-      "artifact_array": {
-        "type": "array"
-      },
-      "owner": {
-        "title": "owner",
-        "type": "string"
-      },
-      "repo": {
-        "title": "repo",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "commitMessage": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "branch": {
-        "title": "branch",
-        "type": "string"
-      },
-      "_id": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{24}$"
-      },
-      "initiator": {
-        "type": "string"
-      },
-      "treeArray": {
-        "title": "pushedArray",
-        "type": "array",
-        "examples": [
-          [
-            "Device1",
-            "Device2",
-            "Device3"
-          ]
-        ]
-      },
-      "payLoad": {
-        "title": "object",
-        "type": "object",
-        "properties": {},
-        "examples": [
-          {
-            "first": {
-              "second": {
-                "third": "last"
-              }
-            }
-          }
-        ]
-      },
-      "shaArray": {
-        "title": "pushedArray",
-        "type": "array",
-        "examples": [
-          [
-            "Device1",
-            "Device2",
-            "Device3"
-          ]
-        ]
-      }
-    }
-  },
-  "preAutomationTime": 0,
-  "sla": 0,
   "tasks": {
     "6602": {
       "name": "numberToString",
@@ -172,12 +21,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.42950108459869846,
-      "y": 1.1664829106945975,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 2300
+      }
     },
     "7884": {
       "name": "newVariable",
@@ -198,22 +48,27 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.2794496990541703,
-      "y": 0.25761772853185594
+      "nodeLocation": {
+        "x": 1200,
+        "y": 500
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": -0.1951848667239897,
-      "y": 0.2520775623268698
+      "nodeLocation": {
+        "x": -900,
+        "y": 500
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 2.4419604471195187,
-      "y": 0.2590027700831025
+      "nodeLocation": {
+        "x": 11100,
+        "y": 500
+      }
     },
     "2e4d": {
       "name": "forEach",
@@ -235,11 +90,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.44540853217642806,
-      "y": 0.2535832414553473,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 420
+      }
     },
     "3a1c": {
       "name": "newVariable",
@@ -263,10 +119,11 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.4302241503976862,
-      "y": 0.41675854465270123
+      "nodeLocation": {
+        "x": 1800,
+        "y": 800
+      }
     },
     "d4b5": {
       "name": "transformation",
@@ -296,12 +153,13 @@
           "content": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.4164859002169197,
-      "y": 0.5755237045203969,
       "task_name": "convertObjecttoString",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1200
+      }
     },
     "e95f": {
       "name": "setObjectKey",
@@ -327,12 +185,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.4164859002169197,
-      "y": 0.7155457552370452,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1400
+      }
     },
     "7ece": {
       "name": "postReposOwnerRepoGitBlobs",
@@ -357,12 +216,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.4309472161966739,
-      "y": 0.8886438809261301,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1800
+      }
     },
     "423c": {
       "name": "postReposOwnerRepoGitTrees",
@@ -387,12 +247,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.907744874715262,
-      "y": 0.2524137931034483,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 500
+      }
     },
     "cc5a": {
       "name": "query",
@@ -415,11 +276,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.42588575560375996,
-      "y": 1.0275633958103638,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 2100
+      }
     },
     "5f91": {
       "name": "arrayPush",
@@ -441,12 +303,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.417995444191344,
-      "y": 1.5544827586206897,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 3100
+      }
     },
     "97cc": {
       "name": "merge",
@@ -495,10 +358,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.4202733485193622,
-      "y": 1.376551724137931
+      "nodeLocation": {
+        "x": 1800,
+        "y": 2800
+      }
     },
     "36ba": {
       "name": "merge",
@@ -534,10 +398,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.6252847380410023,
-      "y": 0.2413793103448276
+      "nodeLocation": {
+        "x": 2700,
+        "y": 500
+      }
     },
     "20f0": {
       "name": "postReposOwnerRepoGitCommits",
@@ -562,12 +427,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.7747205503009458,
-      "y": 0.27285318559556787,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8100,
+        "y": 500
+      }
     },
     "f1d9": {
       "name": "merge",
@@ -610,10 +476,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.6173688736027516,
-      "y": 0.26869806094182824
+      "nodeLocation": {
+        "x": 7200,
+        "y": 500
+      }
     },
     "af31": {
       "name": "newVariable",
@@ -634,10 +501,11 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.3250214961306965,
-      "y": 0.27977839335180055
+      "nodeLocation": {
+        "x": 6000,
+        "y": 600
+      }
     },
     "e604": {
       "name": "arrayPush",
@@ -659,12 +527,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.4797936371453138,
-      "y": 0.27977839335180055,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6600,
+        "y": 600
+      }
     },
     "cbe5": {
       "name": "query",
@@ -687,11 +556,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.2087227414330217,
-      "y": 0.2631578947368421,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 500
+      }
     },
     "22a3": {
       "name": "getReposOwnerRepoBranchesBranch",
@@ -716,12 +586,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -0.03181427343078246,
-      "y": 0.2631578947368421,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 0,
+        "y": 500
+      }
     },
     "5a2b": {
       "name": "query",
@@ -745,11 +616,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.1012292118582791,
-      "y": 0.2613009922822492,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 600,
+        "y": 500
+      }
     },
     "79cc": {
       "name": "query",
@@ -773,11 +645,12 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.1829356471438901,
-      "y": 0.26460859977949286,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 900,
+        "y": 500
+      }
     },
     "5a89": {
       "name": "patchReposOwnerRepoGitRefsRef",
@@ -803,12 +676,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.302665520206363,
-      "y": 0.2742382271468144,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10500,
+        "y": 500
+      }
     },
     "f120": {
       "name": "query",
@@ -831,11 +705,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.9140154772141014,
-      "y": 0.2659279778393352,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 500
+      }
     },
     "d72a": {
       "name": "merge",
@@ -863,10 +738,11 @@
           "merged_object": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.9802235597592432,
-      "y": 0.26038781163434904
+      "nodeLocation": {
+        "x": 9000,
+        "y": 500
+      }
     },
     "a641": {
       "name": "stringConcat",
@@ -888,12 +764,13 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.1006018916595015,
-      "y": 0.2673130193905817,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 500
+      }
     }
   },
   "transitions": {
@@ -946,7 +823,6 @@
         "state": "success"
       }
     },
-    "1b02": {},
     "7ece": {
       "cc5a": {
         "type": "standard",
@@ -966,7 +842,6 @@
       }
     },
     "5f91": {},
-    "99aa": {},
     "97cc": {
       "5f91": {
         "type": "standard",
@@ -991,7 +866,6 @@
         "state": "success"
       }
     },
-    "a37a": {},
     "af31": {
       "e604": {
         "type": "standard",
@@ -1051,11 +925,220 @@
         "type": "standard",
         "state": "success"
       }
+    },
+    "1b02": {},
+    "99aa": {},
+    "a37a": {}
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "artifact_array": {
+        "title": "data_array",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ]
+      },
+      "owner": {
+        "title": "owner",
+        "type": "string"
+      },
+      "repo": {
+        "title": "repo",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "commitMessage": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "branch": {
+        "title": "branch",
+        "type": "string"
+      }
+    },
+    "required": [
+      "artifact_array",
+      "owner",
+      "repo",
+      "adapter_id",
+      "commitMessage",
+      "branch"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "artifact_array": {
+        "title": "data_array",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ]
+      },
+      "owner": {
+        "title": "owner",
+        "type": "string"
+      },
+      "repo": {
+        "title": "repo",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "commitMessage": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "branch": {
+        "title": "branch",
+        "type": "string"
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "treeArray": {
+        "title": "pushedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "Device1",
+            "Device2",
+            "Device3"
+          ]
+        ]
+      },
+      "payLoad": {
+        "title": "object",
+        "type": "object",
+        "properties": {},
+        "examples": [
+          {
+            "first": {
+              "second": {
+                "third": "last"
+              }
+            }
+          }
+        ]
+      },
+      "shaArray": {
+        "title": "pushedArray",
+        "type": "array",
+        "items": [
+          {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "object",
+              "array",
+              "boolean",
+              "null"
+            ]
+          }
+        ],
+        "examples": [
+          [
+            "Device1",
+            "Device2",
+            "Device3"
+          ]
+        ]
+      }
     }
   },
+  "created": "2022-05-12T17:42:37.891Z",
+  "createdVersion": "5.40.5-2021.1.72.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "font_size": 12,
+  "lastUpdatedVersion": "5.55.2-2023.2.14",
+  "last_updated": "2025-02-07T18:10:26.835Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }

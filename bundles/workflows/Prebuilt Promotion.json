@@ -5,7 +5,8 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": true
+    "inactive": false,
+    "gitTokens": {}
   },
   "description": null,
   "font_size": 12,
@@ -13,7 +14,6 @@
     "type": "object",
     "properties": {
       "formData": {
-        "$id": "formData",
         "type": "object",
         "properties": {
           "checkInPrebuilt": {
@@ -99,20 +99,20 @@
       "formData"
     ]
   },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.918Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.351Z",
   "last_updated_by": {
-    "provenance": "Local AAA",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false
+    "inactive": false,
+    "gitTokens": {}
   },
   "name": "Prebuilt Promotion",
   "outputSchema": {
     "type": "object",
     "properties": {
       "formData": {
-        "$id": "formData",
         "type": "object",
         "properties": {
           "checkInPrebuilt": {
@@ -350,10 +350,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -1.3380392156862746,
-      "y": 0.3545673076923077,
       "task_name": "buildGETAdapterByNameURI",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -6000,
+        "y": 700
+      }
     },
     "3627": {
       "name": "stringConcat",
@@ -379,9 +381,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -0.5788235294117647,
-      "y": 0.36778846153846156,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2700,
+        "y": 700
+      }
     },
     "4020": {
       "name": "newVariable",
@@ -505,8 +509,10 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -1.815686274509804,
-      "y": 0.32769044740024184
+      "nodeLocation": {
+        "x": -8100,
+        "y": 700
+      }
     },
     "5379": {
       "name": "transformation",
@@ -539,10 +545,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -1.08,
-      "y": 0.3557692307692308,
       "task_name": "setRepositoryInPackageJson",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -4800,
+        "y": 700
+      }
     },
     "8200": {
       "name": "query",
@@ -567,25 +575,31 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -2.3064861012116893,
-      "y": 0.3176007866273353,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -10500,
+        "y": 600
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": -3.239486813970064,
-      "y": 0.28023598820059,
       "summary": "workflow_start",
-      "description": "workflow_start"
+      "description": "workflow_start",
+      "nodeLocation": {
+        "x": -14700,
+        "y": 600
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 0.04470588235294118,
-      "y": 0.3629807692307692,
       "summary": "workflow_end",
-      "description": "workflow_end"
+      "description": "workflow_end",
+      "nodeLocation": {
+        "x": 300,
+        "y": 700
+      }
     },
     "aa4e": {
       "name": "gatherInternalGET",
@@ -609,9 +623,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": -3.1058823529411765,
-      "y": 0.29161290322580646,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -14100,
+        "y": 600
+      }
     },
     "5ed7": {
       "name": "stringConcat",
@@ -637,9 +653,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -2.1974340698503205,
-      "y": 0.32645034414945917,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -9900,
+        "y": 700
+      }
     },
     "4d16": {
       "name": "gatherInternalGET",
@@ -662,9 +680,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": -1.96122633002705,
-      "y": 0.328922495274102,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -8700,
+        "y": 700
+      }
     },
     "4b23": {
       "name": "createPublishedArtifactFromScratch",
@@ -691,9 +711,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -0.8917647058823529,
-      "y": 0.3701923076923077,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3900,
+        "y": 700
+      }
     },
     "cbf5": {
       "name": "transformation",
@@ -723,10 +745,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -1.6878431372549019,
-      "y": 0.32769044740024184,
       "task_name": "componentsObject",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -7500,
+        "y": 700
+      }
     },
     "5bc6": {
       "name": "transformation",
@@ -757,9 +781,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -1.5686274509803921,
-      "y": 0.3313180169286578,
-      "task_name": "getMetadataAndComponentsGitlab"
+      "task_name": "getMetadataAndComponentsGitlab",
+      "nodeLocation": {
+        "x": -7200,
+        "y": 700
+      }
     },
     "382d": {
       "name": "newVariable",
@@ -811,8 +837,10 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -1.4549019607843137,
-      "y": 0.33404482390608325
+      "nodeLocation": {
+        "x": -6600,
+        "y": 700
+      }
     },
     "cec6": {
       "name": "getTime",
@@ -838,9 +866,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -0.7647058823529411,
-      "y": 0.37259615384615385,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3300,
+        "y": 700
+      }
     },
     "6cd9": {
       "name": "stringConcat",
@@ -866,9 +896,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": -0.44404846756949395,
-      "y": 0.37298387096774194,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2100,
+        "y": 700
+      }
     },
     "3fc8": {
       "name": "query",
@@ -893,9 +925,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.6854901960784314,
-      "y": 0.3701923076923077,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3000,
+        "y": 700
+      }
     },
     "1f6a": {
       "name": "query",
@@ -921,9 +955,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.3435495367070563,
-      "y": 0.36794354838709675,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -1500,
+        "y": 700
+      }
     },
     "30d4": {
       "name": "gatherInternalGET",
@@ -947,9 +983,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": -2.8845331432644334,
-      "y": 0.2963709677419355,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -12900,
+        "y": 600
+      }
     },
     "b1b8": {
       "name": "query",
@@ -975,9 +1013,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -2.781183178902352,
-      "y": 0.30443548387096775,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -12600,
+        "y": 600
+      }
     },
     "5cd3": {
       "name": "evaluation",
@@ -1018,8 +1058,10 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -2.0732142857142857,
-      "y": 0.32899628252788105
+      "nodeLocation": {
+        "x": -9300,
+        "y": 700
+      }
     },
     "4a09": {
       "name": "childJob",
@@ -1053,8 +1095,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": -2.0424164524421595,
-      "y": 0.564638783269962
+      "nodeLocation": {
+        "x": -9300,
+        "y": 1100
+      }
     },
     "e4d3": {
       "name": "transformation",
@@ -1088,10 +1132,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -2.4091233071988594,
-      "y": 0.3185483870967742,
       "task_name": "filterArrayOfObjectsGitLab",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -10800,
+        "y": 600
+      }
     },
     "27b2": {
       "name": "query",
@@ -1117,9 +1163,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -2.9836065573770494,
-      "y": 0.3024193548387097,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -13500,
+        "y": 600
+      }
     },
     "e587": {
       "name": "transformation",
@@ -1162,10 +1210,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -2.5466856735566643,
-      "y": 0.3074596774193548,
       "task_name": "convertFormDataPP",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -11400,
+        "y": 600
+      }
     },
     "e126": {
       "name": "gatherInternalGET",
@@ -1189,9 +1239,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": -2.668567355666429,
-      "y": 0.3074596774193548,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -12000,
+        "y": 600
+      }
     },
     "4c6a": {
       "name": "evaluation",
@@ -1232,8 +1284,10 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.2815686274509804,
-      "y": 0.359375
+      "nodeLocation": {
+        "x": -1200,
+        "y": 700
+      }
     },
     "500c": {
       "name": "ViewData",
@@ -1260,9 +1314,11 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "x": -0.10620099786172488,
-      "y": 0.02217741935483871,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -600,
+        "y": 0
+      }
     },
     "d48d": {
       "name": "gatherInternalGET",
@@ -1286,9 +1342,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": -1.2101960784313726,
-      "y": 0.3762019230769231,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -5400,
+        "y": 800
+      }
     },
     "6d70": {
       "name": "evaluation",
@@ -1329,8 +1387,10 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.23093371347113328,
-      "y": 0.2600806451612903
+      "nodeLocation": {
+        "x": -900,
+        "y": 500
+      }
     },
     "4a63": {
       "name": "childJob",
@@ -1404,8 +1464,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": -0.13114754098360656,
-      "y": 0.5221774193548387
+      "nodeLocation": {
+        "x": -600,
+        "y": 1000
+      }
     },
     "f609": {
       "name": "childJob",
@@ -1484,8 +1546,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": -0.11831789023521026,
-      "y": 0.3800403225806452
+      "nodeLocation": {
+        "x": -600,
+        "y": 800
+      }
     },
     "c65b": {
       "name": "childJob",
@@ -1563,8 +1627,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": -0.09052031361368496,
-      "y": 0.25100806451612906
+      "nodeLocation": {
+        "x": -300,
+        "y": 500
+      }
     },
     "341d": {
       "name": "evaluation",
@@ -1605,8 +1671,10 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.16678545972915182,
-      "y": 0.1350806451612903
+      "nodeLocation": {
+        "x": -900,
+        "y": 300
+      }
     }
   },
   "transitions": {
@@ -1851,8 +1919,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }

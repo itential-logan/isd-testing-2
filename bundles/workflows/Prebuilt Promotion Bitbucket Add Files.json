@@ -5,7 +5,8 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": true
+    "inactive": false,
+    "gitTokens": {}
   },
   "description": "",
   "font_size": 12,
@@ -13,13 +14,14 @@
     "type": "object",
     "properties": {}
   },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.927Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.588Z",
   "last_updated_by": {
-    "provenance": "Local AAA",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false
+    "inactive": false,
+    "gitTokens": {}
   },
   "name": "Prebuilt Promotion Bitbucket Add Files",
   "outputSchema": {
@@ -138,9 +140,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.5103349964362082,
-      "y": 0.19075712881022616,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 400
+      }
     },
     "1649": {
       "name": "arrayPush",
@@ -166,9 +170,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.3706343549536707,
-      "y": 0.37659783677482794,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 800
+      }
     },
     "3853": {
       "name": "setObjectKey",
@@ -199,9 +205,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.7034925160370634,
-      "y": 0.20452310717797442,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3300,
+        "y": 400
+      }
     },
     "5820": {
       "name": "arrayPush",
@@ -227,9 +235,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.1368496079828936,
-      "y": 0.37954768928220256,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 800
+      }
     },
     "6323": {
       "name": "setObjectKey",
@@ -260,9 +270,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.540270848182466,
-      "y": 0.176007866273353,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11400,
+        "y": 400
+      }
     },
     "7019": {
       "name": "setObjectKey",
@@ -293,21 +305,27 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.0648610121168924,
-      "y": 0.19469026548672566,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9300,
+        "y": 400
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": 0.11332858161083392,
-      "y": 0.19075712881022616
+      "nodeLocation": {
+        "x": 600,
+        "y": 400
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 2.9725490196078432,
-      "y": 0.18990384615384615
+      "nodeLocation": {
+        "x": 13500,
+        "y": 400
+      }
     },
     "e474": {
       "name": "setObjectKey",
@@ -338,9 +356,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.2601568068424804,
-      "y": 0.1927236971484759,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1200,
+        "y": 400
+      }
     },
     "d42b": {
       "name": "setObjectKey",
@@ -371,9 +391,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.9458823529411765,
-      "y": 0.20552884615384615,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 400
+      }
     },
     "8bdb": {
       "name": "setObjectKey",
@@ -404,9 +426,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.2384313725490197,
-      "y": 0.20793269230769232,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5700,
+        "y": 400
+      }
     },
     "80ce": {
       "name": "setObjectKey",
@@ -437,9 +461,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.5074839629365646,
-      "y": 0.20648967551622419,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 400
+      }
     },
     "ef03": {
       "name": "setObjectKey",
@@ -470,9 +496,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.6856735566642909,
-      "y": 0.20943952802359883,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 400
+      }
     },
     "7c35": {
       "name": "arrayPush",
@@ -498,9 +526,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.5894511760513186,
-      "y": 0.39233038348082594,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 800
+      }
     },
     "3d5d": {
       "name": "arrayPush",
@@ -526,9 +556,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.7904490377761939,
-      "y": 0.39331366764995085,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 800
+      }
     },
     "4f62": {
       "name": "arrayPush",
@@ -554,9 +586,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.0972549019607842,
-      "y": 0.3894230769230769,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 800
+      }
     },
     "40fd": {
       "name": "arrayPush",
@@ -582,9 +616,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.3741176470588234,
-      "y": 0.39663461538461536,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6300,
+        "y": 800
+      }
     },
     "d3e6": {
       "name": "arrayPush",
@@ -610,9 +646,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.563791874554526,
-      "y": 0.39823008849557523,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6900,
+        "y": 800
+      }
     },
     "62a1": {
       "name": "arrayPush",
@@ -638,9 +676,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.7156094084105489,
-      "y": 0.40117994100294985,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7800,
+        "y": 800
+      }
     },
     "9bcf": {
       "name": "setObjectKey",
@@ -671,9 +711,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.2879543834640055,
-      "y": 0.18190757128810225,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10200,
+        "y": 400
+      }
     },
     "84c3": {
       "name": "arrayPush",
@@ -699,9 +741,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.392017106200998,
-      "y": 0.3824975417895772,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10800,
+        "y": 800
+      }
     },
     "103d": {
       "name": "arrayPush",
@@ -727,9 +771,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.668567355666429,
-      "y": 0.3893805309734513,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12000,
+        "y": 800
+      }
     },
     "f42b": {
       "name": "parse",
@@ -754,9 +800,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.9044903777619386,
-      "y": 0.38741396263520156,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 800
+      }
     },
     "6f7b": {
       "name": "objectToString",
@@ -783,9 +831,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.9080541696364932,
-      "y": 0.19862340216322516,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8700,
+        "y": 400
+      }
     },
     "bcde": {
       "name": "setObjectKey",
@@ -816,9 +866,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.808627450980392,
-      "y": 0.18629807692307693,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12600,
+        "y": 400
+      }
     },
     "289e": {
       "name": "arrayPush",
@@ -844,9 +896,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.9223529411764706,
-      "y": 0.38221153846153844,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13200,
+        "y": 800
+      }
     }
   },
   "transitions": {
@@ -1011,8 +1065,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }

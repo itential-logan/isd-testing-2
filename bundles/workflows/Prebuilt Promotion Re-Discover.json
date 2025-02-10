@@ -5,7 +5,8 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": true
+    "inactive": false,
+    "gitTokens": {}
   },
   "description": null,
   "font_size": 12,
@@ -27,13 +28,14 @@
       "internalURL"
     ]
   },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.919Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.504Z",
   "last_updated_by": {
-    "provenance": "Local AAA",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false
+    "inactive": false,
+    "gitTokens": {}
   },
   "name": "Prebuilt Promotion Re-Discover",
   "outputSchema": {
@@ -81,9 +83,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.36930232558139536,
-      "y": 0.5346153846153846,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1100
+      }
     },
     "7393": {
       "name": "transformation",
@@ -114,22 +118,28 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.46190476190476193,
-      "y": 0.5228136882129277,
       "task_name": "mergeFormWithDiscovery",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 2100,
+        "y": 1000
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": -0.5730232558139535,
-      "y": 0.5038461538461538
+      "nodeLocation": {
+        "x": -2700,
+        "y": 1000
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 1.171904761904762,
-      "y": 0.529467680608365
+      "nodeLocation": {
+        "x": 5400,
+        "y": 1100
+      }
     },
     "5dec": {
       "name": "gatherInternalGET",
@@ -152,9 +162,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": -0.4306976744186046,
-      "y": 0.5128205128205128,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -1800,
+        "y": 1000
+      }
     },
     "76d1": {
       "name": "transformation",
@@ -184,10 +196,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.266046511627907,
-      "y": 0.5064102564102564,
       "task_name": "convertArtifactInfoToForm",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -1200,
+        "y": 1000
+      }
     },
     "b668": {
       "name": "transformation",
@@ -217,10 +231,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.20372093023255813,
-      "y": 0.5128205128205128,
       "task_name": "convertFormOutputToDiscoveryFormat",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 900,
+        "y": 1000
+      }
     },
     "bd16": {
       "name": "ViewData",
@@ -246,9 +262,11 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "x": 0.6628571428571428,
-      "y": 0.5218631178707225,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 1000
+      }
     },
     "2b81": {
       "name": "ViewData",
@@ -274,9 +292,11 @@
       "view": "/workflow_engine/task/ViewData",
       "deprecated": false,
       "groups": [],
-      "x": 0.4027906976744186,
-      "y": 0.7705128205128206,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 1800,
+        "y": 1500
+      }
     },
     "8ed7": {
       "name": "createPublishedArtifactFromScratch",
@@ -302,9 +322,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.9247619047619048,
-      "y": 0.5313688212927756,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 1100
+      }
     },
     "eb15": {
       "name": "transformation",
@@ -337,10 +359,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.7257142857142858,
-      "y": 0.5209125475285171,
       "task_name": "createArtifactForPublish",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 3300,
+        "y": 1000
+      }
     },
     "cd71": {
       "name": "replaceArtifactAdminEssentials",
@@ -364,9 +388,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.0657142857142856,
-      "y": 0.5342205323193916,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1100
+      }
     },
     "b3c0": {
       "name": "gatherInternalGET",
@@ -390,9 +416,11 @@
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
       "deprecated": false,
       "groups": [],
-      "x": 0.8076190476190476,
-      "y": 0.5304182509505704,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 1100
+      }
     },
     "d69a": {
       "name": "ShowJsonForm",
@@ -417,9 +445,11 @@
       "view": "/json-forms/task/ShowJsonForm",
       "deprecated": false,
       "groups": [],
-      "x": 0.061395348837209304,
-      "y": 0.5,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 300,
+        "y": 1000
+      }
     },
     "b723": {
       "name": "ShowJsonForm",
@@ -444,9 +474,11 @@
       "view": "/json-forms/task/ShowJsonForm",
       "deprecated": false,
       "groups": [],
-      "x": 0.5786046511627907,
-      "y": 0.5192307692307693,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2700,
+        "y": 1000
+      }
     },
     "2e2b": {
       "name": "transformation",
@@ -476,10 +508,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": -0.10697674418604651,
-      "y": 0.5012820512820513,
       "task_name": "translateSchemaPushBundles",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -600,
+        "y": 1000
+      }
     }
   },
   "transitions": {
@@ -585,8 +619,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }
