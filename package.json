@@ -1,6 +1,6 @@
 {
   "name": "@itentialopensource/prebuilt-promotion",
-  "author": "Itential Automation Platform",
+  "author": "Itential Automation Platform_1",
   "version": "0.0.3",
   "description": "Push pre-built to a specified version control service",
   "scripts": {
