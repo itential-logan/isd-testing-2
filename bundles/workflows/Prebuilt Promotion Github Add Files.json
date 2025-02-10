@@ -5,14 +5,14 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": true
+    "inactive": false,
+    "gitTokens": {}
   },
   "font_size": 12,
   "inputSchema": {
     "type": "object",
     "properties": {
       "packageJsonName": {
-        "$id": "packageJsonName",
         "type": "string",
         "examples": [
           "sdfsa"
@@ -34,20 +34,20 @@
       "artifact"
     ]
   },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.929Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.129",
+  "last_updated": "2025-02-06T18:32:42.445Z",
   "last_updated_by": {
-    "provenance": "Local AAA",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false
+    "inactive": false,
+    "gitTokens": {}
   },
   "name": "Prebuilt Promotion Github Add Files",
   "outputSchema": {
     "type": "object",
     "properties": {
       "packageJsonName": {
-        "$id": "packageJsonName",
         "type": "string",
         "examples": [
           "sdfsa"
@@ -128,9 +128,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.8655097613882863,
-      "y": 0.5843439911797134,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8400,
+        "y": 1200
+      }
     },
     "8841": {
       "name": "setObjectKey",
@@ -163,9 +165,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.9638467100506145,
-      "y": 0.6515986769570011,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13200,
+        "y": 1300
+      }
     },
     "9943": {
       "name": "arrayPush",
@@ -191,21 +195,27 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.222704266088214,
-      "y": 0.4553472987872106,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5400,
+        "y": 900
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": 0,
-      "y": 0.5
+      "nodeLocation": {
+        "x": 0,
+        "y": 1000
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 3.755832037325039,
-      "y": 0.61557478368356
+      "nodeLocation": {
+        "x": 16800,
+        "y": 1200
+      }
     },
     "f3ce": {
       "name": "childJob",
@@ -244,8 +254,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": 0.3781634128705712,
-      "y": 0.34178610804851156
+      "nodeLocation": {
+        "x": 1800,
+        "y": 700
+      }
     },
     "7bef": {
       "name": "transformation",
@@ -277,10 +289,12 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.19522776572668113,
-      "y": 0.3395810363836825,
       "task_name": "updatePackageGitHubJSON",
-      "retrySettings": null
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 900,
+        "y": 700
+      }
     },
     "d35d": {
       "name": "query",
@@ -306,9 +320,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.0737527114967462,
-      "y": 0.41345093715545755,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 300,
+        "y": 800
+      }
     },
     "77b4": {
       "name": "query",
@@ -334,9 +350,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.07230657989877079,
-      "y": 0.5556780595369349,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 300,
+        "y": 1100
+      }
     },
     "c586": {
       "name": "childJob",
@@ -375,8 +393,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "job",
-      "x": 0.27331887201735355,
-      "y": 0.5843439911797134
+      "nodeLocation": {
+        "x": 1200,
+        "y": 1200
+      }
     },
     "a523": {
       "name": "query",
@@ -402,9 +422,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.5314533622559653,
-      "y": 0.3461962513781698,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 700
+      }
     },
     "2d37": {
       "name": "query",
@@ -430,9 +452,11 @@
       },
       "deprecated": false,
       "groups": [],
-      "x": 0.5357917570498916,
-      "y": 0.5788313120176406,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 1200
+      }
     },
     "ef4d": {
       "name": "setObjectKey",
@@ -465,9 +489,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.7968185104844541,
-      "y": 0.5711135611907387,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 1100
+      }
     },
     "6e7b": {
       "name": "arrayPush",
@@ -493,9 +519,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.9399855386840202,
-      "y": 0.4498346196251378,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4200,
+        "y": 900
+      }
     },
     "361f": {
       "name": "setObjectKey",
@@ -528,9 +556,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.0737527114967462,
-      "y": 0.5898566703417861,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 4800,
+        "y": 1200
+      }
     },
     "bea1": {
       "name": "setObjectKey",
@@ -563,9 +593,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.3716558206796818,
-      "y": 0.5843439911797134,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6300,
+        "y": 1200
+      }
     },
     "7ac1": {
       "name": "arrayPush",
@@ -591,9 +623,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.4967462039045554,
-      "y": 0.4520396912899669,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6600,
+        "y": 900
+      }
     },
     "eb55": {
       "name": "setObjectKey",
@@ -626,9 +660,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.6406362979031093,
-      "y": 0.5865490628445424,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7500,
+        "y": 1200
+      }
     },
     "a663": {
       "name": "arrayPush",
@@ -654,9 +690,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.7476500361532898,
-      "y": 0.46085997794928335,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7800,
+        "y": 900
+      }
     },
     "3c7a": {
       "name": "arrayPush",
@@ -682,9 +720,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 1.997107736804049,
-      "y": 0.432194046306505,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9000,
+        "y": 900
+      }
     },
     "433d": {
       "name": "arrayPush",
@@ -710,9 +750,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.0802603036876355,
-      "y": 0.49173098125689085,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 13800,
+        "y": 1000
+      }
     },
     "66a5": {
       "name": "setObjectKey",
@@ -745,9 +787,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.2183658712942878,
-      "y": 0.6604189636163176,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 14400,
+        "y": 1300
+      }
     },
     "c482": {
       "name": "arrayPush",
@@ -773,9 +817,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.345625451916124,
-      "y": 0.49834619625137816,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 15000,
+        "y": 1000
+      }
     },
     "dcd": {
       "name": "arrayPush",
@@ -801,9 +847,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.4931308749096166,
-      "y": 0.4487320837927233,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11100,
+        "y": 900
+      }
     },
     "6fe8": {
       "name": "setObjectKey",
@@ -836,9 +884,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.591467823571945,
-      "y": 0.6504961411245865,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 11700,
+        "y": 1300
+      }
     },
     "480f": {
       "name": "arrayPush",
@@ -864,9 +914,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.694866232827187,
-      "y": 0.4696802646085998,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12000,
+        "y": 900
+      }
     },
     "65f": {
       "name": "setObjectKey",
@@ -899,9 +951,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.7758496023138104,
-      "y": 0.6383682469680264,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12600,
+        "y": 1300
+      }
     },
     "a2e1": {
       "name": "arrayPush",
@@ -927,9 +981,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.889370932754881,
-      "y": 0.4762954796030871,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 12900,
+        "y": 1000
+      }
     },
     "f40b": {
       "name": "arrayConcat",
@@ -955,9 +1011,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.6558206796818511,
-      "y": 0.4663726571113561,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3000,
+        "y": 900
+      }
     },
     "f6cd": {
       "name": "objectToString",
@@ -984,9 +1042,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.2718727404193784,
-      "y": 0.45865490628445427,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10200,
+        "y": 900
+      }
     },
     "f182": {
       "name": "setObjectKey",
@@ -1019,9 +1079,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.364425162689805,
-      "y": 0.6504961411245865,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 10500,
+        "y": 1300
+      }
     },
     "229a": {
       "name": "parse",
@@ -1046,9 +1108,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 2.1149241819632882,
-      "y": 0.6330845771144279,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9600,
+        "y": 1300
+      }
     },
     "2deb": {
       "name": "setObjectKey",
@@ -1081,9 +1145,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.5007776049766717,
-      "y": 0.6637824474660075,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 15900,
+        "y": 1300
+      }
     },
     "40d1": {
       "name": "arrayPush",
@@ -1109,9 +1175,11 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 3.6376360808709176,
-      "y": 0.4857849196538937,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 16500,
+        "y": 1000
+      }
     }
   },
   "transitions": {
@@ -1321,8 +1389,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }

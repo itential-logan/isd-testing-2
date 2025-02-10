@@ -1,96 +1,5 @@
 {
-  "created": "2022-06-02T15:19:37.085Z",
-  "createdVersion": "5.40.5-2021.1.72.0",
-  "created_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": true
-  },
-  "font_size": 12,
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "org": {
-        "title": "org",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "repoName": {
-        "title": "repo",
-        "type": "string"
-      }
-    },
-    "required": [
-      "org",
-      "adapter_id",
-      "repoName"
-    ]
-  },
-  "lastUpdatedVersion": "4.15.0-2023.1.290",
-  "last_updated": "2025-02-07T16:18:59.928Z",
-  "last_updated_by": {
-    "provenance": "Local AAA",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false
-  },
   "name": "Prebuilt Promotion Github Check OrgRepo",
-  "outputSchema": {
-    "type": "object",
-    "properties": {
-      "org": {
-        "title": "org",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "repoName": {
-        "title": "repo",
-        "type": "string"
-      },
-      "_id": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{24}$"
-      },
-      "initiator": {
-        "type": "string"
-      },
-      "repo": {
-        "type": "boolean"
-      },
-      "error": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "failed": {
-        "type": "boolean"
-      }
-    }
-  },
   "tasks": {
     "1134": {
       "name": "newVariable",
@@ -111,22 +20,27 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.0274509803921568,
-      "y": 0.6009673518742442
+      "nodeLocation": {
+        "x": 4500,
+        "y": 1200
+      }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "x": 0.06823529411764706,
-      "y": 0.4546553808948005
+      "nodeLocation": {
+        "x": 300,
+        "y": 900
+      }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "x": 1.1827450980392158,
-      "y": 0.35308343409915355
+      "nodeLocation": {
+        "x": 5400,
+        "y": 700
+      }
     },
     "7fa8": {
       "name": "getOrgsOrg",
@@ -149,12 +63,13 @@
         "error": "$var.job.error",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.5176470588235295,
-      "y": 0.4607013301088271,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 2400,
+        "y": 900
+      }
     },
     "de12": {
       "name": "evaluation",
@@ -193,10 +108,11 @@
           "return_value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.96,
-      "y": 0.4607013301088271
+      "nodeLocation": {
+        "x": 4200,
+        "y": 900
+      }
     },
     "daea": {
       "name": "ViewData",
@@ -220,11 +136,12 @@
         "error": ""
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
-      "x": 0.7968627450980392,
-      "y": 0.30713422007255137,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 600
+      }
     },
     "fc71": {
       "name": "newVariable",
@@ -245,10 +162,11 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 1.0392156862745099,
-      "y": 0.31076178960096734
+      "nodeLocation": {
+        "x": 4800,
+        "y": 600
+      }
     },
     "57f6": {
       "name": "newVariable",
@@ -269,10 +187,11 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.19215686274509805,
-      "y": 0.4619105199516324
+      "nodeLocation": {
+        "x": 900,
+        "y": 900
+      }
     },
     "8e9a": {
       "name": "newVariable",
@@ -293,10 +212,11 @@
           "value": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "x": 0.3466666666666667,
-      "y": 0.45828295042321643
+      "nodeLocation": {
+        "x": 1524,
+        "y": 756
+      }
     },
     "786b": {
       "name": "getReposOwnerRepo",
@@ -320,12 +240,13 @@
         "error": "",
         "decorators": []
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "x": 0.807843137254902,
-      "y": 0.6009673518742442,
-      "scheduled": false
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 3600,
+        "y": 1200
+      }
     }
   },
   "transitions": {
@@ -352,7 +273,6 @@
         "state": "success"
       }
     },
-    "2a69": {},
     "de12": {
       "workflow_end": {
         "type": "standard",
@@ -400,11 +320,105 @@
         "type": "standard",
         "state": "error"
       }
+    },
+    "2a69": {}
+  },
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "org": {
+        "title": "org",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "repoName": {
+        "title": "repo",
+        "type": "string"
+      }
+    },
+    "required": [
+      "org",
+      "adapter_id",
+      "repoName"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "org": {
+        "title": "org",
+        "type": "string"
+      },
+      "adapter_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "repoName": {
+        "title": "repo",
+        "type": "string"
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "repo": {
+        "type": "boolean"
+      },
+      "error": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "failed": {
+        "type": "boolean"
+      }
     }
   },
+  "created": "2022-06-02T15:19:37.085Z",
+  "createdVersion": "5.40.5-2021.1.72.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "font_size": 12,
+  "lastUpdatedVersion": "5.55.2-2023.2.14",
+  "last_updated": "2025-02-07T18:22:00.548Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
   "type": "automation",
-  "canvasVersion": 1,
+  "canvasVersion": 3,
   "tags": [],
   "groups": [],
-  "migrationVersion": 2
+  "migrationVersion": 4
 }

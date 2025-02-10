@@ -216,13 +216,6 @@
             "required": []
           },
           "optional": true
-        },
-        {
-          "$id": "thisArg",
-          "type": "object",
-          "properties": {},
-          "isContext": true,
-          "isThis": true
         }
       ],
       "outgoing": [
@@ -513,13 +506,6 @@
             "required": []
           },
           "optional": true
-        },
-        {
-          "$id": "thisArg",
-          "type": "object",
-          "properties": {},
-          "isContext": true,
-          "isThis": true
         }
       ],
       "outgoing": [
@@ -807,18 +793,18 @@
     "col": 1,
     "row": 6
   },
-  "created": "2025-02-07T16:18:59.812Z",
+  "created": "2025-02-06T18:32:41.075Z",
   "createdBy": {
-    "_id": "6758b72cfadd72c52287b17f",
-    "provenance": "Local AAA",
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2025-02-07T16:18:59.812Z",
+  "lastUpdated": "2025-02-06T18:32:41.075Z",
   "lastUpdatedBy": {
-    "_id": "6758b72cfadd72c52287b17f",
-    "provenance": "Local AAA",
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
     "username": "admin@pronghorn"
   },
-  "version": "4.1.2-2023.1.27",
+  "version": "4.3.6-2023.2.5",
   "tags": []
 }
