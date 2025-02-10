@@ -1344,6 +1344,13 @@
           },
           "$id": "array",
           "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isIndexed": true
         }
       ],
       "outgoing": [
@@ -1867,6 +1874,14 @@
           },
           "$id": "array",
           "optional": true
+        },
+        {
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {},
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
         }
       ],
       "outgoing": [
@@ -2386,9 +2401,18 @@
           "optional": true
         },
         {
-          "$id": "constantValue1",
-          "type": "string",
-          "isConstValue": true
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
         }
       ],
       "outgoing": [
@@ -2412,8 +2436,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "constantValue1",
-            "ptr": ""
+            "name": "thisArg",
+            "ptr": "/0_name"
           },
           "to": {
             "location": "method",
@@ -2777,9 +2801,19 @@
           "optional": true
         },
         {
-          "$id": "constantValue1",
-          "type": "string",
-          "isConstValue": true
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_id": {
+              "type": "string",
+              "examples": [
+                "5f7c62b43451a606c2fb0305"
+              ]
+            }
+          },
+          "isContext": true,
+          "isThis": true,
+          "isIndexed": true
         }
       ],
       "outgoing": [
@@ -2817,8 +2851,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "constantValue1",
-            "ptr": ""
+            "name": "thisArg",
+            "ptr": "/0_id"
           },
           "to": {
             "location": "method",
@@ -2967,18 +3001,18 @@
     "col": 4,
     "row": 11
   },
-  "created": "2025-02-06T18:32:40.685Z",
+  "created": "2025-02-07T16:18:59.756Z",
   "createdBy": {
-    "_id": "67a4e4222312192336f612c5",
-    "provenance": "local_aaa",
+    "_id": "6758b72cfadd72c52287b17f",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2025-02-06T18:32:40.685Z",
+  "lastUpdated": "2025-02-07T16:18:59.756Z",
   "lastUpdatedBy": {
-    "_id": "67a4e4222312192336f612c5",
-    "provenance": "local_aaa",
+    "_id": "6758b72cfadd72c52287b17f",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn"
   },
-  "version": "4.3.6-2023.2.5",
+  "version": "4.1.2-2023.1.27",
   "tags": []
 }

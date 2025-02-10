@@ -294,9 +294,19 @@
           "optional": true
         },
         {
-          "$id": "constantValue1",
-          "type": "string",
-          "isConstValue": true
+          "$id": "thisArg",
+          "type": "object",
+          "properties": {
+            "0_path": {
+              "$id": "path",
+              "type": "string",
+              "examples": [
+                "test"
+              ]
+            }
+          },
+          "isContext": true,
+          "isIndexed": true
         }
       ],
       "outgoing": [
@@ -342,8 +352,8 @@
           "type": "assign",
           "from": {
             "location": "incoming",
-            "name": "constantValue1",
-            "ptr": ""
+            "name": "thisArg",
+            "ptr": "/0_path"
           },
           "to": {
             "location": "method",
@@ -383,18 +393,18 @@
     "col": 2,
     "row": 6
   },
-  "created": "2025-02-06T18:32:41.081Z",
+  "created": "2025-02-07T16:18:59.813Z",
   "createdBy": {
-    "_id": "67a4e4222312192336f612c5",
-    "provenance": "local_aaa",
+    "_id": "6758b72cfadd72c52287b17f",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn"
   },
-  "lastUpdated": "2025-02-06T18:32:41.081Z",
+  "lastUpdated": "2025-02-07T16:18:59.813Z",
   "lastUpdatedBy": {
-    "_id": "67a4e4222312192336f612c5",
-    "provenance": "local_aaa",
+    "_id": "6758b72cfadd72c52287b17f",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn"
   },
-  "version": "4.3.6-2023.2.5",
+  "version": "4.1.2-2023.1.27",
   "tags": []
 }

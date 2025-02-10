@@ -5,8 +5,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": true
   },
   "description": "",
   "font_size": 12,
@@ -14,14 +13,13 @@
     "type": "object",
     "properties": {}
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.414Z",
+  "lastUpdatedVersion": "4.15.0-2023.1.290",
+  "last_updated": "2025-02-07T16:18:59.922Z",
   "last_updated_by": {
-    "provenance": "local_aaa",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": false
   },
   "name": "Prebuilt Promotion Gitlab Add Files",
   "outputSchema": {
@@ -116,11 +114,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2400,
-        "y": 400
-      }
+      "x": 0.5103349964362082,
+      "y": 0.19075712881022616,
+      "scheduled": false
     },
     "1649": {
       "name": "arrayPush",
@@ -146,11 +142,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1800,
-        "y": 800
-      }
+      "x": 0.3706343549536707,
+      "y": 0.37659783677482794,
+      "scheduled": false
     },
     "2331": {
       "name": "arrayPush",
@@ -176,11 +170,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4500,
-        "y": 800
-      }
+      "x": 1.0171062009978618,
+      "y": 0.3972468043264503,
+      "scheduled": false
     },
     "3853": {
       "name": "setObjectKey",
@@ -211,11 +203,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3300,
-        "y": 400
-      }
+      "x": 0.7034925160370634,
+      "y": 0.20452310717797442,
+      "scheduled": false
     },
     "5820": {
       "name": "arrayPush",
@@ -241,11 +231,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 9600,
-        "y": 800
-      }
+      "x": 2.1368496079828936,
+      "y": 0.37954768928220256,
+      "scheduled": false
     },
     "6194": {
       "name": "setObjectKey",
@@ -276,11 +264,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4200,
-        "y": 400
-      }
+      "x": 0.909479686386315,
+      "y": 0.19862340216322516,
+      "scheduled": false
     },
     "6323": {
       "name": "setObjectKey",
@@ -311,11 +297,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 11400,
-        "y": 400
-      }
+      "x": 2.540270848182466,
+      "y": 0.176007866273353,
+      "scheduled": false
     },
     "7019": {
       "name": "setObjectKey",
@@ -346,27 +330,21 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 9600,
-        "y": 400
-      }
+      "x": 2.1048445408532177,
+      "y": 0.20066152149944874,
+      "scheduled": false
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
-      "nodeLocation": {
-        "x": 600,
-        "y": 400
-      }
+      "x": 0.11332858161083392,
+      "y": 0.19075712881022616
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
-      "nodeLocation": {
-        "x": 12600,
-        "y": 300
-      }
+      "x": 2.8011404133998576,
+      "y": 0.12979351032448377
     },
     "e474": {
       "name": "setObjectKey",
@@ -397,11 +375,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1200,
-        "y": 400
-      }
+      "x": 0.2601568068424804,
+      "y": 0.1927236971484759,
+      "scheduled": false
     },
     "d42b": {
       "name": "setObjectKey",
@@ -432,11 +408,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 5100,
-        "y": 400
-      }
+      "x": 1.1290092658588737,
+      "y": 0.20747295968534907,
+      "scheduled": false
     },
     "8bdb": {
       "name": "setObjectKey",
@@ -467,11 +441,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6000,
-        "y": 400
-      }
+      "x": 1.3292943692088381,
+      "y": 0.20353982300884957,
+      "scheduled": false
     },
     "80ce": {
       "name": "setObjectKey",
@@ -502,11 +474,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6900,
-        "y": 400
-      }
+      "x": 1.5074839629365646,
+      "y": 0.20648967551622419,
+      "scheduled": false
     },
     "ef03": {
       "name": "setObjectKey",
@@ -537,11 +507,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7500,
-        "y": 400
-      }
+      "x": 1.6856735566642909,
+      "y": 0.20943952802359883,
+      "scheduled": false
     },
     "7c35": {
       "name": "arrayPush",
@@ -567,11 +535,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 800
-      }
+      "x": 0.5894511760513186,
+      "y": 0.39233038348082594,
+      "scheduled": false
     },
     "3d5d": {
       "name": "arrayPush",
@@ -597,11 +563,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 3600,
-        "y": 800
-      }
+      "x": 0.7904490377761939,
+      "y": 0.39331366764995085,
+      "scheduled": false
     },
     "4f62": {
       "name": "arrayPush",
@@ -627,11 +591,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 5400,
-        "y": 800
-      }
+      "x": 1.225231646471846,
+      "y": 0.39331366764995085,
+      "scheduled": false
     },
     "40fd": {
       "name": "arrayPush",
@@ -657,11 +619,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6300,
-        "y": 800
-      }
+      "x": 1.4076977904490378,
+      "y": 0.40216322517207476,
+      "scheduled": false
     },
     "d3e6": {
       "name": "arrayPush",
@@ -687,11 +647,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 6900,
-        "y": 800
-      }
+      "x": 1.563791874554526,
+      "y": 0.39823008849557523,
+      "scheduled": false
     },
     "62a1": {
       "name": "arrayPush",
@@ -717,11 +675,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 7800,
-        "y": 800
-      }
+      "x": 1.7156094084105489,
+      "y": 0.40117994100294985,
+      "scheduled": false
     },
     "9bcf": {
       "name": "setObjectKey",
@@ -752,11 +708,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 10200,
-        "y": 400
-      }
+      "x": 2.2879543834640055,
+      "y": 0.18190757128810225,
+      "scheduled": false
     },
     "84c3": {
       "name": "arrayPush",
@@ -782,11 +736,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 10800,
-        "y": 800
-      }
+      "x": 2.392017106200998,
+      "y": 0.3824975417895772,
+      "scheduled": false
     },
     "103d": {
       "name": "arrayPush",
@@ -812,11 +764,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 12000,
-        "y": 800
-      }
+      "x": 2.668567355666429,
+      "y": 0.3893805309734513,
+      "scheduled": false
     },
     "f42b": {
       "name": "parse",
@@ -841,11 +791,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 8700,
-        "y": 800
-      }
+      "x": 1.9044903777619386,
+      "y": 0.38741396263520156,
+      "scheduled": false
     },
     "6f7b": {
       "name": "objectToString",
@@ -872,11 +820,9 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 8700,
-        "y": 400
-      }
+      "x": 1.9080541696364932,
+      "y": 0.19862340216322516,
+      "scheduled": false
     }
   },
   "transitions": {
@@ -1041,8 +987,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 3,
+  "canvasVersion": 1,
   "tags": [],
   "groups": [],
-  "migrationVersion": 4
+  "migrationVersion": 2
 }
