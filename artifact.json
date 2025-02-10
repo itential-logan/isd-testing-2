@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/prebuilt-promotion",
-    "version": "0.0.4",
+    "version": "0.0.2",
     "description": "Push pre-built to a specified version control service",
     "license": "Apache-2.0",
     "repository": {
@@ -14,7 +14,7 @@
       "IAP",
       "artifacts"
     ],
-    "author": "Itential Automation Platform_1",
+    "author": "Itential Automation Platform",
     "IAPDependencies": {
       "@itential/app-operations_manager": "",
       "@itential/app-json_forms": "",
@@ -26,8 +26,8 @@
   },
   "manifest": {
     "bundleName": "@itentialopensource/prebuilt-promotion",
-    "fingerprint": "67aa2cae547e674ddd59e339",
-    "createdEpoch": "1739205806642",
+    "fingerprint": "67aa3e47547e674ddd59e33b",
+    "createdEpoch": "1739210311466",
     "artifacts": [
       {
         "id": "Prebuilt Promotion",
@@ -467,7 +467,7 @@
             "_id": "67a5004fa66b413d7f038cc7",
             "created": "2022-10-31T20:43:50.925Z",
             "createdBy": "admin@pronghorn",
-            "lastUpdated": "2025-02-10T16:40:22.301Z",
+            "lastUpdated": "2025-02-10T17:57:55.714Z",
             "lastUpdatedBy": "admin@pronghorn",
             "name": "Start Prebuilt Promotion with Form",
             "type": "manual",
@@ -483,7 +483,7 @@
                 "forExistingProjects": {
                   "mrType": "major",
                   "targetBranch": "main",
-                  "commitMessage": "test-9"
+                  "commitMessage": "test-11"
                 },
                 "versionControlService": "github",
                 "projectName": "isd-testing-2",
