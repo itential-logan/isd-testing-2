@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/prebuilt-promotion",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Push pre-built to a specified version control service",
     "license": "Apache-2.0",
     "repository": {
