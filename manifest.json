@@ -1,8 +1,8 @@
 {
   "bundleName": "@itentialopensource/prebuilt-promotion",
   "version": "0.0.1",
-  "fingerprint": "67aa2cae547e674ddd59e339",
-  "createdEpoch": "1739205806642",
+  "fingerprint": "67aa3e47547e674ddd59e33b",
+  "createdEpoch": "1739210311466",
   "artifacts": [
     {
       "id": "Prebuilt Promotion",
