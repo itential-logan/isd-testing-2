@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/prebuilt-promotion",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Push pre-built to a specified version control service",
     "license": "Apache-2.0",
     "repository": {
@@ -14,7 +14,7 @@
       "IAP",
       "artifacts"
     ],
-    "author": "Itential Automation Platform",
+    "author": "Itential Automation Platform_1",
     "IAPDependencies": {
       "@itential/app-operations_manager": "",
       "@itential/app-json_forms": "",
