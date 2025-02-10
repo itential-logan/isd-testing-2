@@ -1,7 +1,7 @@
 {
   "metadata": {
     "name": "@itentialopensource/prebuilt-promotion",
-    "version": "0.0.3",
+    "version": "0.0.2",
     "description": "Push pre-built to a specified version control service",
     "license": "Apache-2.0",
     "repository": {
@@ -26,8 +26,8 @@
   },
   "manifest": {
     "bundleName": "@itentialopensource/prebuilt-promotion",
-    "fingerprint": "67aa2cae547e674ddd59e339",
-    "createdEpoch": "1739205806642",
+    "fingerprint": "67aa390e547e674ddd59e33a",
+    "createdEpoch": "1739208974308",
     "artifacts": [
       {
         "id": "Prebuilt Promotion",
