@@ -1,0 +1,79 @@
+{
+  "_id": "61aa46e4972d5600e3de8554",
+  "name": "Create Pre-Built - Merge Discovered Components",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "workflow",
+      "type": "array"
+    },
+    {
+      "$id": "operationsAutomation",
+      "type": "array"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "discoveryData",
+      "type": "object",
+      "properties": {
+        "workflow": {
+          "type": "array"
+        },
+        "operationsAutomation": {
+          "type": "array"
+        }
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "workflow",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "discoveryData",
+        "ptr": "/workflow"
+      }
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "operationsAutomation",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "discoveryData",
+        "ptr": "/operationsAutomation"
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 5
+  },
+  "created": "2025-01-27T17:56:17.758Z",
+  "createdBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "lastUpdated": "2025-01-27T17:56:17.758Z",
+  "lastUpdatedBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "version": "4.3.6-2023.2.10",
+  "tags": []
+}

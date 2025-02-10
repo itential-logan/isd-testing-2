@@ -1,0 +1,1337 @@
+{
+  "_id": "6197e2fcda174d24c34d36dc",
+  "name": "Create Pre-Built - Format Publish",
+  "description": "Takes in the output of the AppArtifacts componentDiscovery task and some other data to form the input of the createPublishedArtifactFromScratch task.",
+  "incoming": [
+    {
+      "$id": "name",
+      "type": "string",
+      "examples": [
+        "Example Name"
+      ]
+    },
+    {
+      "$id": "scope",
+      "type": "string"
+    },
+    {
+      "$id": "description",
+      "type": "string",
+      "examples": [
+        "A prebuilt that accomplishes xyz"
+      ]
+    },
+    {
+      "$id": "contributor",
+      "type": "string",
+      "examples": [
+        "Employee x"
+      ]
+    },
+    {
+      "$id": "readme",
+      "type": "string",
+      "examples": [
+        "Example readme"
+      ]
+    },
+    {
+      "$id": "license",
+      "type": "string",
+      "examples": [
+        "Apache 2.0"
+      ],
+      "default": "Apache 2.0"
+    },
+    {
+      "$id": "categories",
+      "type": "array"
+    },
+    {
+      "$id": "keywords",
+      "type": "array"
+    },
+    {
+      "$id": "discoverComponentsOutput",
+      "type": "object",
+      "properties": {
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "@itential/app-automation_catalog"
+            ]
+          }
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "componentsFormSelection",
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "properties": {
+            "operationsAutomations": {
+              "type": "array"
+            },
+            "workflows": {
+              "type": "array"
+            },
+            "jsonForms": {
+              "type": "array"
+            },
+            "forms": {
+              "type": "array"
+            },
+            "templates": {
+              "type": "array"
+            },
+            "commandTemplates": {
+              "type": "array"
+            },
+            "analyticTemplates": {
+              "type": "array"
+            },
+            "goldenConfigTrees": {
+              "type": "array"
+            },
+            "transformations": {
+              "type": "array"
+            },
+            "triggers": {
+              "type": "array"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "artifactData",
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "Example Name"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "examples": [
+                "Example Description"
+              ]
+            },
+            "contributor": {
+              "type": "string",
+              "examples": [
+                "Example Contributor"
+              ]
+            },
+            "readme": {
+              "type": "string",
+              "examples": [
+                "# Example README"
+              ]
+            },
+            "license": {
+              "type": "string",
+              "examples": [
+                "Apache 2%2E0"
+              ]
+            },
+            "categories": {
+              "type": "array"
+            },
+            "keywords": {
+              "type": "array"
+            },
+            "dependencies": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "examples": [
+                  "@itential/app-automation_catalog"
+                ]
+              }
+            }
+          },
+          "required": []
+        },
+        "components": {
+          "type": "object",
+          "properties": {
+            "automation": {
+              "type": "array"
+            },
+            "workflow": {
+              "type": "array"
+            },
+            "json-forms": {
+              "type": "array"
+            },
+            "forms": {
+              "type": "array"
+            },
+            "template": {
+              "type": "array"
+            },
+            "mop-template": {
+              "type": "array"
+            },
+            "mop-analytic-template": {
+              "type": "array"
+            },
+            "golden-config": {
+              "type": "array"
+            },
+            "transformation": {
+              "type": "array"
+            },
+            "triggers": {
+              "type": "array"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "modules",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "package_id": {
+            "type": "string",
+            "examples": [
+              "@itential/app-automation_catalog"
+            ]
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "defaultPackageJson",
+      "type": "object"
+    }
+  ],
+  "steps": [
+    {
+      "id": 21,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "description",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/description"
+      }
+    },
+    {
+      "id": 22,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "contributor",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/contributor"
+      }
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "readme",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/readme"
+      }
+    },
+    {
+      "id": 24,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "license",
+        "ptr": ""
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/license"
+      }
+    },
+    {
+      "id": 29,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/operationsAutomations"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/automation"
+      }
+    },
+    {
+      "id": 30,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/workflows"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/workflow"
+      }
+    },
+    {
+      "id": 31,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/jsonForms"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/json-forms"
+      }
+    },
+    {
+      "id": 32,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/forms"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/forms"
+      }
+    },
+    {
+      "id": 33,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/templates"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/template"
+      }
+    },
+    {
+      "id": 34,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/commandTemplates"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/mop-template"
+      }
+    },
+    {
+      "id": 35,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/analyticTemplates"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/mop-analytic-template"
+      }
+    },
+    {
+      "id": 36,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/goldenConfigTrees"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/golden-config"
+      }
+    },
+    {
+      "id": 37,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/transformations"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/transformation"
+      }
+    },
+    {
+      "id": 38,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoverComponentsOutput",
+        "ptr": "/dependencies"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/dependencies"
+      }
+    },
+    {
+      "id": 39,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "componentsFormSelection",
+        "ptr": "/components/triggers"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/components/triggers"
+      }
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoverComponentsOutput",
+        "ptr": "/dependencies"
+      },
+      "to": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 26,
+      "type": "declaration",
+      "library": "Object",
+      "method": "new Object",
+      "args": [
+        {
+          "name": "@scope/name",
+          "version": "0.0.1",
+          "description": "",
+          "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "deploy": "echo not needed npm publish --access=public --registry=http://registry.npmjs.org",
+            "validateSchema": "node test/manifestTester.js manifest.json manifest-schema.json",
+            "validateSchemaLinks": "node test/manifestLinkTester.js manifest.json",
+            "generateImageLinks": "node utils/generateImageLinks.js"
+          },
+          "repository": {
+            "type": "local",
+            "hostname": "localhost",
+            "path": "/"
+          },
+          "keywords": [],
+          "contributors": [],
+          "author": "",
+          "license": "Apache-2.0",
+          "devDependencies": {
+            "r2": "^2.0.1",
+            "ajv": "6.10.0",
+            "better-ajv-errors": "^0.6.1",
+            "fs-extra": "^7.0.1"
+          }
+        }
+      ],
+      "view": {
+        "row": 7,
+        "col": 1
+      }
+    },
+    {
+      "id": 41,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "keywords",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 40,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 42,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "keyword"
+      ],
+      "view": {
+        "row": 4,
+        "col": 1
+      }
+    },
+    {
+      "id": 45,
+      "type": "declaration",
+      "library": "String",
+      "method": "new String",
+      "args": [
+        "category"
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      }
+    },
+    {
+      "id": 47,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "categories",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 44,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 62,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "name",
+        "ptr": ""
+      },
+      "to": {
+        "location": "function",
+        "name": 61,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 65,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "scope",
+        "ptr": ""
+      },
+      "to": {
+        "location": "template",
+        "name": 63,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 72,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "contributor",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 68,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "createModuleObject"
+      ],
+      "view": {
+        "row": 5,
+        "col": 1
+      }
+    },
+    {
+      "id": 43,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 42,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 40,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 46,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 45,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 44,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 57,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 26,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 55,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 61,
+      "type": "function",
+      "function": "convertNameToKebabCase",
+      "args": [
+        ""
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 55,
+      "type": "method",
+      "library": "Object",
+      "method": "deleteProperty",
+      "args": [
+        null,
+        "name"
+      ],
+      "view": {
+        "row": 7,
+        "col": 2
+      }
+    },
+    {
+      "id": 64,
+      "type": "assign",
+      "from": {
+        "location": "function",
+        "name": 61,
+        "ptr": "/return/kebabCaseName"
+      },
+      "to": {
+        "location": "template",
+        "name": 63,
+        "ptr": "/args/1/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 40,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "getValueOfObjectProperty",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 2
+      }
+    },
+    {
+      "id": 44,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "getValueOfObjectProperty",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      }
+    },
+    {
+      "id": 58,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 55,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 56,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 63,
+      "type": "template",
+      "library": "String",
+      "method": "templateLiteral",
+      "template": "${scope}/${name}",
+      "args": [
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 67,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 63,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 56,
+        "ptr": "/args/2/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 56,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "name",
+        null
+      ],
+      "view": {
+        "row": 7,
+        "col": 3
+      }
+    },
+    {
+      "id": 69,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 56,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 68,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 68,
+      "type": "method",
+      "library": "Object",
+      "method": "setProperty",
+      "args": [
+        null,
+        "author",
+        null
+      ],
+      "view": {
+        "row": 5,
+        "col": 3
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "modules",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 71,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 68,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "defaultPackageJson",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 48,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 40,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/keywords"
+      }
+    },
+    {
+      "id": 49,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 44,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/categories"
+      }
+    },
+    {
+      "id": 66,
+      "type": "assign",
+      "from": {
+        "location": "template",
+        "name": 63,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "artifactData",
+        "ptr": "/metadata/name"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "string",
+          "examples": [
+            "@itential/app-automation_catalog"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "@itential/app-automation_catalog"
+            ]
+          },
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 5,
+          "type": "declaration",
+          "library": "String",
+          "method": "new String",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 5,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "package_id",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "version",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "createModuleObject",
+      "view": {
+        "col": 3,
+        "row": 4
+      },
+      "id": "createModuleObject",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "getValueOfObjectProperty",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "getValueOfObjectProperty",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "name",
+          "type": "string",
+          "examples": [
+            "Test Name"
+          ]
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "kebabCaseName",
+          "type": "string",
+          "examples": [
+            "test-name"
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "name",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "declaration",
+          "library": "RegExp",
+          "method": "new RegExp",
+          "args": [
+            "\\s",
+            "gm"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "String",
+          "method": "toLowerCase",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "String",
+          "method": "replace",
+          "args": [
+            null,
+            null,
+            "-"
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "kebabCaseName",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "convertNameToKebabCase",
+      "view": {
+        "col": 2,
+        "row": 4
+      },
+      "id": "convertNameToKebabCase",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 3,
+    "row": 8
+  },
+  "created": "2025-01-27T17:56:17.813Z",
+  "createdBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "lastUpdated": "2025-01-27T17:56:17.813Z",
+  "lastUpdatedBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "version": "4.3.6-2023.2.10",
+  "tags": []
+}
