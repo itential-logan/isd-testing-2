@@ -26,8 +26,8 @@
   },
   "manifest": {
     "bundleName": "@itentialopensource/prebuilt-promotion",
-    "fingerprint": "67aa23a48eff11505eaf4151",
-    "createdEpoch": "1739203492007",
+    "fingerprint": "67aa29ef70d2382340654abe",
+    "createdEpoch": "1739205103203",
     "artifacts": [
       {
         "id": "Prebuilt Promotion",
@@ -467,7 +467,7 @@
             "_id": "67a6327468d2775f2a08ccca",
             "created": "2022-10-31T20:43:50.925Z",
             "createdBy": "admin@pronghorn",
-            "lastUpdated": "2025-02-10T16:01:34.790Z",
+            "lastUpdated": "2025-02-10T16:11:03.049Z",
             "lastUpdatedBy": "admin@pronghorn",
             "name": "Start Prebuilt Promotion with Form",
             "type": "manual",
@@ -481,9 +481,9 @@
                 "addRepositoryDependencyFiles": true,
                 "reDiscoverPrebuilt": false,
                 "forExistingProjects": {
-                  "mrType": "major",
+                  "mrType": "minor",
                   "targetBranch": "main",
-                  "commitMessage": "test-7"
+                  "commitMessage": "test-8"
                 },
                 "versionControlService": "github",
                 "projectName": "isd-testing-2",
