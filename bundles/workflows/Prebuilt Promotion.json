@@ -1,12 +1,12 @@
 {
+  "canvasVersion": 3,
   "created": "2022-03-08T14:35:35.606Z",
   "createdVersion": "5.40.5-2021.1.52.0",
   "created_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": true
   },
   "description": null,
   "font_size": 12,
@@ -14,184 +14,41 @@
     "type": "object",
     "properties": {
       "formData": {
-        "type": "object",
-        "properties": {
-          "checkInPrebuilt": {
-            "type": "object",
-            "properties": {
-              "reDiscoverPrebuilt": {
-                "type": "boolean",
-                "examples": [
-                  true,
-                  false
-                ]
-              },
-              "addRepositoryDependencyFiles": {
-                "type": "boolean",
-                "examples": [
-                  true,
-                  false
-                ]
-              },
-              "makeProjectPrivateGithubOnly": {
-                "type": "boolean",
-                "examples": [
-                  true,
-                  false
-                ]
-              },
-              "forExistingProjects": {
-                "type": "object",
-                "properties": {
-                  "mrType": {
-                    "type": "string",
-                    "examples": [
-                      "patch"
-                    ]
-                  },
-                  "commitMessage": {
-                    "type": "string",
-                    "examples": [
-                      "init"
-                    ]
-                  },
-                  "targetBranch": {
-                    "type": "string",
-                    "examples": [
-                      "master"
-                    ]
-                  }
-                },
-                "required": []
-              },
-              "versionControlService": {
-                "type": "string",
-                "examples": [
-                  "gitlab"
-                ]
-              },
-              "projectName": {
-                "type": "string",
-                "examples": [
-                  "test"
-                ]
-              },
-              "groupPath": {
-                "type": "string",
-                "examples": [
-                  "ACME/engineering"
-                ]
-              },
-              "prebuilt": {
-                "type": "string",
-                "examples": [
-                  "@dsup/testprebuilt"
-                ]
-              }
-            },
-            "required": []
-          }
-        },
-        "required": []
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
       }
     },
     "required": [
       "formData"
     ]
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.351Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.177",
+  "last_updated": "2025-02-10T18:16:39.143Z",
   "last_updated_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "provenance": "CloudAAA",
+    "username": "logan.seo@itential.com",
+    "firstname": "Logan",
+    "inactive": false
   },
   "name": "Prebuilt Promotion",
   "outputSchema": {
     "type": "object",
     "properties": {
       "formData": {
-        "type": "object",
-        "properties": {
-          "checkInPrebuilt": {
-            "type": "object",
-            "properties": {
-              "reDiscoverPrebuilt": {
-                "type": "boolean",
-                "examples": [
-                  true,
-                  false
-                ]
-              },
-              "addRepositoryDependencyFiles": {
-                "type": "boolean",
-                "examples": [
-                  true,
-                  false
-                ]
-              },
-              "makeProjectPrivateGithubOnly": {
-                "type": "boolean",
-                "examples": [
-                  true,
-                  false
-                ]
-              },
-              "forExistingProjects": {
-                "type": "object",
-                "properties": {
-                  "mrType": {
-                    "type": "string",
-                    "examples": [
-                      "patch"
-                    ]
-                  },
-                  "commitMessage": {
-                    "type": "string",
-                    "examples": [
-                      "init"
-                    ]
-                  },
-                  "targetBranch": {
-                    "type": "string",
-                    "examples": [
-                      "master"
-                    ]
-                  }
-                },
-                "required": []
-              },
-              "versionControlService": {
-                "type": "string",
-                "examples": [
-                  "gitlab"
-                ]
-              },
-              "projectName": {
-                "type": "string",
-                "examples": [
-                  "test"
-                ]
-              },
-              "groupPath": {
-                "type": "string",
-                "examples": [
-                  "ACME/engineering"
-                ]
-              },
-              "prebuilt": {
-                "type": "string",
-                "examples": [
-                  "@dsup/testprebuilt"
-                ]
-              }
-            },
-            "required": []
-          }
-        },
-        "required": []
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
       },
       "_id": {
         "type": "string",
@@ -1919,7 +1776,6 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 3,
   "tags": [],
   "groups": [],
   "migrationVersion": 4

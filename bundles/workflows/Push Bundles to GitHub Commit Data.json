@@ -1,12 +1,12 @@
 {
+  "canvasVersion": 3,
   "created": "2021-03-21T17:59:03.698Z",
   "createdVersion": "5.29.14-2020.2.13",
   "created_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": true
   },
   "description": null,
   "font_size": 12,
@@ -46,14 +46,13 @@
       "action"
     ]
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.496Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.177",
+  "last_updated": "2025-02-10T18:16:39.150Z",
   "last_updated_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "provenance": "CloudAAA",
+    "username": "logan.seo@itential.com",
+    "firstname": "Logan",
+    "inactive": false
   },
   "name": "Push Bundles to GitHub Commit Data",
   "outputSchema": {
@@ -1230,7 +1229,6 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 3,
   "tags": [],
   "groups": [],
   "migrationVersion": 4
