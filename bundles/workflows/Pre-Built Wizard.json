@@ -1,0 +1,1120 @@
+{
+  "created": "2023-07-18T19:51:26.146Z",
+  "createdVersion": "5.46.0-2023.1.14.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": true
+  },
+  "font_size": 12,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "formData": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "formData"
+    ]
+  },
+  "lastUpdatedVersion": "4.69.3-2023.2.172",
+  "last_updated": "2025-01-27T17:56:18.116Z",
+  "last_updated_by": {
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com",
+    "firstname": "David",
+    "inactive": false
+  },
+  "name": "Pre-Built Wizard",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "formData": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      }
+    }
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
+  "tasks": {
+    "1667": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if No Invalid Components Found",
+      "description": "Confirm no invalid components found",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "ef7"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": 0,
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "x": 0.8500749625187406,
+      "y": 0.5127582017010935,
+      "nodeLocation": {
+        "x": 6156,
+        "y": 1008
+      }
+    },
+    "2424": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "View Invalid Components",
+      "description": "Show provision error and decision options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Invalid Components Discovered",
+          "message": "Invalid components were discovered during the discovery phase. The invalid components are shown below.",
+          "body": "$var.ef7.return_data",
+          "variables": "",
+          "btn_success": "Re-Attempt Discovery",
+          "btn_failure": "End Automation"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "x": 0.8470764617691154,
+      "y": 0.701093560145808,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6156,
+        "y": 1140
+      }
+    },
+    "9514": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create Pre-Built - Merge Discovered Components",
+      "description": "Merge discovered components to create a new object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "61aa46e4972d5600e3de8554",
+          "variableMap": {
+            "workflow": "$var.5f85.automationWorkflows",
+            "operationsAutomation": "$var.5f85.operationsManagerOperations"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "discoveryData": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.2811094452773613,
+      "y": 0.5018226002430134,
+      "task_name": "Create Pre-Built - Merge Discovered Components",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 4860,
+        "y": 1008
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": 0,
+      "y": 0.5,
+      "nodeLocation": {
+        "x": 4308,
+        "y": 1008
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 2.5742128935532236,
+      "y": 0.48602673147023084,
+      "nodeLocation": {
+        "x": 9336,
+        "y": 1008
+      }
+    },
+    "5f85": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create Pre-Built - Get formData",
+      "description": "Takes in the formData for the 'Create a new prebuilt master' workflow and returns the parsed variables.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "61a8f96c972d5600e3de8552",
+          "variableMap": {
+            "formData": "$var.job.formData"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "scope": null,
+          "prebuiltName": null,
+          "prebuiltDescription": null,
+          "readme": null,
+          "zeroTouch": null,
+          "license": null,
+          "contributor": null,
+          "keywords": null,
+          "operationsManagerOperations": null,
+          "automationWorkflows": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.12218890554722639,
+      "y": 0.5054678007290401,
+      "task_name": "Create Pre-Built - Get formData",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 4548,
+        "y": 1008
+      }
+    },
+    "99d0": {
+      "name": "componentDiscovery",
+      "canvasName": "componentDiscovery",
+      "summary": "Discover Linked Components",
+      "description": "Discovers any components linked to Operations Manager operations or workflows provided",
+      "location": "Application",
+      "locationType": null,
+      "app": "AppArtifacts",
+      "type": "automatic",
+      "displayName": "AppArtifacts",
+      "variables": {
+        "incoming": {
+          "entryPoint": "$var.9514.discoveryData"
+        },
+        "outgoing": {
+          "discovery": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.46927726683227117,
+      "y": 0.5054678007290401,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5184,
+        "y": 1008
+      }
+    },
+    "a76c": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "Show Component Discovery Error",
+      "description": "Show provision error and decision options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Error Encountered",
+          "message": "An error was thrown while discovering the different components of the automation. The error is shown below.",
+          "body": "$var.99d0.error",
+          "variables": "",
+          "btn_success": "Re-Attempt Discovery",
+          "btn_failure": "End Automation"
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "x": 0.4700149925037481,
+      "y": 0.6986634264884569,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5184,
+        "y": 1152
+      }
+    },
+    "b9b0": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.6619190404797601,
+      "y": 0.9732685297691372,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5184,
+        "y": 1284
+      }
+    },
+    "ef7": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Invalid Discovered Components",
+      "description": "Query invalid discovered components",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "invalidComponents",
+          "obj": "$var.99d0.discovery"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.5877061469265368,
+      "y": 0.5091130012150669,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5508,
+        "y": 1008
+      }
+    },
+    "84d1": {
+      "name": "arrayLength",
+      "canvasName": "length",
+      "summary": "Get number of invalid components",
+      "description": "Get number of invalid components",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.ef7.return_data"
+        },
+        "outgoing": {
+          "length": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.7143928035982009,
+      "y": 0.5066828675577156,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 5832,
+        "y": 1008
+      }
+    },
+    "d4ba": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create Pre-Puilt - Edit Components",
+      "description": "Takes in the output of the componentDiscovery task in appartifacts and outputs a format that can be used in a form where the components can be edited.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "619d03ad69bd2d6d0005f64d",
+          "variableMap": {
+            "componentDiscoveryOutput": "$var.99d0.discovery"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "componentEditorFormInput": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 0.9775112443778111,
+      "y": 0.5164034021871203,
+      "task_name": "Create Pre-Puilt - Edit Components",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 6480,
+        "y": 1008
+      }
+    },
+    "615f": {
+      "name": "ShowJsonForm",
+      "canvasName": "ShowJsonForm",
+      "summary": "Edit Discovered Components",
+      "description": "Edit discovered components",
+      "location": "Application",
+      "app": "JsonForms",
+      "displayName": "JsonForms",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "form_id": "Create Pre-Built - Edit Discovered Components",
+          "instance_data": "$var.d4ba.componentEditorFormInput"
+        },
+        "outgoing": {
+          "export": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "view": "/json-forms/task/ShowJsonForm",
+      "groups": [],
+      "x": 1.1131934032983508,
+      "y": 0.3730255164034022,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 6804,
+        "y": 888
+      }
+    },
+    "3f2": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create Pre-Built - Determine Components",
+      "description": "Determine components to publish",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "61aa625a972d5600e3de8555",
+          "variableMap": {
+            "formData": "$var.615f.export",
+            "originalComponents": "$var.d4ba.componentEditorFormInput"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "componentInput": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 1.2511244377811095,
+      "y": 0.5176184690157959,
+      "task_name": "Create Pre-Built - Determine Components",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 7128,
+        "y": 1008
+      }
+    },
+    "8d8": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "Create Pre-Built - Format Publish",
+      "description": "Takes in the output of the AppArtifacts componentDiscovery task and some other data to form the input of the createPublishedArtifactFromScratch task.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6197e2fcda174d24c34d36dc",
+          "variableMap": {
+            "name": "$var.5f85.prebuiltName",
+            "scope": "$var.5f85.scope",
+            "description": "$var.5f85.prebuiltDescription",
+            "contributor": "$var.5f85.contributor",
+            "readme": "$var.5f85.readme",
+            "license": "$var.5f85.license",
+            "categories": [],
+            "keywords": "$var.5f85.keywords",
+            "discoverComponentsOutput": "$var.99d0.discovery",
+            "componentsFormSelection": "$var.3f2.componentInput"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": false
+          }
+        },
+        "outgoing": {
+          "artifactData": null,
+          "modules": null,
+          "defaultPackageJson": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "x": 1.421487603305785,
+      "y": 0.5191122071516646,
+      "task_name": "Create Pre-Built - Format Publish",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": 7452,
+        "y": 1008
+      }
+    },
+    "e98f": {
+      "name": "createPublishedArtifactFromScratch",
+      "canvasName": "createPublishedArtifactFromScratch",
+      "summary": "Create List of Files to Create and Update for Pre-built",
+      "description": "Creates list of files to create and update for Pre-Built",
+      "location": "Application",
+      "locationType": null,
+      "app": "AppArtifacts",
+      "type": "automatic",
+      "displayName": "AppArtifacts",
+      "variables": {
+        "incoming": {
+          "artifactData": "$var.8d8.artifactData",
+          "modules": "$var.8d8.modules",
+          "packageJson": "$var.8d8.defaultPackageJson"
+        },
+        "outgoing": {
+          "callback": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.5892053973013494,
+      "y": 0.5103280680437424,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7776,
+        "y": 1008
+      }
+    },
+    "23fc": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "View Create Pre-Built Error",
+      "description": "Show provision error and decision options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Error Creating Pre-Built Files",
+          "message": "An error was thrown while creating the files to create and update for this Pre-Built. Select 'End Automation' to end the job. The error is shown below.",
+          "body": "$var.e98f.error",
+          "variables": "",
+          "btn_success": "End Automation",
+          "btn_failure": ""
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "x": 1.5877061469265368,
+      "y": 0.7132442284325637,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7776,
+        "y": 1140
+      }
+    },
+    "cbd9": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.699400299850075,
+      "y": 0.959902794653706,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 7776,
+        "y": 1284
+      }
+    },
+    "608e": {
+      "name": "addArtifactToAdminEssentials",
+      "canvasName": "addArtifactToAdminEssentials",
+      "summary": "Add an Artifact to AE via Direct Mongo Injection",
+      "description": "Adds an artifact created from a published artifact to admin essentials",
+      "location": "Application",
+      "locationType": null,
+      "app": "AppArtifacts",
+      "type": "automatic",
+      "displayName": "AppArtifacts",
+      "variables": {
+        "incoming": {
+          "artifactBundle": "$var.e98f.callback"
+        },
+        "outgoing": {
+          "AEArtifactID": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.8088455772113943,
+      "y": 0.5018226002430134,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8100,
+        "y": 1008
+      }
+    },
+    "f8df": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "View Error Adding Pre-Built to Admin Essentials",
+      "description": "Show provision error and decision options",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Error Adding Pre-Built to Admin Essentials",
+          "message": "An error was thrown while adding the Pre-Built to Admin Essentials. Press 'End Automation' to end the job. The error is shown below.",
+          "body": "$var.608e.error",
+          "variables": "",
+          "btn_success": "End Automation",
+          "btn_failure": ""
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "x": 1.8103448275862069,
+      "y": 0.715674362089915,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8100,
+        "y": 1140
+      }
+    },
+    "205d": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Failure Path",
+      "description": "Failure Path",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": ""
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 2.5772113943028487,
+      "y": 0.9562575941676792,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9336,
+        "y": 1284
+      }
+    },
+    "15d2": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Create Object with Artifact ID",
+      "description": "Create object with artifact ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {},
+          "path": [
+            "id"
+          ],
+          "value": "$var.608e.AEArtifactID"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.9880059970014992,
+      "y": 0.503037667071689,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8424,
+        "y": 1008
+      }
+    },
+    "effd": {
+      "name": "makeData",
+      "canvasName": "makeData",
+      "summary": "Create URL Path of Pre-built in Admin Essentials",
+      "description": "Create URL path of Pre-built in Admin Essentials",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "input": "/prebuilts/<!id!>/export",
+          "outputType": "string",
+          "variables": "$var.15d2.object"
+        },
+        "outgoing": {
+          "output": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 2.1716641679160418,
+      "y": 0.4933171324422843,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 8748,
+        "y": 1008
+      }
+    },
+    "2fa0": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Zero Touch Mode",
+      "description": "Check if Zero Touch Mode",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "zeroTouch",
+                    "task": "5f85"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "x": 1.1041979010494753,
+      "y": 0.5103280680437424,
+      "nodeLocation": {
+        "x": 6804,
+        "y": 1008
+      }
+    },
+    "f087": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Check if Zero Touch Mode",
+      "description": "Check if Zero Touch Mode",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "zeroTouch",
+                    "task": "5f85"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": true,
+                    "task": "static"
+                  },
+                  "rightQuery": ""
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "x": 2.3013493253373314,
+      "y": 0.4823815309842041,
+      "nodeLocation": {
+        "x": 9072,
+        "y": 1008
+      }
+    },
+    "3ced": {
+      "name": "downloadArtifact",
+      "canvasName": "downloadArtifact",
+      "summary": "Show Dialog to Download Pre-Built",
+      "description": "Show dialog to download Pre-Built",
+      "location": "Application",
+      "app": "AppArtifacts",
+      "displayName": "AppArtifacts",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "artifactLink": "$var.effd.output",
+          "gitLink": ""
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/app_artifacts/views/tasks/downloadArtifact",
+      "groups": [],
+      "x": 2.4340329835082457,
+      "y": 0.34143377885783716,
+      "scheduled": false,
+      "nodeLocation": {
+        "x": 9072,
+        "y": 888
+      }
+    }
+  },
+  "transitions": {
+    "1667": {
+      "2424": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "d4ba": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2424": {
+      "99d0": {
+        "type": "revert",
+        "state": "success"
+      },
+      "b9b0": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "9514": {
+      "99d0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "5f85": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "5f85": {
+      "9514": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "99d0": {
+      "a76c": {
+        "type": "standard",
+        "state": "error"
+      },
+      "ef7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a76c": {
+      "99d0": {
+        "type": "revert",
+        "state": "success"
+      },
+      "b9b0": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "b9b0": {
+      "cbd9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "ef7": {
+      "84d1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "84d1": {
+      "1667": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d4ba": {
+      "2fa0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "615f": {
+      "3f2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3f2": {
+      "8d8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8d8": {
+      "e98f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e98f": {
+      "23fc": {
+        "type": "standard",
+        "state": "error"
+      },
+      "608e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "23fc": {
+      "cbd9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cbd9": {
+      "205d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "608e": {
+      "f8df": {
+        "type": "standard",
+        "state": "error"
+      },
+      "15d2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f8df": {
+      "cbd9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "205d": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "15d2": {
+      "effd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "effd": {
+      "f087": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2fa0": {
+      "3f2": {
+        "type": "standard",
+        "state": "success"
+      },
+      "615f": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "f087": {
+      "3ced": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3ced": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "type": "automation",
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": [],
+  "migrationVersion": 4
+}

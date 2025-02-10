@@ -1,0 +1,429 @@
+{
+  "id": "61a8f2e224eb8400d5a5c068",
+  "bindingSchema": {
+    "properties": {
+      "keywords": {
+        "items": {
+          "properties": {}
+        }
+      },
+      "operationsManagerAutomations": {
+        "items": {
+          "properties": {
+            "name": {
+              "binding:method": "GET",
+              "binding:link": {
+                "$ref": "/links",
+                "rel": "collection"
+              },
+              "binding:target": {
+                "propertyPointer": "/enum"
+              },
+              "binding:hyperSchema": {
+                "type": "object",
+                "base": "/operations-manager",
+                "links": [
+                  {
+                    "rel": "collection",
+                    "href": "/automations?limit=999",
+                    "targetMediaType": "application/json",
+                    "targetSchema": {
+                      "$ref": "#"
+                    },
+                    "variables": []
+                  }
+                ]
+              },
+              "binding:source": {
+                "propertyPointer": "/data",
+                "keyPointer": "/name"
+              }
+            }
+          }
+        }
+      },
+      "automationWorkflows": {
+        "items": {
+          "properties": {
+            "name": {
+              "binding:method": "GET",
+              "binding:link": {
+                "$ref": "/links",
+                "rel": "collection"
+              },
+              "binding:target": {
+                "propertyPointer": "/enum"
+              },
+              "binding:hyperSchema": {
+                "type": "object",
+                "base": "/automation-studio",
+                "links": [
+                  {
+                    "rel": "collection",
+                    "href": "/workflows?limit=0&include=name",
+                    "targetMediaType": "application/json",
+                    "targetSchema": {
+                      "$ref": "#"
+                    },
+                    "variables": []
+                  }
+                ]
+              },
+              "binding:source": {
+                "transformation": "663cd90631b5e09e96d70e01",
+                "transformationUrl": "/automation-studio/json-forms/runtransformation/663cd90631b5e09e96d70e01"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "created": "2021-12-02T16:22:58.716Z",
+  "createdBy": "david.haywood@itential.com",
+  "description": "",
+  "lastUpdated": "2025-01-27T17:56:19.266Z",
+  "lastUpdatedBy": "david.haywood@itential.com",
+  "name": "Create Pre-Built Form",
+  "schema": {
+    "title": "Create Pre-Built Form",
+    "description": "",
+    "type": "object",
+    "required": [
+      "scope",
+      "preBuiltName",
+      "preBuiltDescription",
+      "contributor",
+      "readme"
+    ],
+    "properties": {
+      "scope": {
+        "type": "string",
+        "title": "Scope",
+        "_id": "/properties/scope",
+        "description": "Add the scope of Pre-Built. For example, Itential open source projects have a scope of @itentialopensource",
+        "pattern": "@[a-z0-9-~][a-z0-9-._~]*$"
+      },
+      "preBuiltName": {
+        "type": "string",
+        "title": "Pre-Built Name",
+        "_id": "/properties/preBuiltName",
+        "description": "",
+        "minLength": 1
+      },
+      "preBuiltDescription": {
+        "type": "string",
+        "title": "Pre-Built Description",
+        "_id": "/properties/preBuiltDescription",
+        "description": ""
+      },
+      "license": {
+        "type": "string",
+        "title": "License",
+        "_id": "/properties/license",
+        "description": "(OPTIONAL) Provide a license:"
+      },
+      "contributor": {
+        "type": "string",
+        "title": "Contributor",
+        "_id": "/properties/contributor",
+        "description": ""
+      },
+      "readme": {
+        "type": "string",
+        "title": "Readme",
+        "_id": "/properties/readme",
+        "description": "This readme will be displayed on the Admin Essentials page. You can edit this placeholder to provide a description of what your prebuilt will accomplish.",
+        "default": "# Pre-Built Name\n\n## Table of Contents\n\n- [Pre-Built Name](#pre-built-name)\n  - [Table of Contents](#table-of-contents)\n  - [Overview](#overview)\n    - [Capabilities](#capabilities)\n    - [Prerequisites](#prerequisites)\n    - [How to Install](#how-to-install)\n    - [Testing](#testing)\n      - [Adapters](#adapters)\n      - [External Systems](#external-systems)\n  - [Using this Pre-Built](#using-this-pre-built)\n    - [Entry Point IAP Component](#entry-point-iap-component)\n    - [Inputs](#inputs)\n    - [Outputs](#outputs)\n  - [Additional Information](#additional-information)\n\n## Overview\n\nA high level overview of what the Pre-Built does.\n\n### Capabilities\n\nA list of capabilities of what the Pre-Built. For example:\n\n- Onboard a device to controller\n- Perform a software upgrade\n\n### Prerequisites\n\nUsers must satisfy the following prerequisites to install and run this Pre-Built:\n\n- Itential Automation Platform\n  - `2023.2.x`\n\n### How to Install\n\nTo install this Pre-Built:\n\n- Verify that you are running the documented [prerequisites](#prerequisites) in order to install the Pre-Built.\n\n- Follow the instructions on the Itential Documentation site for [importing a Pre-Built](https://docs.itential.com/docs/importing-a-prebuilt-cloud).\n\n### Testing\n\nAny information related to what testing has been done to ensure this Pre-Built runs as expected.\n\n### Adapters\n\nAny adapters that need to be installed on IAP to run the Pre-Built. Ideally would also include the adapter version here.\n\n### External Systems\n\nAny external systems needed to run the Pre-Built. Ideally would also include the external system API and/or OS version here.\n\n## Using this Pre-Built\n\nAny information for how to use this Pre-Built. For instance, if meant to be run in a childJob task of a larger use case, can state this Pre-Built can be run in a [childJob task](https://docs.itential.com/docs/childjob-task-iap-2023-2).\n\nIf the Pre-Built is intended to be run from a northbound system using an API call or to be scheduled to run or manully run whenever needed, can state this Pre-Built can be run by the corresponding [Operations Manager automation trigger](https://docs.itential.com/docs/triggers-ops-manager-iap).\n\n### Entry Point IAP Component\n\nThe name of the IAP component used to start the Pre-Built. This could be a workflow, an Operations Manager automation, a Transformation (JST), or some other IAP component.\n\n### Inputs\n\nAny information about the inputs to this Pre-Built.\n\n### Outputs\n\nAny information about the outputs to this Pre-Built.\n\n### Additional Information\n\nAny additional information related to the Pre-Built.\n"
+      },
+      "zeroTouch": {
+        "type": "boolean",
+        "title": "Zero Touch",
+        "_id": "/properties/zeroTouch",
+        "description": "",
+        "default": true,
+        "enum": [
+          true,
+          false
+        ]
+      },
+      "keywords": {
+        "type": "array",
+        "title": "Keywords",
+        "description": "Optionally enter any keywords to associate with this prebuilt",
+        "items": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "keyword": {
+              "type": "string",
+              "title": "Keyword",
+              "_id": "/properties/keywords/items/properties/keyword",
+              "description": ""
+            }
+          }
+        }
+      },
+      "operationsManagerAutomations": {
+        "type": "array",
+        "title": "Operations Manager Automations",
+        "description": "",
+        "items": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "_id": "/properties/operationsManagerAutomations/items/properties/name",
+              "description": "",
+              "enum": []
+            }
+          }
+        }
+      },
+      "automationWorkflows": {
+        "type": "array",
+        "title": "Automation Workflows",
+        "description": "",
+        "items": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "_id": "/properties/automationWorkflows/items/properties/name",
+              "description": "Workflow Automation Name",
+              "enum": []
+            }
+          }
+        }
+      }
+    }
+  },
+  "struct": {
+    "type": "array",
+    "items": [
+      {
+        "nodeId": "71695525-c187-4f87-9a8c-6a40cd18aa5e",
+        "type": "string",
+        "title": "Scope",
+        "description": "Add the scope of Pre-Built. For example, Itential open source projects have a scope of @itentialopensource",
+        "placeholder": "Enter scope of Pre-Built",
+        "required": true,
+        "readOnly": false,
+        "binding": false,
+        "rel": "item",
+        "targetPointer": "/default",
+        "pattern": "@[a-z0-9-~][a-z0-9-._~]*$",
+        "helper": "Must be prepended with \"@\", for instance @pre-built"
+      },
+      {
+        "nodeId": "0351d824-c65b-415c-8086-b9b7dae12c4e",
+        "type": "string",
+        "title": "Pre-Built Name",
+        "description": "",
+        "placeholder": "Enter Pre-Built name",
+        "required": true,
+        "readOnly": false,
+        "binding": false,
+        "rel": "item",
+        "targetPointer": "/default",
+        "pattern": "",
+        "minLength": 1,
+        "helper": "Enter Pre-Built name"
+      },
+      {
+        "nodeId": "9556fe8f-65c4-4412-a0ef-f7d4132f9e2e",
+        "type": "string",
+        "widget": "textarea",
+        "title": "Pre-Built Description",
+        "description": "",
+        "placeholder": "Enter description of what Pre-Built does",
+        "required": true,
+        "helper": "Enter description of what Pre-Built does"
+      },
+      {
+        "nodeId": "674ebd12-d227-41fa-a234-21003346aabf",
+        "type": "string",
+        "title": "License",
+        "description": "(OPTIONAL) Provide a license:",
+        "placeholder": "*By default Apache License 2.0 will be supplied",
+        "required": false,
+        "readOnly": false,
+        "binding": false,
+        "rel": "item",
+        "targetPointer": "/default"
+      },
+      {
+        "nodeId": "d213e136-92cc-4a7a-a9bb-980652f65771",
+        "type": "string",
+        "title": "Contributor",
+        "description": "",
+        "placeholder": "Enter contributor name",
+        "required": true,
+        "readOnly": false,
+        "binding": false,
+        "rel": "item",
+        "targetPointer": "/default",
+        "helper": "Enter contributor name"
+      },
+      {
+        "nodeId": "d2af58ae-4759-48bb-a88c-84fd9704e374",
+        "type": "string",
+        "widget": "textarea",
+        "title": "Readme",
+        "description": "This readme will be displayed on the Admin Essentials page. You can edit this placeholder to provide a description of what your prebuilt will accomplish.",
+        "placeholder": "Enter README",
+        "required": true,
+        "default": "# Pre-Built Name\n\n## Table of Contents\n\n- [Pre-Built Name](#pre-built-name)\n  - [Table of Contents](#table-of-contents)\n  - [Overview](#overview)\n    - [Capabilities](#capabilities)\n    - [Prerequisites](#prerequisites)\n    - [How to Install](#how-to-install)\n    - [Testing](#testing)\n      - [Adapters](#adapters)\n      - [External Systems](#external-systems)\n  - [Using this Pre-Built](#using-this-pre-built)\n    - [Entry Point IAP Component](#entry-point-iap-component)\n    - [Inputs](#inputs)\n    - [Outputs](#outputs)\n  - [Additional Information](#additional-information)\n\n## Overview\n\nA high level overview of what the Pre-Built does.\n\n### Capabilities\n\nA list of capabilities of what the Pre-Built. For example:\n\n- Onboard a device to controller\n- Perform a software upgrade\n\n### Prerequisites\n\nUsers must satisfy the following prerequisites to install and run this Pre-Built:\n\n- Itential Automation Platform\n  - `2023.2.x`\n\n### How to Install\n\nTo install this Pre-Built:\n\n- Verify that you are running the documented [prerequisites](#prerequisites) in order to install the Pre-Built.\n\n- Follow the instructions on the Itential Documentation site for [importing a Pre-Built](https://docs.itential.com/docs/importing-a-prebuilt-cloud).\n\n### Testing\n\nAny information related to what testing has been done to ensure this Pre-Built runs as expected.\n\n### Adapters\n\nAny adapters that need to be installed on IAP to run the Pre-Built. Ideally would also include the adapter version here.\n\n### External Systems\n\nAny external systems needed to run the Pre-Built. Ideally would also include the external system API and/or OS version here.\n\n## Using this Pre-Built\n\nAny information for how to use this Pre-Built. For instance, if meant to be run in a childJob task of a larger use case, can state this Pre-Built can be run in a [childJob task](https://docs.itential.com/docs/childjob-task-iap-2023-2).\n\nIf the Pre-Built is intended to be run from a northbound system using an API call or to be scheduled to run or manully run whenever needed, can state this Pre-Built can be run by the corresponding [Operations Manager automation trigger](https://docs.itential.com/docs/triggers-ops-manager-iap).\n\n### Entry Point IAP Component\n\nThe name of the IAP component used to start the Pre-Built. This could be a workflow, an Operations Manager automation, a Transformation (JST), or some other IAP component.\n\n### Inputs\n\nAny information about the inputs to this Pre-Built.\n\n### Outputs\n\nAny information about the outputs to this Pre-Built.\n\n### Additional Information\n\nAny additional information related to the Pre-Built.\n"
+      },
+      {
+        "nodeId": "bd33cf32-15c6-4a2a-a97e-677a16501fec",
+        "type": "boolean",
+        "title": "Zero Touch",
+        "description": "",
+        "default": true,
+        "enum": [
+          {
+            "id": "27c8a60a-5bbe-4dc0-9770-eb56be05715a",
+            "value": true
+          },
+          {
+            "id": "8b06e2b9-faff-4bc9-9fbe-0288762cf1cf",
+            "value": false
+          }
+        ]
+      },
+      {
+        "nodeId": "9743a2b3-975c-4127-8717-0205ff3a8f5c",
+        "type": "array",
+        "description": "Optionally enter any keywords to associate with this prebuilt",
+        "items": [
+          {
+            "nodeId": "4f4a7027-1c72-42af-9465-c17d22314eb9",
+            "type": "string",
+            "title": "Keyword",
+            "description": "",
+            "placeholder": "Enter a keyword",
+            "required": false,
+            "readOnly": false,
+            "binding": false,
+            "rel": "item",
+            "targetPointer": "/default"
+          }
+        ],
+        "title": "Keywords"
+      },
+      {
+        "nodeId": "4446588f-e508-40d1-abf9-4f3eb968d75a",
+        "type": "array",
+        "description": "",
+        "items": [
+          {
+            "nodeId": "dff89a5b-9c01-481a-ba66-d3363a0e6c74",
+            "type": "string",
+            "title": "Name",
+            "description": "",
+            "placeholder": "Select an Operation Manager Automation",
+            "required": true,
+            "enum": [],
+            "binding": true,
+            "rel": "collection",
+            "targetPointer": "/enum",
+            "method": "GET",
+            "base": "/operations-manager",
+            "href": "/automations?limit=999",
+            "sourcePointer": "/data",
+            "sourceKeyPointer": "/name"
+          }
+        ],
+        "title": "Operations Manager Automations"
+      },
+      {
+        "nodeId": "a0eb027f-c130-41a1-a4b5-358c066e3a6f",
+        "type": "array",
+        "description": "",
+        "items": [
+          {
+            "nodeId": "74f4d0d3-40d3-4538-a422-25391b4dc5d7",
+            "type": "string",
+            "title": "Name",
+            "description": "Workflow Automation Name",
+            "placeholder": "Select a Workflow",
+            "required": true,
+            "enum": [],
+            "binding": true,
+            "rel": "collection",
+            "targetPointer": "/enum",
+            "method": "GET",
+            "base": "/automation-studio",
+            "href": "/workflows?limit=0&include=name",
+            "sourcePointer": "",
+            "sourceKeyPointer": "",
+            "transformation": "663cd90631b5e09e96d70e01"
+          }
+        ],
+        "title": "Automation Workflows"
+      }
+    ]
+  },
+  "uiSchema": {
+    "scope": {
+      "ui:placeholder": "Enter scope of Pre-Built",
+      "ui:help": "Must be prepended with \"@\", for instance @pre-built"
+    },
+    "preBuiltName": {
+      "ui:placeholder": "Enter Pre-Built name",
+      "ui:help": "Enter Pre-Built name"
+    },
+    "preBuiltDescription": {
+      "ui:placeholder": "Enter description of what Pre-Built does",
+      "ui:help": "Enter description of what Pre-Built does",
+      "ui:widget": "textarea"
+    },
+    "license": {
+      "ui:placeholder": "*By default Apache License 2.0 will be supplied"
+    },
+    "contributor": {
+      "ui:placeholder": "Enter contributor name",
+      "ui:help": "Enter contributor name"
+    },
+    "readme": {
+      "ui:placeholder": "Enter README",
+      "ui:widget": "textarea"
+    },
+    "keywords": {
+      "items": {
+        "keyword": {
+          "ui:placeholder": "Enter a keyword"
+        }
+      }
+    },
+    "operationsManagerAutomations": {
+      "items": {
+        "name": {
+          "ui:placeholder": "Select an Operation Manager Automation"
+        }
+      }
+    },
+    "automationWorkflows": {
+      "items": {
+        "name": {
+          "ui:placeholder": "Select a Workflow"
+        }
+      }
+    }
+  },
+  "validationSchema": {
+    "keywords": {},
+    "operationsManagerAutomations": {},
+    "automationWorkflows": {}
+  },
+  "version": "2020.1"
+}

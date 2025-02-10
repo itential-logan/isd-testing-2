@@ -1,0 +1,487 @@
+{
+  "_id": "61a8f96c972d5600e3de8552",
+  "name": "Create Pre-Built - Get formData",
+  "description": "Takes in the formData for the 'Create a new prebuilt master' workflow and returns the parsed variables.",
+  "incoming": [
+    {
+      "$id": "formData",
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string",
+          "examples": [
+            "@acme"
+          ]
+        },
+        "preBuiltName": {
+          "type": "string",
+          "examples": [
+            "Example Prebuilt"
+          ]
+        },
+        "preBuiltDescription": {
+          "type": "string",
+          "default": "",
+          "examples": [
+            "This prebuilt will accomplish a particular use case"
+          ]
+        },
+        "readme": {
+          "type": "string",
+          "examples": [
+            "# Example README"
+          ]
+        },
+        "zeroTouch": {
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        },
+        "license": {
+          "type": "string",
+          "default": "Apache 2%2E0",
+          "examples": [
+            "Apache 2%2E0"
+          ]
+        },
+        "contributor": {
+          "type": "string",
+          "examples": [
+            "John Smith"
+          ]
+        },
+        "keywords": {
+          "type": "array",
+          "default": []
+        },
+        "operationsManagerAutomations": {
+          "type": "array",
+          "default": []
+        },
+        "automationWorkflows": {
+          "type": "array",
+          "default": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "scope",
+      "type": "string",
+      "examples": [
+        "@acme"
+      ]
+    },
+    {
+      "$id": "prebuiltName",
+      "type": "string",
+      "examples": [
+        "Example Prebuilt"
+      ]
+    },
+    {
+      "$id": "prebuiltDescription",
+      "type": "string",
+      "examples": [
+        "This prebuilt will accomplish a particular use case"
+      ]
+    },
+    {
+      "$id": "readme",
+      "type": "string",
+      "examples": [
+        "# Example README"
+      ]
+    },
+    {
+      "$id": "zeroTouch",
+      "type": "boolean",
+      "examples": [
+        true,
+        false
+      ]
+    },
+    {
+      "$id": "license",
+      "type": "string",
+      "examples": [
+        "Apache 2%2E0"
+      ]
+    },
+    {
+      "$id": "contributor",
+      "type": "string",
+      "examples": [
+        "John Smith"
+      ]
+    },
+    {
+      "$id": "keywords",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "keyword": {
+            "type": "string",
+            "examples": [
+              "exampleKeyword"
+            ]
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "$id": "operationsManagerOperations",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "examples": [
+          "Allocate CIDR"
+        ]
+      }
+    },
+    {
+      "$id": "automationWorkflows",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "examples": [
+          "Allocate CIDR Master Workflow"
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "getNameValue"
+      ],
+      "view": {
+        "row": 2,
+        "col": 1
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "operationsManagerOperations",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 11,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        [],
+        "getNameValue"
+      ],
+      "view": {
+        "row": 3,
+        "col": 1
+      }
+    },
+    {
+      "id": 14,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "getNameValue"
+      ],
+      "view": {
+        "row": 4,
+        "col": 1
+      }
+    },
+    {
+      "id": 16,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 14,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "automationWorkflows",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 17,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/operationsManagerAutomations"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 19,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/automationWorkflows"
+      },
+      "to": {
+        "location": "method",
+        "name": 14,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 20,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/scope"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "scope",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/readme"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "readme",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/license"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "license",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/contributor"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "contributor",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 28,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/keywords"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "keywords",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 29,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/zeroTouch"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "zeroTouch",
+        "ptr": ""
+      }
+    },
+    {
+      "id": 30,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/preBuiltName"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "prebuiltName",
+        "ptr": ""
+      },
+      "context": "#"
+    },
+    {
+      "id": 31,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": "/preBuiltDescription"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "prebuiltDescription",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "object",
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": []
+          },
+          "default": [],
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "name"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "getNameValue",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "getNameValue",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2025-01-27T17:56:17.809Z",
+  "createdBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "lastUpdated": "2025-01-27T17:56:17.809Z",
+  "lastUpdatedBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "version": "4.3.6-2023.2.10",
+  "tags": []
+}

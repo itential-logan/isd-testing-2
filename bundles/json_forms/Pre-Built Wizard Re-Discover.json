@@ -1,0 +1,89 @@
+{
+  "id": "6239d8f2982e0300f2339883",
+  "bindingSchema": {
+    "properties": {
+      "prebuilt": {
+        "binding:method": "GET",
+        "binding:link": {
+          "$ref": "/links",
+          "rel": "collection"
+        },
+        "binding:target": {
+          "propertyPointer": "/enum"
+        },
+        "binding:hyperSchema": {
+          "type": "object",
+          "base": "/prebuilts",
+          "links": [
+            {
+              "rel": "collection",
+              "href": "/?limit=1000",
+              "targetMediaType": "application/json",
+              "targetSchema": {
+                "$ref": "#"
+              },
+              "variables": []
+            }
+          ]
+        },
+        "binding:source": {
+          "propertyPointer": "/results",
+          "keyPointer": "/name"
+        }
+      }
+    }
+  },
+  "created": "2022-03-22T14:10:58.722Z",
+  "createdBy": "david.haywood@itential.com",
+  "description": "",
+  "lastUpdated": "2025-01-27T17:56:19.305Z",
+  "lastUpdatedBy": "david.haywood@itential.com",
+  "name": "Pre-Built Wizard Re-Discover",
+  "schema": {
+    "title": "Pre-Built Wizard Re-Discover",
+    "description": "",
+    "type": "object",
+    "required": [
+      "prebuilt"
+    ],
+    "properties": {
+      "prebuilt": {
+        "type": "string",
+        "title": "Prebuilt",
+        "_id": "/properties/prebuilt",
+        "description": "",
+        "enum": []
+      }
+    }
+  },
+  "struct": {
+    "type": "array",
+    "items": [
+      {
+        "nodeId": "bc710d34-6187-4933-8e44-e2c01bc96380",
+        "type": "string",
+        "title": "Prebuilt",
+        "description": "",
+        "placeholder": "Select an item",
+        "required": true,
+        "enum": [],
+        "binding": true,
+        "rel": "collection",
+        "targetPointer": "/enum",
+        "method": "GET",
+        "base": "/prebuilts",
+        "href": "/?limit=1000",
+        "sourcePointer": "/results",
+        "sourceKeyPointer": "/name",
+        "originalHref": "/:id"
+      }
+    ]
+  },
+  "uiSchema": {
+    "prebuilt": {
+      "ui:placeholder": "Select an item"
+    }
+  },
+  "validationSchema": {},
+  "version": "2020.1"
+}

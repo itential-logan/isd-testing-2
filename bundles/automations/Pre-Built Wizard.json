@@ -1,0 +1,47 @@
+{
+  "_id": "62797044621a3a6ecb5e1b91",
+  "name": "Pre-Built Wizard",
+  "description": "",
+  "componentName": "Pre-Built Wizard",
+  "componentType": "workflows",
+  "gbac": {
+    "write": [],
+    "read": []
+  },
+  "created": "2023-07-18T19:17:16.991Z",
+  "createdBy": "admin@pronghorn",
+  "lastUpdated": "2025-01-27T17:56:19.335Z",
+  "lastUpdatedBy": "david.haywood@itential.com",
+  "triggers": [
+    {
+      "_id": "6797c8c45906e80af90fbd6b",
+      "created": "2023-07-18T19:17:17.126Z",
+      "createdBy": "admin@pronghorn",
+      "lastUpdated": "2025-01-27T18:06:28.942Z",
+      "lastUpdatedBy": "david.haywood@itential.com",
+      "name": "Start Pre-Built Wizard with Form",
+      "type": "manual",
+      "enabled": true,
+      "actionType": "automations",
+      "actionId": "62797044621a3a6ecb5e1b91",
+      "formId": "Create Pre-Built Form",
+      "formData": {
+        "readme": "# Pre-Built Name\n\n## Table of Contents\n\n- [Pre-Built Name](#pre-built-name)\n  - [Table of Contents](#table-of-contents)\n  - [Overview](#overview)\n    - [Capabilities](#capabilities)\n    - [Prerequisites](#prerequisites)\n    - [How to Install](#how-to-install)\n    - [Testing](#testing)\n      - [Adapters](#adapters)\n      - [External Systems](#external-systems)\n  - [Using this Pre-Built](#using-this-pre-built)\n    - [Entry Point IAP Component](#entry-point-iap-component)\n    - [Inputs](#inputs)\n    - [Outputs](#outputs)\n  - [Additional Information](#additional-information)\n\n## Overview\n\nA high level overview of what the Pre-Built does.\n\n### Capabilities\n\nA list of capabilities of what the Pre-Built. For example:\n\n- Onboard a device to controller\n- Perform a software upgrade\n\n### Prerequisites\n\nUsers must satisfy the following prerequisites to install and run this Pre-Built:\n\n- Itential Automation Platform\n  - `2023.2.x`\n\n### How to Install\n\nTo install this Pre-Built:\n\n- Verify that you are running the documented [prerequisites](#prerequisites) in order to install the Pre-Built.\n\n- Follow the instructions on the Itential Documentation site for [importing a Pre-Built](https://docs.itential.com/docs/importing-a-prebuilt-cloud).\n\n### Testing\n\nAny information related to what testing has been done to ensure this Pre-Built runs as expected.\n\n### Adapters\n\nAny adapters that need to be installed on IAP to run the Pre-Built. Ideally would also include the adapter version here.\n\n### External Systems\n\nAny external systems needed to run the Pre-Built. Ideally would also include the external system API and/or OS version here.\n\n## Using this Pre-Built\n\nAny information for how to use this Pre-Built. For instance, if meant to be run in a childJob task of a larger use case, can state this Pre-Built can be run in a [childJob task](https://docs.itential.com/docs/childjob-task-iap-2023-2).\n\nIf the Pre-Built is intended to be run from a northbound system using an API call or to be scheduled to run or manully run whenever needed, can state this Pre-Built can be run by the corresponding [Operations Manager automation trigger](https://docs.itential.com/docs/triggers-ops-manager-iap).\n\n### Entry Point IAP Component\n\nThe name of the IAP component used to start the Pre-Built. This could be a workflow, an Operations Manager automation, a Transformation (JST), or some other IAP component.\n\n### Inputs\n\nAny information about the inputs to this Pre-Built.\n\n### Outputs\n\nAny information about the outputs to this Pre-Built.\n\n### Additional Information\n\nAny additional information related to the Pre-Built.\n",
+        "zeroTouch": true,
+        "operationsManagerAutomations": [
+          {
+            "name": "AWS STS Data Collector Simplified"
+          }
+        ],
+        "scope": "@local",
+        "preBuiltName": "1",
+        "preBuiltDescription": "1",
+        "contributor": "1"
+      },
+      "description": "",
+      "formSchemaHash": "0cc8ce04ad815975fd06ed33c2dc704213f16dd147c7a2c722152c33e6910f5e",
+      "legacyWrapper": true,
+      "migrationVersion": 3
+    }
+  ]
+}

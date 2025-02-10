@@ -1,0 +1,144 @@
+{
+  "_id": "61aa625a972d5600e3de8555",
+  "name": "Create Pre-Built - Determine Components",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "formData",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    {
+      "$id": "originalComponents",
+      "type": "object"
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "componentInput",
+      "type": "object"
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Conditional",
+      "method": "ternary",
+      "args": [
+        null,
+        null,
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 2,
+      "type": "declaration",
+      "library": "Boolean",
+      "method": "new Boolean",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": ""
+      },
+      "to": {
+        "location": "declaration",
+        "name": 2,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 2,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formData",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/1/value"
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "originalComponents",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 7,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "componentInput",
+        "ptr": ""
+      }
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2025-01-27T17:56:17.754Z",
+  "createdBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "lastUpdated": "2025-01-27T17:56:17.754Z",
+  "lastUpdatedBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "version": "4.3.6-2023.2.10",
+  "tags": []
+}

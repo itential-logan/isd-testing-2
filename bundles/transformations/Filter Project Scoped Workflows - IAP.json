@@ -1,0 +1,508 @@
+{
+  "_id": "663cd90631b5e09e96d70e01",
+  "name": "Filter Project Scoped Workflows - IAP",
+  "description": "Filter out project scoped workflows user has access to from list of workflows found",
+  "incoming": [
+    {
+      "$id": "items",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "examples": [
+              "name"
+            ]
+          }
+        },
+        "required": []
+      }
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "filteredWorkflows",
+      "type": "array"
+    }
+  ],
+  "steps": [
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "items",
+        "ptr": ""
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "filter",
+      "args": [
+        null,
+        "filterProjectScopedWorkflows"
+      ],
+      "view": {
+        "row": 1,
+        "col": 1
+      },
+      "context": "#"
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "method",
+      "library": "Array",
+      "method": "map",
+      "args": [
+        null,
+        "getFilteredWorkflowNames"
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      },
+      "context": "#"
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 11,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "filteredWorkflows",
+        "ptr": ""
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "element"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "return",
+          "type": "boolean",
+          "$id": "return"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "element",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 4,
+          "type": "declaration",
+          "library": "RegExp",
+          "method": "new RegExp",
+          "args": [
+            "\\@[0-9a-fA-F]{24}\\:\\s",
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 6,
+          "type": "declaration",
+          "library": "Boolean",
+          "method": "new Boolean",
+          "args": [
+            false
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 7,
+          "type": "declaration",
+          "library": "Boolean",
+          "method": "new Boolean",
+          "args": [
+            true
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "name"
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/2/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 6,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 19,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/1/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "RegExp",
+          "method": "exec",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          },
+          "context": "#"
+        },
+        {
+          "id": 16,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 14,
+          "type": "method",
+          "library": "Logical",
+          "method": "nullish",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 3
+          },
+          "context": "#"
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 14,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 11,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 4
+          },
+          "context": "#"
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "return",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "filterProjectScopedWorkflows",
+      "view": {
+        "col": 4,
+        "row": 5
+      },
+      "id": "filterProjectScopedWorkflows",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "newValue",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "editable": true,
+          "$id": "newValue"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          },
+          "context": "#"
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "name"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          },
+          "context": "#"
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "newValue",
+            "ptr": ""
+          },
+          "context": "#"
+        }
+      ],
+      "functions": [],
+      "name": "getFilteredWorkflowNames",
+      "view": {
+        "col": 1,
+        "row": 4
+      },
+      "id": "getFilteredWorkflowNames",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 2,
+    "row": 5
+  },
+  "created": "2025-01-27T17:56:17.742Z",
+  "createdBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "lastUpdated": "2025-01-27T17:56:17.742Z",
+  "lastUpdatedBy": {
+    "_id": "66aaa93c097c527679a7943f",
+    "provenance": "CloudAAA",
+    "username": "david.haywood@itential.com"
+  },
+  "version": "4.3.6-2023.2.10",
+  "tags": []
+}

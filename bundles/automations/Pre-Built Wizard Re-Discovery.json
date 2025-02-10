@@ -1,0 +1,35 @@
+{
+  "_id": "6279703c621a3a6ecb5e1b8f",
+  "name": "Pre-Built Wizard Re-Discovery",
+  "description": "Automation to update Pre-Built in Admin Essentials if new components have been added.",
+  "componentName": "Pre-Built Wizard Re-Discover",
+  "componentType": "workflows",
+  "gbac": {
+    "write": [],
+    "read": []
+  },
+  "created": "2023-07-18T19:17:16.991Z",
+  "createdBy": "admin@pronghorn",
+  "lastUpdated": "2025-01-27T17:56:19.335Z",
+  "lastUpdatedBy": "david.haywood@itential.com",
+  "triggers": [
+    {
+      "_id": "6797c8c45906e80af90fbd6c",
+      "created": "2023-07-18T19:17:17.129Z",
+      "createdBy": "admin@pronghorn",
+      "lastUpdated": "2025-01-27T17:56:20.081Z",
+      "lastUpdatedBy": "david.haywood@itential.com",
+      "name": "Start Pre-Built Wizard Re-Discovery with Form",
+      "type": "manual",
+      "enabled": true,
+      "actionType": "automations",
+      "actionId": "6279703c621a3a6ecb5e1b8f",
+      "formId": "Pre-Built Wizard Re-Discover",
+      "formData": null,
+      "description": "",
+      "formSchemaHash": "3ee50746059b17b5f7cee5379b453484c71fcbdf0e4a0e8cb82667aed58071ba",
+      "legacyWrapper": true,
+      "migrationVersion": 3
+    }
+  ]
+}

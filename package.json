@@ -1,8 +1,8 @@
 {
-  "name": "@itentialopensource/prebuilt-promotion",
-  "author": "Itential Automation Platform_1",
-  "version": "0.0.4",
-  "description": "Push pre-built to a specified version control service",
+  "name": "@itentialopensource/pre-built-wizard",
+  "author": "Itential Automation Platform",
+  "version": "0.0.1",
+  "description": "This contains modular workflows that operate when integrated with the app-artifacts application that can be installed within IAP. Once installed teams will be able to quickly automate common manual tasks such as creating a Pre-Built artifact.json file made up of IAP components, saving a significant amount of time and effort. This library can be used as modular components with other libraries and automations to build comprehensive end-to-end orchestrated workflows with Itential's low-code platform.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "echo not needed npm publish --access=public --registry=http://registry.npmjs.org",
@@ -28,12 +28,8 @@
     "r2": "^2.0.1"
   },
   "IAPDependencies": {
-    "@itential/app-operations_manager": "",
     "@itential/app-json_forms": "",
-    "@itential/app-jst": "",
-    "@itential/app-workflow_engine": "",
-    "@itential/app-template_builder": "",
-    "version-control-adapters": ""
+    "@itential/app-workflow_engine": ""
   },
   "IAPCategories": []
 }

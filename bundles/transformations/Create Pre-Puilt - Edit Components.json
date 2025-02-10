@@ -1,6 +1,6 @@
 {
-  "_id": "621002baa161ae00ef6164b5",
-  "name": "translateSchemaPushBundles",
+  "_id": "619d03ad69bd2d6d0005f64d",
+  "name": "Create Pre-Puilt - Edit Components",
   "description": "Takes in the output of the componentDiscovery task in appartifacts and outputs a format that can be used in a form where the components can be edited.",
   "incoming": [
     {
@@ -11,9 +11,6 @@
           "type": "object",
           "properties": {
             "workflow": {
-              "type": "array"
-            },
-            "ac-agenda-job": {
               "type": "array"
             },
             "automation": {
@@ -59,9 +56,6 @@
           "type": "object",
           "properties": {
             "workflows": {
-              "type": "array"
-            },
-            "catalogAutomations": {
               "type": "array"
             },
             "operationsAutomations": {
@@ -111,20 +105,6 @@
         "location": "outgoing",
         "name": "componentEditorFormInput",
         "ptr": "/components/workflows"
-      }
-    },
-    {
-      "id": 2,
-      "type": "assign",
-      "from": {
-        "location": "incoming",
-        "name": "componentDiscoveryOutput",
-        "ptr": "/componentMap/ac-agenda-job"
-      },
-      "to": {
-        "location": "outgoing",
-        "name": "componentEditorFormInput",
-        "ptr": "/components/catalogAutomations"
       }
     },
     {
@@ -260,17 +240,17 @@
     "col": 1,
     "row": 5
   },
-  "created": "2025-02-10T18:16:38.580Z",
+  "created": "2025-01-27T17:56:17.756Z",
   "createdBy": {
-    "_id": "66e1b5fa497c7ab14a5a345a",
+    "_id": "66aaa93c097c527679a7943f",
     "provenance": "CloudAAA",
-    "username": "logan.seo@itential.com"
+    "username": "david.haywood@itential.com"
   },
-  "lastUpdated": "2025-02-10T18:16:38.580Z",
+  "lastUpdated": "2025-01-27T17:56:17.756Z",
   "lastUpdatedBy": {
-    "_id": "66e1b5fa497c7ab14a5a345a",
+    "_id": "66aaa93c097c527679a7943f",
     "provenance": "CloudAAA",
-    "username": "logan.seo@itential.com"
+    "username": "david.haywood@itential.com"
   },
   "version": "4.3.6-2023.2.10",
   "tags": []
