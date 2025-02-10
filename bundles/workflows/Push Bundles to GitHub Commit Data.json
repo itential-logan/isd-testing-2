@@ -5,8 +5,7 @@
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": true
   },
   "description": null,
   "font_size": 12,
@@ -14,21 +13,7 @@
     "type": "object",
     "properties": {
       "artifact": {
-        "title": "data_array",
-        "type": "array",
-        "items": [
-          {
-            "type": [
-              "string",
-              "number",
-              "integer",
-              "object",
-              "array",
-              "boolean",
-              "null"
-            ]
-          }
-        ]
+        "type": "array"
       },
       "action": {
         "type": [
@@ -46,21 +31,19 @@
       "action"
     ]
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.496Z",
+  "lastUpdatedVersion": "4.15.0-2023.1.290",
+  "last_updated": "2025-02-07T16:18:59.926Z",
   "last_updated_by": {
-    "provenance": "local_aaa",
+    "provenance": "Local AAA",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": false
   },
   "name": "Push Bundles to GitHub Commit Data",
   "outputSchema": {
     "type": "object",
     "properties": {
       "artifact": {
-        "title": "updated_object",
         "type": [
           "array",
           "string",
@@ -143,10 +126,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 6900,
-        "y": 2900
-      }
+      "x": 1.54716981132075,
+      "y": 1.45343511450382
     },
     "2450": {
       "name": "query",
@@ -170,11 +151,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 2000
-      }
+      "x": 0.625102543068089,
+      "y": 0.99236641221374,
+      "scheduled": false
     },
     "3697": {
       "name": "evaluation",
@@ -214,10 +193,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 4500,
-        "y": 2100
-      }
+      "x": 0.968006562756358,
+      "y": 1.04885496183206
     },
     "4001": {
       "name": "evaluation",
@@ -257,10 +234,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 1800,
-        "y": 1500
-      }
+      "x": 0.404429860541427,
+      "y": 0.745038167938931
     },
     "6433": {
       "name": "query",
@@ -284,11 +259,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1500,
-        "y": 1300
-      }
+      "x": 0.332239540607055,
+      "y": 0.653435114503817,
+      "scheduled": false
     },
     "7554": {
       "name": "stringConcat",
@@ -314,32 +287,26 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
+      "x": 1.23789991796555,
+      "y": 1.44885496183206,
       "scheduled": false,
-      "canvasName": "concat",
-      "nodeLocation": {
-        "x": 5700,
-        "y": 2900
-      }
+      "canvasName": "concat"
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
+      "x": 0.10090237899918,
+      "y": 0.474809160305344,
       "summary": "workflow_start",
-      "description": "workflow_start",
-      "nodeLocation": {
-        "x": 600,
-        "y": 900
-      }
+      "description": "workflow_start"
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
+      "x": 0.5813953488372093,
+      "y": 0.47368421052631576,
       "summary": "workflow_end",
-      "description": "workflow_end",
-      "nodeLocation": {
-        "x": 2700,
-        "y": 900
-      }
+      "description": "workflow_end"
     },
     "e24a": {
       "name": "forEach",
@@ -361,11 +328,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1500,
-        "y": 1000
-      }
+      "x": 0.312551271534044,
+      "y": 0.483969465648855,
+      "scheduled": false
     },
     "fcfb": {
       "name": "newVariable",
@@ -387,10 +352,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 900,
-        "y": 1000
-      }
+      "x": 0.202625102543068,
+      "y": 0.488549618320611
     },
     "ec3b": {
       "name": "query",
@@ -414,11 +377,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1800,
-        "y": 1300
-      }
+      "x": 0.385561936013125,
+      "y": 0.644274809160305,
+      "scheduled": false
     },
     "7bf5": {
       "name": "query",
@@ -442,11 +403,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 1500,
-        "y": 1500
-      }
+      "x": 0.346185397867104,
+      "y": 0.751145038167939,
+      "scheduled": false
     },
     "d8c5": {
       "name": "push",
@@ -468,10 +427,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 2700,
-        "y": 1300
-      }
+      "x": 0.587366694011485,
+      "y": 0.656488549618321
     },
     "798a": {
       "name": "forEach",
@@ -493,11 +450,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2100,
-        "y": 1800
-      }
+      "x": 0.491386382280558,
+      "y": 0.897709923664122,
+      "scheduled": false
     },
     "db0b": {
       "name": "query",
@@ -521,11 +476,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 2100
-      }
+      "x": 0.575881870385562,
+      "y": 1.05496183206107,
+      "scheduled": false
     },
     "b93a": {
       "name": "query",
@@ -549,11 +502,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2700,
-        "y": 2200
-      }
+      "x": 0.62428219852338,
+      "y": 1.12213740458015,
+      "scheduled": false
     },
     "80bf": {
       "name": "stringConcat",
@@ -579,12 +530,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
+      "x": 0.720262510254307,
+      "y": 1.05343511450382,
       "scheduled": false,
-      "canvasName": "concat",
-      "nodeLocation": {
-        "x": 3300,
-        "y": 2100
-      }
+      "canvasName": "concat"
     },
     "f401": {
       "name": "stringConcat",
@@ -608,12 +557,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
+      "x": 0.857260049220673,
+      "y": 1.05343511450382,
       "scheduled": false,
-      "canvasName": "concat",
-      "nodeLocation": {
-        "x": 3900,
-        "y": 2100
-      }
+      "canvasName": "concat"
     },
     "f131": {
       "name": "forEach",
@@ -635,11 +582,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 4800,
-        "y": 2400
-      }
+      "x": 1.05660377358491,
+      "y": 1.18931297709924,
+      "scheduled": false
     },
     "a433": {
       "name": "query",
@@ -663,11 +608,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 5100,
-        "y": 2700
-      }
+      "x": 1.14520743919886,
+      "y": 1.3552036199095,
+      "scheduled": false
     },
     "d522": {
       "name": "query",
@@ -691,11 +634,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 5100,
-        "y": 2900
-      }
+      "x": 1.15021459227468,
+      "y": 1.44457013574661,
+      "scheduled": false
     },
     "57b9": {
       "name": "stringConcat",
@@ -719,12 +660,10 @@
       "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
+      "x": 1.35684987694832,
+      "y": 1.45190839694656,
       "scheduled": false,
-      "canvasName": "concat",
-      "nodeLocation": {
-        "x": 6000,
-        "y": 2900
-      }
+      "canvasName": "concat"
     },
     "6cdf": {
       "name": "merge",
@@ -768,10 +707,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 6600,
-        "y": 2900
-      }
+      "x": 1.45200984413454,
+      "y": 1.44580152671756
     },
     "f815": {
       "name": "merge",
@@ -815,10 +752,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 4800,
-        "y": 2000
-      }
+      "x": 1.0377358490566,
+      "y": 0.978625954198473
     },
     "33e4": {
       "name": "push",
@@ -840,10 +775,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 5100,
-        "y": 2000
-      }
+      "x": 1.14438063986874,
+      "y": 0.989312977099237
     },
     "9ed7": {
       "name": "newVariable",
@@ -866,10 +799,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 3300,
-        "y": 1700
-      }
+      "x": 0.716738197424893,
+      "y": 0.860859728506787
     },
     "89c4": {
       "name": "push",
@@ -892,10 +823,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 3900,
-        "y": 1700
-      }
+      "x": 0.854077253218884,
+      "y": 0.863122171945701
     },
     "329c": {
       "name": "newVariable",
@@ -918,10 +847,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 5700,
-        "y": 3200
-      }
+      "x": 1.23891273247496,
+      "y": 1.61085972850679
     },
     "63ff": {
       "name": "push",
@@ -944,10 +871,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 6000,
-        "y": 3200
-      }
+      "x": 1.35693848354793,
+      "y": 1.61085972850679
     },
     "babe": {
       "name": "merge",
@@ -992,10 +917,8 @@
       },
       "deprecated": false,
       "groups": [],
-      "nodeLocation": {
-        "x": 2100,
-        "y": 1400
-      }
+      "x": 0.494489346069067,
+      "y": 0.724099099099099
     },
     "f54c": {
       "name": "modify",
@@ -1020,11 +943,9 @@
       },
       "deprecated": false,
       "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": 2100,
-        "y": 1000
-      }
+      "x": 0.4502325581395349,
+      "y": 0.49019607843137253,
+      "scheduled": false
     }
   },
   "transitions": {
@@ -1230,8 +1151,8 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 3,
+  "canvasVersion": 1,
   "tags": [],
   "groups": [],
-  "migrationVersion": 4
+  "migrationVersion": 2
 }
