@@ -1,12 +1,12 @@
 {
+  "canvasVersion": 3,
   "created": "2022-04-20T04:49:56.579Z",
   "createdVersion": "5.40.5-2021.1.72.0",
   "created_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
     "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "inactive": true
   },
   "description": null,
   "font_size": 12,
@@ -105,9 +105,13 @@
         ]
       },
       "packageJsonName": {
-        "type": "string",
-        "examples": [
-          "sdfsa"
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
         ]
       },
       "projectPath": {
@@ -135,14 +139,13 @@
       "projectPath"
     ]
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.370Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.177",
+  "last_updated": "2025-02-10T18:16:39.148Z",
   "last_updated_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+    "provenance": "CloudAAA",
+    "username": "logan.seo@itential.com",
+    "firstname": "Logan",
+    "inactive": false
   },
   "name": "Prebuilt Promotion Bitbucket Create Link",
   "outputSchema": {
@@ -251,9 +254,13 @@
         ]
       },
       "packageJsonName": {
-        "type": "string",
-        "examples": [
-          "sdfsa"
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
         ]
       },
       "projectPath": {
@@ -3349,7 +3356,6 @@
     }
   },
   "type": "automation",
-  "canvasVersion": 3,
   "tags": [],
   "groups": [],
   "migrationVersion": 4
