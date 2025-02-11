@@ -20,6 +20,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 4500,
@@ -63,6 +64,7 @@
         "error": "$var.job.error",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -108,6 +110,7 @@
           "return_value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 4200,
@@ -136,6 +139,7 @@
         "error": ""
       },
       "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -162,6 +166,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 4800,
@@ -187,6 +192,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 900,
@@ -212,10 +218,11 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
-        "x": 1524,
-        "y": 756
+        "x": 1500,
+        "y": 900
       }
     },
     "786b": {
@@ -240,6 +247,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -273,6 +281,7 @@
         "state": "success"
       }
     },
+    "2a69": {},
     "de12": {
       "workflow_end": {
         "type": "standard",
@@ -320,8 +329,7 @@
         "type": "standard",
         "state": "error"
       }
-    },
-    "2a69": {}
+    }
   },
   "inputSchema": {
     "type": "object",
@@ -407,8 +415,8 @@
     "gitTokens": {}
   },
   "font_size": 12,
-  "lastUpdatedVersion": "5.55.2-2023.2.14",
-  "last_updated": "2025-02-07T18:22:00.548Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.167",
+  "last_updated": "2025-02-11T18:39:01.979Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",

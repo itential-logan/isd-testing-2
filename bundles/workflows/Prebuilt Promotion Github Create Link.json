@@ -50,6 +50,7 @@
           "job_details": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "actor": "job",
       "nodeLocation": {
@@ -94,6 +95,7 @@
           "return_value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 5400,
@@ -138,6 +140,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -168,6 +171,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -229,6 +233,7 @@
           "job_details": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "actor": "job",
       "nodeLocation": {
@@ -273,6 +278,7 @@
           "return_value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 5400,
@@ -318,6 +324,7 @@
           "job_details": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "actor": "job",
       "nodeLocation": {
@@ -359,6 +366,7 @@
           "job_details": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "actor": "job",
       "nodeLocation": {
@@ -388,6 +396,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -437,6 +446,7 @@
           "merged_object": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 5700,
@@ -497,6 +507,7 @@
           "job_details": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "actor": "job",
       "nodeLocation": {
@@ -527,6 +538,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -557,6 +569,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -592,6 +605,7 @@
         },
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "task_name": "filterArtifactArrayToOnlyCreateFiles",
       "retrySettings": null,
@@ -620,12 +634,13 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
       "nodeLocation": {
         "x": 1200,
-        "y": 1956
+        "y": 1800
       }
     },
     "30ed": {
@@ -665,6 +680,7 @@
           "return_value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 2100,
@@ -694,6 +710,7 @@
         "decorators": []
       },
       "view": "/workflow_engine/task/ViewData",
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -726,6 +743,8 @@
       }
     },
     "workflow_end": {},
+    "72a1": {},
+    "146c": {},
     "fb6e": {
       "5b2f": {
         "type": "standard",
@@ -744,6 +763,9 @@
         "state": "success"
       }
     },
+    "b67f": {},
+    "feed": {},
+    "8c95": {},
     "870c": {
       "5153": {
         "type": "standard",
@@ -827,171 +849,14 @@
         "type": "standard",
         "state": "failure"
       }
-    },
-    "72a1": {},
-    "146c": {},
-    "b67f": {},
-    "feed": {},
-    "8c95": {}
+    }
   },
   "inputSchema": {
-    "type": "object",
-    "properties": {
-      "OrganizationName": {
-        "title": "owner",
-        "type": "string"
-      },
-      "ProjectName": {
-        "title": "repo",
-        "type": "string"
-      },
-      "TargetBranch": {
-        "title": "branch",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "MRType": {
-        "title": "str",
-        "type": "string",
-        "examples": [
-          "Hello"
-        ]
-      },
-      "commitMessage": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "packageJsonName": {
-        "type": "string",
-        "examples": [
-          "sdfsa"
-        ]
-      },
-      "artifact": {
-        "title": "obj",
-        "type": "object",
-        "properties": {},
-        "examples": [
-          {
-            "name": "value"
-          }
-        ]
-      },
-      "privateRepo": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "addRepositoryDependencyFiles": {
-        "type": "string",
-        "examples": []
-      }
-    },
-    "required": [
-      "OrganizationName",
-      "ProjectName",
-      "TargetBranch",
-      "adapter_id",
-      "MRType",
-      "commitMessage",
-      "packageJsonName",
-      "artifact",
-      "privateRepo",
-      "addRepositoryDependencyFiles"
-    ]
+    "type": "object"
   },
   "outputSchema": {
     "type": "object",
     "properties": {
-      "OrganizationName": {
-        "title": "owner",
-        "type": "string"
-      },
-      "ProjectName": {
-        "title": "repo",
-        "type": "string"
-      },
-      "TargetBranch": {
-        "title": "branch",
-        "type": "string"
-      },
-      "adapter_id": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "MRType": {
-        "title": "str",
-        "type": "string",
-        "examples": [
-          "Hello"
-        ]
-      },
-      "commitMessage": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "packageJsonName": {
-        "type": "string",
-        "examples": [
-          "sdfsa"
-        ]
-      },
-      "artifact": {
-        "title": "obj",
-        "type": "object",
-        "properties": {},
-        "examples": [
-          {
-            "name": "value"
-          }
-        ]
-      },
-      "privateRepo": {
-        "type": [
-          "array",
-          "boolean",
-          "null",
-          "number",
-          "object",
-          "string"
-        ]
-      },
-      "addRepositoryDependencyFiles": {
-        "type": "string",
-        "examples": []
-      },
       "_id": {
         "type": "string",
         "pattern": "^[0-9a-f]{24}$"
@@ -1011,8 +876,8 @@
     "gitTokens": {}
   },
   "font_size": 12,
-  "lastUpdatedVersion": "5.55.2-2023.2.14",
-  "last_updated": "2025-02-07T18:10:23.174Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.167",
+  "last_updated": "2025-02-11T18:39:01.928Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
@@ -1022,6 +887,7 @@
   },
   "type": "automation",
   "canvasVersion": 3,
+  "description": "",
   "tags": [],
   "groups": [],
   "migrationVersion": 4

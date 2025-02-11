@@ -21,6 +21,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -48,6 +49,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 1200,
@@ -90,11 +92,12 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
         "x": 2100,
-        "y": 420
+        "y": 500
       }
     },
     "3a1c": {
@@ -119,6 +122,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 1800,
@@ -153,6 +157,7 @@
           "content": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "task_name": "convertObjecttoString",
       "retrySettings": null,
@@ -185,6 +190,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -216,6 +222,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -247,6 +254,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -276,6 +284,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -303,6 +312,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -358,6 +368,7 @@
           "merged_object": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 1800,
@@ -398,6 +409,7 @@
           "merged_object": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 2700,
@@ -427,6 +439,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -476,6 +489,7 @@
           "merged_object": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 7200,
@@ -501,6 +515,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 6000,
@@ -527,6 +542,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -556,6 +572,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -586,6 +603,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -616,6 +634,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -645,6 +664,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -676,6 +696,7 @@
         "error": "",
         "decorators": []
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -705,6 +726,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -738,6 +760,7 @@
           "merged_object": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 9000,
@@ -764,6 +787,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -823,6 +847,7 @@
         "state": "success"
       }
     },
+    "1b02": {},
     "7ece": {
       "cc5a": {
         "type": "standard",
@@ -842,6 +867,7 @@
       }
     },
     "5f91": {},
+    "99aa": {},
     "97cc": {
       "5f91": {
         "type": "standard",
@@ -866,6 +892,7 @@
         "state": "success"
       }
     },
+    "a37a": {},
     "af31": {
       "e604": {
         "type": "standard",
@@ -925,10 +952,7 @@
         "type": "standard",
         "state": "success"
       }
-    },
-    "1b02": {},
-    "99aa": {},
-    "a37a": {}
+    }
   },
   "inputSchema": {
     "type": "object",
@@ -1125,8 +1149,8 @@
     "gitTokens": {}
   },
   "font_size": 12,
-  "lastUpdatedVersion": "5.55.2-2023.2.14",
-  "last_updated": "2025-02-07T18:10:26.835Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.167",
+  "last_updated": "2025-02-11T18:39:01.991Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
@@ -1138,6 +1162,7 @@
   "sla": 0,
   "type": "automation",
   "canvasVersion": 3,
+  "description": "",
   "tags": [],
   "groups": [],
   "migrationVersion": 4
