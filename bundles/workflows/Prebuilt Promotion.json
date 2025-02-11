@@ -1,15 +1,1569 @@
 {
-  "created": "2022-03-08T14:35:35.606Z",
-  "createdVersion": "5.40.5-2021.1.52.0",
-  "created_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
+  "name": "Prebuilt Promotion",
+  "tasks": {
+    "430": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "buildGETAdapterByNameURI",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6234aa0b329ee901170bd820",
+          "variableMap": {
+            "adapterName": "$var.e587.ServiceType"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "getAdapterByNameURI": null
+        }
+      },
+      "groups": [],
+      "task_name": "buildGETAdapterByNameURI",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -6000,
+        "y": 700
+      }
+    },
+    "3627": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Build MR Branch Name",
+      "description": "Build MR Branch Name",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.e587.MRType",
+          "stringN": "/"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2700,
+        "y": 700
+      }
+    },
+    "4020": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "healthcheck",
+          "value": [
+            {
+              "package_id": "@itential/app-automation_catalog",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-ag_manager",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-admin_essentials",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-golden_services",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-form_builder",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-artifacts",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-automation_studio",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-json_forms",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-configuration_manager",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-golden_config",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/adapter-local_aaa",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-mop",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-nso_manager",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-policy_manager",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-service_management",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/search",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-service_catalog",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-smart_template",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-task_worker",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-template_builder",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/tags",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/adapter-mongo",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/adapter-redis",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-workflow_engine",
+              "version": ""
+            },
+            {
+              "package_id": "@itential/app-workflow_builder",
+              "version": ""
+            }
+          ]
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": -8100,
+        "y": 700
+      }
+    },
+    "5379": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "setRepositoryInPackageJson",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "62322beada0c6c470881bdaf",
+          "variableMap": {
+            "originalPackageJson": "$var.job.packageJson",
+            "adapterType": "$var.e587.ServiceType",
+            "groupPath": "$var.e587.GroupPath",
+            "adapterProperties": "$var.d48d.responseBody"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "updatedPackageJson": null
+        }
+      },
+      "groups": [],
+      "task_name": "setRepositoryInPackageJson",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -4800,
+        "y": 700
+      }
+    },
+    "8200": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Extract Artifact ID",
+      "description": "Extract Artifact ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "_id",
+          "obj": "$var.e4d3.firstFilteredElement"
+        },
+        "outgoing": {
+          "return_data": "$var.job.artifactIdArr"
+        },
+        "error": ""
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -10500,
+        "y": 600
+      }
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "summary": "workflow_start",
+      "description": "workflow_start",
+      "nodeLocation": {
+        "x": -14700,
+        "y": 600
+      }
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "summary": "workflow_end",
+      "description": "workflow_end",
+      "nodeLocation": {
+        "x": 300,
+        "y": 700
+      }
+    },
+    "aa4e": {
+      "name": "gatherInternalGET",
+      "canvasName": "gatherInternalGET",
+      "summary": "Gather List of Installed Artifacts",
+      "description": "Gather List of Installed Artifacts",
+      "location": "Application",
+      "app": "AppArtifacts",
+      "displayName": "AppArtifacts",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "internalURL": "/prebuilts?skip=0&limit=2000"
+        },
+        "outgoing": {
+          "responseBody": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "view": "/app_artifacts/views/tasks/gatherInternalGET",
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -14100,
+        "y": 600
+      }
+    },
+    "5ed7": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Make Artifact URI",
+      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "/prebuilts/",
+          "stringN": "$var.8200.return_data"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -9900,
+        "y": 700
+      }
+    },
+    "4d16": {
+      "name": "gatherInternalGET",
+      "canvasName": "gatherInternalGET",
+      "summary": "Gather Selected Artifact Info",
+      "description": "Gather GET call",
+      "location": "Application",
+      "app": "AppArtifacts",
+      "displayName": "AppArtifacts",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "internalURL": "$var.5ed7.combinedStrings"
+        },
+        "outgoing": {
+          "responseBody": null
+        },
+        "error": ""
+      },
+      "view": "/app_artifacts/views/tasks/gatherInternalGET",
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -8700,
+        "y": 700
+      }
+    },
+    "4b23": {
+      "name": "createPublishedArtifactFromScratch",
+      "canvasName": "createPublishedArtifactFromScratch",
+      "summary": "Creates artifact for publishing without DB calls",
+      "description": "Creates JSON object containing artifact file structure and all associated data from input tasks without touching database",
+      "location": "Application",
+      "locationType": null,
+      "app": "AppArtifacts",
+      "type": "automatic",
+      "displayName": "AppArtifacts",
+      "variables": {
+        "incoming": {
+          "artifactData": "$var.5bc6.artifactDataFormatted",
+          "modules": "$var.job.healthcheck",
+          "packageJson": "$var.5379.updatedPackageJson"
+        },
+        "outgoing": {
+          "callback": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3900,
+        "y": 700
+      }
+    },
+    "cbf5": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "componentsObject",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "620ea276e3638a010009b10e",
+          "variableMap": {
+            "input": "$var.4d16.responseBody"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": false,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "output": null
+        }
+      },
+      "groups": [],
+      "task_name": "componentsObject",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -7500,
+        "y": 700
+      }
+    },
+    "5bc6": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "JSON Transformation",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "6075bda98c016f0098c72849",
+          "variableMap": {
+            "artifactDataUnformatted": "$var.4d16.responseBody",
+            "componentObject": "$var.cbf5.output"
+          },
+          "options": {
+            "extractOutput": true,
+            "validateIncoming": false,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "artifactDataFormatted": null
+        }
+      },
+      "groups": [],
+      "task_name": "getMetadataAndComponentsGitlab",
+      "nodeLocation": {
+        "x": -7200,
+        "y": 700
+      }
+    },
+    "382d": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "packageJson",
+          "value": {
+            "name": "",
+            "author": "Itential Automation Platform",
+            "version": "0.0.0",
+            "description": "Checked in new artifact",
+            "scripts": {
+              "test": "echo \"Error: no test specified\" && exit 1",
+              "deploy": "echo not needed npm publish --access=public --registry=http://registry.npmjs.org",
+              "validateSchema": "node test/manifestTester.js manifest.json manifest-schema.json",
+              "validateSchemaLinks": "node test/manifestLinkTester.js manifest.json",
+              "generateImageLinks": "node utils/generateImageLinks.js"
+            },
+            "repository": {
+              "type": "gitlab",
+              "hostname": "gitlab.com",
+              "path": "itentialopensource/pre-built-automations"
+            },
+            "keywords": [
+              "Itential",
+              "IAP",
+              "artifacts"
+            ],
+            "license": "Apache-2.0",
+            "devDependencies": {
+              "ajv": "^6.12.6",
+              "better-ajv-errors": "^1.2.0",
+              "fs-extra": "^7.0.1",
+              "r2": "^2.0.1"
+            }
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": -6600,
+        "y": 700
+      }
+    },
+    "cec6": {
+      "name": "getTime",
+      "canvasName": "getTime",
+      "summary": "Get time",
+      "description": "Gets the current time with an optional offset, timezone shift, and format string",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Time",
+      "variables": {
+        "incoming": {
+          "timezone": "-05:00",
+          "offsetDuration": "",
+          "format": "YYYY-MM-DDTHH-mm-ss"
+        },
+        "outgoing": {
+          "time": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3300,
+        "y": 700
+      }
+    },
+    "6cd9": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Build MR Branch Name",
+      "description": "Build MR Branch Name",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.3627.combinedStrings",
+          "stringN": "$var.3fc8.return_data"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "actor": "Pronghorn",
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -2100,
+        "y": 700
+      }
+    },
+    "3fc8": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query time",
+      "description": "Query time",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "time",
+          "obj": "$var.cec6.time"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -3000,
+        "y": 700
+      }
+    },
+    "1f6a": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query packageJson name",
+      "description": "Query packageJson name",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "name",
+          "obj": "$var.4d16.responseBody"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -1500,
+        "y": 700
+      }
+    },
+    "30d4": {
+      "name": "gatherInternalGET",
+      "canvasName": "gatherInternalGET",
+      "summary": "Gather WhoAmI",
+      "description": "Gather WhoAmI",
+      "location": "Application",
+      "app": "AppArtifacts",
+      "displayName": "AppArtifacts",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "internalURL": "/whoami"
+        },
+        "outgoing": {
+          "responseBody": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "view": "/app_artifacts/views/tasks/gatherInternalGET",
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -12900,
+        "y": 600
+      }
+    },
+    "b1b8": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query username from WhoAmI",
+      "description": "Query username from WhoAmI",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "username",
+          "obj": "$var.30d4.responseBody"
+        },
+        "outgoing": {
+          "return_data": "$var.job.artifactIdArr"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -12600,
+        "y": 600
+      }
+    },
+    "5cd3": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Run Evaluation Task",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "rediscover",
+                    "task": "e587"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": false,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": -9300,
+        "y": 700
+      }
+    },
+    "4a09": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Run Child Job",
+      "description": "Run a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Prebuilt Promotion Re-Discover (2)",
+          "variables": {
+            "internalURL": {
+              "task": "5ed7",
+              "value": "combinedStrings"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": -9300,
+        "y": 1100
+      }
+    },
+    "e4d3": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "JSON Transformation",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "60647088fa6304009929d8d6",
+          "variableMap": {
+            "filterableArray": "$var.27b2.return_data",
+            "keyToFilterOn": "name",
+            "valueToFind": "$var.e587.ArtifactName",
+            "discardMatching": false
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "filteredArray": null,
+          "firstFilteredElement": null
+        }
+      },
+      "groups": [],
+      "task_name": "filterArrayOfObjectsGitLab",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -10800,
+        "y": 600
+      }
+    },
+    "27b2": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "get Artifact Array",
+      "description": "Get Artifact array from list of artifacts",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "results",
+          "obj": "$var.aa4e.responseBody"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -13500,
+        "y": 600
+      }
+    },
+    "e587": {
+      "name": "transformation",
+      "canvasName": "transformation",
+      "summary": "convertFormDataPP",
+      "description": "Perform a JSON Transformation using the JST library.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "tr_id": "623231be3230da01016b79de",
+          "variableMap": {
+            "formData": "$var.job.formData",
+            "apps": "$var.e126.responseBody"
+          },
+          "options": {
+            "extractOutput": false,
+            "validateIncoming": true,
+            "revertToDefaultValue": true
+          }
+        },
+        "outgoing": {
+          "ArtifactName": null,
+          "GroupPath": null,
+          "RepositoryName": null,
+          "MRType": null,
+          "CommitMessage": null,
+          "TargetBranch": null,
+          "rediscover": null,
+          "Adapter": null,
+          "ServiceType": null,
+          "ProjectPath": null,
+          "privateRepo": null,
+          "addRepositoryDependenyFiles": null
+        },
+        "decorators": []
+      },
+      "groups": [],
+      "task_name": "convertFormDataPP",
+      "retrySettings": null,
+      "nodeLocation": {
+        "x": -11400,
+        "y": 600
+      }
+    },
+    "e126": {
+      "name": "gatherInternalGET",
+      "canvasName": "gatherInternalGET",
+      "summary": "Gather Apps",
+      "description": "Gather List of Installed Artifacts",
+      "location": "Application",
+      "app": "AppArtifacts",
+      "displayName": "AppArtifacts",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "internalURL": "/health/adapters"
+        },
+        "outgoing": {
+          "responseBody": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "view": "/app_artifacts/views/tasks/gatherInternalGET",
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -12000,
+        "y": 600
+      }
+    },
+    "4c6a": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "isGitlab",
+      "description": "isGitlab",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "ServiceType",
+                    "task": "e587"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "gitlab",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": -1200,
+        "y": 700
+      }
+    },
+    "500c": {
+      "name": "ViewData",
+      "canvasName": "ViewData",
+      "summary": "View Data",
+      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
+      "location": "Application",
+      "app": "WorkFlowEngine",
+      "displayName": "Tools",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "header": "Invalid Version Control Service",
+          "message": "Make sure you selected a valid adapter and rerun this automation.",
+          "body": "",
+          "variables": {},
+          "btn_success": "Ok",
+          "btn_failure": ""
+        },
+        "outgoing": {},
+        "error": "",
+        "decorators": []
+      },
+      "view": "/workflow_engine/task/ViewData",
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -600,
+        "y": 0
+      }
+    },
+    "d48d": {
+      "name": "gatherInternalGET",
+      "canvasName": "gatherInternalGET",
+      "summary": "Get Adapter Properties",
+      "description": "Gather GET call",
+      "location": "Application",
+      "app": "AppArtifacts",
+      "displayName": "AppArtifacts",
+      "type": "manual",
+      "variables": {
+        "incoming": {
+          "internalURL": "$var.430.getAdapterByNameURI"
+        },
+        "outgoing": {
+          "responseBody": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "view": "/app_artifacts/views/tasks/gatherInternalGET",
+      "groups": [],
+      "scheduled": false,
+      "nodeLocation": {
+        "x": -5400,
+        "y": 800
+      }
+    },
+    "6d70": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "isBitbucket",
+      "description": "isBitbucket",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "ServiceType",
+                    "task": "e587"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "bitbucket",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": -900,
+        "y": 500
+      }
+    },
+    "4a63": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Gitlab",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Prebuilt Promotion Gitlab Create Link",
+          "variables": {
+            "repoName": {
+              "editable": true,
+              "task": "e587",
+              "value": "RepositoryName"
+            },
+            "targetBranch": {
+              "editable": true,
+              "task": "e587",
+              "value": "TargetBranch"
+            },
+            "adapter_id": {
+              "editable": true,
+              "task": "e587",
+              "value": "Adapter"
+            },
+            "commitMessage": {
+              "editable": true,
+              "task": "e587",
+              "value": "CommitMessage"
+            },
+            "mrBranchName": {
+              "editable": true,
+              "task": "6cd9",
+              "value": "combinedStrings"
+            },
+            "username": {
+              "editable": true,
+              "task": "b1b8",
+              "value": "return_data"
+            },
+            "url": {
+              "editable": true,
+              "task": "e587",
+              "value": "GroupPath"
+            },
+            "packageJsonName": {
+              "editable": true,
+              "task": "1f6a",
+              "value": "return_data"
+            },
+            "artifact": {
+              "editable": true,
+              "task": "4b23",
+              "value": "callback"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": -600,
+        "y": 1000
+      }
+    },
+    "f609": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Bitbucket",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Prebuilt Promotion Bitbucket Create Link",
+          "variables": {
+            "mrBranchName": {
+              "editable": true,
+              "task": "6cd9",
+              "value": "combinedStrings"
+            },
+            "commitMessage": {
+              "editable": true,
+              "task": "e587",
+              "value": "CommitMessage"
+            },
+            "url": {
+              "editable": true,
+              "task": "e587",
+              "value": "GroupPath"
+            },
+            "targetBranch": {
+              "editable": true,
+              "task": "e587",
+              "value": "TargetBranch"
+            },
+            "adapter_id": {
+              "editable": true,
+              "task": "e587",
+              "value": "Adapter"
+            },
+            "repoName": {
+              "editable": true,
+              "task": "e587",
+              "value": "RepositoryName"
+            },
+            "username": {
+              "editable": true,
+              "task": "b1b8",
+              "value": "return_data"
+            },
+            "artifact": {
+              "editable": true,
+              "task": "4b23",
+              "value": "callback"
+            },
+            "packageJsonName": {
+              "editable": true,
+              "task": "1f6a",
+              "value": "return_data"
+            },
+            "projectPath": {
+              "editable": true,
+              "task": "e587",
+              "value": "ProjectPath"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": -600,
+        "y": 800
+      }
+    },
+    "c65b": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Github",
+      "description": "Runs a child job inside a workflow.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "Prebuilt Promotion Github Create Link",
+          "variables": {
+            "OrganizationName": {
+              "editable": true,
+              "task": "e587",
+              "value": "GroupPath"
+            },
+            "ProjectName": {
+              "editable": true,
+              "task": "e587",
+              "value": "RepositoryName"
+            },
+            "TargetBranch": {
+              "editable": true,
+              "task": "e587",
+              "value": "TargetBranch"
+            },
+            "adapter_id": {
+              "editable": true,
+              "task": "e587",
+              "value": "Adapter"
+            },
+            "MRType": {
+              "editable": true,
+              "task": "e587",
+              "value": "MRType"
+            },
+            "commitMessage": {
+              "editable": true,
+              "task": "e587",
+              "value": "CommitMessage"
+            },
+            "packageJsonName": {
+              "editable": true,
+              "task": "1f6a",
+              "value": "return_data"
+            },
+            "artifact": {
+              "editable": true,
+              "task": "4b23",
+              "value": "callback"
+            },
+            "privateRepo": {
+              "editable": true,
+              "task": "e587",
+              "value": "privateRepo"
+            },
+            "addRepositoryDependencyFiles": {
+              "task": "e587",
+              "value": "addRepositoryDependenyFiles"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "groups": [],
+      "actor": "job",
+      "nodeLocation": {
+        "x": -300,
+        "y": 500
+      }
+    },
+    "341d": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "isGithub",
+      "description": "isGithub",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "ServiceType",
+                    "task": "e587"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "github",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "groups": [],
+      "nodeLocation": {
+        "x": -900,
+        "y": 300
+      }
+    }
   },
-  "description": null,
-  "font_size": 12,
+  "transitions": {
+    "430": {
+      "d48d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2938": {},
+    "3627": {
+      "6cd9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4020": {
+      "cbf5": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4326": {},
+    "4778": {},
+    "5379": {
+      "4b23": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7847": {},
+    "8200": {
+      "5ed7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8273": {},
+    "9969": {},
+    "workflow_start": {
+      "aa4e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "aa4e": {
+      "27b2": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5ed7": {
+      "5cd3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4d16": {
+      "4020": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4b23": {
+      "cec6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cbf5": {
+      "5bc6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5bc6": {
+      "382d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "382d": {
+      "430": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cec6": {
+      "3fc8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6cd9": {
+      "1f6a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3fc8": {
+      "3627": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1f6a": {
+      "4c6a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "30d4": {
+      "b1b8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b1b8": {
+      "e126": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5cd3": {
+      "4a09": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "4d16": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4a09": {
+      "4d16": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e4d3": {
+      "8200": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "27b2": {
+      "30d4": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e587": {
+      "e4d3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "e126": {
+      "e587": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "4c6a": {
+      "6d70": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "4a63": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "500c": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d48d": {
+      "5379": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "6d70": {
+      "f609": {
+        "type": "standard",
+        "state": "success"
+      },
+      "341d": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "4a63": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f609": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c65b": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "341d": {
+      "500c": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "c65b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "a671": {},
+    "f186": {},
+    "de5e": {},
+    "6cad": {},
+    "b3bd": {},
+    "460c": {},
+    "ebce": {},
+    "69b0": {},
+    "41f8": {},
+    "62c8": {},
+    "b784": {},
+    "be39": {},
+    "d402": {},
+    "606e": {},
+    "f68d": {},
+    "204c": {},
+    "d4f8": {},
+    "8bc0": {}
+  },
   "inputSchema": {
     "type": "object",
     "properties": {
@@ -99,16 +1653,6 @@
       "formData"
     ]
   },
-  "lastUpdatedVersion": "4.69.3-2023.2.129",
-  "last_updated": "2025-02-06T18:32:42.351Z",
-  "last_updated_by": {
-    "provenance": "local_aaa",
-    "username": "admin@pronghorn",
-    "firstname": "admin",
-    "inactive": false,
-    "gitTokens": {}
-  },
-  "name": "Prebuilt Promotion",
   "outputSchema": {
     "type": "object",
     "properties": {
@@ -319,1605 +1863,27 @@
       }
     }
   },
+  "created": "2022-03-08T14:35:35.606Z",
+  "createdVersion": "5.40.5-2021.1.52.0",
+  "created_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
+  "font_size": 12,
+  "lastUpdatedVersion": "5.55.2-2023.2.14",
+  "last_updated": "2025-02-11T19:29:42.556Z",
+  "last_updated_by": {
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn",
+    "firstname": "admin",
+    "inactive": false,
+    "gitTokens": {}
+  },
   "preAutomationTime": 0,
   "sla": 0,
-  "tasks": {
-    "430": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "buildGETAdapterByNameURI",
-      "description": "Perform a JSON Transformation using the JST library.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "6234aa0b329ee901170bd820",
-          "variableMap": {
-            "adapterName": "$var.e587.ServiceType"
-          },
-          "options": {
-            "extractOutput": true,
-            "validateIncoming": true,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "getAdapterByNameURI": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "task_name": "buildGETAdapterByNameURI",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": -6000,
-        "y": 700
-      }
-    },
-    "3627": {
-      "name": "stringConcat",
-      "canvasName": "concat",
-      "summary": "Build MR Branch Name",
-      "description": "Build MR Branch Name",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "automatic",
-      "displayName": "String",
-      "variables": {
-        "incoming": {
-          "str": "$var.e587.MRType",
-          "stringN": "/"
-        },
-        "outgoing": {
-          "combinedStrings": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -2700,
-        "y": 700
-      }
-    },
-    "4020": {
-      "name": "newVariable",
-      "canvasName": "newVariable",
-      "summary": "Create a Job Variable",
-      "description": "Create a new Job variable by Job ID and assign it a value.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "name": "healthcheck",
-          "value": [
-            {
-              "package_id": "@itential/app-automation_catalog",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-ag_manager",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-admin_essentials",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-golden_services",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-form_builder",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-artifacts",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-automation_studio",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-json_forms",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-configuration_manager",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-golden_config",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/adapter-local_aaa",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-mop",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-nso_manager",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-policy_manager",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-service_management",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/search",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-service_catalog",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-smart_template",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-task_worker",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-template_builder",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/tags",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/adapter-mongo",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/adapter-redis",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-workflow_engine",
-              "version": ""
-            },
-            {
-              "package_id": "@itential/app-workflow_builder",
-              "version": ""
-            }
-          ]
-        },
-        "outgoing": {
-          "value": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "nodeLocation": {
-        "x": -8100,
-        "y": 700
-      }
-    },
-    "5379": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "setRepositoryInPackageJson",
-      "description": "Perform a JSON Transformation using the JST library.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "62322beada0c6c470881bdaf",
-          "variableMap": {
-            "originalPackageJson": "$var.job.packageJson",
-            "adapterType": "$var.e587.ServiceType",
-            "groupPath": "$var.e587.GroupPath",
-            "adapterProperties": "$var.d48d.responseBody"
-          },
-          "options": {
-            "extractOutput": true,
-            "validateIncoming": true,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "updatedPackageJson": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "task_name": "setRepositoryInPackageJson",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": -4800,
-        "y": 700
-      }
-    },
-    "8200": {
-      "name": "query",
-      "canvasName": "query",
-      "summary": "Extract Artifact ID",
-      "description": "Extract Artifact ID",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "pass_on_null": false,
-          "query": "_id",
-          "obj": "$var.e4d3.firstFilteredElement"
-        },
-        "outgoing": {
-          "return_data": "$var.job.artifactIdArr"
-        },
-        "error": ""
-      },
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -10500,
-        "y": 600
-      }
-    },
-    "workflow_start": {
-      "name": "workflow_start",
-      "groups": [],
-      "summary": "workflow_start",
-      "description": "workflow_start",
-      "nodeLocation": {
-        "x": -14700,
-        "y": 600
-      }
-    },
-    "workflow_end": {
-      "name": "workflow_end",
-      "groups": [],
-      "summary": "workflow_end",
-      "description": "workflow_end",
-      "nodeLocation": {
-        "x": 300,
-        "y": 700
-      }
-    },
-    "aa4e": {
-      "name": "gatherInternalGET",
-      "canvasName": "gatherInternalGET",
-      "summary": "Gather List of Installed Artifacts",
-      "description": "Gather List of Installed Artifacts",
-      "location": "Application",
-      "app": "AppArtifacts",
-      "displayName": "AppArtifacts",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "internalURL": "/prebuilts?skip=0&limit=2000"
-        },
-        "outgoing": {
-          "responseBody": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -14100,
-        "y": 600
-      }
-    },
-    "5ed7": {
-      "name": "stringConcat",
-      "canvasName": "concat",
-      "summary": "Make Artifact URI",
-      "description": "Concatenates a string with a second string(s). The second parameter can be a string or array.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "automatic",
-      "displayName": "String",
-      "variables": {
-        "incoming": {
-          "str": "/prebuilts/",
-          "stringN": "$var.8200.return_data"
-        },
-        "outgoing": {
-          "combinedStrings": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -9900,
-        "y": 700
-      }
-    },
-    "4d16": {
-      "name": "gatherInternalGET",
-      "canvasName": "gatherInternalGET",
-      "summary": "Gather Selected Artifact Info",
-      "description": "Gather GET call",
-      "location": "Application",
-      "app": "AppArtifacts",
-      "displayName": "AppArtifacts",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "internalURL": "$var.5ed7.combinedStrings"
-        },
-        "outgoing": {
-          "responseBody": null
-        },
-        "error": ""
-      },
-      "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -8700,
-        "y": 700
-      }
-    },
-    "4b23": {
-      "name": "createPublishedArtifactFromScratch",
-      "canvasName": "createPublishedArtifactFromScratch",
-      "summary": "Creates artifact for publishing without DB calls",
-      "description": "Creates JSON object containing artifact file structure and all associated data from input tasks without touching database",
-      "location": "Application",
-      "locationType": null,
-      "app": "AppArtifacts",
-      "type": "automatic",
-      "displayName": "AppArtifacts",
-      "variables": {
-        "incoming": {
-          "artifactData": "$var.5bc6.artifactDataFormatted",
-          "modules": "$var.job.healthcheck",
-          "packageJson": "$var.5379.updatedPackageJson"
-        },
-        "outgoing": {
-          "callback": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -3900,
-        "y": 700
-      }
-    },
-    "cbf5": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "componentsObject",
-      "description": "Perform a JSON Transformation using the JST library.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "620ea276e3638a010009b10e",
-          "variableMap": {
-            "input": "$var.4d16.responseBody"
-          },
-          "options": {
-            "extractOutput": true,
-            "validateIncoming": false,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "output": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "task_name": "componentsObject",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": -7500,
-        "y": 700
-      }
-    },
-    "5bc6": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "JSON Transformation",
-      "description": "Perform a JSON Transformation using the JST library.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "6075bda98c016f0098c72849",
-          "variableMap": {
-            "artifactDataUnformatted": "$var.4d16.responseBody",
-            "componentObject": "$var.cbf5.output"
-          },
-          "options": {
-            "extractOutput": true,
-            "validateIncoming": false,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "artifactDataFormatted": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "task_name": "getMetadataAndComponentsGitlab",
-      "nodeLocation": {
-        "x": -7200,
-        "y": 700
-      }
-    },
-    "382d": {
-      "name": "newVariable",
-      "canvasName": "newVariable",
-      "summary": "Create a Job Variable",
-      "description": "Create a new Job variable by Job ID and assign it a value.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "name": "packageJson",
-          "value": {
-            "name": "",
-            "author": "Itential Automation Platform",
-            "version": "0.0.0",
-            "description": "Checked in new artifact",
-            "scripts": {
-              "test": "echo \"Error: no test specified\" && exit 1",
-              "deploy": "echo not needed npm publish --access=public --registry=http://registry.npmjs.org",
-              "validateSchema": "node test/manifestTester.js manifest.json manifest-schema.json",
-              "validateSchemaLinks": "node test/manifestLinkTester.js manifest.json",
-              "generateImageLinks": "node utils/generateImageLinks.js"
-            },
-            "repository": {
-              "type": "gitlab",
-              "hostname": "gitlab.com",
-              "path": "itentialopensource/pre-built-automations"
-            },
-            "keywords": [
-              "Itential",
-              "IAP",
-              "artifacts"
-            ],
-            "license": "Apache-2.0",
-            "devDependencies": {
-              "ajv": "^6.12.6",
-              "better-ajv-errors": "^1.2.0",
-              "fs-extra": "^7.0.1",
-              "r2": "^2.0.1"
-            }
-          }
-        },
-        "outgoing": {
-          "value": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "nodeLocation": {
-        "x": -6600,
-        "y": 700
-      }
-    },
-    "cec6": {
-      "name": "getTime",
-      "canvasName": "getTime",
-      "summary": "Get time",
-      "description": "Gets the current time with an optional offset, timezone shift, and format string",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "automatic",
-      "displayName": "Time",
-      "variables": {
-        "incoming": {
-          "timezone": "-05:00",
-          "offsetDuration": "",
-          "format": "YYYY-MM-DDTHH-mm-ss"
-        },
-        "outgoing": {
-          "time": null
-        },
-        "error": ""
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -3300,
-        "y": 700
-      }
-    },
-    "6cd9": {
-      "name": "stringConcat",
-      "canvasName": "concat",
-      "summary": "Build MR Branch Name",
-      "description": "Build MR Branch Name",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "automatic",
-      "displayName": "String",
-      "variables": {
-        "incoming": {
-          "str": "$var.3627.combinedStrings",
-          "stringN": "$var.3fc8.return_data"
-        },
-        "outgoing": {
-          "combinedStrings": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "Pronghorn",
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -2100,
-        "y": 700
-      }
-    },
-    "3fc8": {
-      "name": "query",
-      "canvasName": "query",
-      "summary": "Query time",
-      "description": "Query time",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "pass_on_null": false,
-          "query": "time",
-          "obj": "$var.cec6.time"
-        },
-        "outgoing": {
-          "return_data": null
-        },
-        "error": ""
-      },
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -3000,
-        "y": 700
-      }
-    },
-    "1f6a": {
-      "name": "query",
-      "canvasName": "query",
-      "summary": "Query packageJson name",
-      "description": "Query packageJson name",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "pass_on_null": false,
-          "query": "name",
-          "obj": "$var.4d16.responseBody"
-        },
-        "outgoing": {
-          "return_data": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -1500,
-        "y": 700
-      }
-    },
-    "30d4": {
-      "name": "gatherInternalGET",
-      "canvasName": "gatherInternalGET",
-      "summary": "Gather WhoAmI",
-      "description": "Gather WhoAmI",
-      "location": "Application",
-      "app": "AppArtifacts",
-      "displayName": "AppArtifacts",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "internalURL": "/whoami"
-        },
-        "outgoing": {
-          "responseBody": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -12900,
-        "y": 600
-      }
-    },
-    "b1b8": {
-      "name": "query",
-      "canvasName": "query",
-      "summary": "Query username from WhoAmI",
-      "description": "Query username from WhoAmI",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "pass_on_null": false,
-          "query": "username",
-          "obj": "$var.30d4.responseBody"
-        },
-        "outgoing": {
-          "return_data": "$var.job.artifactIdArr"
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -12600,
-        "y": 600
-      }
-    },
-    "5cd3": {
-      "name": "evaluation",
-      "canvasName": "evaluation",
-      "summary": "Run Evaluation Task",
-      "description": "Run an evaluation",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "all_true_flag": false,
-          "evaluation_groups": [
-            {
-              "all_true_flag": false,
-              "evaluations": [
-                {
-                  "query": "",
-                  "operand_1": {
-                    "variable": "rediscover",
-                    "task": "e587"
-                  },
-                  "operator": "==",
-                  "operand_2": {
-                    "variable": false,
-                    "task": "static"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "outgoing": {
-          "return_value": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "nodeLocation": {
-        "x": -9300,
-        "y": 700
-      }
-    },
-    "4a09": {
-      "name": "childJob",
-      "canvasName": "childJob",
-      "summary": "Run Child Job",
-      "description": "Run a child job inside a workflow.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "task": "",
-          "workflow": "Prebuilt Promotion Re-Discover",
-          "variables": {
-            "internalURL": {
-              "variable": "",
-              "task": "5ed7",
-              "value": "combinedStrings"
-            }
-          },
-          "data_array": "",
-          "transformation": "",
-          "loopType": ""
-        },
-        "outgoing": {
-          "job_details": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "job",
-      "nodeLocation": {
-        "x": -9300,
-        "y": 1100
-      }
-    },
-    "e4d3": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "JSON Transformation",
-      "description": "Perform a JSON Transformation using the JST library.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "60647088fa6304009929d8d6",
-          "variableMap": {
-            "filterableArray": "$var.27b2.return_data",
-            "keyToFilterOn": "name",
-            "valueToFind": "$var.e587.ArtifactName",
-            "discardMatching": false
-          },
-          "options": {
-            "extractOutput": false,
-            "validateIncoming": true,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "filteredArray": null,
-          "firstFilteredElement": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "task_name": "filterArrayOfObjectsGitLab",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": -10800,
-        "y": 600
-      }
-    },
-    "27b2": {
-      "name": "query",
-      "canvasName": "query",
-      "summary": "get Artifact Array",
-      "description": "Get Artifact array from list of artifacts",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "pass_on_null": false,
-          "query": "results",
-          "obj": "$var.aa4e.responseBody"
-        },
-        "outgoing": {
-          "return_data": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -13500,
-        "y": 600
-      }
-    },
-    "e587": {
-      "name": "transformation",
-      "canvasName": "transformation",
-      "summary": "convertFormDataPP",
-      "description": "Perform a JSON Transformation using the JST library.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "tr_id": "623231be3230da01016b79de",
-          "variableMap": {
-            "formData": "$var.job.formData",
-            "apps": "$var.e126.responseBody"
-          },
-          "options": {
-            "extractOutput": false,
-            "validateIncoming": true,
-            "revertToDefaultValue": true
-          }
-        },
-        "outgoing": {
-          "ArtifactName": null,
-          "GroupPath": null,
-          "RepositoryName": null,
-          "MRType": null,
-          "CommitMessage": null,
-          "TargetBranch": null,
-          "rediscover": null,
-          "Adapter": null,
-          "ServiceType": null,
-          "ProjectPath": null,
-          "privateRepo": null,
-          "addRepositoryDependenyFiles": null
-        },
-        "decorators": []
-      },
-      "deprecated": false,
-      "groups": [],
-      "task_name": "convertFormDataPP",
-      "retrySettings": null,
-      "nodeLocation": {
-        "x": -11400,
-        "y": 600
-      }
-    },
-    "e126": {
-      "name": "gatherInternalGET",
-      "canvasName": "gatherInternalGET",
-      "summary": "Gather Apps",
-      "description": "Gather List of Installed Artifacts",
-      "location": "Application",
-      "app": "AppArtifacts",
-      "displayName": "AppArtifacts",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "internalURL": "/health/adapters"
-        },
-        "outgoing": {
-          "responseBody": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -12000,
-        "y": 600
-      }
-    },
-    "4c6a": {
-      "name": "evaluation",
-      "canvasName": "evaluation",
-      "summary": "isGitlab",
-      "description": "isGitlab",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "all_true_flag": false,
-          "evaluation_groups": [
-            {
-              "all_true_flag": false,
-              "evaluations": [
-                {
-                  "query": "",
-                  "operand_1": {
-                    "variable": "ServiceType",
-                    "task": "e587"
-                  },
-                  "operator": "==",
-                  "operand_2": {
-                    "variable": "gitlab",
-                    "task": "static"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "outgoing": {
-          "return_value": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "nodeLocation": {
-        "x": -1200,
-        "y": 700
-      }
-    },
-    "500c": {
-      "name": "ViewData",
-      "canvasName": "ViewData",
-      "summary": "View Data",
-      "description": "Displays a message and runtime data to an operator. This can be used to request a decision, or used for acknowledgement only.",
-      "location": "Application",
-      "app": "WorkFlowEngine",
-      "displayName": "Tools",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "header": "Invalid Version Control Service",
-          "message": "Make sure you selected a valid adapter and rerun this automation.",
-          "body": "",
-          "variables": {},
-          "btn_success": "Ok",
-          "btn_failure": ""
-        },
-        "outgoing": {},
-        "error": "",
-        "decorators": []
-      },
-      "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -600,
-        "y": 0
-      }
-    },
-    "d48d": {
-      "name": "gatherInternalGET",
-      "canvasName": "gatherInternalGET",
-      "summary": "Get Adapter Properties",
-      "description": "Gather GET call",
-      "location": "Application",
-      "app": "AppArtifacts",
-      "displayName": "AppArtifacts",
-      "type": "manual",
-      "variables": {
-        "incoming": {
-          "internalURL": "$var.430.getAdapterByNameURI"
-        },
-        "outgoing": {
-          "responseBody": null
-        },
-        "error": "",
-        "decorators": []
-      },
-      "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
-      "groups": [],
-      "scheduled": false,
-      "nodeLocation": {
-        "x": -5400,
-        "y": 800
-      }
-    },
-    "6d70": {
-      "name": "evaluation",
-      "canvasName": "evaluation",
-      "summary": "isBitbucket",
-      "description": "isBitbucket",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "all_true_flag": false,
-          "evaluation_groups": [
-            {
-              "all_true_flag": false,
-              "evaluations": [
-                {
-                  "query": "",
-                  "operand_1": {
-                    "variable": "ServiceType",
-                    "task": "e587"
-                  },
-                  "operator": "==",
-                  "operand_2": {
-                    "variable": "bitbucket",
-                    "task": "static"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "outgoing": {
-          "return_value": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "nodeLocation": {
-        "x": -900,
-        "y": 500
-      }
-    },
-    "4a63": {
-      "name": "childJob",
-      "canvasName": "childJob",
-      "summary": "Gitlab",
-      "description": "Runs a child job inside a workflow.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "task": "",
-          "workflow": "Prebuilt Promotion Gitlab Create Link",
-          "variables": {
-            "repoName": {
-              "editable": true,
-              "task": "e587",
-              "value": "RepositoryName"
-            },
-            "targetBranch": {
-              "editable": true,
-              "task": "e587",
-              "value": "TargetBranch"
-            },
-            "adapter_id": {
-              "editable": true,
-              "task": "e587",
-              "value": "Adapter"
-            },
-            "commitMessage": {
-              "editable": true,
-              "task": "e587",
-              "value": "CommitMessage"
-            },
-            "mrBranchName": {
-              "editable": true,
-              "task": "6cd9",
-              "value": "combinedStrings"
-            },
-            "username": {
-              "editable": true,
-              "task": "b1b8",
-              "value": "return_data"
-            },
-            "url": {
-              "editable": true,
-              "task": "e587",
-              "value": "GroupPath"
-            },
-            "packageJsonName": {
-              "editable": true,
-              "task": "1f6a",
-              "value": "return_data"
-            },
-            "artifact": {
-              "editable": true,
-              "task": "4b23",
-              "value": "callback"
-            }
-          },
-          "data_array": "",
-          "transformation": "",
-          "loopType": ""
-        },
-        "outgoing": {
-          "job_details": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "job",
-      "nodeLocation": {
-        "x": -600,
-        "y": 1000
-      }
-    },
-    "f609": {
-      "name": "childJob",
-      "canvasName": "childJob",
-      "summary": "Bitbucket",
-      "description": "Runs a child job inside a workflow.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "task": "",
-          "workflow": "Prebuilt Promotion Bitbucket Create Link",
-          "variables": {
-            "mrBranchName": {
-              "editable": true,
-              "task": "6cd9",
-              "value": "combinedStrings"
-            },
-            "commitMessage": {
-              "editable": true,
-              "task": "e587",
-              "value": "CommitMessage"
-            },
-            "url": {
-              "editable": true,
-              "task": "e587",
-              "value": "GroupPath"
-            },
-            "targetBranch": {
-              "editable": true,
-              "task": "e587",
-              "value": "TargetBranch"
-            },
-            "adapter_id": {
-              "editable": true,
-              "task": "e587",
-              "value": "Adapter"
-            },
-            "repoName": {
-              "editable": true,
-              "task": "e587",
-              "value": "RepositoryName"
-            },
-            "username": {
-              "editable": true,
-              "task": "b1b8",
-              "value": "return_data"
-            },
-            "artifact": {
-              "editable": true,
-              "task": "4b23",
-              "value": "callback"
-            },
-            "packageJsonName": {
-              "editable": true,
-              "task": "1f6a",
-              "value": "return_data"
-            },
-            "projectPath": {
-              "editable": true,
-              "task": "e587",
-              "value": "ProjectPath"
-            }
-          },
-          "data_array": "",
-          "transformation": "",
-          "loopType": ""
-        },
-        "outgoing": {
-          "job_details": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "job",
-      "nodeLocation": {
-        "x": -600,
-        "y": 800
-      }
-    },
-    "c65b": {
-      "name": "childJob",
-      "canvasName": "childJob",
-      "summary": "Github",
-      "description": "Runs a child job inside a workflow.",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "task": "",
-          "workflow": "Prebuilt Promotion Github Create Link",
-          "variables": {
-            "OrganizationName": {
-              "editable": true,
-              "task": "e587",
-              "value": "GroupPath"
-            },
-            "ProjectName": {
-              "editable": true,
-              "task": "e587",
-              "value": "RepositoryName"
-            },
-            "TargetBranch": {
-              "editable": true,
-              "task": "e587",
-              "value": "TargetBranch"
-            },
-            "adapter_id": {
-              "editable": true,
-              "task": "e587",
-              "value": "Adapter"
-            },
-            "MRType": {
-              "editable": true,
-              "task": "e587",
-              "value": "MRType"
-            },
-            "commitMessage": {
-              "editable": true,
-              "task": "e587",
-              "value": "CommitMessage"
-            },
-            "packageJsonName": {
-              "editable": true,
-              "task": "1f6a",
-              "value": "return_data"
-            },
-            "artifact": {
-              "editable": true,
-              "task": "4b23",
-              "value": "callback"
-            },
-            "privateRepo": {
-              "editable": true,
-              "task": "e587",
-              "value": "privateRepo"
-            },
-            "addRepositoryDependencyFiles": {
-              "task": "e587",
-              "value": "addRepositoryDependenyFiles"
-            }
-          },
-          "data_array": "",
-          "transformation": "",
-          "loopType": ""
-        },
-        "outgoing": {
-          "job_details": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "actor": "job",
-      "nodeLocation": {
-        "x": -300,
-        "y": 500
-      }
-    },
-    "341d": {
-      "name": "evaluation",
-      "canvasName": "evaluation",
-      "summary": "isGithub",
-      "description": "isGithub",
-      "location": "Application",
-      "locationType": null,
-      "app": "WorkFlowEngine",
-      "type": "operation",
-      "displayName": "WorkFlowEngine",
-      "variables": {
-        "incoming": {
-          "all_true_flag": false,
-          "evaluation_groups": [
-            {
-              "all_true_flag": false,
-              "evaluations": [
-                {
-                  "query": "",
-                  "operand_1": {
-                    "variable": "ServiceType",
-                    "task": "e587"
-                  },
-                  "operator": "==",
-                  "operand_2": {
-                    "variable": "github",
-                    "task": "static"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "outgoing": {
-          "return_value": null
-        }
-      },
-      "deprecated": false,
-      "groups": [],
-      "nodeLocation": {
-        "x": -900,
-        "y": 300
-      }
-    }
-  },
-  "transitions": {
-    "430": {
-      "d48d": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "2938": {},
-    "3627": {
-      "6cd9": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "4020": {
-      "cbf5": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "4326": {},
-    "4778": {},
-    "5379": {
-      "4b23": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "7847": {},
-    "8200": {
-      "5ed7": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "8273": {},
-    "9969": {},
-    "workflow_start": {
-      "aa4e": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "workflow_end": {},
-    "a671": {},
-    "f186": {},
-    "de5e": {},
-    "6cad": {},
-    "b3bd": {},
-    "460c": {},
-    "ebce": {},
-    "69b0": {},
-    "41f8": {},
-    "62c8": {},
-    "b784": {},
-    "be39": {},
-    "d402": {},
-    "aa4e": {
-      "27b2": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "5ed7": {
-      "5cd3": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "606e": {},
-    "f68d": {},
-    "4d16": {
-      "4020": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "4b23": {
-      "cec6": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "cbf5": {
-      "5bc6": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "5bc6": {
-      "382d": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "382d": {
-      "430": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "cec6": {
-      "3fc8": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "6cd9": {
-      "1f6a": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "3fc8": {
-      "3627": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "204c": {},
-    "d4f8": {},
-    "1f6a": {
-      "4c6a": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "30d4": {
-      "b1b8": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "b1b8": {
-      "e126": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "5cd3": {
-      "4a09": {
-        "type": "standard",
-        "state": "failure"
-      },
-      "4d16": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "4a09": {
-      "4d16": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "e4d3": {
-      "8200": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "27b2": {
-      "30d4": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "e587": {
-      "e4d3": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "8bc0": {},
-    "e126": {
-      "e587": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "4c6a": {
-      "6d70": {
-        "type": "standard",
-        "state": "failure"
-      },
-      "4a63": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "500c": {
-      "workflow_end": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "d48d": {
-      "5379": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "6d70": {
-      "f609": {
-        "type": "standard",
-        "state": "success"
-      },
-      "341d": {
-        "type": "standard",
-        "state": "failure"
-      }
-    },
-    "4a63": {
-      "workflow_end": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "f609": {
-      "workflow_end": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "c65b": {
-      "workflow_end": {
-        "type": "standard",
-        "state": "success"
-      }
-    },
-    "341d": {
-      "500c": {
-        "type": "standard",
-        "state": "failure"
-      },
-      "c65b": {
-        "type": "standard",
-        "state": "success"
-      }
-    }
-  },
   "type": "automation",
   "canvasVersion": 3,
   "tags": [],

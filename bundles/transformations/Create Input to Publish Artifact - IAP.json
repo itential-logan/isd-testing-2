@@ -1,0 +1,1187 @@
+{
+  "_id": "605b870f21c795008dc26119",
+  "name": "Create Input to Publish Artifact - IAP",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "AEartifactInfo",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "examples": [
+            "5f7c62f0b80b0a2a91782437"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "examples": [
+            "@itentialopensource/zackall"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "examples": [
+            "0.0.1"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "examples": [
+            "zackAll"
+          ]
+        },
+        "author": {
+          "type": "string",
+          "examples": [
+            "Itential Artifacts"
+          ]
+        },
+        "repository": {
+          "type": "object",
+          "required": []
+        },
+        "license": {
+          "type": "string",
+          "examples": [
+            "Apache-2.0"
+          ]
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "Itential"
+            ]
+          },
+          "$id": "keywords"
+        },
+        "readme": {
+          "type": "string",
+          "examples": [
+            "zackAll"
+          ]
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "formOutput",
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "properties": {
+            "operationsAutomations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "_id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c622d038374d99a024d66"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "operationsAutomations"
+            },
+            "workflows": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "workflows"
+            },
+            "jsonForms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "jsonForms"
+            },
+            "templates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "templates"
+            },
+            "forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "Demo"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "forms"
+            },
+            "commandTemplates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "commandTemplates"
+            },
+            "analyticTemplates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "analyticTemplates"
+            },
+            "transformations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c62b43451a606c2fb0305"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "transformations"
+            },
+            "goldenConfigTrees": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "treeId": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c62b43451a606c2fb0305"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "goldenConfigTrees"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "discovery",
+      "type": "object",
+      "properties": {
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "@itential/app-automation_catalog"
+            ]
+          },
+          "$id": "dependencies"
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "mata",
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "ZackAll"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "contributor": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "readme": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "license": {
+              "type": "string"
+            },
+            "categories": {
+              "type": "array"
+            },
+            "keywords": {
+              "type": "array"
+            },
+            "dependencies": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "examples": [
+                  "@itential/app-automation_catalog"
+                ]
+              }
+            }
+          },
+          "required": []
+        },
+        "components": {
+          "type": "object",
+          "properties": {
+            "automation": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "_id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c622d038374d99a024d66"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "workflow": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "ac-agenda-job"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "json-forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "_id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c6221e607880ade9b11bb"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "ac-agenda-job"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "template": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "mop-template": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "mop-analytic-template": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            },
+            "golden-config": {
+              "type": "array"
+            },
+            "transformation": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c62b43451a606c2fb0305"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    }
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "packageJSON",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "@itentialopensource/artifact-template"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "examples": [
+            "0.0.5"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "examples": [
+            "Template for creating new artifacts"
+          ]
+        },
+        "scripts": {
+          "type": "object",
+          "properties": {
+            "test": {
+              "type": "string",
+              "examples": [
+                "echo \"Error: no test specified\" && exit 1"
+              ]
+            },
+            "deploy": {
+              "type": "string",
+              "examples": [
+                "echo not needed npm publish --access=public --registry=http://registry.npmjs.org"
+              ]
+            },
+            "validateSchema": {
+              "type": "string",
+              "examples": [
+                "node test/manifestTester.js manifest.json manifest-schema.json"
+              ]
+            },
+            "validateSchemaLinks": {
+              "type": "string",
+              "examples": [
+                "node test/manifestLinkTester.js manifest.json"
+              ]
+            },
+            "generateImageLinks": {
+              "type": "string",
+              "examples": [
+                "node utils/generateImageLinks.js"
+              ]
+            }
+          },
+          "required": []
+        },
+        "repository": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "examples": [
+                "git"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "examples": [
+                "https://gitlab.com/itentialopensource/pre-built-automations/artifact-template.git"
+              ]
+            }
+          },
+          "required": []
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "Itential"
+            ]
+          }
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "Itential Artifacts"
+            ]
+          }
+        },
+        "author": {
+          "type": "string",
+          "examples": [
+            "Itential Artifacts"
+          ]
+        },
+        "license": {
+          "type": "string",
+          "examples": [
+            "Apache-2.0"
+          ]
+        },
+        "devDependencies": {
+          "type": "object",
+          "properties": {
+            "r2": {
+              "type": "string",
+              "examples": [
+                "^2.0.1"
+              ]
+            },
+            "ajv": {
+              "type": "string",
+              "examples": [
+                "6.10.0"
+              ]
+            },
+            "better-ajv-errors": {
+              "type": "string",
+              "examples": [
+                "^0.6.1"
+              ]
+            },
+            "fs-extra": {
+              "type": "string",
+              "examples": [
+                "^7.0.1"
+              ]
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 5,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/repository"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/repository"
+      }
+    },
+    {
+      "id": 6,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/version"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/version"
+      }
+    },
+    {
+      "id": 9,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/keywords"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/keywords"
+      }
+    },
+    {
+      "id": 10,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/license"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/license"
+      }
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/author"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/author"
+      }
+    },
+    {
+      "id": 79,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/name"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/name"
+      },
+      "context": "#"
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/readme"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/readme"
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/description"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/description"
+      }
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/workflows"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/workflow"
+      }
+    },
+    {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/jsonForms"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/json-forms"
+      }
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/forms"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/forms"
+      }
+    },
+    {
+      "id": 28,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/templates"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/template"
+      }
+    },
+    {
+      "id": 29,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/commandTemplates"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/mop-template"
+      }
+    },
+    {
+      "id": 30,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/analyticTemplates"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/mop-analytic-template"
+      }
+    },
+    {
+      "id": 31,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/transformations"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/transformation"
+      }
+    },
+    {
+      "id": 32,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discovery",
+        "ptr": "/dependencies"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/dependencies"
+      }
+    },
+    {
+      "id": 76,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/operationsAutomations"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/automation"
+      }
+    },
+    {
+      "id": 77,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/goldenConfigTrees"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/components/golden-config"
+      }
+    },
+    {
+      "id": 78,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/name"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/name"
+      },
+      "context": "#"
+    },
+    {
+      "id": 11,
+      "type": "declaration",
+      "library": "Object",
+      "method": "new Object",
+      "args": [
+        {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "deploy": "echo not needed npm publish --access=public --registry=http://registry.npmjs.org",
+          "validateSchema": "node test/manifestTester.js manifest.json manifest-schema.json",
+          "validateSchemaLinks": "node test/manifestLinkTester.js manifest.json",
+          "generateImageLinks": "node utils/generateImageLinks.js"
+        }
+      ],
+      "view": {
+        "row": 9,
+        "col": 3
+      }
+    },
+    {
+      "id": 14,
+      "type": "declaration",
+      "library": "Object",
+      "method": "new Object",
+      "args": [
+        {
+          "r2": "^2.0.1",
+          "ajv": "6.10.0",
+          "better-ajv-errors": "^0.6.1",
+          "fs-extra": "^7.0.1"
+        }
+      ],
+      "view": {
+        "row": 11,
+        "col": 3
+      }
+    },
+    {
+      "id": 17,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [
+        null
+      ],
+      "view": {
+        "row": 10,
+        "col": 3
+      },
+      "polymorphIndex": 0
+    },
+    {
+      "id": 21,
+      "type": "declaration",
+      "library": "Array",
+      "method": "new Array",
+      "args": [],
+      "view": {
+        "row": 2,
+        "col": 4
+      },
+      "polymorphIndex": 0
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 11,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/scripts"
+      }
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 14,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/devDependencies"
+      }
+    },
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 17,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "packageJSON",
+        "ptr": "/contributors"
+      }
+    },
+    {
+      "id": 22,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 21,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/categories"
+      }
+    },
+    {
+      "id": 23,
+      "type": "assign",
+      "from": {
+        "location": "declaration",
+        "name": 21,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/keywords"
+      }
+    },
+    {
+      "id": 80,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/author"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "mata",
+        "ptr": "/metadata/contributor"
+      },
+      "context": "#"
+    },
+    {
+      "id": 81,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "AEartifactInfo",
+        "ptr": "/author"
+      },
+      "to": {
+        "location": "declaration",
+        "name": 17,
+        "ptr": "/args/0/value"
+      },
+      "context": "#"
+    }
+  ],
+  "functions": [],
+  "comments": [],
+  "view": {
+    "col": 4,
+    "row": 12
+  },
+  "created": "2025-02-11T19:28:02.168Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-11T19:29:01.989Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.8",
+  "tags": []
+}

@@ -1,0 +1,2857 @@
+{
+  "_id": "605b86f821c795008dc26118",
+  "name": "Merge Form Data with Discovered Components - IAP",
+  "description": "",
+  "incoming": [
+    {
+      "$id": "formOutput",
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "properties": {
+            "workflows": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "workflows"
+            },
+            "operationsAutomations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "operationsAutomations"
+            },
+            "jsonForms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "jsonForms"
+            },
+            "templates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "templates"
+            },
+            "forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "forms"
+            },
+            "commandTemplates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "commandTemplates"
+            },
+            "analyticTemplates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "analyticTemplates"
+            },
+            "goldenConfigTrees": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "$id": "goldenConfigTrees"
+            },
+            "transformations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c62b43451a606c2fb0305"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "transformations"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    },
+    {
+      "$id": "discoveryOutput",
+      "type": "object",
+      "properties": {
+        "componentMap": {
+          "type": "object",
+          "properties": {
+            "workflow": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "ac-agenda-job"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "workflow"
+            },
+            "automation": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "_id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c622d038374d99a024d66"
+                    ]
+                  }
+                },
+                "required": []
+              },
+              "$id": "automation"
+            },
+            "transformation": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c62b43451a606c2fb0305"
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "transformation"
+            },
+            "mop-template": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "mop-template"
+            },
+            "template": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "template"
+            },
+            "mop-analytic-template": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "mop-analytic-template"
+            },
+            "forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "forms"
+            },
+            "json-forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "json-forms"
+            },
+            "golden-config": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "parent": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "examples": [
+                            "zackAll"
+                          ]
+                        },
+                        "type": {
+                          "type": "string",
+                          "examples": [
+                            "workflow"
+                          ]
+                        }
+                      },
+                      "required": []
+                    },
+                    "$id": "parent"
+                  }
+                },
+                "required": []
+              },
+              "$id": "golden-config"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "outgoing": [
+    {
+      "$id": "formInput",
+      "type": "object",
+      "properties": {
+        "components": {
+          "type": "object",
+          "properties": {
+            "workflows": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "operationsAutomations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "jsonForms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "templates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "forms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "commandTemplates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "analyticTemplates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            },
+            "goldenConfigTrees": {
+              "type": "array"
+            },
+            "transformations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "examples": [
+                      "5f7c62b43451a606c2fb0305"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": []
+        }
+      },
+      "required": []
+    }
+  ],
+  "steps": [
+    {
+      "id": 34,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/automation"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/operationsAutomations"
+      }
+    },
+    {
+      "id": 2,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/workflow"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 3,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/workflows"
+      },
+      "to": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 12,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/jsonForms"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 13,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/json-forms"
+      },
+      "to": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 14,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/templates"
+      },
+      "to": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 15,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/template"
+      },
+      "to": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 16,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/forms"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 17,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/forms"
+      },
+      "to": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 18,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/commandTemplates"
+      },
+      "to": {
+        "location": "method",
+        "name": 9,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 19,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/mop-template"
+      },
+      "to": {
+        "location": "method",
+        "name": 9,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 21,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/analyticTemplates"
+      },
+      "to": {
+        "location": "method",
+        "name": 20,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 22,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/mop-analytic-template"
+      },
+      "to": {
+        "location": "method",
+        "name": 20,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 30,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/transformation"
+      },
+      "to": {
+        "location": "method",
+        "name": 29,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 31,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/transformations"
+      },
+      "to": {
+        "location": "method",
+        "name": 29,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 36,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "discoveryOutput",
+        "ptr": "/componentMap/golden-config"
+      },
+      "to": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/args/0/value"
+      }
+    },
+    {
+      "id": 37,
+      "type": "assign",
+      "from": {
+        "location": "incoming",
+        "name": "formOutput",
+        "ptr": "/components/goldenConfigTrees"
+      },
+      "to": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/args/2/value"
+      }
+    },
+    {
+      "id": 1,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 1,
+        "col": 2
+      }
+    },
+    {
+      "id": 6,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 3,
+        "col": 2
+      }
+    },
+    {
+      "id": 7,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 4,
+        "col": 2
+      }
+    },
+    {
+      "id": 8,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 5,
+        "col": 2
+      }
+    },
+    {
+      "id": 9,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 6,
+        "col": 2
+      }
+    },
+    {
+      "id": 20,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 7,
+        "col": 2
+      }
+    },
+    {
+      "id": 29,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_2",
+        null
+      ],
+      "view": {
+        "row": 9,
+        "col": 2
+      }
+    },
+    {
+      "id": 35,
+      "type": "method",
+      "library": "Array",
+      "method": "reduce",
+      "args": [
+        null,
+        "ƒ_reduce_1",
+        null
+      ],
+      "view": {
+        "row": 10,
+        "col": 2
+      }
+    },
+    {
+      "id": 4,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 1,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/workflows"
+      }
+    },
+    {
+      "id": 24,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 6,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/jsonForms"
+      }
+    },
+    {
+      "id": 25,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 7,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/templates"
+      }
+    },
+    {
+      "id": 26,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 8,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/forms"
+      }
+    },
+    {
+      "id": 27,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 9,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/commandTemplates"
+      }
+    },
+    {
+      "id": 28,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 20,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/analyticTemplates"
+      }
+    },
+    {
+      "id": 32,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 29,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/transformations"
+      }
+    },
+    {
+      "id": 38,
+      "type": "assign",
+      "from": {
+        "location": "method",
+        "name": 35,
+        "ptr": "/return"
+      },
+      "to": {
+        "location": "outgoing",
+        "name": "formInput",
+        "ptr": "/components/goldenConfigTrees"
+      }
+    }
+  ],
+  "functions": [
+    {
+      "incoming": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "parent": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "ac-agenda-job"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              },
+              "parent": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "zackAll"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "ac-agenda-job"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "function",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "function",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            "{         \"name\": \"\"       }"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 12,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 22,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 21,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 35,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 34,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 21,
+          "type": "method",
+          "library": "Object",
+          "method": "keys",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 34,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "treeId"
+          ],
+          "view": {
+            "row": 5,
+            "col": 1
+          }
+        },
+        {
+          "id": 1,
+          "type": "function",
+          "function": "userFunc_1",
+          "args": [
+            "",
+            ""
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 24,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 21,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 36,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 34,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "function",
+            "name": 1,
+            "ptr": "/return/isNewComponent"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "name",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 23,
+          "type": "method",
+          "library": "Array",
+          "method": "includes",
+          "args": [
+            null,
+            "treeId",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 26,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 23,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 30,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 33,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 29,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "treeId",
+            null
+          ],
+          "view": {
+            "row": 5,
+            "col": 2
+          }
+        },
+        {
+          "id": 37,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 29,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 25,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 3
+          }
+        },
+        {
+          "id": 31,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 25,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 32,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 9,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          }
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_1",
+      "view": {
+        "col": 4,
+        "row": 6
+      },
+      "id": "ƒ_reduce_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "5f7c62b43451a606c2fb0305"
+                ]
+              }
+            },
+            "required": []
+          },
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "5f7c62b43451a606c2fb0305"
+              ]
+            },
+            "parent": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "workflow"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "examples": [
+                  "5f7c62b43451a606c2fb0305"
+                ]
+              },
+              "parent": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "examples": [
+                        "zackAll"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "examples": [
+                        "workflow"
+                      ]
+                    }
+                  },
+                  "required": []
+                }
+              }
+            },
+            "required": []
+          },
+          "$id": "array",
+          "optional": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "function",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "function",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "declaration",
+          "library": "Object",
+          "method": "new Object",
+          "args": [
+            "{}"
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 10,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 13,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 20,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 19,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 7,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 19,
+          "type": "method",
+          "library": "Object",
+          "method": "getProperty",
+          "args": [
+            null,
+            "name"
+          ],
+          "view": {
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "id": 1,
+          "type": "function",
+          "function": "newComponentCheck_transformations (1)",
+          "args": [
+            "",
+            ""
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 21,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 19,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "function",
+            "name": 1,
+            "ptr": "/return/inNewComponent"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "id",
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 2
+          }
+        },
+        {
+          "id": 17,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 16,
+          "type": "method",
+          "library": "Object",
+          "method": "setProperty",
+          "args": [
+            null,
+            "name",
+            null
+          ],
+          "view": {
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "id": 18,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 16,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 11,
+          "type": "method",
+          "library": "Array",
+          "method": "push",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 3
+          }
+        },
+        {
+          "id": 14,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 11,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 4
+          }
+        },
+        {
+          "id": 15,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "ƒ_reduce_2",
+      "view": {
+        "col": 4,
+        "row": 6
+      },
+      "id": "ƒ_reduce_2",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "$id": "currentDiscoveredElement",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "parent": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "examples": [
+                      "zackAll"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "examples": [
+                      "ac-agenda-job"
+                    ]
+                  }
+                },
+                "required": []
+              }
+            }
+          },
+          "required": []
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "isNewComponent",
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "Boolean",
+          "method": "new Boolean",
+          "args": [
+            "1"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentDiscoveredElement",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/3/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "newCompunentCheck_reduce (1)",
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "isNewComponent",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "newComponentCheck",
+      "view": {
+        "col": 2,
+        "row": 6
+      },
+      "id": "userFunc_1",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/name"
+          },
+          "to": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "declaration",
+          "library": "Number",
+          "method": "new Number",
+          "args": [
+            "0"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "declaration",
+            "name": 8,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "declaration",
+          "library": "Boolean",
+          "method": "new Boolean",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 3,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 1
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 8,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 3,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 4
+          }
+        },
+        {
+          "id": 2,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "newCompunentCheck_reduce (1)",
+      "view": {
+        "col": 4,
+        "row": 6
+      },
+      "id": "newCompunentCheck_reduce (1)",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "$id": "accumulator",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "5f7c62b43451a606c2fb0305"
+                ]
+              }
+            },
+            "required": []
+          }
+        },
+        {
+          "$id": "curentDiscoveredJST",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "examples": [
+                "5f7c62b43451a606c2fb0305"
+              ]
+            }
+          },
+          "required": []
+        }
+      ],
+      "outgoing": [
+        {
+          "$id": "inNewComponent",
+          "type": "boolean",
+          "examples": [
+            true,
+            false
+          ]
+        }
+      ],
+      "steps": [
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "Boolean",
+          "method": "new Boolean",
+          "args": [
+            "1"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 4,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "curentDiscoveredJST",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/3/value"
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "Array",
+          "method": "reduce",
+          "args": [
+            null,
+            "newComponentCheck_JST_reduce (1)",
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "inNewComponent",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "newComponentCheck_transformations (1)",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "newComponentCheck_transformations (1)",
+      "comments": []
+    },
+    {
+      "incoming": [
+        {
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "zackAll"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "examples": [
+                "5f7c62b43451a606c2fb0305"
+              ]
+            }
+          },
+          "required": [],
+          "$id": "currentValue"
+        },
+        {
+          "title": "index",
+          "type": "number",
+          "optional": true,
+          "$id": "index"
+        },
+        {
+          "$id": "array",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "examples": [
+                  "zackAll"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "examples": [
+                  "5f7c62b43451a606c2fb0305"
+                ]
+              }
+            },
+            "required": []
+          },
+          "optional": true
+        },
+        {
+          "$id": "constantValue1",
+          "type": "string",
+          "isConstValue": true
+        }
+      ],
+      "outgoing": [
+        {
+          "title": "accumulator",
+          "type": [
+            "array",
+            "boolean",
+            "number",
+            "integer",
+            "string",
+            "object",
+            "null"
+          ],
+          "$id": "accumulator"
+        }
+      ],
+      "steps": [
+        {
+          "id": 5,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "currentValue",
+            "ptr": "/id"
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 6,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "constantValue1",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 8,
+          "type": "assign",
+          "from": {
+            "location": "incoming",
+            "name": "accumulator",
+            "ptr": ""
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/2/value"
+          }
+        },
+        {
+          "id": 10,
+          "type": "declaration",
+          "library": "Number",
+          "method": "new Number",
+          "args": [
+            "0"
+          ],
+          "view": {
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "id": 11,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 10,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 1,
+          "type": "declaration",
+          "library": "Boolean",
+          "method": "new Boolean",
+          "args": [
+            null
+          ],
+          "view": {
+            "row": 1,
+            "col": 2
+          }
+        },
+        {
+          "id": 4,
+          "type": "method",
+          "library": "Equality",
+          "method": "equality",
+          "args": [
+            null,
+            null
+          ],
+          "view": {
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "id": 3,
+          "type": "assign",
+          "from": {
+            "location": "declaration",
+            "name": 1,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/1/value"
+          }
+        },
+        {
+          "id": 7,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 4,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/args/0/value"
+          }
+        },
+        {
+          "id": 2,
+          "type": "method",
+          "library": "Conditional",
+          "method": "ternary",
+          "args": [
+            null,
+            null,
+            null
+          ],
+          "view": {
+            "row": 2,
+            "col": 2
+          }
+        },
+        {
+          "id": 9,
+          "type": "assign",
+          "from": {
+            "location": "method",
+            "name": 2,
+            "ptr": "/return"
+          },
+          "to": {
+            "location": "outgoing",
+            "name": "accumulator",
+            "ptr": ""
+          }
+        }
+      ],
+      "functions": [],
+      "name": "newComponentCheck_JST_reduce (1)",
+      "view": {
+        "col": 3,
+        "row": 6
+      },
+      "id": "newComponentCheck_JST_reduce (1)",
+      "comments": []
+    }
+  ],
+  "comments": [],
+  "view": {
+    "col": 4,
+    "row": 11
+  },
+  "created": "2025-02-11T19:28:01.828Z",
+  "createdBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "lastUpdated": "2025-02-11T19:29:02.010Z",
+  "lastUpdatedBy": {
+    "_id": "67a4e4222312192336f612c5",
+    "provenance": "local_aaa",
+    "username": "admin@pronghorn"
+  },
+  "version": "4.3.6-2023.2.8",
+  "tags": []
+}

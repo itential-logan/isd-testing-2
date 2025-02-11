@@ -1,7 +1,7 @@
 {
   "name": "@itentialopensource/prebuilt-promotion",
-  "author": "Itential Automation Platform_1",
-  "version": "0.0.6",
+  "author": "Itential Automation Platform",
+  "version": "0.0.2",
   "description": "Push pre-built to a specified version control service",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,12 +28,13 @@
     "r2": "^2.0.1"
   },
   "IAPDependencies": {
-    "@itential/app-operations_manager": "",
-    "@itential/app-json_forms": "",
-    "@itential/app-jst": "",
     "@itential/app-workflow_engine": "",
+    "@itential/app-json_forms": "",
+    "@itentialopensource/adapter-gitlab": "",
     "@itential/app-template_builder": "",
-    "version-control-adapters": ""
+    "@itentialopensource/adapter-github": "",
+    "@itential/app-operations_manager": "",
+    "@itential/app-jst": ""
   },
   "IAPCategories": []
 }
