@@ -24,6 +24,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -55,6 +56,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -86,6 +88,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -132,10 +135,11 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 600,
-        "y": 852
+        "y": 900
       }
     },
     "aec2": {
@@ -161,6 +165,7 @@
           "value": null
         }
       },
+      "deprecated": false,
       "groups": [],
       "nodeLocation": {
         "x": 600,
@@ -189,6 +194,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -218,6 +224,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -246,6 +253,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -274,6 +282,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -303,6 +312,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
@@ -330,6 +340,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -358,6 +369,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -388,6 +400,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -419,6 +432,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -450,6 +464,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -478,6 +493,7 @@
         },
         "error": ""
       },
+      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
@@ -716,8 +732,8 @@
     "gitTokens": {}
   },
   "font_size": 12,
-  "lastUpdatedVersion": "5.55.2-2023.2.14",
-  "last_updated": "2025-02-07T18:10:17.203Z",
+  "lastUpdatedVersion": "4.69.3-2023.2.167",
+  "last_updated": "2025-02-11T18:39:01.952Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
@@ -729,6 +745,7 @@
   "sla": 0,
   "type": "automation",
   "canvasVersion": 3,
+  "description": "",
   "tags": [],
   "groups": [],
   "migrationVersion": 4
