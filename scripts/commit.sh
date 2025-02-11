@@ -1,5 +1,5 @@
 git checkout "${GITHUB_REF:11}"
-echo "Pulling changes1"
+echo "Pulling changes"
 git stash
 git pull --rebase --tags
 git reset --hard origin/"${GITHUB_REF:11}"

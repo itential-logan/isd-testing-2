@@ -29,7 +29,7 @@
     ]
   },
   "lastUpdatedVersion": "4.69.3-2023.2.167",
-  "last_updated": "2025-02-11T19:28:02.881Z",
+  "last_updated": "2025-02-11T19:29:17.828Z",
   "last_updated_by": {
     "provenance": "local_aaa",
     "username": "admin@pronghorn",
@@ -37,7 +37,7 @@
     "inactive": false,
     "gitTokens": {}
   },
-  "name": "Prebuilt Promotion Re-Discover",
+  "name": "Prebuilt Promotion Re-Discover (2)",
   "outputSchema": {
     "type": "object",
     "properties": {
@@ -80,20 +80,19 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
       "nodeLocation": {
-        "x": 1800,
-        "y": 1100
+        "x": 2052,
+        "y": 1008
       }
     },
     "7393": {
       "name": "transformation",
       "canvasName": "transformation",
-      "summary": "mergeFormWithDiscovery",
-      "description": "Perform a JSON Transformation using the JST library.",
+      "summary": "Merge Form Data with Discovered Components - IAP",
+      "description": "Merge Form Data with Discovered Components - IAP",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
@@ -116,29 +115,28 @@
           "formInput": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "task_name": "mergeFormWithDiscovery",
+      "task_name": "Merge Form Data with Discovered Components - IAP",
       "retrySettings": null,
       "nodeLocation": {
-        "x": 2100,
-        "y": 1000
+        "x": 2376,
+        "y": 1008
       }
     },
     "workflow_start": {
       "name": "workflow_start",
       "groups": [],
       "nodeLocation": {
-        "x": -2700,
-        "y": 1000
+        "x": 180,
+        "y": 1008
       }
     },
     "workflow_end": {
       "name": "workflow_end",
       "groups": [],
       "nodeLocation": {
-        "x": 5400,
-        "y": 1100
+        "x": 4572,
+        "y": 1008
       }
     },
     "5dec": {
@@ -160,19 +158,18 @@
         "error": ""
       },
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
-        "x": -1800,
-        "y": 1000
+        "x": 432,
+        "y": 1008
       }
     },
     "76d1": {
       "name": "transformation",
       "canvasName": "transformation",
-      "summary": "convertArtifactInfoToForm",
-      "description": "Perform a JSON Transformation using the JST library.",
+      "summary": "Map Artifact Components to Form - IAP",
+      "description": "Map Artifact Components to Form - IAP",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
@@ -194,20 +191,19 @@
           "output": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "task_name": "convertArtifactInfoToForm",
+      "task_name": "Map Artifact Components to Form - IAP",
       "retrySettings": null,
       "nodeLocation": {
-        "x": -1200,
-        "y": 1000
+        "x": 756,
+        "y": 1008
       }
     },
     "b668": {
       "name": "transformation",
       "canvasName": "transformation",
-      "summary": "convertFormOutputToDiscoveryFormat",
-      "description": "Perform a JSON Transformation using the JST library.",
+      "summary": "Map Form Data to Component Discovery - IAP",
+      "description": "Map Form Data to Component Discovery - IAP",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
@@ -229,13 +225,12 @@
           "discoveryEntryPoint": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "task_name": "convertFormOutputToDiscoveryFormat",
+      "task_name": "Map Form Data to Component Discovery - IAP",
       "retrySettings": null,
       "nodeLocation": {
-        "x": 900,
-        "y": 1000
+        "x": 1728,
+        "y": 1008
       }
     },
     "bd16": {
@@ -260,12 +255,11 @@
         "error": ""
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
-        "x": 3000,
-        "y": 1000
+        "x": 3024,
+        "y": 1008
       }
     },
     "2b81": {
@@ -290,12 +284,11 @@
         "error": ""
       },
       "view": "/workflow_engine/task/ViewData",
-      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
-        "x": 1800,
-        "y": 1500
+        "x": 2052,
+        "y": 1152
       }
     },
     "8ed7": {
@@ -319,20 +312,19 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
       "nodeLocation": {
-        "x": 4200,
-        "y": 1100
+        "x": 3996,
+        "y": 1008
       }
     },
     "eb15": {
       "name": "transformation",
       "canvasName": "transformation",
-      "summary": "createArtifactForPublish",
-      "description": "Perform a JSON Transformation using the JST library.",
+      "summary": "Create Input to Publish Artifact - IAP",
+      "description": "Create Input to Publish Artifact - IAP",
       "location": "Application",
       "locationType": null,
       "app": "WorkFlowEngine",
@@ -357,13 +349,12 @@
           "packageJSON": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "task_name": "createArtifactForPublish",
+      "task_name": "Create Input to Publish Artifact - IAP",
       "retrySettings": null,
       "nodeLocation": {
-        "x": 3300,
-        "y": 1000
+        "x": 3348,
+        "y": 1008
       }
     },
     "cd71": {
@@ -385,13 +376,12 @@
         },
         "error": ""
       },
-      "deprecated": false,
       "groups": [],
       "actor": "Pronghorn",
       "scheduled": false,
       "nodeLocation": {
-        "x": 4800,
-        "y": 1100
+        "x": 4320,
+        "y": 1008
       }
     },
     "b3c0": {
@@ -414,12 +404,11 @@
         "decorators": []
       },
       "view": "/app_artifacts/views/tasks/gatherInternalGET",
-      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
-        "x": 3600,
-        "y": 1100
+        "x": 3672,
+        "y": 1008
       }
     },
     "d69a": {
@@ -443,12 +432,11 @@
         "decorators": []
       },
       "view": "/json-forms/task/ShowJsonForm",
-      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
-        "x": 300,
-        "y": 1000
+        "x": 1404,
+        "y": 1008
       }
     },
     "b723": {
@@ -472,18 +460,17 @@
         "decorators": []
       },
       "view": "/json-forms/task/ShowJsonForm",
-      "deprecated": false,
       "groups": [],
       "scheduled": false,
       "nodeLocation": {
         "x": 2700,
-        "y": 1000
+        "y": 1008
       }
     },
     "2e2b": {
       "name": "transformation",
       "canvasName": "transformation",
-      "summary": "translateSchemaPushBundles",
+      "summary": "Map IAP Components to Form Edit - IAP",
       "description": "Takes in the output of the componentDiscovery task in appartifacts and outputs a format that can be used in a form where the components can be edited.",
       "location": "Application",
       "locationType": null,
@@ -506,13 +493,12 @@
           "componentEditorFormInput": null
         }
       },
-      "deprecated": false,
       "groups": [],
-      "task_name": "translateSchemaPushBundles",
+      "task_name": "Map IAP Components to Form Edit - IAP",
       "retrySettings": null,
       "nodeLocation": {
-        "x": -600,
-        "y": 1000
+        "x": 1080,
+        "y": 1008
       }
     }
   },

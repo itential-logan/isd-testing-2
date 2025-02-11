@@ -1,8 +1,8 @@
 {
   "bundleName": "@itentialopensource/prebuilt-promotion",
   "version": "0.0.1",
-  "fingerprint": "67aa2cae547e674ddd59e339",
-  "createdEpoch": "1739205806642",
+  "fingerprint": "67aba5c0547e674ddd59e340",
+  "createdEpoch": "1739302336410",
   "artifacts": [
     {
       "id": "Prebuilt Promotion",
@@ -122,6 +122,15 @@
       }
     },
     {
+      "id": "Prebuilt Promotion Re-Discover (2)",
+      "name": "Prebuilt Promotion Re-Discover (2)",
+      "type": "workflow",
+      "location": "/bundles/workflows/Prebuilt Promotion Re-Discover (2).json",
+      "properties": {
+        "entryPoint": false
+      }
+    },
+    {
       "id": "Prebuilt Promotion Form",
       "name": "Prebuilt Promotion Form",
       "type": "json-forms",
@@ -177,9 +186,9 @@
     },
     {
       "id": "605b86f821c795008dc26118",
-      "name": "mergeFormWithDiscovery",
+      "name": "Merge Form Data with Discovered Components - IAP",
       "type": "transformation",
-      "location": "/bundles/transformations/mergeFormWithDiscovery.json",
+      "location": "/bundles/transformations/Merge Form Data with Discovered Components - IAP.json",
       "properties": {
         "entryPoint": false
       }
@@ -411,9 +420,9 @@
     },
     {
       "id": "605b870f21c795008dc26119",
-      "name": "createArtifactForPublish",
+      "name": "Create Input to Publish Artifact - IAP",
       "type": "transformation",
-      "location": "/bundles/transformations/createArtifactForPublish.json",
+      "location": "/bundles/transformations/Create Input to Publish Artifact - IAP.json",
       "properties": {
         "entryPoint": false
       }
